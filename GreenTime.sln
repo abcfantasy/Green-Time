@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenTime", "GreenTime\GreenTime\GreenTime.csproj", "{F54585D8-6B6E-4413-9BCA-749AC054E9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenTimeContent", "GreenTime\GreenTimeContent\GreenTimeContent.contentproj", "{D810849B-CD33-4DB1-A819-95CDF0905C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenTimeGameData", "GreenTimeGameData\GreenTimeGameData.csproj", "{6DCD8C78-32BA-4811-91EE-36AD01712D2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F54585D8-6B6E-4413-9BCA-749AC054E9F2}.Debug|x86.ActiveCfg = Debug|x86
+		{F54585D8-6B6E-4413-9BCA-749AC054E9F2}.Debug|x86.Build.0 = Debug|x86
+		{F54585D8-6B6E-4413-9BCA-749AC054E9F2}.Release|x86.ActiveCfg = Release|x86
+		{F54585D8-6B6E-4413-9BCA-749AC054E9F2}.Release|x86.Build.0 = Release|x86
+		{D810849B-CD33-4DB1-A819-95CDF0905C6F}.Debug|x86.ActiveCfg = Debug|x86
+		{D810849B-CD33-4DB1-A819-95CDF0905C6F}.Release|x86.ActiveCfg = Release|x86
+		{6DCD8C78-32BA-4811-91EE-36AD01712D2F}.Debug|x86.ActiveCfg = Debug|x86
+		{6DCD8C78-32BA-4811-91EE-36AD01712D2F}.Debug|x86.Build.0 = Debug|x86
+		{6DCD8C78-32BA-4811-91EE-36AD01712D2F}.Release|x86.ActiveCfg = Release|x86
+		{6DCD8C78-32BA-4811-91EE-36AD01712D2F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

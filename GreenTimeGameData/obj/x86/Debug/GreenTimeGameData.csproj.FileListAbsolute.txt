@@ -1,0 +1,12 @@
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\bin\x86\Debug\GreenTimeGameData.dll
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\bin\x86\Debug\GreenTimeGameData.pdb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Debug\GreenTimeGameData.dll
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Debug\GreenTimeGameData.pdb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\bin\x86\Debug\GreenTimeGameData.dll
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\bin\x86\Debug\GreenTimeGameData.pdb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\obj\x86\Debug\GreenTimeGameData.dll
+E:\Facultate-ITU\GreenTime_Andrew\GreenTimeGameData\obj\x86\Debug\GreenTimeGameData.pdb

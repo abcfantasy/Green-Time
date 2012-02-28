@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="GreenTimeGameData.Components.Level[]">
+    <!-- ################
+         Room 1 - Bedroom
+         ################ -->
+    <Item>
+      <!--<Index>1</Index>-->
+      <Name>bedroom</Name>
+      <BackgroundTexture></BackgroundTexture>
+      <LeftScreenName></LeftScreenName>
+      <RightScreenName>outdoor</RightScreenName>
+      <GameObjects>
+        <!-- Newspaper -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1000</BoundX>
+          <BoundWidth>40</BoundWidth>
+          <Text>News</Text>
+          <Special>news</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates></DependentStates>
+        </Item>
+      </GameObjects>
+  </Item>
+    <!-- ################
+         Room 2 - Sample outdoor
+         ################ -->
+    <Item>
+      <!--<Index>2</Index>-->
+      <Name>outdoor</Name>
+      <BackgroundTexture></BackgroundTexture>
+      <LeftScreenName>bedroom</LeftScreenName>
+      <RightScreenName></RightScreenName>
+      <GameObjects>
+         <!-- Garbage -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>450</BoundX>
+          <BoundWidth>100</BoundWidth>
+          <Text>Garbage</Text>
+          <Special></Special>
+          <Transition>outdoor_past</Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>garbage</TextureName>
+              <PositionX>500</PositionX>
+              <PositionY>550</PositionY>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <!-- state 'garbage1_solved' must be false for this to appear -->
+            <Item>
+              <StateName>garbage1_solved</StateName>
+              <StateValue>false</StateValue>
+            </Item>
+          </DependentStates>
+        </Item>
+        <!-- Flowers -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>500</BoundX>
+          <BoundWidth>80</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>flowers</TextureName>
+              <PositionX>500</PositionX>
+              <PositionY>550</PositionY>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <!-- state 'garbage1_solved' must be true for this to appear -->
+            <Item>
+              <StateName>garbage1_solved</StateName>
+              <StateValue>true</StateValue>
+            </Item>
+          </DependentStates>
+        </Item>
+      </GameObjects>
+    </Item>
+    <!-- ################
+         Room 102 - Sample outdoor PAST
+         ################ -->
+    <Item>
+      <!--<Index>102</Index>-->
+      <Name>outdoor_past</Name>
+      <BackgroundTexture></BackgroundTexture>
+      <LeftScreenName></LeftScreenName>
+      <RightScreenName></RightScreenName>
+      <GameObjects>
+        <!-- Garbage man -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>450</BoundX>
+          <BoundWidth>120</BoundWidth>
+          <Text>Stranger</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>0</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>garbage_man</TextureName>
+              <PositionX>500</PositionX>
+              <PositionY>450</PositionY>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+        </Item>
+      </GameObjects>
+    </Item>
+  </Asset>
+</XnaContent>

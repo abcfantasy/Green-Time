@@ -1,0 +1,41 @@
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\GreenTime.exe
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\GreenTime.pdb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\obj\x86\Debug\GreenTime.exe
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\obj\x86\Debug\GreenTime.pdb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\background.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\blank.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\gradient.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\gamefont.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\menufont.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\player.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\news1.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\levels.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.dll
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.pdb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\garbage.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\chats.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\garbage_man.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\flowers.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\background.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\blank.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\gradient.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\player.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\news1.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\garbage.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\garbage_man.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\flowers.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\gamefont.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\menufont.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\levels.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\chats.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\Content\desaturate.xnb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\GreenTime.exe
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\GreenTime.pdb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.dll
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.pdb
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.exe
+E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.pdb
