@@ -27,6 +27,12 @@ namespace GreenTime.Screens
 
         InteractiveObject interactingObject;
         Effect desaturateShader;
+        // This value should be changed according to the progress in the game
+        // I left it as a float so that we can easily calculate it based on the progress
+        // When it's used, it is cast into a byte
+        // 0 = fully desaturated
+        // 64 = original colors
+        float desaturationAmount = 0;
 
         float pauseAlpha;
         #endregion
@@ -136,12 +142,12 @@ namespace GreenTime.Screens
             //                 new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
 
             // player
-            spriteBatch.Draw( playerTexture, playerPosition, new Color( 255, 255, 255, 0 ) );
+            spriteBatch.Draw(playerTexture, playerPosition, new Color(255, 255, 255, (byte)desaturationAmount));
 
             // game objects
             for (int i = 0; i < objectTextures.Count; i++)
             {
-                spriteBatch.Draw(objectTextures[i], objectPositions[i], new Color(255, 255, 255, 0));
+                spriteBatch.Draw(objectTextures[i], objectPositions[i], new Color(255, 255, 255, (byte)desaturationAmount));
             }
 
             // text
