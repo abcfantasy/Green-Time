@@ -51,7 +51,7 @@ namespace GreenTimeGameData.Components
         /// <summary>
         /// game states that the object relies on
         /// </summary>
-        public State[] DependentStates { get; set; }
+        public StateDependency[] DependentStates { get; set; }
         #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace GreenTime.Managers
     public class StateManager
     {
         #region Fields
-        private Dictionary<string, bool> states = new Dictionary<string,bool>();
+        private Dictionary<string, int> states = new Dictionary<string,int>();
         #endregion
 
         #region Public Methods
@@ -18,14 +18,14 @@ namespace GreenTime.Managers
         /// </summary>
         /// <param name="stateName"></param>
         /// <returns></returns>
-        private bool GetState(string stateName)
+        private int GetState(string stateName)
         {
             // if key is present, return key value
             if (states.ContainsKey(stateName))
                 return states[stateName];
             // otherwise return false
             else
-                return false;
+                return 0;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace GreenTime.Managers
         /// <param name="stateName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private void SetState(string stateName, bool value)
+        private void SetState(string stateName, int value)
         {
             if (states.ContainsKey(stateName))
                 states[stateName] = value;
@@ -43,12 +43,12 @@ namespace GreenTime.Managers
         }
 
         /// <summary>
-        /// Checks the global state 'back_to_present' to see if player should be returned to present
+        /// Checks the global state 'back_to_present' to see if player should be returned to present (100 = return)
         /// </summary>
         /// <returns></returns>
         public bool ShouldReturnToPresent()
         {
-            return GetState("back_to_present");
+            return GetState("back_to_present") == 100;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace GreenTime.Managers
         /// </summary>
         public void ResetReturnToPresent()
         {
-            SetState("back_to_present", false);
+            SetState("back_to_present", 0);
         }
 
         /// <summary>
@@ -64,15 +64,19 @@ namespace GreenTime.Managers
         /// </summary>
         /// <param name="states"></param>
         /// <returns></returns>
-        public bool DependentStatesSatisfied(State[] states)
+        public bool DependentStatesSatisfied(StateDependency[] states)
         {
-            bool satisfied = true;
+            if (states.Length == 0)
+                return true;
+
+            bool satisfied = false;
 
             for (int i = 0; i < states.Length; i++)
             {
-                // if the state is not in the desired value, it is not satisfied
-                if (GetState(states[i].StateName) != states[i].StateValue)
-                    satisfied = false;
+                int currentStateValue = GetState(states[i].StateName);
+                // state value must be between state dependency values
+                if (currentStateValue >= states[i].StateLowValue && currentStateValue <= states[i].StateHighValue)
+                    satisfied = true;
             }
 
             return satisfied;

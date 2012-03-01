@@ -55,7 +55,8 @@
             <!-- state 'garbage1_solved' must be false for this to appear -->
             <Item>
               <StateName>garbage1_solved</StateName>
-              <StateValue>false</StateValue>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>99</StateHighValue>
             </Item>
           </DependentStates>
         </Item>
@@ -79,7 +80,8 @@
             <!-- state 'garbage1_solved' must be true for this to appear -->
             <Item>
               <StateName>garbage1_solved</StateName>
-              <StateValue>true</StateValue>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
             </Item>
           </DependentStates>
         </Item>

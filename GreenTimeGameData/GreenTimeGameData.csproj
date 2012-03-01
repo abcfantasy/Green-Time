@@ -98,6 +98,7 @@
     <Compile Include="Components\Level.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\State.cs" />
+    <Compile Include="Components\StateDependency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

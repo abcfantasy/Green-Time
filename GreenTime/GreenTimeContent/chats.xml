@@ -32,7 +32,7 @@
       <States>
         <Item>
           <StateName>back_to_present</StateName>
-          <StateValue>true</StateValue>
+          <StateValue>100</StateValue>
         </Item>
       </States>
     </Item>
@@ -45,7 +45,7 @@
       <States>
         <Item>
           <StateName>back_to_present</StateName>
-          <StateValue>true</StateValue>
+          <StateValue>100</StateValue>
         </Item>
       </States>
     </Item>
@@ -59,11 +59,11 @@
       <States>
         <Item>
           <StateName>garbage1_solved</StateName>
-          <StateValue>true</StateValue>
+          <StateValue>100</StateValue>
         </Item>
         <Item>
           <StateName>back_to_present</StateName>
-          <StateValue>true</StateValue>
+          <StateValue>100</StateValue>
       </Item>
       </States>
     </Item>

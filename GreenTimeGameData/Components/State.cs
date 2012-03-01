@@ -14,9 +14,9 @@ namespace GreenTimeGameData.Components
         public string StateName { get; set; }
 
         /// <summary>
-        /// the value of this state
+        /// the value of this state (0 to 100)
         /// </summary>
-        public bool StateValue { get; set; }
+        public int StateValue { get; set; }
         #endregion
     }
 }

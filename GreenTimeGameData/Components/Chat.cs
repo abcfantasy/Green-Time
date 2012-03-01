@@ -21,7 +21,7 @@ namespace GreenTimeGameData.Components
         /// <summary>
         /// a set of states that this chat depends on
         /// </summary>
-        public State[] DependentStates { get; set; }
+        public StateDependency[] DependentStates { get; set; }
 
         /// <summary>
         /// a set of answers for this chat
