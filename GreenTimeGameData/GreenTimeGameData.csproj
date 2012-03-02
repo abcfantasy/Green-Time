@@ -92,6 +92,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Animation.cs" />
+    <Compile Include="Components\AnimationPlayback.cs" />
     <Compile Include="Components\Answer.cs" />
     <Compile Include="Components\Chat.cs" />
     <Compile Include="Components\InteractiveObject.cs" />

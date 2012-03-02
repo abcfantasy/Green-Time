@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using GreenTime.Managers;
 using GreenTimeGameData.Components;
+using GreenTime.GameObjects;
 
 namespace GreenTime.Screens
 {
@@ -17,13 +18,15 @@ namespace GreenTime.Screens
         ContentManager content;
         SpriteFont gameFont;
 
-        Texture2D playerTexture;
-        Vector2 playerPosition;
+        AnimatedObject player;
+        //Texture2D playerTexture;
+        //Vector2 player.Position;
 
         Texture2D backgroundTexture;
-
-        List<Texture2D> objectTextures = new List<Texture2D>();
-        List<Vector2> objectPositions = new List<Vector2>();
+        
+        //List<Texture2D> objectTextures = new List<Texture2D>();
+        //List<Vector2> objectPositions = new List<Vector2>();
+        List<BaseObject> gameObjects = new List<BaseObject>();
 
         InteractiveObject interactingObject;
         Effect desaturateShader;
@@ -46,7 +49,7 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
-            playerPosition = LevelManager.State.PlayerPosition;
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 32, 48, 12);
         }
 
         /// <summary>
@@ -59,8 +62,10 @@ namespace GreenTime.Screens
 
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
-            playerTexture = content.Load<Texture2D>("player");
             
+            player.Load(content, "sampleAnim");
+            player.AddAnimation("walk", new int[] { 8, 9, 10, 11 });
+
             // load background
             if ( !String.IsNullOrEmpty( LevelManager.State.CurrentLevel.BackgroundTexture ) )
                 backgroundTexture = content.Load<Texture2D>(LevelManager.State.CurrentLevel.BackgroundTexture);
@@ -70,9 +75,26 @@ namespace GreenTime.Screens
             {
                 if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0 && StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
                 {
-                    objectTextures.Add(content.Load<Texture2D>(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].TextureName));
-                    objectPositions.Add(new Vector2(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionX,
-                                                    LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionY));
+                    BaseObject gameObject;
+                    // static object
+                    if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation == null)
+                    {
+                        gameObject = new BaseObject(new Vector2(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionX,
+                                                                  LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionY));
+                    }
+                    // animated object
+                    else
+                    {
+                        gameObject = new AnimatedObject(new Vector2(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionX,
+                                                                           LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionY),
+                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FrameWidth,
+                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FrameHeight,
+                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FramesPerSecond);
+                        // add animations
+                        ((AnimatedObject)gameObject).AddAnimations(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].Playbacks);
+                    }
+                    gameObject.Load(content, LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].TextureName);
+                    gameObjects.Add(gameObject);
                 }
             }
             // A real game would probably have more content than this sample, so
@@ -122,6 +144,9 @@ namespace GreenTime.Screens
 
                 // check if player collided with some objects
                 CheckObjectCollisions();
+
+                // update animations
+                UpdateAnimations( gameTime );
             }
 
         }
@@ -142,12 +167,13 @@ namespace GreenTime.Screens
             //                 new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
 
             // player
-            spriteBatch.Draw(playerTexture, playerPosition, new Color(255, 255, 255, (byte)desaturationAmount));
+            //spriteBatch.Draw(playerTexture, player.Position, new Color(255, 255, 255, (byte)desaturationAmount));
+            player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
 
             // game objects
-            for (int i = 0; i < objectTextures.Count; i++)
+            for (int i = 0; i < gameObjects.Count; i++)
             {
-                spriteBatch.Draw(objectTextures[i], objectPositions[i], new Color(255, 255, 255, (byte)desaturationAmount));
+                gameObjects[i].Draw( spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount) );
             }
 
             // text
@@ -223,28 +249,35 @@ namespace GreenTime.Screens
                 Vector2 movement = Vector2.Zero;
 
                 if (keyboardState.IsKeyDown(Keys.Left))
+                {
+                    player.Flipped = true;  // flip player
                     movement.X--;
+                }
 
                 if (keyboardState.IsKeyDown(Keys.Right))
+                {
+                    player.Flipped = false;
                     movement.X++;
-
-                /*
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-                */
+                }
 
                 Vector2 thumbstick = gamePadState.ThumbSticks.Left;
 
                 movement.X += thumbstick.X;
-                //movement.Y -= thumbstick.Y;
 
                 if (movement.Length() > 1)
                     movement.Normalize();
 
-                playerPosition += movement * 5;
+                player.Position += movement * 5;
+
+                // play walk animation if moving
+                if (movement.X != 0)
+                {
+                    if (player.IsStopped)
+                        player.Resume();
+                }
+                else
+                    player.Stop();
+
             }
         }
         #endregion
@@ -262,28 +295,28 @@ namespace GreenTime.Screens
         private void CheckTransitionBoundaries()
         {
             // If we're trying to move in a direction but there's no level there, we need to stop
-            if (playerPosition.X + SettingsManager.PLAYER_WIDTH >= SettingsManager.GAME_WIDTH
+            if (player.X + SettingsManager.PLAYER_WIDTH >= SettingsManager.GAME_WIDTH
                 && !LevelManager.State.CanTransitionRight())
             {
-                playerPosition.X = SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH;
+                player.X = SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH;
                 return;
             }
-            else if (playerPosition.X <= 0
+            else if (player.X <= 0
                      && !LevelManager.State.CanTransitionLeft())
             {
-                playerPosition.X = 0;
+                player.X = 0;
                 return;
             }
 
             // if player moves outside the right boundary
-            if (playerPosition.X > SettingsManager.GAME_WIDTH)
+            if (player.X > SettingsManager.GAME_WIDTH)
             {
                 // transition to the right
                 LevelManager.State.TransitionRight();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());
             }
             // if player moves outside left boundary
-            else if (playerPosition.X < -SettingsManager.PLAYER_WIDTH)
+            else if (player.X < -SettingsManager.PLAYER_WIDTH)
             {
                 // transition to the left
                 LevelManager.State.TransitionLeft();
@@ -297,8 +330,8 @@ namespace GreenTime.Screens
 
             for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
             {
-                if ( playerPosition.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
-                     playerPosition.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth &&
+                if ( player.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
+                     player.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth &&
                      StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
                 {
                     interactingObject = LevelManager.State.CurrentLevel.GameObjects[i];
@@ -308,16 +341,33 @@ namespace GreenTime.Screens
                     {
                         // to safely determine the side in which the player collided, we check first if the player is between the left edge of the object and the middle of the object
                         // since player moves more than 1 pixels at a time. This would mean he collided on the left side, otherwise it's the right side
-                        if (playerPosition.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
-                            playerPosition.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + ( LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth / 2 ))
+                        if (player.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
+                            player.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + ( LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth / 2 ))
                         {
-                            playerPosition.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX - 1;
+                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX - 1;
                         }
                         else
-                            playerPosition.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth + 1;
+                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth + 1;
                     }
                 }
 
+            }
+        }
+
+        private void UpdateAnimations( GameTime gameTime )
+        {
+            double elapsedSeconds = gameTime.ElapsedGameTime.TotalSeconds;
+
+            // update player animation
+            player.UpdateFrame(elapsedSeconds);
+
+            // update object animations
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                if (gameObjects[i].GetType() == typeof(AnimatedObject))
+                {
+                    ((AnimatedObject)gameObjects[i]).UpdateFrame(elapsedSeconds);
+                }
             }
         }
         #endregion

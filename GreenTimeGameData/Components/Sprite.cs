@@ -22,6 +22,11 @@ namespace GreenTimeGameData.Components
         /// the y position
         /// </summary>
         public int PositionY { get; set; }
+
+        /// <summary>
+        /// the animation for this sprite
+        /// </summary>
+        public List<Animation> Animation { get; set; }
         #endregion
     }
 }

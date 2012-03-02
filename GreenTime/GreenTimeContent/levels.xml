@@ -46,9 +46,23 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>garbage</TextureName>
+              <TextureName>sampleObjAnim</TextureName>
               <PositionX>500</PositionX>
               <PositionY>550</PositionY>
+              <Animation>
+                <Item>
+                  <FrameWidth>32</FrameWidth>
+                  <FrameHeight>48</FrameHeight>
+                  <FramesPerSecond>12</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>8 9 10 11</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
             </Item>
           </Sprite>
           <DependentStates>
@@ -74,6 +88,7 @@
               <TextureName>flowers</TextureName>
               <PositionX>500</PositionX>
               <PositionY>550</PositionY>
+              <Animation></Animation>
             </Item>
           </Sprite>
           <DependentStates>
@@ -111,6 +126,7 @@
               <TextureName>garbage_man</TextureName>
               <PositionX>500</PositionX>
               <PositionY>450</PositionY>
+              <Animation></Animation>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
