@@ -8,6 +8,15 @@ namespace GreenTime.Managers
 {
     public class StateManager
     {
+        #region State Constants
+        // state to mark game should transition back to present
+        public readonly string STATE_BACKTOPRESENT = "back_to_present";
+        // state to keep track if indoor puzzle is solved or not
+        public readonly string STATE_INDOORSOLVED = "indoor_solved";
+        // state to keep track of player status (0-32 = grey square head; 33-62 = grey round head; 63-100 = green round head;)
+        public readonly string STATE_PLAYERSTATUS = "player_status";
+        #endregion
+
         #region Fields
         private Dictionary<string, int> states = new Dictionary<string,int>();
         #endregion
@@ -48,7 +57,7 @@ namespace GreenTime.Managers
         /// <returns></returns>
         public bool ShouldReturnToPresent()
         {
-            return GetState("back_to_present") == 100;
+            return GetState(STATE_BACKTOPRESENT) == 100;
         }
 
         /// <summary>
@@ -56,7 +65,7 @@ namespace GreenTime.Managers
         /// </summary>
         public void ResetReturnToPresent()
         {
-            SetState("back_to_present", 0);
+            SetState(STATE_BACKTOPRESENT, 0);
         }
 
         /// <summary>

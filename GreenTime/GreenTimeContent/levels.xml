@@ -22,6 +22,7 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite></Sprite>
           <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
   </Item>
@@ -73,6 +74,7 @@
               <StateHighValue>99</StateHighValue>
             </Item>
           </DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
         <!-- Flowers -->
         <Item>
@@ -99,6 +101,7 @@
               <StateHighValue>100</StateHighValue>
             </Item>
           </DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
     </Item>
@@ -130,6 +133,7 @@
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
     </Item>

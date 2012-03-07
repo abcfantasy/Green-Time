@@ -17,18 +17,11 @@ namespace GreenTime.Screens
         #region Fields
         ContentManager content;
         SpriteFont gameFont;
-
         AnimatedObject player;
-        //Texture2D playerTexture;
-        //Vector2 player.Position;
-
         Texture2D backgroundTexture;
-        
-        //List<Texture2D> objectTextures = new List<Texture2D>();
-        //List<Vector2> objectPositions = new List<Vector2>();
         List<BaseObject> gameObjects = new List<BaseObject>();
-
         InteractiveObject interactingObject;
+
         Effect desaturateShader;
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
@@ -226,6 +219,9 @@ namespace GreenTime.Screens
                 // check for action button, only if player is over interactive object
                 if (input.IsMenuSelect() && interactingObject != null)
                 {
+                    // change states if any are effected
+                    StateManager.Current.ModifyStates( interactingObject.EffectedStates );
+
                     // handling special news case
                     if (interactingObject.Special == "news")
                     {
@@ -283,6 +279,9 @@ namespace GreenTime.Screens
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Checks to see if the screen should transition to the present
+        /// </summary>
         private void CheckPastPresentState()
         {
             if (StateManager.Current.ShouldReturnToPresent() && LevelManager.State.LastPresentLevel != null)
@@ -292,6 +291,9 @@ namespace GreenTime.Screens
             }
         }
 
+        /// <summary>
+        /// Checks if the player is at the edge and the screen should transition to another screen
+        /// </summary>
         private void CheckTransitionBoundaries()
         {
             // If we're trying to move in a direction but there's no level there, we need to stop
@@ -324,6 +326,9 @@ namespace GreenTime.Screens
             }
         }
 
+        /// <summary>
+        /// Checks if the player collides with a game object
+        /// </summary>
         private void CheckObjectCollisions()
         {
             interactingObject = null;
@@ -354,6 +359,10 @@ namespace GreenTime.Screens
             }
         }
 
+        /// <summary>
+        /// Updates the animation frames of player and animated game objects
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void UpdateAnimations( GameTime gameTime )
         {
             double elapsedSeconds = gameTime.ElapsedGameTime.TotalSeconds;

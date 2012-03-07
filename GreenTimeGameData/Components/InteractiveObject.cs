@@ -52,6 +52,11 @@ namespace GreenTimeGameData.Components
         /// game states that the object relies on
         /// </summary>
         public StateDependency[] DependentStates { get; set; }
+
+        /// <summary>
+        /// game states that the object changes upon acting on it
+        /// </summary>
+        public State[] EffectedStates { get; set; }
         #endregion
     }
 }
