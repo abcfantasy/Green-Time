@@ -59,7 +59,7 @@ namespace GreenTime.Managers
         /// <returns></returns>
         public bool ShouldReturnToPresent()
         {
-            return GetState("back_to_present") == 100;
+            return GetState(STATE_BACKTOPRESENT) == 100;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace GreenTime.Managers
         /// </summary>
         public void ResetReturnToPresent()
         {
-            SetState("back_to_present", 0);
+            SetState(STATE_BACKTOPRESENT, 0);
         }
 
         /// <summary>
@@ -80,14 +80,14 @@ namespace GreenTime.Managers
             if (states.Length == 0)
                 return true;
 
-            bool satisfied = false;
+            bool satisfied = true;
 
             for (int i = 0; i < states.Length; i++)
             {
                 int currentStateValue = GetState(states[i].StateName);
                 // state value must be between state dependency values
-                if (currentStateValue >= states[i].StateLowValue && currentStateValue <= states[i].StateHighValue)
-                    satisfied = true;
+                if (currentStateValue < states[i].StateLowValue || currentStateValue > states[i].StateHighValue)
+                    satisfied = false;
             }
 
             return satisfied;

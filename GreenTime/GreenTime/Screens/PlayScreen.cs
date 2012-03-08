@@ -17,15 +17,8 @@ namespace GreenTime.Screens
         #region Fields
         ContentManager content;
         SpriteFont gameFont;
-
         AnimatedObject player;
-        //Texture2D playerTexture;
-        //Vector2 player.Position;
-
         Texture2D backgroundTexture;
-        
-        //List<Texture2D> objectTextures = new List<Texture2D>();
-        //List<Vector2> objectPositions = new List<Vector2>();
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
@@ -254,8 +247,8 @@ namespace GreenTime.Screens
             }
             else if ( this.IsActive )
             {
-                // check for action button, only if player is over interactive object
-                if (input.IsMenuSelect() && interactingObject != null)
+                // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
+                if (input.IsMenuSelect() && interactingObject != null && ( pickedObject == null || ( pickedObject != null && interactingObject.Special == "drop") ) )
                 {
                     // change states if any are effected
                     if (interactingObject.EffectedStates.Length != 0)
@@ -285,7 +278,7 @@ namespace GreenTime.Screens
                         ScreenManager.AddScreen(new ChatScreen(LevelManager.State.GetChat(interactingObject.ChatIndex), true));
                     }
                     // transition into past
-                    else if ( !String.IsNullOrEmpty( interactingObject.Transition) )
+                    else if (!String.IsNullOrEmpty(interactingObject.Transition))
                     {
                         LevelManager.State.TransitionPast(interactingObject.Transition);
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
