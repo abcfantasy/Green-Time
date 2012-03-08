@@ -39,3 +39,29 @@ E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\ResolveAssem
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.exe
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.pdb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\obj\x86\Debug\GreenTime.exe
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\obj\x86\Debug\GreenTime.pdb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\background.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\blank.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\gradient.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\player.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\news1.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\garbage.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\garbage_man.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\flowers.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\sampleAnim.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\sampleObjAnim.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\gamefont.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\menufont.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\levels.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\chats.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\desaturate.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\GreenTime.exe
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\GreenTime.pdb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.dll
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\GreenTimeGameData.pdb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\bedroom.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\bedroom_static.xnb
+E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTime\bin\x86\Debug\Content\light_on.xnb

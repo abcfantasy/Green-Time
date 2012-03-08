@@ -161,7 +161,7 @@ namespace GreenTime.GameObjects
             int frame = animations[currentAnimation][currentFrameIndex];
 
             this.currentFrameRectangle.X = (frame * frameWidth) % texture.Width;
-            this.currentFrameRectangle.Y = (int)Math.Floor(frame * frameWidth / 128.0 ) * frameHeight;
+            this.currentFrameRectangle.Y = (int)Math.Floor(frame * frameWidth / (double)texture.Width ) * frameHeight;
         }
         #endregion
     }

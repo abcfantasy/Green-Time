@@ -7,7 +7,7 @@
     <Item>
       <!--<Index>1</Index>-->
       <Name>bedroom</Name>
-      <BackgroundTexture></BackgroundTexture>
+      <BackgroundTexture>bedroom_static</BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
       <GameObjects>
@@ -22,6 +22,86 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite></Sprite>
           <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Light -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>640</BoundX>
+          <BoundWidth>80</BoundWidth>
+          <Text>Light</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>light_on</TextureName>
+              <PositionX>494</PositionX>
+              <PositionY>0</PositionY>
+              <Animation></Animation>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>10</StateLowValue>
+              <StateHighValue>10</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Heat -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>570</BoundX>
+          <BoundWidth>270</BoundWidth>
+          <Text>Heater</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>20</StateLowValue>
+              <StateHighValue>20</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Computer -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>860</BoundX>
+          <BoundWidth>250</BoundWidth>
+          <Text>Computer</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>30</StateLowValue>
+              <StateHighValue>30</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
         </Item>
       </GameObjects>
   </Item>
@@ -73,6 +153,7 @@
               <StateHighValue>99</StateHighValue>
             </Item>
           </DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
         <!-- Flowers -->
         <Item>
@@ -99,6 +180,7 @@
               <StateHighValue>100</StateHighValue>
             </Item>
           </DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
     </Item>
@@ -130,6 +212,7 @@
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
     </Item>
