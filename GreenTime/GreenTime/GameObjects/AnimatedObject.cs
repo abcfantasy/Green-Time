@@ -37,6 +37,7 @@ namespace GreenTime.GameObjects
         }
 
         #endregion
+
         #region Constructor
         public AnimatedObject(Vector2 position, int frameWidth, int frameHeight, int framesPerSecond)
             : base(position)
@@ -78,6 +79,16 @@ namespace GreenTime.GameObjects
         }
 
         /// <summary>
+        /// Checks if the given animation is currently playing
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool CurrentlyPlaying(string name)
+        {
+            return currentAnimation == name && !paused;
+        }
+
+        /// <summary>
         /// Play a particular animation
         /// </summary>
         /// <param name="name"></param>
@@ -95,6 +106,7 @@ namespace GreenTime.GameObjects
         {
             currentFrameIndex = animations[currentAnimation][0];
             totalElapsed = 0;
+            Resume();
         }
 
         /// <summary>

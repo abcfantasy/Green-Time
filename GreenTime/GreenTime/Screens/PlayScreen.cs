@@ -59,6 +59,7 @@ namespace GreenTime.Screens
             
             player.Load(content, "AnimationRoundGreen");
             player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            player.AddAnimation("idle", new int[] { 3 });
 
             // load background
             if ( !String.IsNullOrEmpty( LevelManager.State.CurrentLevel.BackgroundTexture ) )
@@ -177,7 +178,7 @@ namespace GreenTime.Screens
             // background
             if (backgroundTexture != null)
             {
-                spriteBatch.Draw(backgroundTexture, Vector2.Zero, new Color(255, 255, 255, (byte)desaturationAmount));
+                spriteBatch.Draw(backgroundTexture, Vector2.Zero, new Color(255, 255, 255, 64));
             }
 
             // player
@@ -187,7 +188,8 @@ namespace GreenTime.Screens
             }
             else
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+                //player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+                player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
             
             // picked up object if any
@@ -314,17 +316,26 @@ namespace GreenTime.Screens
                 if (movement.Length() > 1)
                     movement.Normalize();
 
+                /* uncomment this if you wanna be shufflin'
+                if (keyboardState.IsKeyDown(Keys.Space))
+                    movement.X = 0;
+                
+                player.Position += movement * -2;
+                */
+
                 player.Position += movement * 5;
 
                 // play walk animation if moving
                 if (movement.X != 0)
                 {
-                    if (player.IsStopped)
-                        player.Resume();
+                    if (!player.CurrentlyPlaying("walk"))
+                        player.PlayAnimation("walk");
                 }
-                else
-                    player.Stop();
-
+                else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
+                {
+                    if (!player.CurrentlyPlaying("idle"))
+                        player.PlayAnimation("idle");
+                }
             }
         }
         #endregion
