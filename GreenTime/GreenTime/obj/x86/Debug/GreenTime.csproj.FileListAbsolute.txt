@@ -39,3 +39,7 @@ E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\ResolveAssem
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.exe
 E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTime\obj\x86\Debug\GreenTime.pdb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\desaturate.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\sampleAnim.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\sampleObjAnim.xnb
+C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\AnimationRoundGreen.xnb

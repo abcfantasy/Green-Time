@@ -43,7 +43,7 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 12);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15);
         }
 
         /// <summary>

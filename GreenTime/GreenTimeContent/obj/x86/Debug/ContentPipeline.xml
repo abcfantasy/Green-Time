@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>background.png</Source>
+      <Name>background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2012-02-28T19:51:46.7140372+01:00</Time>
+    </Item>
+    <Item>
+      <Source>blank.png</Source>
+      <Name>blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2012-02-28T19:51:46.7150372+01:00</Time>
+    </Item>
+    <Item>
+      <Source>gradient.png</Source>
+      <Name>gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\gradient.xnb</Output>
+      <Time>2012-02-28T19:51:46.7190375+01:00</Time>
+    </Item>
+    <Item>
+      <Source>player.png</Source>
+      <Name>player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\player.xnb</Output>
+      <Time>2012-02-28T19:51:46.7530394+01:00</Time>
+    </Item>
+    <Item>
+      <Source>news1.png</Source>
+      <Name>news1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\news1.xnb</Output>
+      <Time>2012-02-28T19:51:46.7220376+01:00</Time>
+    </Item>
+    <Item>
+      <Source>garbage.png</Source>
+      <Name>garbage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\garbage.xnb</Output>
+      <Time>2012-02-28T19:51:46.7180374+01:00</Time>
+    </Item>
+    <Item>
+      <Source>garbage_man.png</Source>
+      <Name>garbage_man</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\garbage_man.xnb</Output>
+      <Time>2012-02-28T19:51:46.7180374+01:00</Time>
+    </Item>
+    <Item>
+      <Source>flowers.png</Source>
+      <Name>flowers</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\flowers.xnb</Output>
+      <Time>2012-02-28T19:51:46.7170373+01:00</Time>
+    </Item>
+    <Item>
+      <Source>sampleAnim.png</Source>
+      <Name>sampleAnim</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\sampleAnim.xnb</Output>
+      <Time>2004-06-24T17:00:02+02:00</Time>
+    </Item>
+    <Item>
+      <Source>sampleObjAnim.png</Source>
+      <Name>sampleObjAnim</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\sampleObjAnim.xnb</Output>
+      <Time>2004-06-24T17:00:02+02:00</Time>
+    </Item>
+    <Item>
+      <Source>gamefont.spritefont</Source>
+      <Name>gamefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2012-02-28T19:51:46.7170373+01:00</Time>
+    </Item>
+    <Item>
+      <Source>menufont.spritefont</Source>
+      <Name>menufont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2012-02-28T19:51:46.7190375+01:00</Time>
+    </Item>
+    <Item>
+      <Source>levels.xml</Source>
+      <Name>levels</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\levels.xnb</Output>
+      <Time>2012-03-08T16:10:57.8266434+01:00</Time>
+    </Item>
+    <Item>
+      <Source>chats.xml</Source>
+      <Name>chats</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\chats.xnb</Output>
+      <Time>2012-03-01T19:48:43.7765803+01:00</Time>
+    </Item>
+    <Item>
+      <Source>desaturate.fx</Source>
+      <Name>desaturate</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\desaturate.xnb</Output>
+      <Time>2012-02-28T19:51:46.7150372+01:00</Time>
+    </Item>
+    <Item>
+      <Source>AnimationRoundGreen.png</Source>
+      <Name>AnimationRoundGreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\AnimationRoundGreen.xnb</Output>
+      <Time>2012-03-08T18:38:44.8098059+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTimeContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTimeContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTime\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\bin\x86\Debug\GreenTimeGameData.dll</Key>
+        <Value>2012-03-08T14:52:56.851907+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2011-11-20T07:27:53.5840934+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
