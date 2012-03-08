@@ -42,8 +42,8 @@ namespace GreenTime.Screens
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 70, 256, 12);
+            
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 12);
         }
 
         /// <summary>
@@ -228,6 +228,7 @@ namespace GreenTime.Screens
 
             if (input.IsPauseGame() || gamePadDisconnected)
             {
+                LevelManager.State.PlayerPosition = player.Position;    // update position at this point in case of saving
                 ScreenManager.AddScreen(new PauseScreen());
             }
             else if ( this.IsActive )

@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Storage;
+using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
     class MainMenuScreen : MenuScreen
     {
+        bool GameLoadRequested = false;
+        IAsyncResult result;
+
         #region Initialization
         /// <summary>
         /// Constructor fills in the menu contents.
@@ -16,23 +22,57 @@ namespace GreenTime.Screens
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
+            MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
+            loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
+            MenuEntries.Add(loadGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
         #endregion
 
-        #region Handle Input
+        #region Update
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+            if ((GameLoadRequested) && (result.IsCompleted))
+            {
+                StorageDevice device = StorageDevice.EndShowSelector(result);
+                if (device != null && device.IsConnected)
+                {
+                    if (SettingsManager.LoadGame(device))
+                    {
+                        //System.Threading.Thread.Sleep(1);
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
+                }
+                // Reset the request flag
+                GameLoadRequested = false;
+            }
+        }
+        #endregion
+
+        #region Handle Input
+        void LoadGameMenuEntrySelected(object sender, EventArgs e)
+        {
+            // Set the request flag
+            if ((!Guide.IsVisible) && (GameLoadRequested == false))
+            {
+                GameLoadRequested = true;
+                result = StorageDevice.BeginShowSelector(
+                        Microsoft.Xna.Framework.PlayerIndex.One, null, null);
+            }
+        }
 
         /// <summary>
         /// Event handler for when the Play Game menu entry is selected.

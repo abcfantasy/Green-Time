@@ -44,9 +44,10 @@ namespace GreenTime
             graphics.PreferredBackBufferWidth = SettingsManager.GAME_WIDTH;
             graphics.PreferredBackBufferHeight = SettingsManager.GAME_HEIGHT;
 
+            Components.Add(new GamerServicesComponent(this));
+
             // create our screen manager
             screenManager = new ScreenManager(this);
-
             Components.Add(screenManager);
 
             // active the first screens

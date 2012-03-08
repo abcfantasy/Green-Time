@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Storage;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework;
+using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
@@ -11,6 +15,10 @@ namespace GreenTime.Screens
     /// </summary>
     class PauseScreen : MenuScreen
     {
+        bool GameSaveRequested = false;
+        bool GameLoadRequested = false;
+        IAsyncResult result;
+
         #region Initialization
         /// <summary>
         /// Constructor.
@@ -20,22 +28,86 @@ namespace GreenTime.Screens
         {
             // Create our menu entries.
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
+            MenuEntry saveGameMenuEntry = new MenuEntry("Save Game");
+            MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
 
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
+            saveGameMenuEntry.Selected += SaveGameMenuEntrySelected;
+            loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
+            MenuEntries.Add(saveGameMenuEntry);
+            MenuEntries.Add(loadGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
 
         #endregion
 
+        #region Update
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+
+            // If a save is pending, save as soon as the
+            // storage device is chosen
+            if ((GameSaveRequested) && (result.IsCompleted))
+            {
+                StorageDevice device = StorageDevice.EndShowSelector(result);
+                if (device != null && device.IsConnected)
+                {
+                    SettingsManager.SaveGame(device);
+                    ExitScreen();
+                }
+                // Reset the request flag
+                GameSaveRequested = false;
+            }
+            // If a load is pending, load as soon as the
+            // storage device is chosen
+            else if ((GameLoadRequested) && (result.IsCompleted))
+            {
+                StorageDevice device = StorageDevice.EndShowSelector(result);
+                if (device != null && device.IsConnected)
+                {
+                    if (SettingsManager.LoadGame(device))
+                    {
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                        ExitScreen();
+                    }
+                }
+                // Reset the request flag
+                GameLoadRequested = false;
+            }
+        }
+        #endregion
+
         #region Handle Input
 
+        void SaveGameMenuEntrySelected(object sender, EventArgs e)
+        {
+            // Set the request flag
+            if ((!Guide.IsVisible) && (GameSaveRequested == false))
+            {
+                GameSaveRequested = true;
+                result = StorageDevice.BeginShowSelector(
+                        PlayerIndex.One, null, null);
+            }
+        }
+
+        void LoadGameMenuEntrySelected(object sender, EventArgs e)
+        {
+            // Set the request flag
+            if ((!Guide.IsVisible) && (GameLoadRequested == false))
+            {
+                GameLoadRequested = true;
+                result = StorageDevice.BeginShowSelector(
+                        PlayerIndex.One, null, null);
+            }
+        }
 
         /// <summary>
         /// Event handler for when the Quit Game menu entry is selected.

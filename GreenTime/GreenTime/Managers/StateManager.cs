@@ -21,6 +21,20 @@ namespace GreenTime.Managers
         private Dictionary<string, int> states = new Dictionary<string,int>();
         #endregion
 
+        #region Properties
+        public Dictionary<string, int> AllStates
+        {
+            get
+            {
+                return states;
+            }
+            set
+            {
+                states = value;
+            }
+        }
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Gets the value of a state
@@ -36,6 +50,7 @@ namespace GreenTime.Managers
             else
                 return 0;
         }
+
 
         /// <summary>
         /// Sets the value of a state

@@ -42,6 +42,10 @@ namespace GreenTime.Managers
             {
                 return playerPosition;
             }
+            set
+            {
+                playerPosition = value;
+            }
         }
 
         public Sprite PickedObject
@@ -62,6 +66,10 @@ namespace GreenTime.Managers
             {
                 return currentLevel;
             }
+            set
+            {
+                currentLevel = value;
+            }
         }
 
         public Level LastPresentLevel
@@ -69,6 +77,10 @@ namespace GreenTime.Managers
             get
             {
                 return lastLevel;
+            }
+            set
+            {
+                lastLevel = value;
             }
         }
         #endregion
