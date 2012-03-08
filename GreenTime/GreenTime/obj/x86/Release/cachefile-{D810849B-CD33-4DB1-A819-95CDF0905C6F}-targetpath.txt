@@ -1,9 +1,0 @@
-Content\background.xnb
-Content\blank.xnb
-Content\gradient.xnb
-Content\player.xnb
-Content\news1.xnb
-Content\garbage.xnb
-Content\gamefont.xnb
-Content\menufont.xnb
-Content\levels.xnb

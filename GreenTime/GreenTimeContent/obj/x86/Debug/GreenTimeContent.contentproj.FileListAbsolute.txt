@@ -1,3 +1,0 @@
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTime\GreenTimeContent\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\Facultate-ITU\GreenTime_Andrew\GreenTime\GreenTimeContent\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\Facultate-ITU\Green Time\Green-Time\GreenTime\GreenTimeContent\obj\x86\Debug\ResolveAssemblyReference.cache

@@ -1,6 +1,0 @@
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\bin\x86\Release\GreenTimeGameData.dll
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\bin\x86\Release\GreenTimeGameData.pdb
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Release\GreenTimeGameData.dll
-C:\Users\Andrew Borg Cardona\My Coding\XNA\GreenTime\GreenTimeGameData\obj\x86\Release\GreenTimeGameData.pdb
