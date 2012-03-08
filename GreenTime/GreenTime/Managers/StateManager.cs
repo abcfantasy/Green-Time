@@ -10,11 +10,13 @@ namespace GreenTime.Managers
     {
         #region State Constants
         // state to mark game should transition back to present
-        public readonly string STATE_BACKTOPRESENT = "back_to_present";
-        // state to keep track if indoor puzzle is solved or not
-        public readonly string STATE_INDOORSOLVED = "indoor_solved";
-        // state to keep track of player status (0-32 = grey square head; 33-62 = grey round head; 63-100 = green round head;)
-        public readonly string STATE_PLAYERSTATUS = "player_status";
+        public static readonly string STATE_BACKTOPRESENT = "back_to_present";
+        // state to keep track of the indoor puzzles and whether or not they're solved
+        public static readonly string STATE_INDOOR = "indoor_puzzle";
+        // state to keep track of player status (0 = grey square head; 50 = grey round head; 100 = green round head;)
+        public static readonly string STATE_PLAYERSTATUS = "player_status";
+        // state to keep track of which day it is
+        public static readonly string STATE_DAY = "day";
         #endregion
 
         #region Fields
@@ -41,7 +43,7 @@ namespace GreenTime.Managers
         /// </summary>
         /// <param name="stateName"></param>
         /// <returns></returns>
-        private int GetState(string stateName)
+        public int GetState(string stateName)
         {
             // if key is present, return key value
             if (states.ContainsKey(stateName))
@@ -58,7 +60,7 @@ namespace GreenTime.Managers
         /// <param name="stateName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private void SetState(string stateName, int value)
+        public void SetState(string stateName, int value)
         {
             if (states.ContainsKey(stateName))
                 states[stateName] = value;
@@ -117,12 +119,26 @@ namespace GreenTime.Managers
                 SetState(states[i].StateName, states[i].StateValue);
             }
         }
+
+        public void AdvanceDay()
+        {
+            int day = GetState( STATE_DAY );
+            ++day;
+            SetState( STATE_DAY, day);
+            SetState( STATE_INDOOR, ( (new Random()).Next( 1, 4 ) * 10 ) );
+
+            LevelManager.State.GoHome();
+        }
+
         #endregion
 
         #region Singleton
         private static readonly StateManager instance = new StateManager();
 
-        private StateManager() { }
+        private StateManager() {
+            SetState( STATE_PLAYERSTATUS, 100 );
+            SetState( STATE_DAY, 0);
+        }
 
         public static StateManager Current
         {

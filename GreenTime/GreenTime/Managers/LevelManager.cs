@@ -97,9 +97,13 @@ namespace GreenTime.Managers
                 levels.Add(levelArray[i].Name, levelArray[i]);
             }
             chats = content.Load<Chat[]>("chats");
+            StateManager.Current.AdvanceDay();
+        }
 
-            // TEST
+        public void GoHome()
+        {
             currentLevel = levels["bedroom"];
+            playerPosition = new Vector2(0, 300);
         }
 
         public Boolean CanTransitionRight()

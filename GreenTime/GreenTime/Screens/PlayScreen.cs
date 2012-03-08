@@ -70,34 +70,8 @@ namespace GreenTime.Screens
                 pickedObject = new BaseObject( player.Position );
                 pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
             }
+            LoadGameObjects();
 
-            // load game objects
-            for ( int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++ )
-            {
-                if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0 && StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
-                {
-                    BaseObject gameObject;
-                    // static object
-                    if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation == null)
-                    {
-                        gameObject = new BaseObject(new Vector2(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionX,
-                                                                  LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionY));
-                    }
-                    // animated object
-                    else
-                    {
-                        gameObject = new AnimatedObject(new Vector2(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionX,
-                                                                           LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].PositionY),
-                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FrameWidth,
-                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FrameHeight,
-                                                                        LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].FramesPerSecond);
-                        // add animations
-                        ((AnimatedObject)gameObject).AddAnimations(LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].Animation[0].Playbacks);
-                    }
-                    gameObject.Load(content, LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0].TextureName);
-                    gameObjects.Add(gameObject);
-                }
-            }
             // A real game would probably have more content than this sample, so
             // it would take longer to load. We simulate that by delaying for a
             // while, giving you a chance to admire the beautiful loading screen.
@@ -107,6 +81,39 @@ namespace GreenTime.Screens
             // timing mechanism that we have just finished a very long frame, and that
             // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
+        }
+
+        public void LoadGameObjects()
+        {
+            BaseObject newGameObject;
+            Sprite sprite;
+            Animation animation;
+
+            gameObjects.Clear();
+            for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
+            {
+                if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0
+                    && StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
+                {
+                    sprite = LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0];
+
+                    // static object
+                    if (sprite.Animation.Count == 0)
+                    {
+                        newGameObject = new BaseObject(new Vector2(sprite.PositionX, sprite.PositionY));
+                    }
+                    // animated object
+                    else
+                    {
+                        animation = sprite.Animation[0];
+                        newGameObject = new AnimatedObject(new Vector2(sprite.PositionX, sprite.PositionY), animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond);
+                        // add animations
+                        ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
+                    }
+                    newGameObject.Load(content, sprite.TextureName);
+                    gameObjects.Add( newGameObject );
+                }
+            }
         }
 
         /// <summary>
@@ -168,12 +175,20 @@ namespace GreenTime.Screens
             spriteBatch.Begin( SpriteSortMode.Immediate, null, null, null, null, desaturateShader );
 
             // background
-            //spriteBatch.Draw(backgroundTexture, Vector2.Zero,
-            //                 new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
+            if (backgroundTexture != null)
+            {
+                spriteBatch.Draw(backgroundTexture, Vector2.Zero, new Color(255, 255, 255, (byte)desaturationAmount));
+            }
 
             // player
-            //spriteBatch.Draw(playerTexture, player.Position, new Color(255, 255, 255, (byte)desaturationAmount));
-            player.Draw(spriteBatch, Color.White);
+            if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
+            {
+                player.Draw(spriteBatch, new Color(255, 255, 255, 64));
+            }
+            else
+            {
+                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+            }
             
             // picked up object if any
             if (pickedObject != null)
@@ -237,7 +252,11 @@ namespace GreenTime.Screens
                 if (input.IsMenuSelect() && interactingObject != null && ( pickedObject == null || ( pickedObject != null && interactingObject.Special == "drop") ) )
                 {
                     // change states if any are effected
-                    StateManager.Current.ModifyStates(interactingObject.EffectedStates);
+                    if (interactingObject.EffectedStates.Length != 0)
+                    {
+                        StateManager.Current.ModifyStates(interactingObject.EffectedStates);
+                        LoadGameObjects();
+                    }
 
                     // handling special news case
                     if (interactingObject.Special == "news")
@@ -266,6 +285,11 @@ namespace GreenTime.Screens
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                     }
 
+                }
+
+                if( keyboardState.IsKeyDown( Keys.D ) ) {
+                    StateManager.Current.AdvanceDay();
+                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
 
                 // move the player position.
@@ -340,6 +364,20 @@ namespace GreenTime.Screens
             // if player moves outside the right boundary
             if (player.X > SettingsManager.GAME_WIDTH)
             {
+                if (LevelManager.State.CurrentLevel.Name.Equals( "bedroom" ))
+                {
+                    int player_status = StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS);
+                    if ( StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100 )
+                    {
+                        player_status = Math.Min(player_status + 50, 100);
+                    }
+                    else
+                    {
+                        player_status = Math.Max(player_status - 50, 0);
+                    }
+                    StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, player_status);
+                }
+                
                 // transition to the right
                 LevelManager.State.TransitionRight();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());
@@ -426,7 +464,7 @@ namespace GreenTime.Screens
         /// Updates the animation frames of player and animated game objects
         /// </summary>
         /// <param name="gameTime"></param>
-        private void UpdateAnimations(GameTime gameTime)
+        private void UpdateAnimations( GameTime gameTime )
         {
             double elapsedSeconds = gameTime.ElapsedGameTime.TotalSeconds;
 
