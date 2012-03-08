@@ -24,6 +24,31 @@
           <DependentStates></DependentStates>
           <EffectedStates></EffectedStates>
         </Item>
+        <!-- test drop 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>300</BoundX>
+          <BoundWidth>40</BoundWidth>
+          <Text>Drop 1</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>object1_pickedup</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>object1_pickedup</StateName>
+              <StateValue>50</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- test drop 2 -->
       </GameObjects>
   </Item>
     <!-- ################
@@ -42,7 +67,7 @@
           <BoundX>450</BoundX>
           <BoundWidth>100</BoundWidth>
           <Text>Garbage</Text>
-          <Special></Special>
+          <Special>pickup</Special>
           <Transition>outdoor_past</Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
@@ -67,6 +92,12 @@
             </Item>
           </Sprite>
           <DependentStates>
+            <!-- state 'object1_pickedup' must be 0-->
+            <Item>
+              <StateName>object1_pickedup</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
             <!-- state 'garbage1_solved' must be false for this to appear -->
             <Item>
               <StateName>garbage1_solved</StateName>
@@ -74,7 +105,13 @@
               <StateHighValue>99</StateHighValue>
             </Item>
           </DependentStates>
-          <EffectedStates></EffectedStates>
+          <EffectedStates>
+            <!-- state 'object1_pickedup' becomes 100 -->
+            <Item>
+              <StateName>object1_pickedup</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
         </Item>
         <!-- Flowers -->
         <Item>

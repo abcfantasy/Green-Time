@@ -78,14 +78,14 @@ namespace GreenTime.Managers
             if (states.Length == 0)
                 return true;
 
-            bool satisfied = false;
+            bool satisfied = true;
 
             for (int i = 0; i < states.Length; i++)
             {
                 int currentStateValue = GetState(states[i].StateName);
                 // state value must be between state dependency values
-                if (currentStateValue >= states[i].StateLowValue && currentStateValue <= states[i].StateHighValue)
-                    satisfied = true;
+                if (currentStateValue < states[i].StateLowValue || currentStateValue > states[i].StateHighValue)
+                    satisfied = false;
             }
 
             return satisfied;

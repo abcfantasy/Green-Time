@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Xml;
 using Microsoft.Xna.Framework.Content;
 using GreenTimeGameData.Components;
+using GreenTime.GameObjects;
 
 namespace GreenTime.Managers
 {
@@ -26,7 +27,7 @@ namespace GreenTime.Managers
 
         #region Fields
         private Vector2 playerPosition = new Vector2( 0, 300 );
-
+        private Sprite pickedObject;    // currently picked up object - save it here to know when changing scenes
         private Level currentLevel = null;
         private Level lastLevel = null;     // the level the player was in before going to the past
 
@@ -40,6 +41,18 @@ namespace GreenTime.Managers
             get
             {
                 return playerPosition;
+            }
+        }
+
+        public Sprite PickedObject
+        {
+            get
+            {
+                return pickedObject;
+            }
+            set
+            {
+                pickedObject = value;
             }
         }
 

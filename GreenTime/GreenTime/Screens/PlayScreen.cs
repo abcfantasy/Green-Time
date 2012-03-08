@@ -21,6 +21,7 @@ namespace GreenTime.Screens
         Texture2D backgroundTexture;
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
+        BaseObject pickedObject = null;     // is not null when an object is currently picked up
 
         Effect desaturateShader;
         // This value should be changed according to the progress in the game
@@ -42,7 +43,7 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 32, 48, 12);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 70, 256, 12);
         }
 
         /// <summary>
@@ -56,12 +57,19 @@ namespace GreenTime.Screens
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
             
-            player.Load(content, "sampleAnim");
-            player.AddAnimation("walk", new int[] { 8, 9, 10, 11 });
+            player.Load(content, "AnimationRoundGreen");
+            player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 
             // load background
             if ( !String.IsNullOrEmpty( LevelManager.State.CurrentLevel.BackgroundTexture ) )
                 backgroundTexture = content.Load<Texture2D>(LevelManager.State.CurrentLevel.BackgroundTexture);
+
+            // load picked up object
+            if (LevelManager.State.PickedObject != null)
+            {
+                pickedObject = new BaseObject( player.Position );
+                pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
+            }
 
             // load game objects
             for ( int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++ )
@@ -129,6 +137,10 @@ namespace GreenTime.Screens
 
             if (IsActive)
             {
+                // update picked up object if any
+                if (pickedObject != null)
+                    pickedObject.Position = player.Position;
+
                 // check if player should return to present
                 CheckPastPresentState();
 
@@ -161,7 +173,11 @@ namespace GreenTime.Screens
 
             // player
             //spriteBatch.Draw(playerTexture, player.Position, new Color(255, 255, 255, (byte)desaturationAmount));
-            player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+            player.Draw(spriteBatch, Color.White);
+            
+            // picked up object if any
+            if (pickedObject != null)
+                pickedObject.Draw(spriteBatch, Color.White);
 
             // game objects
             for (int i = 0; i < gameObjects.Count; i++)
@@ -216,16 +232,26 @@ namespace GreenTime.Screens
             }
             else if ( this.IsActive )
             {
-                // check for action button, only if player is over interactive object
-                if (input.IsMenuSelect() && interactingObject != null)
+                // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
+                if (input.IsMenuSelect() && interactingObject != null && ( pickedObject == null || ( pickedObject != null && interactingObject.Special == "drop") ) )
                 {
                     // change states if any are effected
-                    StateManager.Current.ModifyStates( interactingObject.EffectedStates );
+                    StateManager.Current.ModifyStates(interactingObject.EffectedStates);
 
                     // handling special news case
                     if (interactingObject.Special == "news")
                     {
                         ScreenManager.AddScreen(new NewsScreen());
+                    }
+                    // handling special pickup case
+                    else if (interactingObject.Special == "pickup")
+                    {
+                        PickupObject(interactingObject);
+                    }
+                    // handling special dropping case
+                    else if (interactingObject.Special == "drop")
+                    {
+                        DropObject(interactingObject);
                     }
                     // chat if available
                     else if (interactingObject.ChatIndex != LevelManager.EMPTY_VALUE)
@@ -233,7 +259,7 @@ namespace GreenTime.Screens
                         ScreenManager.AddScreen(new ChatScreen(LevelManager.State.GetChat(interactingObject.ChatIndex), true));
                     }
                     // transition into past
-                    else if ( !String.IsNullOrEmpty( interactingObject.Transition) )
+                    else if (!String.IsNullOrEmpty(interactingObject.Transition))
                     {
                         LevelManager.State.TransitionPast(interactingObject.Transition);
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
@@ -360,10 +386,46 @@ namespace GreenTime.Screens
         }
 
         /// <summary>
+        /// Drop an object into the interacting object
+        /// </summary>
+        /// <param name="interactingObject"></param>
+        private void DropObject(InteractiveObject interactingObject)
+        {
+            // remove picked object
+            pickedObject = null;
+            // remove from level manager
+            LevelManager.State.PickedObject = null;
+        }
+
+        /// <summary>
+        /// Pickup up an object you are interacting with
+        /// </summary>
+        /// <param name="interactingObject"></param>
+        private void PickupObject(InteractiveObject interactingObject)
+        {
+            Vector2 pos = new Vector2( interactingObject.Sprite[0].PositionX, interactingObject.Sprite[0].PositionY );
+
+            // search for the game object
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                // if the object is found
+                if (gameObjects[i].Position == pos)
+                {
+                    // pick up object
+                    pickedObject = gameObjects[i];
+                    // save in level manager (in case changing scene)
+                    LevelManager.State.PickedObject = interactingObject.Sprite[0];
+                    // prevent object from being drawn typically
+                    gameObjects.RemoveAt(i);
+                }
+            }
+        }
+
+        /// <summary>
         /// Updates the animation frames of player and animated game objects
         /// </summary>
         /// <param name="gameTime"></param>
-        private void UpdateAnimations( GameTime gameTime )
+        private void UpdateAnimations(GameTime gameTime)
         {
             double elapsedSeconds = gameTime.ElapsedGameTime.TotalSeconds;
 
