@@ -24,7 +24,7 @@ namespace GreenTime.Screens
         /// </summary>
         public NewsScreen()
         {
-            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+            TransitionOnTime = TimeSpan.FromSeconds(1.0);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
@@ -71,10 +71,19 @@ namespace GreenTime.Screens
             
             spriteBatch.Begin();
 
+            // rotate the newspaper
+            spriteBatch.Draw(newsTexture,
+                new Vector2((SettingsManager.GAME_WIDTH / 2) /*- (NEWS_WIDTH / 2)*/, (SettingsManager.GAME_HEIGHT / 2) /*- (NEWS_HEIGHT / 2)*/),
+                new Rectangle(0, 0, newsTexture.Width, newsTexture.Height),
+                Color.White,
+                MathHelper.ToRadians(TransitionAlpha * 1800),
+                new Vector2( newsTexture.Width / 2, newsTexture.Height / 2 ),
+                TransitionAlpha, SpriteEffects.None, 0);
+            /*
             spriteBatch.Draw(newsTexture, 
                              new Vector2( ( SettingsManager.GAME_WIDTH / 2 ) - ( NEWS_WIDTH / 2 ), ( SettingsManager.GAME_HEIGHT / 2 ) - ( NEWS_HEIGHT / 2 ) ),
                              new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
-
+            */
             spriteBatch.End();
         }
         #endregion
