@@ -67,6 +67,9 @@ namespace GreenTime
 
             // load all levels
             LevelManager.State.LoadAllLevels(Content);
+
+            // load music
+            SoundManager.LoadAllSounds(Content);
          }
         #endregion
 

@@ -43,7 +43,11 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
+            // create player
             player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15);
+
+            // play game music
+            SoundManager.PlayGameMusic();
         }
 
         /// <summary>
@@ -136,6 +140,8 @@ namespace GreenTime.Screens
             bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
+
+            SoundManager.UpdateFade(TransitionPosition);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
@@ -290,6 +296,7 @@ namespace GreenTime.Screens
                 }
 
                 if( keyboardState.IsKeyDown( Keys.D ) ) {
+                    SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
                     StateManager.Current.AdvanceDay();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
