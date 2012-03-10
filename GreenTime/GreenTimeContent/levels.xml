@@ -7,10 +7,68 @@
     <Item>
       <!--<Index>1</Index>-->
       <Name>bedroom</Name>
-      <BackgroundTexture>bedroom_static</BackgroundTexture>
+      <BackgroundTexture>
+        <TextureName>bedroom\bg</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+      </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
       <GameObjects>
+        <!-- Window -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>166</BoundX>
+          <BoundWidth>187</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>bedroom\window</TextureName>
+              <Position>165 96</Position>              
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Window light beams -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>20</BoundX>
+          <BoundWidth>561</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>bedroom\window_light</TextureName>
+              <Position>50 150</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>561</FrameWidth>
+                  <FrameHeight>360</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>false</Shaded>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
         <!-- Newspaper -->
         <Item>
           <Impassable>false</Impassable>
@@ -49,21 +107,60 @@
           </EffectedStates>
         </Item>
         <!-- test drop 2 -->
-        <!-- Light -->
+        <!-- Lightbulb -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>640</BoundX>
-          <BoundWidth>80</BoundWidth>
+          <BoundX>0</BoundX>
+          <BoundWidth>0</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>bedroom\lightbulb</TextureName>
+              <Position>494 0</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>326</FrameWidth>
+                  <FrameHeight>231</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>false</Shaded>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>10</StateLowValue>
+              <StateHighValue>10</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Light switch -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1120</BoundX>
+          <BoundWidth>100</BoundWidth>
           <Text>Light</Text>
           <Special></Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>light_on</TextureName>
-              <PositionX>494</PositionX>
-              <PositionY>0</PositionY>
+              <TextureName>bedroom\switch</TextureName>
+              <Position>1199 283</Position>
               <Animation></Animation>
+              <Shaded>false</Shaded>
             </Item>
           </Sprite>
           <DependentStates>
@@ -89,7 +186,27 @@
           <Special></Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
+          <Sprite>
+            <Item>
+              <TextureName>bedroom\heating</TextureName>
+              <Position>620 165</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>194</FrameWidth>
+                  <FrameHeight>118</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>false</Shaded>
+            </Item>
+          </Sprite>
           <DependentStates>
             <Item>
               <StateName>indoor_puzzle</StateName>
@@ -136,7 +253,12 @@
     <Item>
       <!--<Index>2</Index>-->
       <Name>outdoor</Name>
-      <BackgroundTexture></BackgroundTexture>
+      <BackgroundTexture>
+        <TextureName>background</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+      </BackgroundTexture>
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName></RightScreenName>
       <GameObjects>
@@ -151,9 +273,8 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>sampleObjAnim</TextureName>
-              <PositionX>500</PositionX>
-              <PositionY>550</PositionY>
+              <TextureName>animations\sampleObjAnim</TextureName>
+              <Position>500 550</Position>
               <Animation>
                 <Item>
                   <FrameWidth>32</FrameWidth>
@@ -168,6 +289,7 @@
                   </Playbacks>
                 </Item>
               </Animation>
+              <Shaded>false</Shaded>
             </Item>
           </Sprite>
           <DependentStates>
@@ -203,10 +325,10 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>flowers</TextureName>
-              <PositionX>500</PositionX>
-              <PositionY>550</PositionY>
+              <TextureName>outdoor\flowers</TextureName>
+              <Position>500 550</Position>
               <Animation></Animation>
+              <Shaded>false</Shaded>
             </Item>
           </Sprite>
           <DependentStates>
@@ -227,7 +349,12 @@
     <Item>
       <!--<Index>102</Index>-->
       <Name>outdoor_past</Name>
-      <BackgroundTexture></BackgroundTexture>
+      <BackgroundTexture>
+        <TextureName>background</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+      </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
       <GameObjects>
@@ -242,10 +369,10 @@
           <ChatIndex>0</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>garbage_man</TextureName>
-              <PositionX>500</PositionX>
-              <PositionY>450</PositionY>
+              <TextureName>outdoor\garbage_man</TextureName>
+              <Position>500 450</Position>
               <Animation></Animation>
+              <Shaded>false</Shaded>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>

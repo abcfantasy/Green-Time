@@ -16,7 +16,7 @@ namespace GreenTimeGameData.Components
         /// <summary>
         /// the background texture of the level
         /// </summary>
-        public string BackgroundTexture { get; set; }
+        public Sprite BackgroundTexture { get; set; }
 
         /// <summary>
         /// name of level on the left
