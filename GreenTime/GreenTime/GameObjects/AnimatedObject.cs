@@ -39,8 +39,8 @@ namespace GreenTime.GameObjects
         #endregion
 
         #region Constructor
-        public AnimatedObject(Vector2 position, int frameWidth, int frameHeight, int framesPerSecond)
-            : base(position)
+        public AnimatedObject(Vector2 position, int frameWidth, int frameHeight, int framesPerSecond, bool shaded)
+            : base(position, shaded)
         {
             this.animations = new Dictionary<string, int[]>();
             this.frameWidth = frameWidth;

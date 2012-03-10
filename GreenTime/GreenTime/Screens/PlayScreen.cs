@@ -18,7 +18,6 @@ namespace GreenTime.Screens
         ContentManager content;
         SpriteFont gameFont;
         AnimatedObject player;
-        Texture2D backgroundTexture;
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
@@ -43,7 +42,7 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false);
         }
 
         /// <summary>
@@ -57,18 +56,14 @@ namespace GreenTime.Screens
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
             
-            player.Load(content, "AnimationRoundGreen");
+            player.Load(content, "animations\\AnimationRoundGreen");
             player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             player.AddAnimation("idle", new int[] { 3 });
-
-            // load background
-            if ( !String.IsNullOrEmpty( LevelManager.State.CurrentLevel.BackgroundTexture ) )
-                backgroundTexture = content.Load<Texture2D>(LevelManager.State.CurrentLevel.BackgroundTexture);
 
             // load picked up object
             if (LevelManager.State.PickedObject != null)
             {
-                pickedObject = new BaseObject( player.Position );
+                pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded );
                 pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
             }
             LoadGameObjects();
@@ -91,6 +86,12 @@ namespace GreenTime.Screens
             Animation animation;
 
             gameObjects.Clear();
+
+            // Load the background
+            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded);
+            newGameObject.Load(content, LevelManager.State.CurrentLevel.BackgroundTexture.TextureName);
+            gameObjects.Add(newGameObject);
+
             for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
             {
                 if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0
@@ -101,13 +102,13 @@ namespace GreenTime.Screens
                     // static object
                     if (sprite.Animation.Count == 0)
                     {
-                        newGameObject = new BaseObject(new Vector2(sprite.PositionX, sprite.PositionY));
+                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded);
                     }
                     // animated object
                     else
                     {
                         animation = sprite.Animation[0];
-                        newGameObject = new AnimatedObject(new Vector2(sprite.PositionX, sprite.PositionY), animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond);
+                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded);
                         // add animations
                         ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
                     }
@@ -172,13 +173,16 @@ namespace GreenTime.Screens
 
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            
             spriteBatch.Begin( SpriteSortMode.Immediate, null, null, null, null, desaturateShader );
+            
+            // picked up object if any
+            if (pickedObject != null)
+                pickedObject.Draw(spriteBatch, Color.White);
 
-            // background
-            if (backgroundTexture != null)
+            // game objects
+            for (int i = 0; i < gameObjects.Count; i++)
             {
-                spriteBatch.Draw(backgroundTexture, Vector2.Zero, new Color(255, 255, 255, 64));
+                gameObjects[i].Draw( spriteBatch, new Color(255, 255, 255, ( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ) ) );
             }
 
             // player
@@ -190,16 +194,6 @@ namespace GreenTime.Screens
             {
                 //player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
                 player.Draw(spriteBatch, new Color(255, 255, 255, 64));
-            }
-            
-            // picked up object if any
-            if (pickedObject != null)
-                pickedObject.Draw(spriteBatch, Color.White);
-
-            // game objects
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                gameObjects[i].Draw( spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount) );
             }
 
             // text
@@ -453,7 +447,7 @@ namespace GreenTime.Screens
         /// <param name="interactingObject"></param>
         private void PickupObject(InteractiveObject interactingObject)
         {
-            Vector2 pos = new Vector2( interactingObject.Sprite[0].PositionX, interactingObject.Sprite[0].PositionY );
+            Vector2 pos = interactingObject.Sprite[0].Position;
 
             // search for the game object
             for (int i = 0; i < gameObjects.Count; i++)

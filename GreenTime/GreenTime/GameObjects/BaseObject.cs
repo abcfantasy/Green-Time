@@ -13,6 +13,7 @@ namespace GreenTime.GameObjects
         #region Fields
         protected Texture2D texture;
         protected Vector2 position;
+        protected bool shaded;
         #endregion
 
         #region Properties
@@ -39,12 +40,15 @@ namespace GreenTime.GameObjects
                 position.X = value;
             }
         }
+
+        public bool Shaded { get { return shaded; } set { shaded = value; } }
         #endregion
 
         #region Constructor
-        public BaseObject( Vector2 position )
+        public BaseObject( Vector2 position, bool shaded )
         {
-            this.position = position;            
+            this.position = position;
+            this.shaded = shaded;
         }
         #endregion
 

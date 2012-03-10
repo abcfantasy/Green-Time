@@ -103,7 +103,7 @@ namespace GreenTime.Managers
         public void GoHome()
         {
             currentLevel = levels["bedroom"];
-            playerPosition = new Vector2(0, 300);
+            playerPosition = new Vector2(250, 300);
         }
 
         public Boolean CanTransitionRight()
