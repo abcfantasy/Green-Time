@@ -48,7 +48,7 @@ namespace GreenTime.Managers
         public static void PlayGameMusic()
         {
             // play game music if it is not already playing
-            if (!gameMusicPlaying)
+            if (SettingsManager.MusicEnabled && !gameMusicPlaying)
             {
                 MediaPlayer.Stop();
                 MediaPlayer.Volume = 0.0f;  // mute sound until it fades in
@@ -73,7 +73,24 @@ namespace GreenTime.Managers
         /// <param name="soundIndex"></param>
         public static void PlaySound(int soundIndex)
         {
-            sounds[soundIndex].Play();
+            if ( SettingsManager.SoundEnabled )
+                sounds[soundIndex].Play();
+        }
+
+        public static void ToggleMusic()
+        {
+            SettingsManager.MusicEnabled = !SettingsManager.MusicEnabled;
+
+            // pause or resume music according to setting
+            if (!SettingsManager.MusicEnabled)
+                MediaPlayer.Pause();
+            else
+                MediaPlayer.Resume();
+        }
+
+        public static void ToggleSound()
+        {
+            SettingsManager.SoundEnabled = !SettingsManager.SoundEnabled;
         }
     }
 }

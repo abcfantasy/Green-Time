@@ -30,18 +30,21 @@ namespace GreenTime.Screens
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
             MenuEntry saveGameMenuEntry = new MenuEntry("Save Game");
             MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
+            MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
 
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
             saveGameMenuEntry.Selected += SaveGameMenuEntrySelected;
             loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
+            optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
             MenuEntries.Add(saveGameMenuEntry);
             MenuEntries.Add(loadGameMenuEntry);
+            MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
@@ -107,6 +110,11 @@ namespace GreenTime.Screens
                 result = StorageDevice.BeginShowSelector(
                         PlayerIndex.One, null, null);
             }
+        }
+
+        void OptionsMenuEntrySelected(object sender, EventArgs e)
+        {
+            ScreenManager.AddScreen(new OptionsMenuScreen());
         }
 
         /// <summary>

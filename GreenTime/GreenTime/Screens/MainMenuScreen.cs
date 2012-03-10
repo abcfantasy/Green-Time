@@ -88,7 +88,7 @@ namespace GreenTime.Screens
         /// </summary>
         void OptionsMenuEntrySelected(object sender, EventArgs e)
         {
-            //ScreenManager.AddScreen(new OptionsMenuScreen());
+            ScreenManager.AddScreen(new OptionsMenuScreen());
         }
 
 

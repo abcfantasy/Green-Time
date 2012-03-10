@@ -43,6 +43,7 @@ namespace GreenTime
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = SettingsManager.GAME_WIDTH;
             graphics.PreferredBackBufferHeight = SettingsManager.GAME_HEIGHT;
+            SettingsManager.GraphicsDevice = graphics;
 
             Components.Add(new GamerServicesComponent(this));
 

@@ -23,6 +23,11 @@ namespace GreenTime.Managers
         public Sprite PickedObject;
         public Level CurrentLevel;
         public Level LastLevel;
+
+        // from settings manager
+        public bool MusicEnabled;
+        public bool SoundEnabled;
+        public bool FullscreenMode;
     }
 
     public class SettingsManager
@@ -34,13 +39,54 @@ namespace GreenTime.Managers
         public static readonly int PLAYER_WIDTH = 64;
         #endregion
 
-        public static void SaveGame( StorageDevice device )
+        private static bool musicEnabled = true;
+        private static bool soundEnabled = true;
+
+        private static bool fullscreen = false;
+
+        #region Properties
+        public static GraphicsDeviceManager GraphicsDevice { get; set; }
+
+        public static bool MusicEnabled
         {
-            // Open a storage container.
-            IAsyncResult result =
-                device.BeginOpenContainer("GreenTimeStorage", Save, device);
-            
+            get
+            {
+                return musicEnabled;
+            }
+            set
+            {
+                musicEnabled = value;
+            }
         }
+
+        public static bool SoundEnabled
+        {
+            get
+            {
+                return soundEnabled;
+            }
+            set
+            {
+                soundEnabled = value;
+            }
+        }
+
+        public static bool FullScreenMode
+        {
+            get
+            {
+                return fullscreen;
+            }
+            set
+            {
+                // if setting is different
+                if (fullscreen != value)
+                {
+                    ToggleFullscreen();
+                }
+            }
+        }
+        #endregion
 
         private static void Save( IAsyncResult result )
         {
@@ -53,6 +99,9 @@ namespace GreenTime.Managers
             data.LastLevel = LevelManager.State.LastPresentLevel;
             data.PickedObject = LevelManager.State.PickedObject;
             data.PlayerPosition = LevelManager.State.PlayerPosition;
+            data.MusicEnabled = MusicEnabled;
+            data.SoundEnabled = SoundEnabled;
+            data.FullscreenMode = FullScreenMode;
 
             StorageDevice device = (StorageDevice)result.AsyncState;
             StorageContainer container = device.EndOpenContainer(result);
@@ -79,6 +128,18 @@ namespace GreenTime.Managers
 
             // Dispose the container, to commit changes.
             container.Dispose();
+        }
+
+        /// <summary>
+        /// This method serializes a data object
+        /// into the StorageContainer for this game
+        /// </summary>
+        /// <param name="device"></param>
+        public static void SaveGame(StorageDevice device)
+        {
+            // Open a storage container.
+            IAsyncResult result =
+                device.BeginOpenContainer("GreenTimeStorage", Save, device);
         }
 
         /// <summary>
@@ -134,7 +195,20 @@ namespace GreenTime.Managers
             LevelManager.State.CurrentLevel = data.CurrentLevel;
             LevelManager.State.LastPresentLevel = data.LastLevel;
 
+            MusicEnabled = data.MusicEnabled;
+            SoundEnabled = data.SoundEnabled;
+            FullScreenMode = data.FullscreenMode;
+
             return true;
+        }
+
+        /// <summary>
+        /// Toggle full screen mode
+        /// </summary>
+        public static void ToggleFullscreen()
+        {
+            GraphicsDevice.ToggleFullScreen();
+            fullscreen = GraphicsDevice.IsFullScreen;
         }
     }
 }
