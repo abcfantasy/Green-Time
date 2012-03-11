@@ -162,6 +162,11 @@ namespace GreenTime.GameObjects
         {
             spriteBatch.Draw(texture, position, currentFrameRectangle, tint, 0.0f, Vector2.Zero, 1.0f, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0 );
         }
+
+        public void Draw(SpriteBatch spriteBatch, Color tint, float scale )
+        {
+            spriteBatch.Draw(texture, position, currentFrameRectangle, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+        }
         #endregion
 
         #region Private Methods

@@ -103,7 +103,7 @@ namespace GreenTime.Managers
         public void GoHome()
         {
             currentLevel = levels["bedroom"];
-            playerPosition = new Vector2(250, 300);
+            playerPosition = new Vector2(250, 240);
         }
 
         public Boolean CanTransitionRight()
@@ -125,7 +125,7 @@ namespace GreenTime.Managers
             currentLevel = levels[currentLevel.RightScreenName];
 
             // set player position
-            this.playerPosition = new Vector2(0, 300);
+            this.playerPosition = new Vector2(0, 240);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace GreenTime.Managers
             currentLevel = levels[currentLevel.LeftScreenName];
 
             // set player position
-            this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 300);
+            this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 240);
         }
 
         /// <summary>
