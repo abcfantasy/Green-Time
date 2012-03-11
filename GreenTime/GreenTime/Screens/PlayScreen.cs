@@ -198,11 +198,11 @@ namespace GreenTime.Screens
             // player
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, 64));
+                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.3f);
             }
             else
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount), 1.3f);
                 //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
 
