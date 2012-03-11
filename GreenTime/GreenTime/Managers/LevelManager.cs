@@ -185,7 +185,7 @@ namespace GreenTime.Managers
         public string GetNewsTexture()
         {
             // TODO: change this to match with game state
-            return "news1";
+            return "news/news1";
         }
         #endregion
 

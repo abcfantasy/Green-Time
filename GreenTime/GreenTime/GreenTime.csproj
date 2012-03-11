@@ -129,6 +129,7 @@
     <Compile Include="Screens\MessageBoxScreen.cs" />
     <Compile Include="Screens\NewsScreen.cs" />
     <Compile Include="Screens\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\PastPresentTransitionScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
   </ItemGroup>

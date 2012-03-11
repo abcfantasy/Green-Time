@@ -174,8 +174,7 @@ namespace GreenTime.Screens
         public override void Draw(GameTime gameTime)
         {
             // This game has a blue background. Why? Because!
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target, Color.CornflowerBlue, 0, 0);
 
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
@@ -292,7 +291,18 @@ namespace GreenTime.Screens
                 if( keyboardState.IsKeyDown( Keys.D ) ) {
                     SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
                     StateManager.Current.AdvanceDay();
-                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    //LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+
+                    // testing picture
+                    PresentationParameters pp = SettingsManager.GraphicsDevice.GraphicsDevice.PresentationParameters;
+                    RenderTarget2D renderTarget = new RenderTarget2D(SettingsManager.GraphicsDevice.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, true, SettingsManager.GraphicsDevice.GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
+                    SettingsManager.GraphicsDevice.GraphicsDevice.SetRenderTarget(renderTarget);
+                    
+                    Draw(null);
+                    SettingsManager.GraphicsDevice.GraphicsDevice.SetRenderTarget(null);
+                    ScreenManager.AddScreen(new PlayScreen());
+                    ScreenManager.AddScreen(new PastPresentTransitionScreen((Texture2D)renderTarget));
+                    ExitScreen();
                 }
 
                 // move the player position.
