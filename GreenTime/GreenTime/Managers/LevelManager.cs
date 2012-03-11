@@ -151,6 +151,8 @@ namespace GreenTime.Managers
 
             // modify current level 
             currentLevel = levels[transitionIndex];
+
+            SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
 
         public void TransitionPresent()
@@ -161,6 +163,8 @@ namespace GreenTime.Managers
             // modify current level
             currentLevel = lastLevel;
             lastLevel = null;
+
+            SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
 
         /// <summary>
@@ -185,7 +189,7 @@ namespace GreenTime.Managers
         public string GetNewsTexture()
         {
             // TODO: change this to match with game state
-            return "news1";
+            return "news\\news1";
         }
         #endregion
 
