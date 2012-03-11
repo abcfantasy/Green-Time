@@ -29,6 +29,11 @@ namespace GreenTimeGameData.Components
         /// whether or not the object is affected by the desaturation shader
         /// </summary>
         public bool Shaded { get; set; }
+
+        /// <summary>
+        /// the sprite's layer depth
+        /// </summary>        
+        public float Layer { get; set; }
         #endregion
     }
 }

@@ -39,8 +39,8 @@ namespace GreenTime.GameObjects
         #endregion
 
         #region Constructor
-        public AnimatedObject(Vector2 position, int frameWidth, int frameHeight, int framesPerSecond, bool shaded)
-            : base(position, shaded)
+        public AnimatedObject(Vector2 position, int frameWidth, int frameHeight, int framesPerSecond, bool shaded, float layer)
+            : base(position, shaded, layer)
         {
             this.animations = new Dictionary<string, int[]>();
             this.frameWidth = frameWidth;
@@ -160,7 +160,7 @@ namespace GreenTime.GameObjects
 
         public override void Draw(SpriteBatch spriteBatch, Color tint)
         {
-            spriteBatch.Draw(texture, position, currentFrameRectangle, tint, 0.0f, Vector2.Zero, 1.0f, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0 );
+            spriteBatch.Draw(texture, position, currentFrameRectangle, tint, 0.0f, Vector2.Zero, 1.0f, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer );
         }
 
         public void Draw(SpriteBatch spriteBatch, Color tint, float scale )

@@ -15,6 +15,10 @@ namespace GreenTime.Screens
     public class PlayScreen : GameScreen
     {
         #region Fields
+        static readonly float TEXT_LAYER        = 0.0f;
+        static readonly float PLAYER_LAYER      = 0.5f;
+        static readonly float BACKGROUND_LAYER  = 0.75f;
+
         ContentManager content;
         SpriteFont gameFont;
         AnimatedObject player;
@@ -43,7 +47,7 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
             // create player
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
 
             // play game music
             SoundManager.PlayGameMusic();
@@ -67,7 +71,7 @@ namespace GreenTime.Screens
             // load picked up object
             if (LevelManager.State.PickedObject != null)
             {
-                pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded );
+                pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded, LevelManager.State.PickedObject.Layer );
                 pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
             }
             LoadGameObjects();
@@ -92,7 +96,7 @@ namespace GreenTime.Screens
             gameObjects.Clear();
 
             // Load the background
-            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded);
+            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER);
             newGameObject.Load(content, LevelManager.State.CurrentLevel.BackgroundTexture.TextureName);
             gameObjects.Add(newGameObject);
 
@@ -106,13 +110,13 @@ namespace GreenTime.Screens
                     // static object
                     if (sprite.Animation.Count == 0)
                     {
-                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded);
+                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded, sprite.Layer);
                     }
                     // animated object
                     else
                     {
                         animation = sprite.Animation[0];
-                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded);
+                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded, sprite.Layer);
                         // add animations
                         ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
                     }
@@ -174,11 +178,12 @@ namespace GreenTime.Screens
         public override void Draw(GameTime gameTime)
         {
             // This game has a blue background. Why? Because!
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target, Color.CornflowerBlue, 0, 0);
+            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
+                                               Color.CornflowerBlue, 0, 0);
 
             // draw stuff
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            spriteBatch.Begin( SpriteSortMode.Immediate, null, null, null, null, desaturateShader );
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;            
+            spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, desaturateShader );            
             
             // picked up object if any
             if (pickedObject != null)
@@ -193,12 +198,12 @@ namespace GreenTime.Screens
             // player
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.3f);
+                player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
             else
             {
-                //player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
-                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.3f);
+                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount));
+                //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
 
             // text
@@ -207,7 +212,7 @@ namespace GreenTime.Screens
                 SpriteFont font = ScreenManager.Font;
                 Vector2 textSize = font.MeasureString(interactingObject.Text);
                 Vector2 textPosition = new Vector2( (SettingsManager.GAME_WIDTH - textSize.X) / 2, 670 );
-                spriteBatch.DrawString(ScreenManager.Font, interactingObject.Text, textPosition, Color.White);
+                spriteBatch.DrawString(ScreenManager.Font, interactingObject.Text, textPosition, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, TEXT_LAYER );
             }
 
             spriteBatch.End();
@@ -289,20 +294,8 @@ namespace GreenTime.Screens
                 }
 
                 if( keyboardState.IsKeyDown( Keys.D ) ) {
-                    SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
                     StateManager.Current.AdvanceDay();
-                    //LoadingScreen.Load(ScreenManager, false, new PlayScreen());
-
-                    // testing picture
-                    PresentationParameters pp = SettingsManager.GraphicsDevice.GraphicsDevice.PresentationParameters;
-                    RenderTarget2D renderTarget = new RenderTarget2D(SettingsManager.GraphicsDevice.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, true, SettingsManager.GraphicsDevice.GraphicsDevice.DisplayMode.Format, DepthFormat.Depth24);
-                    SettingsManager.GraphicsDevice.GraphicsDevice.SetRenderTarget(renderTarget);
-                    
-                    Draw(null);
-                    SettingsManager.GraphicsDevice.GraphicsDevice.SetRenderTarget(null);
-                    ScreenManager.AddScreen(new PlayScreen());
-                    ScreenManager.AddScreen(new PastPresentTransitionScreen((Texture2D)renderTarget));
-                    ExitScreen();
+                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
 
                 // move the player position.

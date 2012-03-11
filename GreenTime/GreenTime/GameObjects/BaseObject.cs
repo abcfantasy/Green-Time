@@ -14,6 +14,7 @@ namespace GreenTime.GameObjects
         protected Texture2D texture;
         protected Vector2 position;
         protected bool shaded;
+        protected float layer;
         #endregion
 
         #region Properties
@@ -42,13 +43,15 @@ namespace GreenTime.GameObjects
         }
 
         public bool Shaded { get { return shaded; } set { shaded = value; } }
+        public float Layer { get { return layer; } set { layer = value; } }
         #endregion
 
         #region Constructor
-        public BaseObject( Vector2 position, bool shaded )
+        public BaseObject( Vector2 position, bool shaded, float layer )
         {
             this.position = position;
             this.shaded = shaded;
+            this.layer = layer;
         }
         #endregion
 
@@ -62,7 +65,7 @@ namespace GreenTime.GameObjects
         #region Draw
         public virtual void Draw(SpriteBatch spriteBatch, Color tint)
         {
-            spriteBatch.Draw(texture, position, tint);
+            spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, layer);            
         }
         #endregion
     }

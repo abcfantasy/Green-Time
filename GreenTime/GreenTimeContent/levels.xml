@@ -12,6 +12,7 @@
         <Position>0 0</Position>
         <Animation></Animation>
         <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
@@ -31,6 +32,7 @@
               <Position>165 96</Position>              
               <Animation></Animation>
               <Shaded>true</Shaded>
+              <Layer>0.8</Layer>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -64,6 +66,7 @@
                 </Item>
               </Animation>
               <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -135,6 +138,7 @@
                 </Item>
               </Animation>
               <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
             </Item>
           </Sprite>
           <DependentStates>
@@ -161,6 +165,7 @@
               <Position>1199 283</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
             </Item>
           </Sprite>
           <DependentStates>
@@ -205,6 +210,7 @@
                 </Item>
               </Animation>
               <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
             </Item>
           </Sprite>
           <DependentStates>
@@ -258,6 +264,7 @@
         <Position>0 0</Position>
         <Animation></Animation>
         <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName></RightScreenName>
@@ -268,37 +275,19 @@
           <BoundX>450</BoundX>
           <BoundWidth>100</BoundWidth>
           <Text>Garbage</Text>
-          <Special>pickup</Special>
+          <Special></Special>
           <Transition>outdoor_past</Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>animations\sampleObjAnim</TextureName>
+              <TextureName>outdoor\Garbage</TextureName>
               <Position>500 550</Position>
-              <Animation>
-                <Item>
-                  <FrameWidth>32</FrameWidth>
-                  <FrameHeight>48</FrameHeight>
-                  <FramesPerSecond>12</FramesPerSecond>
-                  <Playbacks>
-                    <Item>
-                      <Name>default</Name>
-                      <Frames>8 9 10 11</Frames>
-                      <DependentStates></DependentStates>
-                    </Item>
-                  </Playbacks>
-                </Item>
-              </Animation>
-              <Shaded>false</Shaded>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.3</Layer>
             </Item>
           </Sprite>
           <DependentStates>
-            <!-- state 'object1_pickedup' must be 0-->
-            <Item>
-              <StateName>object1_pickedup</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
             <!-- state 'garbage1_solved' must be false for this to appear -->
             <Item>
               <StateName>garbage1_solved</StateName>
@@ -306,13 +295,7 @@
               <StateHighValue>99</StateHighValue>
             </Item>
           </DependentStates>
-          <EffectedStates>
-            <!-- state 'object1_pickedup' becomes 100 -->
-            <Item>
-              <StateName>object1_pickedup</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          <EffectedStates></EffectedStates>
         </Item>
         <!-- Flowers -->
         <Item>
@@ -329,6 +312,7 @@
               <Position>500 550</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
+              <Layer>0.3</Layer>
             </Item>
           </Sprite>
           <DependentStates>
@@ -354,6 +338,7 @@
         <Position>0 0</Position>
         <Animation></Animation>
         <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
@@ -372,7 +357,8 @@
               <TextureName>outdoor\garbage_man</TextureName>
               <Position>500 450</Position>
               <Animation></Animation>
-              <Shaded>false</Shaded>
+              <Shaded>true</Shaded>
+              <Layer>0.3</Layer>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
