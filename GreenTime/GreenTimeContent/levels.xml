@@ -254,7 +254,7 @@
       <!--<Index>2</Index>-->
       <Name>outdoor</Name>
       <BackgroundTexture>
-        <TextureName>background</TextureName>
+        <TextureName>kitchen\bg</TextureName>
         <Position>0 0</Position>
         <Animation></Animation>
         <Shaded>false</Shaded>
