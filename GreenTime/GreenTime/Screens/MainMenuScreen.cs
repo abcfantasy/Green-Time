@@ -80,6 +80,7 @@ namespace GreenTime.Screens
         void PlayGameMenuEntrySelected(object sender, EventArgs e)
         {
             StateManager.Current.SetState("player_green", 100);
+            StateManager.Current.SetState("player_round", 0);
             LoadingScreen.Load(ScreenManager, true, new PlayScreen());
         }
 

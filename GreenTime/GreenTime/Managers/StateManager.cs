@@ -21,6 +21,12 @@ namespace GreenTime.Managers
         public static readonly string STATE_PLAYERFADETOGREEN = "player_fadeToGreen";
         // state to mark that player should fade from green to grey
         public static readonly string STATE_PLAYERFADETOGREY = "player_fadeToGrey";
+        // state to keep track of how faded into the sprite the player is
+        public static readonly string STATE_PLAYERROUND = "player_round";
+        // state to mark that player should fade into the round head
+        public static readonly string STATE_PLAYERFADETOROUND = "player_fadeToRound";
+        // state to mark that player should fade into the square head
+        public static readonly string STATE_PLAYERFADETOSQUARE = "player_fadeToSquare";
 
         // state to keep track of which day it is
         public static readonly string STATE_DAY = "day";

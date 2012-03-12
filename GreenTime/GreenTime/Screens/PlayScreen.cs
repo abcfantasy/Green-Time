@@ -46,8 +46,9 @@ namespace GreenTime.Screens
         ContentManager content;
         SpriteFont gameFont;
         AnimatedObject player;
-        AnimatedObject player_round;
-        AnimatedObject player_square;
+        AnimatedObject player_other;
+        //AnimatedObject player_round;
+        //AnimatedObject player_square;
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
@@ -95,8 +96,8 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
             // create player
-            player_round = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
-            player_square = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
+            player_other = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER - 0.1f);
             //player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
 
             // play game music
@@ -113,19 +114,23 @@ namespace GreenTime.Screens
 
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
-            
-            player_round.Load(content, "animations\\AnimationRoundGreen");
-            player_round.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            player_round.AddAnimation("idle", new int[] { 3 });
 
-            player_square.Load(content, "animations\\AnimationSquareGreen");
-            player_square.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            player_square.AddAnimation("idle", new int[] { 3 });
+            CheckPlayerStatus();
 
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) >= 50)
-                player = player_round;
+            {
+                player.Load(content, "animations\\AnimationRoundGreen");
+                player_other.Load(content, "animations\\AnimationSquareGreen");
+            }
             else
-                player = player_square;
+            {
+                player.Load(content, "animations\\AnimationSquareGreen");
+                player_other.Load(content, "animations\\AnimationRoundGreen");
+            }
+            player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            player.AddAnimation("idle", new int[] { 3 });
+            player_other.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            player_other.AddAnimation("idle", new int[] { 3 });
 
             // load picked up object
             if (LevelManager.State.PickedObject != null)
@@ -216,6 +221,7 @@ namespace GreenTime.Screens
 
             if (IsActive)
             {
+                #region /* The following states manage the player fading from green to grey or circle to square or vice versa */
                 if (StateManager.Current.GetState(StateManager.STATE_PLAYERFADETOGREEN) == 100 && TransitionPosition == 0)
                 {
                     playerFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
@@ -238,6 +244,29 @@ namespace GreenTime.Screens
                         StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOGREY, 0);
                     }
                 }
+                else if (StateManager.Current.GetState(StateManager.STATE_PLAYERFADETOROUND) == 100 && TransitionPosition == 0 )
+                {
+                    playerFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
+                    StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 100 - (int)playerFading);
+                    if (StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) <= 1)
+                    {
+                        playerFading = 0;
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 0);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOROUND, 0);
+                    }
+                }
+                else if (StateManager.Current.GetState(StateManager.STATE_PLAYERFADETOSQUARE) == 100 && TransitionPosition == 0)
+                {
+                    playerFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
+                    StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 100 - (int)playerFading);
+                    if (StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) <= 1)
+                    {
+                        playerFading = 0;
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 0);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOSQUARE, 0);
+                    }
+                }
+                #endregion
 
                 // update picked up object if any
                 if (pickedObject != null)
@@ -284,17 +313,8 @@ namespace GreenTime.Screens
             }
 
             // player
-            player.Draw(spriteBatch, new Color(255, 255, 255, (byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f) ), 1.2f );
-            /*
-            if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
-            {
-                player.Draw(spriteBatch, new Color(64, 255, 255, 255), 1.2f);
-            }
-            else
-            {
-                player.Draw(spriteBatch, new Color((byte)desaturationAmount, 255, 255, 255), 1.2f);
-                //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
-            }*/
+            player.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f ), 255, 255, 255 - ((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)) ), 1.2f );
+            player_other.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, (byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)), 1.2f);
 
             // picked up object if any
             if (pickedObject != null)
@@ -457,6 +477,43 @@ namespace GreenTime.Screens
         #endregion
 
         #region Private Methods
+        // check if player should change color or shape
+        private void CheckPlayerStatus()
+        {
+            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor"))
+            {
+                if (StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100)
+                {
+                    if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
+                    {
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 100);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERGREEN, 0);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOGREEN, 100);
+                    }
+                    else if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 0)
+                    {
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 50);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 100);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOROUND, 100);
+                    }
+                }
+                else
+                {
+                    if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
+                    {
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 50);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERGREEN, 100);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOGREY, 100);
+                    }
+                    else if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
+                    {
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 0);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERROUND, 100);
+                        StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOSQUARE, 100);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Checks to see if the screen should transition to the present
         /// </summary>
@@ -493,40 +550,6 @@ namespace GreenTime.Screens
             // if player moves outside the right boundary
             if (player.X > SettingsManager.GAME_WIDTH)
             {
-                if (LevelManager.State.CurrentLevel.Name.Equals( "kitchen" ))
-                {
-                    if (StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100)
-                    {
-                        if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
-                        {
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 100);
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERGREEN, 0);
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOGREEN, 100);
-                        }
-                    }
-                    else
-                    {
-                        if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
-                        {
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, 50);
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERGREEN, 100);
-                            StateManager.Current.SetState(StateManager.STATE_PLAYERFADETOGREY, 100);
-                        }
-                    }
-                    /*
-                    int player_status = StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS);
-                    if ( StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100 )
-                    {
-                        player_status = Math.Min(player_status + 50, 100);
-                    }
-                    else
-                    {
-                        player_status = Math.Max(player_status - 50, 0);
-                    }
-                    StateManager.Current.SetState(StateManager.STATE_PLAYERSTATUS, player_status);
-                     */
-                }
-                
                 // transition to the right
                 LevelManager.State.TransitionRight();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());
@@ -620,6 +643,7 @@ namespace GreenTime.Screens
 
             // update player animation
             player.UpdateFrame(elapsedSeconds);
+            player_other.UpdateFrame(elapsedSeconds);
 
             // update object animations
             for (int i = 0; i < gameObjects.Count; i++)
