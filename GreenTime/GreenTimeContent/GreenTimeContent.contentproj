@@ -244,64 +244,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="kitchen\CerealBox.png">
-      <Name>CerealBox</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="kitchen\WaterBottle.png">
-      <Name>WaterBottle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="animations\AnimationSquareGreen.png">
-      <Name>AnimationSquareGreen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="outdoor_shop\bin.png">
-      <Name>bin</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\car.png">
-      <Name>car</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\g1.png">
-      <Name>g1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\g2.png">
-      <Name>g2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\bg.png">
-      <Name>bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\g3.png">
-      <Name>g3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="outdoor_shop\cdtree.png">
-      <Name>cdtree</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\ctree.png">
-      <Name>ctree</Name>
+    <Compile Include="tt_effect.png">
+      <Name>tt_effect</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

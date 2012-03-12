@@ -12,6 +12,16 @@ using GreenTime.GameObjects;
 
 namespace GreenTime.Screens
 {
+    // Types of transitions that we can run into
+    public enum TransitionType
+    {
+        Room,
+        FromPast,
+        ToPast,
+        FromPresent,
+        ToPresent
+    }
+
     public class PlayScreen : GameScreen
     {
         #region Fields
@@ -42,6 +52,8 @@ namespace GreenTime.Screens
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
 
+        TransitionType transition = TransitionType.Room;
+
         Effect desaturateShader;
 
         float playerFading = 0;
@@ -60,10 +72,27 @@ namespace GreenTime.Screens
         /// <summary>
         /// Constructor
         /// </summary>
-        public PlayScreen()
+        public PlayScreen( TransitionType transitionFrom = TransitionType.Room )
         {
-            TransitionOnTime = TimeSpan.FromSeconds(0.8);
-            TransitionOffTime = TimeSpan.FromSeconds(1.0);
+            // Handle the different transition values
+            transition = transitionFrom;
+            switch (transition)
+            {
+                case TransitionType.Room:
+                    TransitionOnTime = TimeSpan.FromSeconds(0.5);
+                    break;
+
+                case TransitionType.FromPast:
+                case TransitionType.FromPresent:
+                    TransitionOnTime = TimeSpan.FromSeconds(0.5);
+                    break;
+
+                case TransitionType.ToPast:
+                case TransitionType.ToPresent:                    
+                    TransitionOnTime = TimeSpan.FromSeconds(2.0);
+                    break;
+            }
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
             // create player
             player_round = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
@@ -251,7 +280,7 @@ namespace GreenTime.Screens
             // game objects
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Draw( spriteBatch, new Color(255, 255, 255, ( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ) ) );
+                gameObjects[i].Draw( spriteBatch, new Color(( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ), 255, 255, 255) );
             }
 
             // player
@@ -259,11 +288,11 @@ namespace GreenTime.Screens
             /*
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.2f);
+                player.Draw(spriteBatch, new Color(64, 255, 255, 255), 1.2f);
             }
             else
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount), 1.2f);
+                player.Draw(spriteBatch, new Color((byte)desaturationAmount, 255, 255, 255), 1.2f);
                 //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }*/
 
@@ -282,13 +311,28 @@ namespace GreenTime.Screens
 
             spriteBatch.End();
 
-            // If the game is transitioning on or off, fade it out to black.
-            if (TransitionPosition > 0 || pauseAlpha > 0)
+            // Handle the different transition types
+            float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
+            switch (transition)
             {
-                float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
+                case TransitionType.Room:
+                    ScreenManager.FadeBackBufferToBlack(alpha);
+                    break;
 
-                ScreenManager.FadeBackBufferToBlack(alpha);
-            }
+                case TransitionType.ToPast:
+                    ScreenManager.TimeTravelMotionEffect(alpha);
+                    break;
+
+                case TransitionType.ToPresent:
+                    // Same time travel screen... only in reverse :D
+                    ScreenManager.TimeTravelMotionEffect(alpha, true);
+                    break;
+
+                case TransitionType.FromPast:
+                case TransitionType.FromPresent:
+                    ScreenManager.TimeTravelFadeEffect(alpha);
+                    break;
+            }          
         }
         #endregion
 
@@ -345,9 +389,11 @@ namespace GreenTime.Screens
                     }
                     // transition into past
                     else if (!String.IsNullOrEmpty(interactingObject.Transition))
-                    {
+                    {                        
                         LevelManager.State.TransitionPast(interactingObject.Transition);
-                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen( TransitionType.FromPresent ));
+                        this.transition = TransitionType.ToPast;
+                        TransitionOffTime = TimeSpan.FromSeconds( 2.0f );
                     }
 
                     // change states if any are effected
@@ -419,7 +465,9 @@ namespace GreenTime.Screens
             if (StateManager.Current.ShouldReturnToPresent() && LevelManager.State.LastPresentLevel != null)
             {
                 LevelManager.State.TransitionPresent();
-                LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                LoadingScreen.Load(ScreenManager, false, new PlayScreen( TransitionType.FromPast ));
+                this.transition = TransitionType.ToPresent;
+                TransitionOffTime = TimeSpan.FromSeconds(2.0f);
             }
         }
 

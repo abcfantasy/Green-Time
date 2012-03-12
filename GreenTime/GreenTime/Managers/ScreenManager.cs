@@ -27,6 +27,7 @@ namespace GreenTime.Managers
         SpriteBatch spriteBatch;
         SpriteFont font;
         Texture2D blankTexture;
+        Texture2D transitionTexture;
 
         bool isInitialized;
 
@@ -101,6 +102,7 @@ namespace GreenTime.Managers
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = content.Load<SpriteFont>("menuFont");
             blankTexture = content.Load<Texture2D>("blank");
+            transitionTexture = content.Load<Texture2D>("tt_effect");
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
@@ -283,6 +285,34 @@ namespace GreenTime.Managers
 
             spriteBatch.End();
         }
+
+        public void TimeTravelMotionEffect(float amount, bool reverse = false)
+        {
+            Viewport viewport = GraphicsDevice.Viewport;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(transitionTexture, new Rectangle(
+                (reverse ? (int)MathHelper.Lerp(-4387.0f, 0.0f, amount) :
+                           (int)MathHelper.Lerp(1280.0f, -3107.0f, amount) ), 0, 4387, 720 ),
+                transitionTexture.Bounds,
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                ( reverse ? SpriteEffects.FlipHorizontally : SpriteEffects.None ),
+                1.0f
+            );
+            spriteBatch.End();
+        }
+
+        public void TimeTravelFadeEffect(float amount)
+        {
+            Viewport viewport = GraphicsDevice.Viewport;
+
+            spriteBatch.Begin();
+            spriteBatch.Draw( blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount );
+            spriteBatch.End();
+        }
+
         #endregion
     }
 }
