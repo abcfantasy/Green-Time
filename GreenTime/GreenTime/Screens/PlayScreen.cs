@@ -184,10 +184,6 @@ namespace GreenTime.Screens
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;            
             spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, desaturateShader );            
-            
-            // picked up object if any
-            if (pickedObject != null)
-                pickedObject.Draw(spriteBatch, Color.White);
 
             // game objects
             for (int i = 0; i < gameObjects.Count; i++)
@@ -205,6 +201,10 @@ namespace GreenTime.Screens
                 player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount), 1.2f);
                 //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
+
+            // picked up object if any
+            if (pickedObject != null)
+                pickedObject.Draw(spriteBatch, Color.White);
 
             // text
             if (interactingObject != null && interactingObject.Text != "" )
@@ -257,12 +257,6 @@ namespace GreenTime.Screens
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (input.IsMenuSelect() && interactingObject != null && ( pickedObject == null || ( pickedObject != null && interactingObject.Special == "drop") ) )
                 {
-                    // change states if any are effected
-                    if (interactingObject.EffectedStates.Length != 0)
-                    {
-                        StateManager.Current.ModifyStates(interactingObject.EffectedStates);
-                        LoadGameObjects();
-                    }
 
                     // handling special news case
                     if (interactingObject.Special == "news")
@@ -289,6 +283,13 @@ namespace GreenTime.Screens
                     {
                         LevelManager.State.TransitionPast(interactingObject.Transition);
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
+
+                    // change states if any are effected
+                    if (interactingObject.EffectedStates.Length != 0)
+                    {
+                        StateManager.Current.ModifyStates(interactingObject.EffectedStates);
+                        LoadGameObjects();
                     }
 
                 }
@@ -465,6 +466,7 @@ namespace GreenTime.Screens
                 // if the object is found
                 if (gameObjects[i].Position == pos)
                 {
+                    gameObjects[i].Layer = 0.4f;
                     // pick up object
                     pickedObject = gameObjects[i];
                     // save in level manager (in case changing scene)

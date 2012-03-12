@@ -231,6 +231,127 @@
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
       <GameObjects>
+        <!-- Cereal Box -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>490</BoundX>
+          <BoundWidth>50</BoundWidth>
+          <Text>Empty Cereal Box</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>kitchen\CerealBox</TextureName>
+              <Position>530 305</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>40</StateLowValue>
+              <StateHighValue>40</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Plastic Bin (while cereal picked) -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>600</BoundX>
+          <BoundWidth>93</BoundWidth>
+          <Text>Plastic Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Paper Bin (while cereal picked) -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>700</BoundX>
+          <BoundWidth>93</BoundWidth>
+          <Text>Paper Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Waste Bin (while cereal picked) -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>812</BoundX>
+          <BoundWidth>93</BoundWidth>
+          <Text>Waste Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>cereal_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
         <!-- Newspaper -->
         <Item>
           <Impassable>true</Impassable>
