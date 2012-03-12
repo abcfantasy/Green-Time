@@ -429,10 +429,10 @@ namespace GreenTime.Screens
                         if (player.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
                             player.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + ( LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth / 2 ))
                         {
-                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX - 1;
+                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX;
                         }
                         else
-                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth + 1;
+                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth;
                     }
                 }
 
