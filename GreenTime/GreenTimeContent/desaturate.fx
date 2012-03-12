@@ -14,8 +14,9 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : COLOR0
     
     // The input color alpha controls saturation level.
     tex.rgb = lerp(greyscale, tex.rgb, color.r * 4);
+	tex.rgb = lerp(float3( 0, 0, 0 ), tex.rgb, color.a );
 	tex.a = lerp(0, tex.a, color.a);
-    
+
     return tex;
 }
 
