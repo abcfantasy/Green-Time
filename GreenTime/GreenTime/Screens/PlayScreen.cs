@@ -19,9 +19,17 @@ namespace GreenTime.Screens
         static readonly float PLAYER_LAYER      = 0.5f;
         static readonly float BACKGROUND_LAYER  = 0.75f;
 
+        /*
+        static readonly Vector2[] playerHand = new Vector2[] { 
+            new Vector2( 42, 212 ),
+            new Vector2( 158, 201
+        };*/
+
         ContentManager content;
         SpriteFont gameFont;
         AnimatedObject player;
+        AnimatedObject player_round;
+        AnimatedObject player_square;
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
@@ -50,7 +58,9 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(1.0);
             
             // create player
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
+            player_round = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
+            player_square = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
+            //player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
 
             // play game music
             SoundManager.PlayGameMusic();
@@ -67,9 +77,18 @@ namespace GreenTime.Screens
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
             
-            player.Load(content, "animations\\AnimationRoundGreen");
-            player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            player.AddAnimation("idle", new int[] { 3 });
+            player_round.Load(content, "animations\\AnimationRoundGreen");
+            player_round.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            player_round.AddAnimation("idle", new int[] { 3 });
+
+            player_square.Load(content, "animations\\AnimationSquareGreen");
+            player_square.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            player_square.AddAnimation("idle", new int[] { 3 });
+
+            if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) >= 50)
+                player = player_round;
+            else
+                player = player_square;
 
             // load picked up object
             if (LevelManager.State.PickedObject != null)
@@ -218,7 +237,7 @@ namespace GreenTime.Screens
             }
 
             // player
-            player.Draw(spriteBatch, new Color(255, 255, 255, (byte)(StateManager.Current.GetState("player_green") * 0.64f) ), 1.2f );
+            player.Draw(spriteBatch, new Color(255, 255, 255, (byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f) ), 1.2f );
             /*
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
             {

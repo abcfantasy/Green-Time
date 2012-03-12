@@ -135,6 +135,11 @@ namespace GreenTime.Managers
             SetState( STATE_INDOOR, (new Random()).Next( 1, 6 ) * 10 );
             SetState("news_taken", 0);
 
+            // reset other states (hardcoded!)
+            SetState("garbage1_picked", 0);
+            SetState("garbage2_picked", 0);
+            SetState("garbage3_picked", 0);
+
             LevelManager.State.GoHome();
         }
 
