@@ -15,6 +15,13 @@ namespace GreenTime.Managers
         public static readonly string STATE_INDOOR = "indoor_puzzle";
         // state to keep track of player status (0 = grey square head; 50 = grey round head; 100 = green round head;)
         public static readonly string STATE_PLAYERSTATUS = "player_status";
+        // state to keep track of how green the player is (0 = grey)
+        public static readonly string STATE_PLAYERGREEN = "player_green";
+        // state to mark that player should fade from grey to green
+        public static readonly string STATE_PLAYERFADETOGREEN = "player_fadeToGreen";
+        // state to mark that player should fade from green to grey
+        public static readonly string STATE_PLAYERFADETOGREY = "player_fadeToGrey";
+
         // state to keep track of which day it is
         public static readonly string STATE_DAY = "day";
         #endregion
