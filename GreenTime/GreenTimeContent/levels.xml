@@ -15,7 +15,7 @@
         <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
-      <RightScreenName>outdoor</RightScreenName>
+      <RightScreenName>kitchen</RightScreenName>
       <GameObjects>
         <!-- Window -->
         <Item>
@@ -71,45 +71,7 @@
           </Sprite>
           <DependentStates></DependentStates>
           <EffectedStates></EffectedStates>
-        </Item>
-        <!-- Newspaper -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1000</BoundX>
-          <BoundWidth>40</BoundWidth>
-          <Text>News</Text>
-          <Special>news</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
-        </Item>
-        <!-- test drop 1 -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>300</BoundX>
-          <BoundWidth>40</BoundWidth>
-          <Text>Drop 1</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>object1_pickedup</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>object1_pickedup</StateName>
-              <StateValue>50</StateValue>
-            </Item>
-          </EffectedStates>
-        </Item>
-        <!-- test drop 2 -->
+        </Item>       
         <!-- Lightbulb -->
         <Item>
           <Impassable>false</Impassable>
@@ -254,11 +216,11 @@
       </GameObjects>
   </Item>
     <!-- ################
-         Room 2 - Sample outdoor
+         Room 2 - Kitchen
          ################ -->
     <Item>
       <!--<Index>2</Index>-->
-      <Name>outdoor</Name>
+      <Name>kitchen</Name>
       <BackgroundTexture>
         <TextureName>kitchen\bg</TextureName>
         <Position>0 0</Position>
@@ -267,9 +229,47 @@
         <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName>bedroom</LeftScreenName>
+      <RightScreenName>outdoor</RightScreenName>
+      <GameObjects>
+        <!-- Newspaper -->
+        <Item>
+          <Impassable>true</Impassable>
+          <BoundX>1100</BoundX>
+          <BoundWidth>100</BoundWidth>
+          <Text>News</Text>
+          <Special>news</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>news_taken</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>99</StateHighValue>
+            </Item>            
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>news_taken</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+      </GameObjects>
+    </Item>
+    <Item>
+      <Name>outdoor</Name>
+      <BackgroundTexture>
+        <TextureName>background</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
+      </BackgroundTexture>
+      <LeftScreenName>kitchen</LeftScreenName>
       <RightScreenName></RightScreenName>
       <GameObjects>
-         <!-- Garbage -->
+        <!-- Garbage -->
         <Item>
           <Impassable>false</Impassable>
           <BoundX>450</BoundX>

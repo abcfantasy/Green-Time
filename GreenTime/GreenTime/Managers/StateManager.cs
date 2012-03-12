@@ -126,6 +126,7 @@ namespace GreenTime.Managers
             ++day;
             SetState( STATE_DAY, day);
             SetState( STATE_INDOOR, ( (new Random()).Next( 1, 3 ) * 10 ) );
+            SetState("news_taken", 0);
 
             LevelManager.State.GoHome();
         }

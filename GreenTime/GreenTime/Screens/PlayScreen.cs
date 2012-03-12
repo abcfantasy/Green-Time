@@ -43,8 +43,8 @@ namespace GreenTime.Screens
         /// </summary>
         public PlayScreen()
         {
-            TransitionOnTime = TimeSpan.FromSeconds(0.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            TransitionOnTime = TimeSpan.FromSeconds(0.8);
+            TransitionOffTime = TimeSpan.FromSeconds(1.0);
             
             // create player
             player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
@@ -198,11 +198,11 @@ namespace GreenTime.Screens
             // player
             if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 100)
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.3f);
+                player.Draw(spriteBatch, new Color(255, 255, 255, 64), 1.2f);
             }
             else
             {
-                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount), 1.3f);
+                player.Draw(spriteBatch, new Color(255, 255, 255, (byte)desaturationAmount), 1.2f);
                 //player.Draw(spriteBatch, new Color(255, 255, 255, 64));
             }
 
@@ -379,7 +379,7 @@ namespace GreenTime.Screens
             // if player moves outside the right boundary
             if (player.X > SettingsManager.GAME_WIDTH)
             {
-                if (LevelManager.State.CurrentLevel.Name.Equals( "bedroom" ))
+                if (LevelManager.State.CurrentLevel.Name.Equals( "kitchen" ))
                 {
                     int player_status = StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS);
                     if ( StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100 )
