@@ -266,21 +266,66 @@
               <StateName>cereal_picked</StateName>
               <StateValue>100</StateValue>
             </Item>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
           </EffectedStates>
         </Item>
-        <!-- Plastic Bin (while cereal picked) -->
+        <!-- Water Bottle -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>490</BoundX>
+          <BoundWidth>50</BoundWidth>
+          <Text>Empty Water Bottle</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>kitchen\WaterBottle</TextureName>
+              <Position>530 245</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>50</StateLowValue>
+              <StateHighValue>50</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>bottle_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>bottle_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- All Bins -->
         <Item>
           <Impassable>false</Impassable>
           <BoundX>600</BoundX>
-          <BoundWidth>93</BoundWidth>
-          <Text>Plastic Bin</Text>
+          <BoundWidth>300</BoundWidth>
+          <Text>Bins</Text>
           <Special>drop</Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite></Sprite>
           <DependentStates>
             <Item>
-              <StateName>cereal_picked</StateName>
+              <StateName>item_picked</StateName>
               <StateLowValue>100</StateLowValue>
               <StateHighValue>100</StateHighValue>
             </Item>
@@ -292,6 +337,46 @@
             </Item>
             <Item>
               <StateName>cereal_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>bottle_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        <!-- Plastic Bin (while bottle picked) -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>600</BoundX>
+          <BoundWidth>93</BoundWidth>
+          <Text>Plastic Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>bottle_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+            <Item>
+              <StateName>bottle_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>item_picked</StateName>
               <StateValue>0</StateValue>
             </Item>
           </EffectedStates>
@@ -322,36 +407,13 @@
               <StateName>cereal_picked</StateName>
               <StateValue>0</StateValue>
             </Item>
-          </EffectedStates>
-        </Item>
-        <!-- Waste Bin (while cereal picked) -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>812</BoundX>
-          <BoundWidth>93</BoundWidth>
-          <Text>Waste Bin</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
             <Item>
-              <StateName>cereal_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>cereal_picked</StateName>
+              <StateName>item_picked</StateName>
               <StateValue>0</StateValue>
             </Item>
           </EffectedStates>
-        </Item>
+        </Item>        
+        
         <!-- Newspaper -->
         <Item>
           <Impassable>true</Impassable>
