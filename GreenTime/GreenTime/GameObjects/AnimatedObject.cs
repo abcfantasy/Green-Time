@@ -36,6 +36,21 @@ namespace GreenTime.GameObjects
             set { flipped = value; }
         }
 
+        public int CurrentFrame
+        {
+            get
+            {
+                return animations[currentAnimation][currentFrameIndex];
+            }
+        }
+
+        public int FrameWidth
+        {
+            get
+            {
+                return frameWidth;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -104,7 +119,8 @@ namespace GreenTime.GameObjects
         /// </summary>
         public void Reset()
         {
-            currentFrameIndex = animations[currentAnimation][0];
+            //currentFrameIndex = animations[currentAnimation][0];
+            currentFrameIndex = 0;
             totalElapsed = 0;
             Resume();
         }

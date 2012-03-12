@@ -42,6 +42,14 @@ namespace GreenTime.GameObjects
             }
         }
 
+        public int Width
+        {
+            get
+            {
+                return texture.Width;
+            }
+        }
+
         public bool Shaded { get { return shaded; } set { shaded = value; } }
         public float Layer { get { return layer; } set { layer = value; } }
         #endregion

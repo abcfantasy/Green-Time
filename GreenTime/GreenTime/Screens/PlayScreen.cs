@@ -19,11 +19,19 @@ namespace GreenTime.Screens
         static readonly float PLAYER_LAYER      = 0.5f;
         static readonly float BACKGROUND_LAYER  = 0.75f;
 
-        /*
+        
         static readonly Vector2[] playerHand = new Vector2[] { 
-            new Vector2( 42, 212 ),
-            new Vector2( 158, 201
-        };*/
+            new Vector2( 44, 208 ),
+            new Vector2( 52, 194 ),
+            new Vector2( 61, 186 ),
+            new Vector2( 79, 196 ),
+            new Vector2( 77, 205 ),
+            new Vector2( 74, 196 ),
+            new Vector2( 57, 178 ),
+            new Vector2( 50, 194 ),
+            new Vector2( 41, 203 ),
+            new Vector2( 21, 188 )
+        };
 
         ContentManager content;
         SpriteFont gameFont;
@@ -95,6 +103,7 @@ namespace GreenTime.Screens
             {
                 pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded, LevelManager.State.PickedObject.Layer );
                 pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
+                pickedObject.Layer = 0.4f;
             }
             LoadGameObjects();
 
@@ -203,7 +212,16 @@ namespace GreenTime.Screens
 
                 // update picked up object if any
                 if (pickedObject != null)
-                    pickedObject.Position = player.Position;
+                {
+                    if (player.Flipped)
+                    {
+                        pickedObject.Position = player.Position + (new Vector2(player.FrameWidth - playerHand[player.CurrentFrame].X, playerHand[player.CurrentFrame].Y));
+                        pickedObject.X -= pickedObject.Width / 2;
+                    }
+                    else
+                        pickedObject.Position = player.Position + playerHand[player.CurrentFrame];
+                    
+                }
 
                 // check if player should return to present
                 CheckPastPresentState();

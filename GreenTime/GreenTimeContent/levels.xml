@@ -455,6 +455,27 @@
       <LeftScreenName>kitchen</LeftScreenName>
       <RightScreenName></RightScreenName>
       <GameObjects>
+        <!-- Front grass -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>0</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\grass</TextureName>
+              <Position>0 529</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.4</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
         <!-- Dead tree -->
         <Item>
           <Impassable>false</Impassable>
