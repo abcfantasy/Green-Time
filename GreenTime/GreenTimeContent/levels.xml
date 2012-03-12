@@ -231,6 +231,51 @@
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
       <GameObjects>
+        <!-- Water drop -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>320</BoundX>
+          <BoundWidth>100</BoundWidth>
+          <Text>Tap</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>kitchen\drop</TextureName>
+              <Position>414 308</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>4</FrameWidth>
+                  <FrameHeight>62</FrameHeight>
+                  <FramesPerSecond>10</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1 2 3 3 3 3 3 3 3 3 3 3 3 4 5 6 7 8 9 10 11 12 13 14</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateLowValue>60</StateLowValue>
+              <StateHighValue>60</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>indoor_puzzle</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
         <!-- Cereal Box -->
         <Item>
           <Impassable>false</Impassable>

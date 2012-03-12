@@ -138,7 +138,7 @@ namespace GreenTime.Managers
             int day = GetState( STATE_DAY );
             ++day;
             SetState( STATE_DAY, day);
-            SetState( STATE_INDOOR, (new Random()).Next( 1, 6 ) * 10 );
+            SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
             SetState("news_taken", 0);
 
             // reset other states (hardcoded!)
