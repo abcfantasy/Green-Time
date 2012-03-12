@@ -26,7 +26,7 @@ namespace GreenTime.Managers
         #endregion
 
         #region Fields
-        private Vector2 playerPosition = new Vector2( 0, 300 );
+        private Vector2 playerPosition = new Vector2( 0, 250 );
         private Sprite pickedObject;    // currently picked up object - save it here to know when changing scenes
         private Level currentLevel = null;
         private Level lastLevel = null;     // the level the player was in before going to the past
@@ -103,7 +103,7 @@ namespace GreenTime.Managers
         public void GoHome()
         {
             currentLevel = levels["bedroom"];
-            playerPosition = new Vector2(250, 220);
+            playerPosition = new Vector2(250, 250);
         }
 
         public Boolean CanTransitionRight()
@@ -125,7 +125,7 @@ namespace GreenTime.Managers
             currentLevel = levels[currentLevel.RightScreenName];
 
             // set player position
-            this.playerPosition = new Vector2(0, 220);
+            this.playerPosition = new Vector2(0, 250);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace GreenTime.Managers
             currentLevel = levels[currentLevel.LeftScreenName];
 
             // set player position
-            this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 220);
+            this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 250);
         }
 
         /// <summary>
