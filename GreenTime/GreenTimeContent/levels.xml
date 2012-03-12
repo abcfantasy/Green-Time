@@ -440,72 +440,145 @@
         </Item>
       </GameObjects>
     </Item>
+    <!-- ################
+         Room 3 - Outdoor
+         ################ -->
     <Item>
       <Name>outdoor</Name>
       <BackgroundTexture>
-        <TextureName>background</TextureName>
+        <TextureName>outdoor_shop\bg</TextureName>
         <Position>0 0</Position>
         <Animation></Animation>
-        <Shaded>false</Shaded>
+        <Shaded>true</Shaded>
         <Layer>0.75</Layer>
       </BackgroundTexture>
       <LeftScreenName>kitchen</LeftScreenName>
       <RightScreenName></RightScreenName>
       <GameObjects>
-        <!-- Garbage -->
+        <!-- Dead tree -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>450</BoundX>
-          <BoundWidth>100</BoundWidth>
-          <Text>Garbage</Text>
-          <Special></Special>
-          <Transition>outdoor_past</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
-              <TextureName>outdoor\Garbage</TextureName>
-              <Position>500 550</Position>
-              <Animation></Animation>
-              <Shaded>true</Shaded>
-              <Layer>0.3</Layer>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <!-- state 'garbage1_solved' must be false for this to appear -->
-            <Item>
-              <StateName>garbage1_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>99</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
-        </Item>
-        <!-- Flowers -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>500</BoundX>
-          <BoundWidth>80</BoundWidth>
+          <BoundX>100</BoundX>
+          <BoundWidth>1</BoundWidth>
           <Text></Text>
           <Special></Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>outdoor\flowers</TextureName>
-              <Position>500 550</Position>
+              <TextureName>outdoor_shop\cdtree</TextureName>
+              <Position>100 0</Position>
               <Animation></Animation>
-              <Shaded>false</Shaded>
-              <Layer>0.3</Layer>
+              <Shaded>true</Shaded>
+              <Layer>0.65</Layer>
             </Item>
           </Sprite>
-          <DependentStates>
-            <!-- state 'garbage1_solved' must be true for this to appear -->
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Garbage 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>240</BoundX>
+          <BoundWidth>97</BoundWidth>
+          <Text>Garbage</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
             <Item>
-              <StateName>garbage1_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
+              <TextureName>outdoor_shop\g2</TextureName>
+              <Position>240 387</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
             </Item>
-          </DependentStates>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Garbage 2 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>379</BoundX>
+          <BoundWidth>123</BoundWidth>
+          <Text>Garbage</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\g1</TextureName>
+              <Position>379 339</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Garbage 3 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>428</BoundX>
+          <BoundWidth>84</BoundWidth>
+          <Text>Garbage</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\g3</TextureName>
+              <Position>428 388</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.55</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Bin -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>561</BoundX>
+          <BoundWidth>134</BoundWidth>
+          <Text>Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\bin</TextureName>
+              <Position>561 553</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.4</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Car -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>680</BoundX>
+          <BoundWidth>468</BoundWidth>
+          <Text>Stranger in car</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\car</TextureName>
+              <Position>680 354</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
           <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
