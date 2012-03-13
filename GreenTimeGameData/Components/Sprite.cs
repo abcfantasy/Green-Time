@@ -34,6 +34,11 @@ namespace GreenTimeGameData.Components
         /// the sprite's layer depth
         /// </summary>        
         public float Layer { get; set; }
+
+        /// <summary>
+        /// the sprite's scale factor
+        /// </summary>
+        public float Scale { get; set; }
         #endregion
     }
 }

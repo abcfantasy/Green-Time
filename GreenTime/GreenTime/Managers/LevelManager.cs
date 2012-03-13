@@ -194,8 +194,12 @@ namespace GreenTime.Managers
         /// <returns>The name of the news texture file</returns>
         public string GetNewsTexture()
         {
-            // TODO: change this to match with game state
-            return "news\\news1";
+            // return final newspaper when game completed
+            if (StateManager.Current.GetState("progress") == 100)
+                return "news\\news_final";
+
+            int newsIndex = new Random().Next(1, 5);
+            return "news\\news" + newsIndex.ToString();
         }
         #endregion
 

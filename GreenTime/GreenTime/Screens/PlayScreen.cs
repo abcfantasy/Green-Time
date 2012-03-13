@@ -64,7 +64,7 @@ namespace GreenTime.Screens
         // When it's used, it is cast into a byte
         // 0 = fully desaturated
         // 64 = original colors
-        float desaturationAmount = 0;
+        float desaturationAmount = StateManager.Current.GetState("progress") * 0.64f;
 
         float pauseAlpha;
         #endregion
@@ -96,8 +96,8 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             
             // create player
-            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
-            player_other = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER - 0.1f);
+            player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER, 1.2f);
+            player_other = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER - 0.1f, 1.2f);
             //player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
 
             // play game music
@@ -135,7 +135,7 @@ namespace GreenTime.Screens
             // load picked up object
             if (LevelManager.State.PickedObject != null)
             {
-                pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded, LevelManager.State.PickedObject.Layer );
+                pickedObject = new BaseObject( player.Position, LevelManager.State.PickedObject.Shaded, LevelManager.State.PickedObject.Layer, LevelManager.State.PickedObject.Scale );
                 pickedObject.Load(content, LevelManager.State.PickedObject.TextureName);
                 pickedObject.Layer = 0.4f;
             }
@@ -161,7 +161,7 @@ namespace GreenTime.Screens
             gameObjects.Clear();
 
             // Load the background
-            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER);
+            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER, 1.0f);
             newGameObject.Load(content, LevelManager.State.CurrentLevel.BackgroundTexture.TextureName);
             gameObjects.Add(newGameObject);
 
@@ -175,13 +175,13 @@ namespace GreenTime.Screens
                     // static object
                     if (sprite.Animation.Count == 0)
                     {
-                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded, sprite.Layer);
+                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded, sprite.Layer, sprite.Scale);
                     }
                     // animated object
                     else
                     {
                         animation = sprite.Animation[0];
-                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded, sprite.Layer);
+                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded, sprite.Layer, sprite.Scale);
                         // add animations
                         ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
                     }
@@ -309,7 +309,7 @@ namespace GreenTime.Screens
             // game objects
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Draw( spriteBatch, new Color(( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ), 255, 255, 255) );
+                gameObjects[i].Draw( spriteBatch, new Color(( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ), 255, 255, 255), gameObjects[i].Scale );
             }
 
             // player
@@ -381,7 +381,7 @@ namespace GreenTime.Screens
                 LevelManager.State.PlayerPosition = player.Position;    // update position at this point in case of saving
                 ScreenManager.AddScreen(new PauseScreen());
             }
-            else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 )
+            else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 && StateManager.Current.GetState("progress") != 100 )
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")))
@@ -415,7 +415,7 @@ namespace GreenTime.Screens
 
                 }
                 // check for time warp button
-                else if (input.IsReverseTime() && interactingObject != null)
+                else if (input.IsReverseTime() && interactingObject != null && StateManager.Current.GetState("progress") != 100)
                 {
                     // transition into past
                     if (!String.IsNullOrEmpty(interactingObject.Transition))

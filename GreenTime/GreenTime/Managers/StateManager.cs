@@ -9,6 +9,8 @@ namespace GreenTime.Managers
     public class StateManager
     {
         #region State Constants
+        public static readonly int TOTAL_PUZZLES = 4;
+
         // state to mark game should transition back to present
         public static readonly string STATE_BACKTOPRESENT = "back_to_present";
         // state to keep track of the indoor puzzles and whether or not they're solved
@@ -59,6 +61,10 @@ namespace GreenTime.Managers
         /// <returns></returns>
         public int GetState(string stateName)
         {
+            // check if game is completed
+            if (stateName.StartsWith("puzzle") && GetState("progress") == 100)
+                return 0;
+
             // if key is present, return key value
             if (states.ContainsKey(stateName))
                 return states[stateName];
@@ -76,6 +82,12 @@ namespace GreenTime.Managers
         /// <returns></returns>
         public void SetState(string stateName, int value)
         {
+            // if puzzle solved
+            if (stateName.StartsWith("puzzle") && value == 100)
+            {
+                SetState("progress", GetState("progress") + 100 / TOTAL_PUZZLES);
+            }
+
             if (states.ContainsKey(stateName))
                 states[stateName] = value;
             else

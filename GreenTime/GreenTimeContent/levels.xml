@@ -13,6 +13,7 @@
         <Animation></Animation>
         <Shaded>false</Shaded>
         <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName>kitchen</RightScreenName>
@@ -33,6 +34,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.8</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -67,6 +69,7 @@
               </Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -101,6 +104,7 @@
               </Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -128,6 +132,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -173,6 +178,7 @@
               </Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -227,6 +233,7 @@
         <Animation></Animation>
         <Shaded>false</Shaded>
         <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
       </BackgroundTexture>
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
@@ -260,6 +267,7 @@
               </Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -292,6 +300,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -333,6 +342,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -496,6 +506,7 @@
         <Animation></Animation>
         <Shaded>true</Shaded>
         <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
       </BackgroundTexture>
       <LeftScreenName>kitchen</LeftScreenName>
       <RightScreenName></RightScreenName>
@@ -516,6 +527,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.4</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -537,6 +549,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.65</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -558,6 +571,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.65</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -585,6 +599,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -626,6 +641,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -667,6 +683,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.55</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates>
@@ -708,6 +725,7 @@
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.4</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -759,13 +777,31 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1</Frames>
-                      <DependentStates></DependentStates>
+                      <DependentStates>
+                        <Item>
+                          <StateName>puzzle_car_solved</StateName>
+                          <StateLowValue>0</StateLowValue>
+                          <StateHighValue>0</StateHighValue>
+                        </Item>
+                      </DependentStates>
+                    </Item>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0</Frames>
+                      <DependentStates>
+                        <Item>
+                          <StateName>puzzle_car_solved</StateName>
+                          <StateLowValue>100</StateLowValue>
+                          <StateHighValue>100</StateHighValue>
+                        </Item>
+                      </DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
               </Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -800,9 +836,16 @@
               </Animation>
               <Shaded>true</Shaded>
               <Layer>0.55</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
-          <DependentStates></DependentStates>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_car_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
           <EffectedStates></EffectedStates>
         </Item>
       </GameObjects>
@@ -818,6 +861,7 @@
         <Animation></Animation>
         <Shaded>false</Shaded>
         <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
@@ -838,6 +882,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -855,10 +900,11 @@
           <Sprite>
             <Item>
               <TextureName>outdoor_shop\ctree</TextureName>
-              <Position>100 0</Position>
+              <Position>200 100</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.65</Layer>
+              <Scale>0.8</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -867,8 +913,8 @@
         <!-- Guy -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>450</BoundX>
-          <BoundWidth>110</BoundWidth>
+          <BoundX>250</BoundX>
+          <BoundWidth>410</BoundWidth>
           <Text>Garbage man</Text>
           <Special></Special>
           <Transition></Transition>
@@ -880,6 +926,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -901,6 +948,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.55</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
@@ -922,46 +970,7 @@
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
-        </Item>
-      </GameObjects>
-    </Item>
-    
-    <!-- ################
-         Room 102 - Sample outdoor PAST
-         ################ -->
-    <Item>
-      <!--<Index>102</Index>-->
-      <Name>outdoor_past</Name>
-      <BackgroundTexture>
-        <TextureName>background</TextureName>
-        <Position>0 0</Position>
-        <Animation></Animation>
-        <Shaded>false</Shaded>
-        <Layer>0.75</Layer>
-      </BackgroundTexture>
-      <LeftScreenName></LeftScreenName>
-      <RightScreenName></RightScreenName>
-      <GameObjects>
-        <!-- Garbage man -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>450</BoundX>
-          <BoundWidth>120</BoundWidth>
-          <Text>Stranger</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>0</ChatIndex>
-          <Sprite>
-            <Item>
-              <TextureName>outdoor\garbage_man</TextureName>
-              <Position>500 450</Position>
-              <Animation></Animation>
-              <Shaded>true</Shaded>
-              <Layer>0.3</Layer>
+              <Scale>1.0</Scale>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
