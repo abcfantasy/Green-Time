@@ -121,6 +121,7 @@
     <Compile Include="Screens\BackgroundScreen.cs" />
     <Compile Include="Screens\ChatScreen.cs" />
     <Compile Include="Screens\AnswerEntry.cs" />
+    <Compile Include="Screens\FinalScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />

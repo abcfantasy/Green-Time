@@ -557,9 +557,19 @@ namespace GreenTime.Screens
             // if player moves outside the right boundary
             if (player.X > SettingsManager.GAME_WIDTH)
             {
-                // transition to the right
-                LevelManager.State.TransitionRight();
-                LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                // is it final room?
+                if (LevelManager.State.CurrentLevel.RightScreenName == "final_room")
+                {
+                    // transition to the right
+                    LevelManager.State.TransitionRight();
+                    LoadingScreen.Load(ScreenManager, false, new FinalScreen());
+                }
+                else
+                {
+                    // transition to the right
+                    LevelManager.State.TransitionRight();
+                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                }
             }
             // if player moves outside left boundary
             else if (player.X < -SettingsManager.PLAYER_WIDTH)

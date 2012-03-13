@@ -978,5 +978,176 @@
         </Item>
       </GameObjects>
     </Item>
+
+    <!-- ################
+         Final Room
+         ################ -->
+    <Item>
+      <Name>final_room</Name>
+      <BackgroundTexture>
+        <TextureName>final_room\bg</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
+      </BackgroundTexture>
+      <LeftScreenName></LeftScreenName>
+      <RightScreenName></RightScreenName>
+      <GameObjects>        
+        <!-- grey square -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>animations\AnimationSquareGreen</TextureName>
+              <Position>316 130</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>110</FrameWidth>
+                  <FrameHeight>325</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>3</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.4</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+
+        <!-- grey round -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>animations\AnimationRoundGreen</TextureName>
+              <Position>585 130</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>110</FrameWidth>
+                  <FrameHeight>325</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>3</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.4</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+
+        <!-- green round -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>animations\AnimationRoundGreen</TextureName>
+              <Position>853 130</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>110</FrameWidth>
+                  <FrameHeight>325</FrameHeight>
+                  <FramesPerSecond>1</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>3</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.4</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+
+        <!-- choose who you want to be text -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>final_room\text1</TextureName>
+              <Position>0 0</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.4</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- and act now text -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>final_room\text2</TextureName>
+              <Position>50 628</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.4</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+      </GameObjects>
+    </Item>
   </Asset>
 </XnaContent>
