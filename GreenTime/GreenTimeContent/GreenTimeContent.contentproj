@@ -326,8 +326,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\garbage_man.png">
-      <Name>garbage_man</Name>
+    <Compile Include="outdoor_shop\smoke.png">
+      <Name>smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="outdoor_shop\car2.png">
+      <Name>car2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
