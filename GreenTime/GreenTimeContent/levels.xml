@@ -120,8 +120,8 @@
         <!-- Light switch -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>1120</BoundX>
-          <BoundWidth>100</BoundWidth>
+          <BoundX>1070</BoundX>
+          <BoundWidth>150</BoundWidth>
           <Text>Light</Text>
           <Special></Special>
           <Transition></Transition>
@@ -153,8 +153,8 @@
         <!-- Heat -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>570</BoundX>
-          <BoundWidth>270</BoundWidth>
+          <BoundX>460</BoundX>
+          <BoundWidth>320</BoundWidth>
           <Text>Heater</Text>
           <Special></Special>
           <Transition></Transition>
@@ -199,8 +199,8 @@
         <!-- Computer -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>860</BoundX>
-          <BoundWidth>250</BoundWidth>
+          <BoundX>750</BoundX>
+          <BoundWidth>280</BoundWidth>
           <Text>Computer</Text>
           <Special></Special>
           <Transition></Transition>
@@ -299,8 +299,8 @@
         <!-- Cereal Box -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>490</BoundX>
-          <BoundWidth>50</BoundWidth>
+          <BoundX>420</BoundX>
+          <BoundWidth>150</BoundWidth>
           <Text>Empty Cereal Box</Text>
           <Special>pickup</Special>
           <Transition></Transition>
@@ -341,8 +341,8 @@
         <!-- Water Bottle -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>490</BoundX>
-          <BoundWidth>50</BoundWidth>
+          <BoundX>420</BoundX>
+          <BoundWidth>150</BoundWidth>
           <Text>Empty Water Bottle</Text>
           <Special>pickup</Special>
           <Transition></Transition>
@@ -383,8 +383,8 @@
         <!-- All Bins -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>600</BoundX>
-          <BoundWidth>300</BoundWidth>
+          <BoundX>530</BoundX>
+          <BoundWidth>380</BoundWidth>
           <Text>Bins</Text>
           <Special>drop</Special>
           <Transition></Transition>
@@ -419,8 +419,8 @@
         <!-- Plastic Bin (while bottle picked) -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>600</BoundX>
-          <BoundWidth>93</BoundWidth>
+          <BoundX>530</BoundX>
+          <BoundWidth>150</BoundWidth>
           <Text>Plastic Bin</Text>
           <Special>drop</Special>
           <Transition></Transition>
@@ -451,8 +451,8 @@
         <!-- Paper Bin (while cereal picked) -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>700</BoundX>
-          <BoundWidth>93</BoundWidth>
+          <BoundX>670</BoundX>
+          <BoundWidth>110</BoundWidth>
           <Text>Paper Bin</Text>
           <Special>drop</Special>
           <Transition></Transition>
@@ -621,8 +621,8 @@
         <!-- Garbage 1 -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>240</BoundX>
-          <BoundWidth>97</BoundWidth>
+          <BoundX>130</BoundX>
+          <BoundWidth>227</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
           <Transition>outdoor_past1</Transition>
@@ -663,8 +663,8 @@
         <!-- Garbage 2 -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>379</BoundX>
-          <BoundWidth>123</BoundWidth>
+          <BoundX>269</BoundX>
+          <BoundWidth>220</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
           <Transition>outdoor_past1</Transition>
@@ -705,8 +705,8 @@
         <!-- Garbage 3 -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>428</BoundX>
-          <BoundWidth>84</BoundWidth>
+          <BoundX>318</BoundX>
+          <BoundWidth>196</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
           <Transition>outdoor_past1</Transition>
@@ -769,8 +769,8 @@
         <!-- Bin when object is carried -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>561</BoundX>
-          <BoundWidth>134</BoundWidth>
+          <BoundX>427</BoundX>
+          <BoundWidth>268</BoundWidth>
           <Text>Bin</Text>
           <Special>drop</Special>
           <Transition></Transition>
@@ -840,8 +840,8 @@
         <!-- Car -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>680</BoundX>
-          <BoundWidth>468</BoundWidth>
+          <BoundX>720</BoundX>
+          <BoundWidth>368</BoundWidth>
           <Text>Stranger in car</Text>
           <Special></Special>
           <Transition></Transition>
@@ -1464,7 +1464,7 @@
         <!-- cigarette -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>670</BoundX>
+          <BoundX>560</BoundX>
           <BoundWidth>720</BoundWidth>
           <Text>Cigarette</Text>
           <Special></Special>
@@ -1493,7 +1493,7 @@
         <!-- acorn -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>970</BoundX>
+          <BoundX>910</BoundX>
           <BoundWidth>1050</BoundWidth>
           <Text>Acorn</Text>
           <Special>pickup</Special>
@@ -1712,7 +1712,7 @@
         <Item>
           <Impassable>false</Impassable>
           <BoundX>670</BoundX>
-          <BoundWidth>720</BoundWidth>
+          <BoundWidth>1</BoundWidth>
           <Text>Cigarette</Text>
           <Special></Special>
           <Transition></Transition>
@@ -1739,8 +1739,8 @@
         <!-- smoking person -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>600</BoundX>
-          <BoundWidth>220</BoundWidth>
+          <BoundX>546</BoundX>
+          <BoundWidth>320</BoundWidth>
           <Text>Smoker</Text>
           <Special></Special>
           <Transition></Transition>
