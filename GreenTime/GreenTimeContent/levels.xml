@@ -1559,7 +1559,7 @@
         </Item>
         
         <!-- impassable final room -->
-        <Item>
+        <!--<Item>
           <Impassable>true</Impassable>
           <BoundX>1200</BoundX>
           <BoundWidth>70</BoundWidth>
@@ -1576,7 +1576,7 @@
             </Item>
           </DependentStates>
           <EffectedStates></EffectedStates>
-        </Item>
+        </Item>-->
       </GameObjects>
     </Item>
 
