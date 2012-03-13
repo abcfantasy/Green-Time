@@ -4,7 +4,7 @@
     <!-- Garbage man chat -->
     <Item>
       <Index>0</Index>
-      <Text>You: Good day sir, how are you doing?</Text>
+      <Text>You: Good day sir, how are you?</Text>
       <DependentStates></DependentStates>
       <Answers>
         <Item>
@@ -25,7 +25,7 @@
           <ResponseIndex>2</ResponseIndex>
         </Item>
         <Item>
-          <Text>You: Do you think this is the right place to put your thrash?</Text>
+          <Text>You: You shouldn't leave garbage here.</Text>
           <ResponseIndex>3</ResponseIndex>
         </Item>
       </Answers>
@@ -93,7 +93,7 @@
 
     <Item>
       <Index>4</Index>
-      <Text>Man: Yes, that is close to my house. I will do that from now onwards.</Text>
+      <Text>Man: Well, it's a bit more effort but I guess you're right.</Text>
       <DependentStates></DependentStates>
       <Answers>
         <Item>
@@ -221,7 +221,7 @@
           <ResponseIndex>24</ResponseIndex>
         </Item>
         <Item>
-          <Text>You: Because of the CO2 pollution.</Text>
+          <Text>You: A running engine pollutes the atmosphere through CO2 emission.</Text>
           <ResponseIndex>25</ResponseIndex>
         </Item>
         <Item>
@@ -303,7 +303,7 @@
     <!-- Smoker chat -->
     <Item>
       <Index>40</Index>
-      <Text>You: Hello lady, are you not letting something fall on the ground?</Text>
+      <Text>You: Hello miss, did you just drop something on the ground?</Text>
       <DependentStates></DependentStates>
       <Answers>
         <Item>
@@ -363,7 +363,7 @@
 
     <Item>
       <Index>44</Index>
-      <Text>Lady: Yes, I did..</Text>
+      <Text>Lady: Yes, I guess I did...</Text>
       <DependentStates></DependentStates>
       <Answers>
         <Item>
