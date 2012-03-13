@@ -1557,26 +1557,6 @@
           </DependentStates>
           <EffectedStates></EffectedStates>
         </Item>
-        
-        <!-- impassable final room -->
-        <!--<Item>
-          <Impassable>true</Impassable>
-          <BoundX>1200</BoundX>
-          <BoundWidth>70</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>progress</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>99</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
-        </Item>-->
       </GameObjects>
     </Item>
 
@@ -1729,6 +1709,11 @@
           </Sprite>
           <DependentStates>
             <Item>
+              <StateName>progress</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>99</StateHighValue>
+            </Item>
+            <Item>
               <StateName>puzzle_cig_solved</StateName>
               <StateLowValue>0</StateLowValue>
               <StateHighValue>0</StateHighValue>
@@ -1756,6 +1741,11 @@
             </Item>
           </Sprite>
           <DependentStates>
+            <Item>
+              <StateName>progress</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>99</StateHighValue>
+            </Item>
             <Item>
               <StateName>puzzle_cig_solved</StateName>
               <StateLowValue>0</StateLowValue>
