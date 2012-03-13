@@ -164,6 +164,7 @@ namespace GreenTime.Managers
             SetState( STATE_DAY, day);
             SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
             SetState("news_taken", 0);
+            SetState("is_in_past", 0);
 
             // reset other states (hardcoded!)
             SetState("garbage1_picked", 0);
