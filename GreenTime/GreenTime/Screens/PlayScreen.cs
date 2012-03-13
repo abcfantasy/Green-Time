@@ -381,10 +381,11 @@ namespace GreenTime.Screens
                 LevelManager.State.PlayerPosition = player.Position;    // update position at this point in case of saving
                 ScreenManager.AddScreen(new PauseScreen());
             }
-            else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 && StateManager.Current.GetState("progress") != 100 )
+            else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 )
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
-                if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")))
+                if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")) && 
+                    ( StateManager.Current.GetState("progress") != 100 || ( interactingObject.Special == "news" && StateManager.Current.GetState("progress") == 100 ) ) )
                 {
                     // handling special news case
                     if (interactingObject.Special == "news")
@@ -482,7 +483,7 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
-            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor") && StateManager.Current.GetState( StateManager.STATE_LOAD ) == 0 )
+            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor") && StateManager.Current.GetState( StateManager.STATE_LOAD ) == 0 && StateManager.Current.GetState("progress") != 100 )
             {
                 if (StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100)
                 {

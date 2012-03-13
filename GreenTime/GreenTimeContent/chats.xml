@@ -299,5 +299,114 @@
         </Item>
       </States>
     </Item>
+    
+    <!-- Smoker chat -->
+    <Item>
+      <Index>40</Index>
+      <Text>You: Hello lady, are you not letting something fall on the ground?</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>Continue...</Text>
+          <ResponseIndex>41</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>41</Index>
+      <Text>Lady: No, I did not.</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>You: Oh, my mistake. Sorry for bothering you.</Text>
+          <ResponseIndex>42</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: But I saw you dropping a burning cigarette there on the ground.</Text>
+          <ResponseIndex>44</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: Hmmm, I must have seen some ghost then.</Text>
+          <ResponseIndex>43</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>42</Index>
+      <Text>Lady: Have a nice day.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>43</Index>
+      <Text>Lady: You are a strange one.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>44</Index>
+      <Text>Lady: Yes, I did..</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>Fire is dangerous in the woods, you really should not do that.</Text>
+          <ResponseIndex>45</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>Interesting, we might start a fire!</Text>
+          <ResponseIndex>46</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>45</Index>
+      <Text>Lady: You are right, I will put it out and throw it away.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+        <Item>
+          <StateName>puzzle_cig_solved</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>46</Index>
+      <Text>Lady: Yes, interesting thought. I like good fire.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+    
   </Asset>
 </XnaContent>

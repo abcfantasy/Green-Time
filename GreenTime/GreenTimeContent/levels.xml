@@ -204,7 +204,16 @@
           <Special></Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
+          <Sprite>
+            <Item>
+              <TextureName>bedroom\computer_light</TextureName>
+              <Position>830 178</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
           <DependentStates>
             <Item>
               <StateName>indoor_puzzle</StateName>
@@ -221,6 +230,7 @@
         </Item>
       </GameObjects>
   </Item>
+    
     <!-- ################
          Room 2 - Kitchen
          ################ -->
@@ -478,7 +488,16 @@
           <Special>news</Special>
           <Transition></Transition>
           <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
+          <Sprite>
+            <Item>
+              <TextureName>kitchen\newspaper</TextureName>
+              <Position>1200 450</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
           <DependentStates>
             <Item>
               <StateName>news_taken</StateName>
@@ -495,6 +514,7 @@
         </Item>
       </GameObjects>
     </Item>
+    
     <!-- ################
          Room 3 - Outdoor 1
          ################ -->
@@ -509,7 +529,7 @@
         <Scale>1.0</Scale>
       </BackgroundTexture>
       <LeftScreenName>kitchen</LeftScreenName>
-      <RightScreenName></RightScreenName>
+      <RightScreenName>forest</RightScreenName>
       <GameObjects>
         <!-- Front grass -->
         <Item>
@@ -850,6 +870,7 @@
         </Item>
       </GameObjects>
     </Item>
+    
     <!-- ################
          Room 3 - Outdoor 1 - Past (garbage puzzle)
          ################ -->
@@ -978,7 +999,693 @@
         </Item>
       </GameObjects>
     </Item>
+    
+    <!-- ################
+         Room 4 - Outdoor 2
+         ################ -->
+    <Item>
+      <Name>forest</Name>
+      <BackgroundTexture>
+        <TextureName>outdoor_forest\bg</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>true</Shaded>
+        <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
+      </BackgroundTexture>
+      <LeftScreenName>outdoor</LeftScreenName>
+      <RightScreenName>final_room</RightScreenName>
+      <GameObjects>
+        <!-- burned tree 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree01</TextureName>
+              <Position>715 293</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- burned tree 2 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree02</TextureName>
+              <Position>985 243</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- burned tree 3 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree03</TextureName>
+              <Position>878 234</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.68</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- burned tree 4 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree04</TextureName>
+              <Position>758 178</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- burned tree 5 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree05</TextureName>
+              <Position>1050 175</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.64</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
 
+        <!-- healthy tree 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree01b</TextureName>
+              <Position>673 212</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- healthy tree 2 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree02b</TextureName>
+              <Position>953 160</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- healthy tree 4 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree04b</TextureName>
+              <Position>657 75</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+
+        <!-- grown tree 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree-a</TextureName>
+              <Position>0 83</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- grown tree 2 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree-b</TextureName>
+              <Position>120 209</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- grown tree 3 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree-c</TextureName>
+              <Position>225 65</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.62</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- grown tree 4 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree-d</TextureName>
+              <Position>345 160</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.68</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        
+        <!-- cigarette -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>670</BoundX>
+          <BoundWidth>720</BoundWidth>
+          <Text>Cigarette</Text>
+          <Special></Special>
+          <Transition>forest_past</Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\cigar</TextureName>
+              <Position>690 560</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        
+        <!-- acorn -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>970</BoundX>
+          <BoundWidth>1050</BoundWidth>
+          <Text>Acorn</Text>
+          <Special>pickup</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\acorn</TextureName>
+              <Position>1020 553</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+        
+        <!-- acorn going back -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1278</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition>forest_past</Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        
+        <!-- impassable final room -->
+        <Item>
+          <Impassable>true</Impassable>
+          <BoundX>1200</BoundX>
+          <BoundWidth>70</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>progress</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>99</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+      </GameObjects>
+    </Item>
+
+    <!-- ################
+         Room 4 - Outdoor 2 - Past (cigarette/acorn puzzle)
+         ################ -->
+    <Item>
+      <Name>forest_past</Name>
+      <BackgroundTexture>
+        <TextureName>outdoor_forest\bg</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>true</Shaded>
+        <Layer>0.75</Layer>
+        <Scale>1.0</Scale>
+      </BackgroundTexture>
+      <LeftScreenName></LeftScreenName>
+      <RightScreenName></RightScreenName>
+      <GameObjects>
+        <!-- tree 3 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree03</TextureName>
+              <Position>878 234</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.68</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- tree 5 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree05</TextureName>
+              <Position>1050 175</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.64</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- healthy tree 1 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree01b</TextureName>
+              <Position>673 212</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- healthy tree 2 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree02b</TextureName>
+              <Position>953 160</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.7</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- healthy tree 4 -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\tree04b</TextureName>
+              <Position>657 75</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+
+        <!-- cigarette -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>670</BoundX>
+          <BoundWidth>720</BoundWidth>
+          <Text>Cigarette</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\cigar</TextureName>
+              <Position>690 560</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- smoking person -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>600</BoundX>
+          <BoundWidth>220</BoundWidth>
+          <Text>Smoker</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>40</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\garbage_man</TextureName>
+              <Position>656 457</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.6</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        
+        <!-- acorn seeding area -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>0</BoundX>
+          <BoundWidth>600</BoundWidth>
+          <Text>Seed area</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>puzzle_acorn_solved</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+            <Item>
+              <StateName>back_to_present</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
+
+      </GameObjects>
+    </Item>
+    
     <!-- ################
          Final Room
          ################ -->
