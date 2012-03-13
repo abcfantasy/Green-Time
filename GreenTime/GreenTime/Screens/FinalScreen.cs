@@ -90,12 +90,25 @@ namespace GreenTime.Screens
             }
         }
 
+        public override void HandleInput(InputManager input)
+        {
+            if (input == null)
+                throw new ArgumentNullException("input");
+
+            if ( this.IsActive && this.TransitionPosition == 0 )
+            {
+                // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
+                if (input.IsMenuCancel())
+                    ScreenManager.Game.Exit();
+            }
+        }
         /// <summary>
         /// Unload graphics content used by the game
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
+            if (content != null)
+                content.Unload();
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

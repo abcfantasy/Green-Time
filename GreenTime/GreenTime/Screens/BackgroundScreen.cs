@@ -47,7 +47,8 @@ namespace GreenTime.Screens
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
+            if(content != null )
+                content.Unload();
         }
 
 

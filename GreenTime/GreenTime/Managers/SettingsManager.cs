@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using GreenTimeGameData.Components;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Storage;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -109,6 +108,7 @@ namespace GreenTime.Managers
         }
         #endregion
 
+        /*
         private static void Save( IAsyncResult result )
         {
             // create the data
@@ -227,6 +227,7 @@ namespace GreenTime.Managers
 
             return true;
         }
+        */
 
         /// <summary>
         /// Toggle full screen mode

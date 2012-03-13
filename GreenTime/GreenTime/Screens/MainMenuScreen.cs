@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Storage;
 using GreenTime.Managers;
 
 namespace GreenTime.Screens
@@ -22,19 +20,19 @@ namespace GreenTime.Screens
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
+            //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
-            loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
+            //loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
-            MenuEntries.Add(loadGameMenuEntry);
+            //MenuEntries.Add(loadGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
@@ -45,6 +43,7 @@ namespace GreenTime.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+            /*
             if ((GameLoadRequested) && (result.IsCompleted))
             {
                 StorageDevice device = StorageDevice.EndShowSelector(result);
@@ -58,20 +57,21 @@ namespace GreenTime.Screens
                 }
                 // Reset the request flag
                 GameLoadRequested = false;
-            }
+            }*/
         }
         #endregion
 
         #region Handle Input
         void LoadGameMenuEntrySelected(object sender, EventArgs e)
         {
+            /*
             // Set the request flag
             if ((!Guide.IsVisible) && (GameLoadRequested == false))
             {
                 GameLoadRequested = true;
                 result = StorageDevice.BeginShowSelector(
                         Microsoft.Xna.Framework.PlayerIndex.One, null, null);
-            }
+            }*/
         }
 
         /// <summary>

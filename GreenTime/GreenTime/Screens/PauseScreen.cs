@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework;
 using GreenTime.Managers;
 
@@ -28,22 +26,22 @@ namespace GreenTime.Screens
         {
             // Create our menu entries.
             MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
-            MenuEntry saveGameMenuEntry = new MenuEntry("Save Game");
-            MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
+            //MenuEntry saveGameMenuEntry = new MenuEntry("Save Game");
+            //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
 
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
-            saveGameMenuEntry.Selected += SaveGameMenuEntrySelected;
-            loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
+            //saveGameMenuEntry.Selected += SaveGameMenuEntrySelected;
+            //loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
             MenuEntries.Add(resumeGameMenuEntry);
-            MenuEntries.Add(saveGameMenuEntry);
-            MenuEntries.Add(loadGameMenuEntry);
+            //MenuEntries.Add(saveGameMenuEntry);
+            //MenuEntries.Add(loadGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
@@ -56,6 +54,7 @@ namespace GreenTime.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+            /*
             // If a save is pending, save as soon as the
             // storage device is chosen
             if ((GameSaveRequested) && (result.IsCompleted))
@@ -69,6 +68,7 @@ namespace GreenTime.Screens
                 // Reset the request flag
                 GameSaveRequested = false;
             }
+             
             // If a load is pending, load as soon as the
             // storage device is chosen
             else if ((GameLoadRequested) && (result.IsCompleted))
@@ -85,6 +85,7 @@ namespace GreenTime.Screens
                 // Reset the request flag
                 GameLoadRequested = false;
             }
+             * */
         }
         #endregion
 
@@ -93,23 +94,25 @@ namespace GreenTime.Screens
         void SaveGameMenuEntrySelected(object sender, EventArgs e)
         {
             // Set the request flag
+            /*
             if ((!Guide.IsVisible) && (GameSaveRequested == false))
             {
                 GameSaveRequested = true;
                 result = StorageDevice.BeginShowSelector(
                         PlayerIndex.One, null, null);
-            }
+            }*/
         }
 
         void LoadGameMenuEntrySelected(object sender, EventArgs e)
         {
+            /*
             // Set the request flag
             if ((!Guide.IsVisible) && (GameLoadRequested == false))
             {
                 GameLoadRequested = true;
                 result = StorageDevice.BeginShowSelector(
                         PlayerIndex.One, null, null);
-            }
+            }*/
         }
 
         void OptionsMenuEntrySelected(object sender, EventArgs e)
