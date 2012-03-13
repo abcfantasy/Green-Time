@@ -158,6 +158,8 @@ namespace GreenTime.Managers
             // modify current level 
             currentLevel = levels[transitionIndex];
 
+            StateManager.Current.SetState("is_in_past", 100);
+
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
 
@@ -168,6 +170,8 @@ namespace GreenTime.Managers
 
             // modify current level
             lastLevel = null;
+
+            StateManager.Current.SetState("is_in_past", 0);
             StateManager.Current.AdvanceDay();
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);

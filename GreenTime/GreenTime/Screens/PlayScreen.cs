@@ -57,6 +57,7 @@ namespace GreenTime.Screens
         TransitionType transition = TransitionType.Room;
 
         Effect desaturateShader;
+        Effect sepiaShader;
 
         float playerFading = 0;
 
@@ -112,6 +113,7 @@ namespace GreenTime.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
+            sepiaShader = content.Load<Effect>("sepia");
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
 
@@ -313,7 +315,7 @@ namespace GreenTime.Screens
 
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;            
-            spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, desaturateShader );            
+            spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, ( StateManager.Current.GetState("is_in_past") == 100 ? sepiaShader : desaturateShader ) );            
 
             // game objects
             for (int i = 0; i < gameObjects.Count; i++)
@@ -323,7 +325,8 @@ namespace GreenTime.Screens
 
             // player
             player.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f ), 255, 255, 255 - ((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)) ), 1.2f );
-            player_other.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, (byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)), 1.2f);
+            if( StateManager.Current.GetState("is_in_past") == 0 )
+                player_other.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, (byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)), 1.2f);
 
             // picked up object if any
             if (pickedObject != null)
