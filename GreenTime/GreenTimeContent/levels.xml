@@ -706,11 +706,58 @@
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
-              <TextureName>outdoor_shop\car</TextureName>
+              <TextureName>outdoor_shop\car2</TextureName>
               <Position>680 354</Position>
-              <Animation></Animation>
+              <Animation>
+                <Item>
+                  <FrameWidth>570</FrameWidth>
+                  <FrameHeight>258</FrameHeight>
+                  <FramesPerSecond>15</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Smoke -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>0</BoundX>
+          <BoundWidth>0</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\smoke</TextureName>
+              <Position>1243 392</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>30</FrameWidth>
+                  <FrameHeight>151</FrameHeight>
+                  <FramesPerSecond>10</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1 2 3 4 5 6 7 8 9 10 11</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.55</Layer>
             </Item>
           </Sprite>
           <DependentStates></DependentStates>
