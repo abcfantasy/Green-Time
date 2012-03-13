@@ -17,6 +17,7 @@
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName>kitchen</RightScreenName>
+      <AmbientSound></AmbientSound>
       <GameObjects>
         <!-- Window -->
         <Item>
@@ -247,6 +248,7 @@
       </BackgroundTexture>
       <LeftScreenName>bedroom</LeftScreenName>
       <RightScreenName>outdoor</RightScreenName>
+      <AmbientSound></AmbientSound>
       <GameObjects>
         <!-- Water drop -->
         <Item>
@@ -528,8 +530,21 @@
         <Layer>0.75</Layer>
         <Scale>1.0</Scale>
       </BackgroundTexture>
-      <LeftScreenName>kitchen</LeftScreenName>
+      <LeftScreenName></LeftScreenName>
       <RightScreenName>forest</RightScreenName>
+      <AmbientSound>
+        <Item>
+          <Resource>outdoor_shop\carRunning</Resource>
+          <Looping>true</Looping>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_car_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+        </Item>
+      </AmbientSound>
       <GameObjects>
         <!-- Front grass -->
         <Item>
@@ -773,6 +788,10 @@
               <StateName>item_picked</StateName>
               <StateValue>0</StateValue>
             </Item>
+            <Item>
+              <StateName>acorn_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
           </EffectedStates>
         </Item>
         <!-- Car -->
@@ -886,6 +905,7 @@
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
+      <AmbientSound></AmbientSound>
       <GameObjects>
         <!-- Front grass -->
         <Item>
@@ -1015,6 +1035,19 @@
       </BackgroundTexture>
       <LeftScreenName>outdoor</LeftScreenName>
       <RightScreenName>final_room</RightScreenName>
+      <AmbientSound>
+        <Item>
+          <Resource>outdoor_forest\FireCrackling</Resource>
+          <Looping>true</Looping>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+        </Item>
+      </AmbientSound>
       <GameObjects>
         <!-- burned tree 1 -->
         <Item>
@@ -1145,6 +1178,48 @@
           <EffectedStates></EffectedStates>
         </Item>
 
+        <!-- fire -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>1</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_forest\FireSheet</TextureName>
+              <Position>680 110</Position>
+              <Animation>
+                <Item>
+                  <FrameWidth>500</FrameWidth>
+                  <FrameHeight>500</FrameHeight>
+                  <FramesPerSecond>8</FramesPerSecond>
+                  <Playbacks>
+                    <Item>
+                      <Name>default</Name>
+                      <Frames>0 1 2 3</Frames>
+                      <DependentStates></DependentStates>
+                    </Item>
+                  </Playbacks>
+                </Item>
+              </Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.64</Layer>
+              <Scale>1.0</Scale>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_cig_solved</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        
         <!-- healthy tree 1 -->
         <Item>
           <Impassable>false</Impassable>
@@ -1477,6 +1552,7 @@
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
+      <AmbientSound></AmbientSound>
       <GameObjects>
         <!-- tree 3 -->
         <Item>
@@ -1629,7 +1705,7 @@
           <Sprite>
             <Item>
               <TextureName>outdoor_shop\garbage_man</TextureName>
-              <Position>656 457</Position>
+              <Position>706 357</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
@@ -1682,7 +1758,6 @@
             </Item>
           </EffectedStates>
         </Item>
-
       </GameObjects>
     </Item>
     
@@ -1701,6 +1776,7 @@
       </BackgroundTexture>
       <LeftScreenName></LeftScreenName>
       <RightScreenName></RightScreenName>
+      <AmbientSound></AmbientSound>
       <GameObjects>        
         <!-- grey square -->
         <Item>

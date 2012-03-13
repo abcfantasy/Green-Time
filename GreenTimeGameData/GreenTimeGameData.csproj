@@ -98,6 +98,7 @@
     <Compile Include="Components\Chat.cs" />
     <Compile Include="Components\InteractiveObject.cs" />
     <Compile Include="Components\Level.cs" />
+    <Compile Include="Components\Sound.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\State.cs" />
     <Compile Include="Components\StateDependency.cs" />

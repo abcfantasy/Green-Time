@@ -28,6 +28,7 @@ namespace GreenTime.Managers
         public bool MusicEnabled;
         public bool SoundEnabled;
         public bool FullscreenMode;
+        public int Difficulty;
     }
 
     public class SettingsManager
@@ -37,12 +38,20 @@ namespace GreenTime.Managers
         public static readonly int GAME_HEIGHT = 720;
 
         public static readonly int PLAYER_WIDTH = 64;
+
+        public enum Game_Difficulties
+        {
+            EASY,
+            NORMAL
+        }
         #endregion
 
         private static bool musicEnabled = true;
         private static bool soundEnabled = true;
 
         private static bool fullscreen = false;
+
+        private static Game_Difficulties gameDifficulty = Game_Difficulties.NORMAL;
 
         #region Properties
         public static GraphicsDeviceManager GraphicsDevice { get; set; }
@@ -86,6 +95,18 @@ namespace GreenTime.Managers
                 }
             }
         }
+
+        public static Game_Difficulties Difficulty
+        {
+            get
+            {
+                return gameDifficulty;
+            }
+            set
+            {
+                gameDifficulty = value;
+            }
+        }
         #endregion
 
         private static void Save( IAsyncResult result )
@@ -102,6 +123,7 @@ namespace GreenTime.Managers
             data.MusicEnabled = MusicEnabled;
             data.SoundEnabled = SoundEnabled;
             data.FullscreenMode = FullScreenMode;
+            data.Difficulty = (int)Difficulty;
 
             StorageDevice device = (StorageDevice)result.AsyncState;
             StorageContainer container = device.EndOpenContainer(result);
@@ -198,6 +220,7 @@ namespace GreenTime.Managers
             MusicEnabled = data.MusicEnabled;
             SoundEnabled = data.SoundEnabled;
             FullScreenMode = data.FullscreenMode;
+            Difficulty = (Game_Difficulties)data.Difficulty;
 
             // mark as loaded game
             StateManager.Current.SetState(StateManager.STATE_LOAD, 100);
@@ -212,6 +235,15 @@ namespace GreenTime.Managers
         {
             GraphicsDevice.ToggleFullScreen();
             fullscreen = GraphicsDevice.IsFullScreen;
+        }
+
+        public static void ToggleDifficulty()
+        {
+            if (SettingsManager.Difficulty == Game_Difficulties.EASY)
+                SettingsManager.Difficulty = Game_Difficulties.NORMAL;
+            else
+                SettingsManager.Difficulty = Game_Difficulties.EASY;
+            //SettingsManager.Difficulty = ( SettingsManager.Difficulty == Game_Difficulties.EASY : Game_Difficulties.NORMAL ? Game_Difficulties.EASY );
         }
     }
 }

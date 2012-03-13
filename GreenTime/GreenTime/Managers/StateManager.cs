@@ -169,6 +169,7 @@ namespace GreenTime.Managers
             SetState("garbage1_picked", 0);
             SetState("garbage2_picked", 0);
             SetState("garbage3_picked", 0);
+            SetState("acorn_picked", 0);
 
             LevelManager.State.GoHome();
         }

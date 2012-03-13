@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using GreenTime.Managers;
 using GreenTimeGameData.Components;
 using GreenTime.GameObjects;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GreenTime.Screens
 {
@@ -47,11 +48,11 @@ namespace GreenTime.Screens
         SpriteFont gameFont;
         AnimatedObject player;
         AnimatedObject player_other;
-        //AnimatedObject player_round;
-        //AnimatedObject player_square;
         List<BaseObject> gameObjects = new List<BaseObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
+        SoundEffect ambientSound;
+        SoundEffectInstance ambientSoundInstance;
 
         TransitionType transition = TransitionType.Room;
 
@@ -98,7 +99,6 @@ namespace GreenTime.Screens
             // create player
             player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER, 1.2f);
             player_other = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER - 0.1f, 1.2f);
-            //player = new AnimatedObject(LevelManager.State.PlayerPosition, 110, 326, 15, false, PLAYER_LAYER);
 
             // play game music
             SoundManager.PlayGameMusic();
@@ -159,6 +159,15 @@ namespace GreenTime.Screens
             Animation animation;
 
             gameObjects.Clear();
+
+            // Load ambient soud if any
+            if (LevelManager.State.CurrentLevel.AmbientSound.Length > 0 && StateManager.Current.DependentStatesSatisfied(LevelManager.State.CurrentLevel.AmbientSound[0].DependentStates))
+            {
+                ambientSound = content.Load<SoundEffect>(LevelManager.State.CurrentLevel.AmbientSound[0].Resource);
+                ambientSoundInstance = ambientSound.CreateInstance();
+                ambientSoundInstance.IsLooped = true;
+                ambientSoundInstance.Play();
+            }
 
             // Load the background
             newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER, 1.0f);
@@ -320,8 +329,8 @@ namespace GreenTime.Screens
             if (pickedObject != null)
                 pickedObject.Draw(spriteBatch, Color.White);
 
-            // text
-            if (interactingObject != null && interactingObject.Text != "" )
+            // text only if easy mode
+            if ( SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && interactingObject.Text != "" )
             {
                 SpriteFont font = ScreenManager.Font;
                 Vector2 textSize = font.MeasureString(interactingObject.Text);
@@ -483,8 +492,9 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
-            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor") && StateManager.Current.GetState( StateManager.STATE_LOAD ) == 0 && StateManager.Current.GetState("progress") != 100 )
+            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor") && StateManager.Current.GetState( "just_went_out") == 100 && StateManager.Current.GetState( StateManager.STATE_LOAD ) == 0 && StateManager.Current.GetState("progress") != 100 )
             {
+                StateManager.Current.SetState("just_went_out", 0);
                 if (StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100)
                 {
                     if (StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
@@ -567,6 +577,9 @@ namespace GreenTime.Screens
                 }
                 else
                 {
+                    if (LevelManager.State.CurrentLevel.Name == "kitchen")
+                        StateManager.Current.SetState("just_went_out", 100);
+
                     // transition to the right
                     LevelManager.State.TransitionRight();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());

@@ -11,6 +11,7 @@ namespace GreenTime.Screens
         private MenuEntry musicMenuEntry;
         private MenuEntry soundMenuEntry;
         private MenuEntry fullscreenMenuEntry;
+        private MenuEntry difficultyMenuEntry;
 
         public OptionsMenuScreen()
             : base("Options")
@@ -19,6 +20,7 @@ namespace GreenTime.Screens
             musicMenuEntry = new MenuEntry("Music: ");
             soundMenuEntry = new MenuEntry("Sound Effects: ");
             fullscreenMenuEntry = new MenuEntry("Fullscreen Mode: Off");
+            difficultyMenuEntry = new MenuEntry("Difficulty: ");
             MenuEntry backMenuEntry = new MenuEntry("Back");
             UpdateMenuEntries();
 
@@ -26,12 +28,14 @@ namespace GreenTime.Screens
             musicMenuEntry.Selected += MusicMenuEntrySelected;
             soundMenuEntry.Selected += SoundMenuEntrySelected;
             fullscreenMenuEntry.Selected += FullscreenMenuEntrySelected;
+            difficultyMenuEntry.Selected += DifficultyMenuEntrySelected;
             backMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(musicMenuEntry);
             MenuEntries.Add(soundMenuEntry);
             MenuEntries.Add(fullscreenMenuEntry);
+            MenuEntries.Add(difficultyMenuEntry);
             MenuEntries.Add(backMenuEntry);
         }
 
@@ -59,6 +63,11 @@ namespace GreenTime.Screens
             SettingsManager.ToggleFullscreen();
         }
 
+        void DifficultyMenuEntrySelected(object sender, EventArgs e)
+        {
+            SettingsManager.ToggleDifficulty();
+        }
+
         protected override void OnCancel()
         {
             ExitScreen();
@@ -70,6 +79,7 @@ namespace GreenTime.Screens
             musicMenuEntry.Text = "Music: " + (SettingsManager.MusicEnabled ? "On" : "Off");
             soundMenuEntry.Text = "Sound Effects: " + (SettingsManager.SoundEnabled ? "On" : "Off");
             fullscreenMenuEntry.Text = "Fullscreen Mode: " + (SettingsManager.FullScreenMode ? "On" : "Off");
+            difficultyMenuEntry.Text = "Difficulty: " + (SettingsManager.Difficulty.ToString());
         }
     }
 }

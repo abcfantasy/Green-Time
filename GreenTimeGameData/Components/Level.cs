@@ -29,6 +29,11 @@ namespace GreenTimeGameData.Components
         public string RightScreenName { get; set; }
 
         /// <summary>
+        /// up to one ambient sound in the level
+        /// </summary>
+        public Sound[] AmbientSound { get; set; }
+
+        /// <summary>
         /// list of game objects in the level
         /// </summary>
         public List<InteractiveObject> GameObjects { get; set; }
