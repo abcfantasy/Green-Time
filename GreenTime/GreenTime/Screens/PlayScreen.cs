@@ -333,7 +333,7 @@ namespace GreenTime.Screens
 
             // picked up object if any
             if (pickedObject != null)
-                pickedObject.Draw(spriteBatch, Color.White);
+                pickedObject.Draw(spriteBatch, new Color((pickedObject.Shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
 
             // text only if easy mode
             if ( SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && interactingObject.Text != "" )
@@ -400,7 +400,7 @@ namespace GreenTime.Screens
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")) && 
-                    ( StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS ) > 0 ) &&
+                    ( StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS ) > 0 || LevelManager.State.CurrentLevel.Name.Equals( "bedroom" ) || LevelManager.State.CurrentLevel.Name.Equals( "kitchen" ) ) &&
                     ( StateManager.Current.GetState("progress") != 100 || ( interactingObject.Special == "news" && StateManager.Current.GetState("progress") == 100 ) ) )
                 {
                     // handling special news case
@@ -578,14 +578,14 @@ namespace GreenTime.Screens
                 // is it final room?
                 if (LevelManager.State.CurrentLevel.RightScreenName == "final_room")
                 {
-                    if (StateManager.Current.GetState("progress") < 95)
+                    if( StateManager.Current.GetState("progress") == 100 )
                     {
-                        // start a new day
-                        StateManager.Current.AdvanceDay();
-                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                        // transition to the right
+                        LevelManager.State.TransitionRight();
+                        LoadingScreen.Load(ScreenManager, false, new FinalScreen());
                     }
                     // let player go through whole 
-                    else if (StateManager.Current.GetState("progress") == 95)
+                    else if (StateManager.Current.GetState("progress") >= 95)
                     {
                         StateManager.Current.SetState("progress", 100);
                         StateManager.Current.AdvanceDay();
@@ -594,10 +594,11 @@ namespace GreenTime.Screens
                     }
                     else
                     {
-                        // transition to the right
-                        LevelManager.State.TransitionRight();
-                        LoadingScreen.Load(ScreenManager, false, new FinalScreen());
-                    }
+                        // start a new day
+                        StateManager.Current.AdvanceDay();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }                    
+                   
                 }
                 else
                 {

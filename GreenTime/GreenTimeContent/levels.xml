@@ -797,8 +797,8 @@
         <!-- Bin when all garbages have been put in - transition -->
         <Item>
           <Impassable>false</Impassable>
-          <BoundX>561</BoundX>
-          <BoundWidth>134</BoundWidth>
+          <BoundX>427</BoundX>
+          <BoundWidth>268</BoundWidth>
           <Text>Bin</Text>
           <Special>drop</Special>
           <Transition></Transition>
