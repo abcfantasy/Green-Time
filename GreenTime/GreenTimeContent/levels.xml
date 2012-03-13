@@ -794,6 +794,49 @@
             </Item>
           </EffectedStates>
         </Item>
+        <!-- Bin when all garbages have been put in - transition -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>561</BoundX>
+          <BoundWidth>134</BoundWidth>
+          <Text>Bin</Text>
+          <Special>drop</Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite></Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>garbage1_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>garbage2_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>garbage3_picked</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates>
+            <Item>
+              <StateName>item_picked</StateName>
+              <StateValue>0</StateValue>
+            </Item>
+            <Item>
+              <StateName>advance_day</StateName>
+              <StateValue>100</StateValue>
+            </Item>
+          </EffectedStates>
+        </Item>
         <!-- Car -->
         <Item>
           <Impassable>false</Impassable>
@@ -1190,7 +1233,7 @@
           <Sprite>
             <Item>
               <TextureName>outdoor_forest\FireSheet</TextureName>
-              <Position>680 110</Position>
+              <Position>670 100</Position>
               <Animation>
                 <Item>
                   <FrameWidth>500</FrameWidth>
@@ -1705,7 +1748,7 @@
           <Sprite>
             <Item>
               <TextureName>outdoor_shop\garbage_man</TextureName>
-              <Position>706 357</Position>
+              <Position>706 307</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
