@@ -397,6 +397,7 @@ namespace GreenTime.Screens
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")) && 
+                    ( StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS ) > 0 ) &&
                     ( StateManager.Current.GetState("progress") != 100 || ( interactingObject.Special == "news" && StateManager.Current.GetState("progress") == 100 ) ) )
                 {
                     // handling special news case
@@ -428,7 +429,7 @@ namespace GreenTime.Screens
 
                 }
                 // check for time warp button
-                else if (input.IsReverseTime() && interactingObject != null && StateManager.Current.GetState("progress") != 100)
+                else if (input.IsReverseTime() && interactingObject != null && StateManager.Current.GetState("progress") != 100 && StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) > 50 )
                 {
                     // transition into past
                     if (!String.IsNullOrEmpty(interactingObject.Transition))
@@ -574,9 +575,18 @@ namespace GreenTime.Screens
                 // is it final room?
                 if (LevelManager.State.CurrentLevel.RightScreenName == "final_room")
                 {
-                    // transition to the right
-                    LevelManager.State.TransitionRight();
-                    LoadingScreen.Load(ScreenManager, false, new FinalScreen());
+                    if (StateManager.Current.GetState("progress") < 100)
+                    {
+                        // start a new day
+                        StateManager.Current.AdvanceDay();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
+                    else
+                    {
+                        // transition to the right
+                        LevelManager.State.TransitionRight();
+                        LoadingScreen.Load(ScreenManager, false, new FinalScreen());
+                    }
                 }
                 else
                 {
