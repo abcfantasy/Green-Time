@@ -85,7 +85,7 @@ namespace GreenTime.Managers
             // if puzzle solved
             if (stateName.StartsWith("puzzle") && value == 100)
             {
-                SetState("progress", GetState("progress") + 100 / TOTAL_PUZZLES);
+                SetState("progress", GetState("progress") + 99 / TOTAL_PUZZLES);
             }
 
             if (states.ContainsKey(stateName))
@@ -164,13 +164,16 @@ namespace GreenTime.Managers
             SetState( STATE_DAY, day);
             SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
             SetState("news_taken", 0);
-            SetState("is_in_past", 0);
+            //SetState("is_in_past", 0);
 
             // reset other states (hardcoded!)
             SetState("garbage1_picked", 0);
             SetState("garbage2_picked", 0);
             SetState("garbage3_picked", 0);
             SetState("acorn_picked", 0);
+            SetState("item_picked", 0);
+
+            LevelManager.State.PickedObject = null;
 
             LevelManager.State.GoHome();
         }

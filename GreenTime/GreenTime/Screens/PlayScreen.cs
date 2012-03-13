@@ -86,6 +86,9 @@ namespace GreenTime.Screens
                     break;
 
                 case TransitionType.FromPast:
+                    StateManager.Current.SetState("is_in_past", 0);
+                    TransitionOnTime = TimeSpan.FromSeconds(0.5);
+                    break;
                 case TransitionType.FromPresent:
                     TransitionOnTime = TimeSpan.FromSeconds(0.5);
                     break;
@@ -575,11 +578,19 @@ namespace GreenTime.Screens
                 // is it final room?
                 if (LevelManager.State.CurrentLevel.RightScreenName == "final_room")
                 {
-                    if (StateManager.Current.GetState("progress") < 100)
+                    if (StateManager.Current.GetState("progress") < 95)
                     {
                         // start a new day
                         StateManager.Current.AdvanceDay();
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
+                    // let player go through whole 
+                    else if (StateManager.Current.GetState("progress") == 95)
+                    {
+                        StateManager.Current.SetState("progress", 100);
+                        StateManager.Current.AdvanceDay();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+
                     }
                     else
                     {
