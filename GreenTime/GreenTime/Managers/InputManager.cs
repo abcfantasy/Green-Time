@@ -102,6 +102,16 @@ namespace GreenTime.Managers
         }
 
         /// <summary>
+        /// Checks for a "reverse time" input action.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReverseTime()
+        {
+            return IsNewKeyPress(Keys.Z) ||
+                   IsNewButtonPress(Buttons.X);
+        }
+
+        /// <summary>
         /// Checks for a "menu select" input action.
         /// The controllingPlayer parameter specifies which player to read input for.
         /// If this is null, it will accept input from any player. When the action

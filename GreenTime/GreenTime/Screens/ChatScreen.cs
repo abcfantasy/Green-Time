@@ -188,7 +188,7 @@ namespace GreenTime.Screens
                 position.Y += ScreenManager.Font.LineSpacing;
 
                 // each entry is to be centered horizontally
-                position.X = textPosition.X - viewportSize.X / 3; ;
+                position.X = 50; // -(viewportSize.X / 3);
 
                 // set the entry's position
                 answerEntry.Position = position;

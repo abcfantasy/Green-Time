@@ -1,24 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-  <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Chat[]">
+    <!-- Garbage man chat -->
     <Item>
-      <!-- Garbage man sample chat -->
       <Index>0</Index>
-      <Text>What? What's the matter?</Text>
-      <DependentStates></DependentStates> <!-- this text may depend on some state (so may not be displayed at some state, instead game will search for other chats with same index) -->
+      <Text>You: Good day sir, how are you doing?</Text>
+      <DependentStates></DependentStates>
       <Answers>
         <Item>
-          <Text>You are doing fine.</Text>
+          <Text>Continue...</Text>
           <ResponseIndex>1</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You shouldn't do that!</Text>
-          <ResponseIndex>2</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You will damage the environment that way. You will suffer in the near future.</Text>
-          <ResponseIndex>3</ResponseIndex>
         </Item>
       </Answers>
       <States></States>
@@ -26,20 +17,24 @@
 
     <Item>
       <Index>1</Index>
-      <Text>Well thank you.</Text>
+      <Text>Man: I am doing fine, just putting away my thrash.</Text>
       <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
+      <Answers>
         <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
+          <Text>You: Good for you, everyone needs to do that.</Text>
+          <ResponseIndex>2</ResponseIndex>
         </Item>
-      </States>
+        <Item>
+          <Text>You: Do you think this is the right place to put your thrash?</Text>
+          <ResponseIndex>3</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
     </Item>
 
     <Item>
       <Index>2</Index>
-      <Text>I don't care!</Text>
+      <Text>Man: Thank you. Have a nice day!</Text>
       <DependentStates></DependentStates>
       <Answers></Answers>
       <States>
@@ -52,19 +47,256 @@
 
     <Item>
       <Index>3</Index>
-      <Text>Oh, I am sorry. I won't do this again.</Text>
-      <DependentStates></DependentStates>
+      <Text>Man: What do you care about what I think? Let me be.</Text>
+      <DependentStates>
+        <Item>
+          <StateName>player_status</StateName>
+          <StateLowValue>0</StateLowValue>
+          <StateHighValue>50</StateHighValue>
+        </Item>
+      </DependentStates>
       <Answers></Answers>
-      <!-- change 'garbage1_solved' to true -->
       <States>
         <Item>
-          <StateName>garbage1_solved</StateName>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+    
+    <Item>
+      <Index>3</Index>
+      <Text>Man: Where else should I put it?</Text>
+      <DependentStates>
+        <Item>
+          <StateName>player_status</StateName>
+          <StateLowValue>100</StateLowValue>
+          <StateHighValue>100</StateHighValue>
+        </Item>
+      </DependentStates>
+      <Answers>
+        <Item>
+          <Text>You: In the garbage bin, over there.</Text>
+          <ResponseIndex>4</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: Under the tree is indeed a good place.</Text>
+          <ResponseIndex>6</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: Maybe you should dig a hole in the ground so we don't see it.</Text>
+          <ResponseIndex>7</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>4</Index>
+      <Text>Man: Yes, that is close to my house. I will do that from now onwards.</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>You: Great. Have a nice day and a bright future sir!</Text>
+          <ResponseIndex>5</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>5</Index>
+      <Text>Man: You too.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>puzzle_garbage_solved</StateName>
           <StateValue>100</StateValue>
         </Item>
         <Item>
           <StateName>back_to_present</StateName>
           <StateValue>100</StateValue>
-      </Item>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>6</Index>
+      <Text>Man: Thank you for pointing out my current spot. I will keep using it in the future.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>7</Index>
+      <Text>Man: No, I found that to be too much work.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>back_to_present</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+    
+    <!-- Car engine chat -->
+    <Item>
+      <Index>20</Index>
+      <Text>You: Good day sir. Why are you sitting in the car?</Text>
+      <DependentStates>
+        <Item>
+          <StateName>puzzle_car_solved</StateName>
+          <StateLowValue>0</StateLowValue>
+          <StateHighValue>0</StateHighValue>
+        </Item>
+      </DependentStates>
+      <Answers>
+        <Item>
+          <Text>Continue...</Text>
+          <ResponseIndex>21</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>20</Index>
+      <Text>Man: What a beautiful day, and such nice, fresh air.</Text>
+      <DependentStates>
+        <Item>
+          <StateName>puzzle_car_solved</StateName>
+          <StateLowValue>100</StateLowValue>
+          <StateHighValue>100</StateHighValue>
+        </Item>
+      </DependentStates>
+      <Answers></Answers>
+      <States></States>
+    </Item>
+    
+    <Item>
+      <Index>21</Index>
+      <Text>Man: I am waiting for my wife. She is shopping.</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>You: Yeah, they always need more time than we think.</Text>
+          <ResponseIndex>22</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: Why is your car engine still running then?</Text>
+          <ResponseIndex>23</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>22</Index>
+      <Text>Man: Indeed. Nice day to you.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>advance_day</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>23</Index>
+      <Text>Man: Why not? It shouldn't take much longer now.</Text>
+      <DependentStates></DependentStates>
+      <Answers>
+        <Item>
+          <Text>You: Yeah, why not on such a beautiful day?</Text>
+          <ResponseIndex>24</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: Because of the CO2 pollution.</Text>
+          <ResponseIndex>25</ResponseIndex>
+        </Item>
+        <Item>
+          <Text>You: You will receive a fine if you leave it running for more than 3 minutes.</Text>
+          <ResponseIndex>26</ResponseIndex>
+        </Item>
+      </Answers>
+      <States></States>
+    </Item>
+
+    <Item>
+      <Index>24</Index>
+      <Text>Man: I don't care.</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>advance_day</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>25</Index>
+      <Text>Man: Right, CO2. How about you look at yourself first, before lecturing me on that?</Text>
+      <DependentStates>
+        <Item>
+          <StateName>player_status</StateName>
+          <StateLowValue>0</StateLowValue>
+          <StateHighValue>50</StateHighValue>
+        </Item>
+      </DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>advance_day</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+    
+    <Item>
+      <Index>25</Index>
+      <Text>Man: Oh yes, CO2 emissions. I will put off the engine.</Text>
+      <DependentStates>
+        <Item>
+          <StateName>player_status</StateName>
+          <StateLowValue>100</StateLowValue>
+          <StateHighValue>100</StateHighValue>
+        </Item>
+      </DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>puzzle_car_solved</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+        <Item>
+          <StateName>advance_day</StateName>
+          <StateValue>100</StateValue>
+        </Item>
+      </States>
+    </Item>
+
+    <Item>
+      <Index>26</Index>
+      <Text>Man: I heard about it, but it only happens in Denmark!</Text>
+      <DependentStates></DependentStates>
+      <Answers></Answers>
+      <States>
+        <Item>
+          <StateName>advance_day</StateName>
+          <StateValue>100</StateValue>
+        </Item>
       </States>
     </Item>
   </Asset>

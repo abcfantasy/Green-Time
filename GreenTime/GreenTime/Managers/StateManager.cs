@@ -27,7 +27,8 @@ namespace GreenTime.Managers
         public static readonly string STATE_PLAYERFADETOROUND = "player_fadeToRound";
         // state to mark that player should fade into the square head
         public static readonly string STATE_PLAYERFADETOSQUARE = "player_fadeToSquare";
-
+        // state to mark if game is being loaded from a saved game
+        public static readonly string STATE_LOAD = "game_load";
         // state to keep track of which day it is
         public static readonly string STATE_DAY = "day";
         #endregion
@@ -91,6 +92,15 @@ namespace GreenTime.Managers
         }
 
         /// <summary>
+        /// Checks the global state 'advance_day' to see if player should advance the day
+        /// </summary>
+        /// <returns></returns>
+        public bool ShouldAdvanceDay()
+        {
+            return GetState("advance_day") == 100;
+        }
+
+        /// <summary>
         /// Resets the state to return to present
         /// </summary>
         public void ResetReturnToPresent()
@@ -135,6 +145,8 @@ namespace GreenTime.Managers
 
         public void AdvanceDay()
         {
+            SetState("advance_day", 0);
+
             int day = GetState( STATE_DAY );
             ++day;
             SetState( STATE_DAY, day);

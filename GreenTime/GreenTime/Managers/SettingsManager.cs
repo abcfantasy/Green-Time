@@ -199,6 +199,9 @@ namespace GreenTime.Managers
             SoundEnabled = data.SoundEnabled;
             FullScreenMode = data.FullscreenMode;
 
+            // mark as loaded game
+            StateManager.Current.SetState(StateManager.STATE_LOAD, 100);
+
             return true;
         }
 

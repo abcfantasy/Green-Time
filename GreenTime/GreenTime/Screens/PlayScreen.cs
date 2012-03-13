@@ -384,9 +384,8 @@ namespace GreenTime.Screens
             else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 )
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
-                if (input.IsMenuSelect() && interactingObject != null && ( pickedObject == null || ( pickedObject != null && interactingObject.Special == "drop") ) )
+                if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")))
                 {
-
                     // handling special news case
                     if (interactingObject.Special == "news")
                     {
@@ -407,15 +406,6 @@ namespace GreenTime.Screens
                     {
                         ScreenManager.AddScreen(new ChatScreen(LevelManager.State.GetChat(interactingObject.ChatIndex), true));
                     }
-                    // transition into past
-                    else if (!String.IsNullOrEmpty(interactingObject.Transition))
-                    {                        
-                        LevelManager.State.TransitionPast(interactingObject.Transition);
-                        LoadingScreen.Load(ScreenManager, false, new PlayScreen( TransitionType.FromPresent ));
-                        this.transition = TransitionType.ToPast;
-                        TransitionOffTime = TimeSpan.FromSeconds( 2.0f );
-                    }
-
                     // change states if any are effected
                     if (interactingObject.EffectedStates.Length != 0)
                     {
@@ -423,6 +413,18 @@ namespace GreenTime.Screens
                         LoadGameObjects();
                     }
 
+                }
+                // check for time warp button
+                else if (input.IsReverseTime() && interactingObject != null)
+                {
+                    // transition into past
+                    if (!String.IsNullOrEmpty(interactingObject.Transition))
+                    {
+                        LevelManager.State.TransitionPast(interactingObject.Transition);
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
+                        this.transition = TransitionType.ToPast;
+                        TransitionOffTime = TimeSpan.FromSeconds(2.0f);
+                    }
                 }
 
                 if( keyboardState.IsKeyDown( Keys.D ) ) {
@@ -480,7 +482,7 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
-            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor"))
+            if (LevelManager.State.CurrentLevel.Name.Equals("outdoor") && StateManager.Current.GetState( StateManager.STATE_LOAD ) == 0 )
             {
                 if (StateManager.Current.GetState(StateManager.STATE_INDOOR) == 100)
                 {
@@ -525,6 +527,11 @@ namespace GreenTime.Screens
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen( TransitionType.FromPast ));
                 this.transition = TransitionType.ToPresent;
                 TransitionOffTime = TimeSpan.FromSeconds(2.0f);
+            }
+            else if (StateManager.Current.ShouldAdvanceDay())
+            {
+                StateManager.Current.AdvanceDay();
+                LoadingScreen.Load(ScreenManager, false, new PlayScreen());
             }
         }
 

@@ -121,6 +121,9 @@ namespace GreenTime.Managers
         /// </summary>
         public void TransitionRight()
         {
+            // reset loaded state (only happens on the starting screen)
+            StateManager.Current.SetState(StateManager.STATE_LOAD, 0);
+
             // modify current level
             currentLevel = levels[currentLevel.RightScreenName];
 
@@ -133,6 +136,9 @@ namespace GreenTime.Managers
         /// </summary>
         public void TransitionLeft()
         {
+            // reset loaded state (only happens on the starting screen)
+            StateManager.Current.SetState(StateManager.STATE_LOAD, 0);
+
             // modify current level
             currentLevel = levels[currentLevel.LeftScreenName];
 
@@ -161,8 +167,8 @@ namespace GreenTime.Managers
             StateManager.Current.ResetReturnToPresent();
 
             // modify current level
-            currentLevel = lastLevel;
             lastLevel = null;
+            StateManager.Current.AdvanceDay();
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
@@ -176,7 +182,7 @@ namespace GreenTime.Managers
         {
             for (int i = 0; i < chats.Length; i++)
             {
-                if (chats[i].Index == chatIndex)
+                if (chats[i].Index == chatIndex && StateManager.Current.DependentStatesSatisfied( chats[i].DependentStates ) )
                     return chats[i];
             }
             return null;

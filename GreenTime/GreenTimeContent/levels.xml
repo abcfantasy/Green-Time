@@ -486,7 +486,7 @@
       </GameObjects>
     </Item>
     <!-- ################
-         Room 3 - Outdoor
+         Room 3 - Outdoor 1
          ################ -->
     <Item>
       <Name>outdoor</Name>
@@ -542,6 +542,33 @@
           <DependentStates></DependentStates>
           <EffectedStates></EffectedStates>
         </Item>
+        <!-- Live tree -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>100</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\ctree</TextureName>
+              <Position>100 0</Position>
+              <Animation></Animation>
+              <Shaded>true</Shaded>
+              <Layer>0.65</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates>
+            <Item>
+              <StateName>puzzle_garbage_solved</StateName>
+              <StateLowValue>100</StateLowValue>
+              <StateHighValue>100</StateHighValue>
+            </Item>
+          </DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
         <!-- Garbage 1 -->
         <Item>
           <Impassable>false</Impassable>
@@ -549,7 +576,7 @@
           <BoundWidth>97</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
-          <Transition></Transition>
+          <Transition>outdoor_past1</Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
@@ -563,6 +590,11 @@
           <DependentStates>
             <Item>
               <StateName>garbage1_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>puzzle_garbage_solved</StateName>
               <StateLowValue>0</StateLowValue>
               <StateHighValue>0</StateHighValue>
             </Item>
@@ -585,7 +617,7 @@
           <BoundWidth>123</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
-          <Transition></Transition>
+          <Transition>outdoor_past1</Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
@@ -599,6 +631,11 @@
           <DependentStates>
             <Item>
               <StateName>garbage2_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>puzzle_garbage_solved</StateName>
               <StateLowValue>0</StateLowValue>
               <StateHighValue>0</StateHighValue>
             </Item>
@@ -621,7 +658,7 @@
           <BoundWidth>84</BoundWidth>
           <Text>Garbage</Text>
           <Special>pickup</Special>
-          <Transition></Transition>
+          <Transition>outdoor_past1</Transition>
           <ChatIndex>-99</ChatIndex>
           <Sprite>
             <Item>
@@ -635,6 +672,11 @@
           <DependentStates>
             <Item>
               <StateName>garbage3_picked</StateName>
+              <StateLowValue>0</StateLowValue>
+              <StateHighValue>0</StateHighValue>
+            </Item>
+            <Item>
+              <StateName>puzzle_garbage_solved</StateName>
               <StateLowValue>0</StateLowValue>
               <StateHighValue>0</StateHighValue>
             </Item>
@@ -703,7 +745,7 @@
           <Text>Stranger in car</Text>
           <Special></Special>
           <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
+          <ChatIndex>20</ChatIndex>
           <Sprite>
             <Item>
               <TextureName>outdoor_shop\car</TextureName>
@@ -718,6 +760,129 @@
         </Item>
       </GameObjects>
     </Item>
+    <!-- ################
+         Room 3 - Outdoor 1 - Past (garbage puzzle)
+         ################ -->
+    <Item>
+      <Name>outdoor_past1</Name>
+      <BackgroundTexture>
+        <TextureName>outdoor_shop\bg</TextureName>
+        <Position>0 0</Position>
+        <Animation></Animation>
+        <Shaded>false</Shaded>
+        <Layer>0.75</Layer>
+      </BackgroundTexture>
+      <LeftScreenName></LeftScreenName>
+      <RightScreenName></RightScreenName>
+      <GameObjects>
+        <!-- Front grass -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>0</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\grass</TextureName>
+              <Position>0 529</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.4</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Live tree (add scale) -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>100</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\ctree</TextureName>
+              <Position>100 0</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.65</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Guy -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>450</BoundX>
+          <BoundWidth>110</BoundWidth>
+          <Text>Garbage man</Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>0</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\garbage_man</TextureName>
+              <Position>450 300</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.6</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Garbage -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>428</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\g3</TextureName>
+              <Position>428 388</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.55</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+        <!-- Bin object -->
+        <Item>
+          <Impassable>false</Impassable>
+          <BoundX>561</BoundX>
+          <BoundWidth>1</BoundWidth>
+          <Text></Text>
+          <Special></Special>
+          <Transition></Transition>
+          <ChatIndex>-99</ChatIndex>
+          <Sprite>
+            <Item>
+              <TextureName>outdoor_shop\bin</TextureName>
+              <Position>561 553</Position>
+              <Animation></Animation>
+              <Shaded>false</Shaded>
+              <Layer>0.4</Layer>
+            </Item>
+          </Sprite>
+          <DependentStates></DependentStates>
+          <EffectedStates></EffectedStates>
+        </Item>
+      </GameObjects>
+    </Item>
+    
     <!-- ################
          Room 102 - Sample outdoor PAST
          ################ -->
