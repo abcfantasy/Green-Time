@@ -21,37 +21,18 @@
       <GameObjects>
         <!-- Window -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>166</BoundX>
-          <BoundWidth>187</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
-              <TextureName>bedroom\window</TextureName>
-              <Position>165 96</Position>              
-              <Animation></Animation>
-              <Shaded>true</Shaded>
-              <Layer>0.8</Layer>
-              <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          <sprite>
+            <TextureName>bedroom\window</TextureName>
+            <Position>165 96</Position>
+            <Animation></Animation>
+            <Shaded>true</Shaded>
+            <Layer>0.8</Layer>
+            <Scale>1.0</Scale>
+          </sprite>
         </Item>
         <!-- Window light beams -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>20</BoundX>
-          <BoundWidth>561</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>bedroom\window_light</TextureName>
               <Position>50 150</Position>
               <Animation>
@@ -63,7 +44,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -71,22 +51,11 @@
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>       
         <!-- Lightbulb -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>0</BoundX>
-          <BoundWidth>0</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>bedroom\lightbulb</TextureName>
               <Position>494 0</Position>
               <Animation>
@@ -98,7 +67,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -106,61 +74,45 @@
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>10</StateLowValue>
-              <StateHighValue>10</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>10</value>
+            </state>
+          </showIf>        
         </Item>
         <!-- Light switch -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1070</BoundX>
-          <BoundWidth>150</BoundWidth>
-          <Text>Light</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>bedroom\switch</TextureName>
               <Position>1199 283</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>10</StateLowValue>
-              <StateHighValue>10</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>10</value>              
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>1070</boundX>
+            <boundWidth>150</boundWidth>
+            <text>Light</text>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Heat -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>460</BoundX>
-          <BoundWidth>320</BoundWidth>
-          <Text>Heater</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>bedroom\heating</TextureName>
               <Position>620 165</Position>
               <Animation>
@@ -172,7 +124,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -180,54 +131,52 @@
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>20</StateLowValue>
-              <StateHighValue>20</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>20</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>460</boundX>
+            <boundWidth>320</boundWidth>
+            <text>Heater</text>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Computer -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>750</BoundX>
-          <BoundWidth>280</BoundWidth>
-          <Text>Computer</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>bedroom\computer_light</TextureName>
               <Position>830 178</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>30</StateLowValue>
-              <StateHighValue>30</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>30</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>750</boundX>
+            <boundWidth>280</boundWidth>
+            <text>Computer</text>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
       </GameObjects>
   </Item>
@@ -252,15 +201,7 @@
       <GameObjects>
         <!-- Water drop -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>320</BoundX>
-          <BoundWidth>100</BoundWidth>
-          <Text>Tap</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>kitchen\drop</TextureName>
               <Position>414 308</Position>
               <Animation>
@@ -272,7 +213,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1 2 3 3 3 3 3 3 3 3 3 3 3 4 5 6 7 8 9 10 11 12 13 14</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -280,239 +220,219 @@
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>60</StateLowValue>
-              <StateHighValue>60</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>60</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>320</boundX>
+            <boundWidth>100</boundWidth>
+            <text>Tap</text>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Cereal Box -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>420</BoundX>
-          <BoundWidth>150</BoundWidth>
-          <Text>Empty Cereal Box</Text>
-          <Special>pickup</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>kitchen\CerealBox</TextureName>
               <Position>530 305</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>40</StateLowValue>
-              <StateHighValue>40</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>cereal_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>cereal_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>40</value>
+            </state>
+            <state>
+              <name>cereal_picked</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>420</boundX>
+            <boundWidth>150</boundWidth>
+            <text>Empty Cereal Box</text>
+            <callback>pickup</callback>
+            <affectedStates>
+              <state>
+                <name>cereal_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Water Bottle -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>420</BoundX>
-          <BoundWidth>150</BoundWidth>
-          <Text>Empty Water Bottle</Text>
-          <Special>pickup</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>kitchen\WaterBottle</TextureName>
               <Position>530 245</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateLowValue>50</StateLowValue>
-              <StateHighValue>50</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>bottle_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>bottle_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>50</value>
+            </state>
+            <state>
+              <name>bottle_picked</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>420</boundX>
+            <boundWidth>150</boundWidth>
+            <text>Empty Water Bottle</text>
+            <callback>pickup</callback>
+            <affectedStates>
+              <state>
+                <name>bottle_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- All Bins -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>530</BoundX>
-          <BoundWidth>380</BoundWidth>
-          <Text>Bins</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>cereal_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>bottle_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-          </EffectedStates>
+          <showIf>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>530</boundX>
+            <boundWidth>380</boundWidth>
+            <text>Bins</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>cereal_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>bottle_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Plastic Bin (while bottle picked) -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>530</BoundX>
-          <BoundWidth>150</BoundWidth>
-          <Text>Plastic Bin</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>bottle_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>bottle_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-          </EffectedStates>
+          <showIf>
+            <state>
+              <name>bottle_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>530</boundX>
+            <boundWidth>150</boundWidth>
+            <text>Plastic Bin</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>bottle_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Paper Bin (while cereal picked) -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>670</BoundX>
-          <BoundWidth>110</BoundWidth>
-          <Text>Paper Bin</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>cereal_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>indoor_puzzle</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>cereal_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-          </EffectedStates>
+        <Item>          
+          <showIf>
+            <state>
+              <name>cereal_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>670</boundX>
+            <boundWidth>110</boundWidth>
+            <text>Paper Bin</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>cereal_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>        
-        
         <!-- Newspaper -->
         <Item>
-          <Impassable>true</Impassable>
-          <BoundX>1100</BoundX>
-          <BoundWidth>100</BoundWidth>
-          <Text>News</Text>
-          <Special>news</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>kitchen\newspaper</TextureName>
               <Position>1200 450</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>news_taken</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>99</StateHighValue>
-            </Item>            
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>news_taken</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>news_taken</name>
+              <between>0 99</between>
+            </state>            
+          </showIf>
+          <onInteract>
+            <boundX>1070</boundX>
+            <boundWidth>110</boundWidth>
+            <text>News</text>
+            <solid>true</solid>
+            <callback>news</callback>
+            <affectedStates>
+              <state>
+                <name>news_taken</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
       </GameObjects>
     </Item>
@@ -536,318 +456,244 @@
         <Item>
           <Resource>outdoor_shop\carRunning</Resource>
           <Looping>true</Looping>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_car_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
+          <playIf>
+            <state>
+              <name>puzzle_car_solved</name>
+              <value>0</value>
+            </state>
+          </playIf>
         </Item>
       </AmbientSound>
       <GameObjects>
         <!-- Front grass -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>0</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\grass</TextureName>
               <Position>0 529</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Dead tree -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>100</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\cdtree</TextureName>
               <Position>100 0</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.65</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Live tree -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>100</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\ctree</TextureName>
               <Position>100 0</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.65</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_garbage_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_garbage_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- Garbage 1 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>130</BoundX>
-          <BoundWidth>227</BoundWidth>
-          <Text>Garbage</Text>
-          <Special>pickup</Special>
-          <Transition>outdoor_past1</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\g2</TextureName>
               <Position>240 387</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>garbage1_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_garbage_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>garbage1_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>garbage1_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>puzzle_garbage_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>130</boundX>
+            <boundWidth>227</boundWidth>
+            <text>Garbage</text>
+            <callback>pickup</callback>
+            <transition>outdoor_past1</transition>
+            <affectedStates>
+              <state>
+                <name>garbage1_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Garbage 2 -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>269</BoundX>
-          <BoundWidth>220</BoundWidth>
-          <Text>Garbage</Text>
-          <Special>pickup</Special>
-          <Transition>outdoor_past1</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+        <Item>          
+          <sprite>
               <TextureName>outdoor_shop\g1</TextureName>
               <Position>379 339</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>garbage2_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_garbage_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>garbage2_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>garbage2_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>puzzle_garbage_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>269</boundX>
+            <boundWidth>220</boundWidth>
+            <text>Garbage</text>
+            <callback>pickup</callback>
+            <transition>outdoor_past1</transition>
+            <affectedStates>
+              <state>
+                <name>garbage2_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Garbage 3 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>318</BoundX>
-          <BoundWidth>196</BoundWidth>
-          <Text>Garbage</Text>
-          <Special>pickup</Special>
-          <Transition>outdoor_past1</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\g3</TextureName>
               <Position>428 388</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.55</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>garbage3_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_garbage_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>garbage3_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>garbage3_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>puzzle_garbage_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>          
+          <onInteract>
+            <boundX>318</boundX>
+            <boundWidth>196</boundWidth>
+            <text>Garbage</text>
+            <callback>pickup</callback>
+            <transition>outdoor_past1</transition>
+            <affectedStates>
+              <state>
+                <name>garbage3_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Bin object -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>561</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\bin</TextureName>
               <Position>561 553</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Bin when object is carried -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>427</BoundX>
-          <BoundWidth>268</BoundWidth>
-          <Text>Bin</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-          </EffectedStates>
+          <showIf>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>427</boundX>
+            <boundWidth>268</boundWidth>
+            <text>Bin</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>acorn_picked</name>
+                <value>0</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Bin when all garbages have been put in - transition -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>427</BoundX>
-          <BoundWidth>268</BoundWidth>
-          <Text>Bin</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>garbage1_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>garbage2_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>garbage3_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>advance_day</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          <showIf>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>garbage1_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>garbage2_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>garbage3_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>427</boundX>
+            <boundWidth>268</boundWidth>
+            <text>Bin</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>advance_day</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         <!-- Car -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>720</BoundX>
-          <BoundWidth>368</BoundWidth>
-          <Text>Stranger in car</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>20</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\car2</TextureName>
               <Position>680 354</Position>
               <Animation>
@@ -859,24 +705,22 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1</Frames>
-                      <DependentStates>
-                        <Item>
-                          <StateName>puzzle_car_solved</StateName>
-                          <StateLowValue>0</StateLowValue>
-                          <StateHighValue>0</StateHighValue>
-                        </Item>
-                      </DependentStates>
+                      <playIf>
+                        <state>
+                          <name>puzzle_car_solved</name>
+                          <value>0</value>
+                        </state>
+                      </playIf>
                     </Item>
                     <Item>
                       <Name>default</Name>
                       <Frames>0</Frames>
-                      <DependentStates>
-                        <Item>
-                          <StateName>puzzle_car_solved</StateName>
-                          <StateLowValue>100</StateLowValue>
-                          <StateHighValue>100</StateHighValue>
-                        </Item>
-                      </DependentStates>
+                      <playIf>
+                        <state>
+                          <name>puzzle_car_solved</name>
+                          <value>100</value>
+                        </state>
+                      </playIf>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -884,22 +728,17 @@
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <onInteract>
+            <boundX>720</boundX>
+            <boundWidth>368</boundWidth>
+            <text>Stranger in car</text>
+            <chatIndex>20</chatIndex>
+          </onInteract>
         </Item>
         <!-- Smoke -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>0</BoundX>
-          <BoundWidth>0</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\smoke</TextureName>
               <Position>1243 392</Position>
               <Animation>
@@ -911,7 +750,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1 2 3 4 5 6 7 8 9 10 11</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -919,16 +757,13 @@
               <Shaded>true</Shaded>
               <Layer>0.55</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_car_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_car_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
       </GameObjects>
     </Item>
@@ -952,113 +787,64 @@
       <GameObjects>
         <!-- Front grass -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>0</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\grass</TextureName>
               <Position>0 529</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Live tree (add scale) -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>100</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\ctree</TextureName>
               <Position>200 100</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.65</Layer>
               <Scale>0.8</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Guy -->
-        <Item>
-          <Impassable>false</Impassable>
-          <BoundX>250</BoundX>
-          <BoundWidth>410</BoundWidth>
-          <Text>Garbage man</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>0</ChatIndex>
-          <Sprite>
-            <Item>
+        <Item>          
+          <sprite>
               <TextureName>outdoor_shop\garbage_man</TextureName>
               <Position>450 300</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <onInteract>
+            <boundX>250</boundX>
+            <boundWidth>410</boundWidth>
+            <text>Garbage man</text>
+            <chatIndex>0</chatIndex>            
+          </onInteract>
         </Item>
         <!-- Garbage -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>428</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\g3</TextureName>
               <Position>428 388</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.55</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- Bin object -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>561</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\bin</TextureName>
               <Position>561 553</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
       </GameObjects>
     </Item>
@@ -1082,156 +868,92 @@
         <Item>
           <Resource>outdoor_forest\FireCrackling</Resource>
           <Looping>true</Looping>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
+          <playIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </playIf>
         </Item>
       </AmbientSound>
       <GameObjects>
         <!-- burned tree 1 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree01</TextureName>
               <Position>715 293</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
         <!-- burned tree 2 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree02</TextureName>
               <Position>985 243</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
         <!-- burned tree 3 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree03</TextureName>
               <Position>878 234</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.68</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- burned tree 4 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree04</TextureName>
               <Position>758 178</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
         <!-- burned tree 5 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree05</TextureName>
               <Position>1050 175</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.64</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
 
         <!-- fire -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\FireSheet</TextureName>
               <Position>670 100</Position>
               <Animation>
@@ -1243,7 +965,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>0 1 2 3</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -1251,311 +972,216 @@
               <Shaded>true</Shaded>
               <Layer>0.64</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
         
         <!-- healthy tree 1 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree01b</TextureName>
               <Position>673 212</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- healthy tree 2 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree02b</TextureName>
               <Position>953 160</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- healthy tree 4 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree04b</TextureName>
               <Position>657 75</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
 
         <!-- grown tree 1 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree-a</TextureName>
               <Position>0 83</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- grown tree 2 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree-b</TextureName>
               <Position>120 209</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- grown tree 3 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree-c</TextureName>
               <Position>225 65</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.62</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         <!-- grown tree 4 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree-d</TextureName>
               <Position>345 160</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.68</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>100</value>
+            </state>
+          </showIf>
         </Item>
         
         <!-- cigarette -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>560</BoundX>
-          <BoundWidth>720</BoundWidth>
-          <Text>Cigarette</Text>
-          <Special></Special>
-          <Transition>forest_past</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\cigar</TextureName>
               <Position>690 560</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>560</boundX>
+            <boundWidth>720</boundWidth>
+            <text>Cigarette</text>
+            <transition>forest_past</transition>
+          </onInteract>
         </Item>
         
         <!-- acorn -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>910</BoundX>
-          <BoundWidth>1050</BoundWidth>
-          <Text>Acorn</Text>
-          <Special>pickup</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\acorn</TextureName>
               <Position>1020 553</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>acorn_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>910</boundX>
+            <boundWidth>1050</boundWidth>
+            <text>Acorn</text>
+            <callback>pickup</callback>
+            <affectedStates>
+              <state>
+                <name>acorn_picked</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>item_picked</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
         
         <!-- acorn going back -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1278</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition>forest_past</Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          <showIf>
+            <state>
+              <name>acorn_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>0</boundX>
+            <boundWidth>1278</boundWidth>
+            <text>Barren ground</text>
+            <transition>forest_past</transition>
+          </onInteract>
         </Item>
       </GameObjects>
     </Item>
@@ -1579,217 +1205,141 @@
       <GameObjects>
         <!-- tree 3 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree03</TextureName>
               <Position>878 234</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.68</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- tree 5 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree05</TextureName>
               <Position>1050 175</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.64</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- healthy tree 1 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree01b</TextureName>
               <Position>673 212</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- healthy tree 2 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree02b</TextureName>
               <Position>953 160</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.7</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- healthy tree 4 -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\tree04b</TextureName>
               <Position>657 75</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
 
         <!-- cigarette -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>670</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text>Cigarette</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_forest\cigar</TextureName>
               <Position>690 560</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>progress</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>99</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>progress</name>
+              <between>0 99</between>
+            </state>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
         </Item>
         <!-- smoking person -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>546</BoundX>
-          <BoundWidth>320</BoundWidth>
-          <Text>Smoker</Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>40</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>outdoor_shop\garbage_man</TextureName>
               <Position>706 307</Position>
               <Animation></Animation>
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>progress</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>99</StateHighValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_cig_solved</StateName>
-              <StateLowValue>0</StateLowValue>
-              <StateHighValue>0</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
+          <showIf>
+            <state>
+              <name>progress</name>
+              <between>0 99</between>
+            </state>
+            <state>
+              <name>puzzle_cig_solved</name>
+              <value>0</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>546</boundX>
+            <boundWidth>320</boundWidth>
+            <text>Smoker</text>
+            <chatIndex>40</chatIndex>
+          </onInteract>
         </Item>
         
         <!-- acorn seeding area -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>0</BoundX>
-          <BoundWidth>600</BoundWidth>
-          <Text>Seed area</Text>
-          <Special>drop</Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite></Sprite>
-          <DependentStates>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateLowValue>100</StateLowValue>
-              <StateHighValue>100</StateHighValue>
-            </Item>
-          </DependentStates>
-          <EffectedStates>
-            <Item>
-              <StateName>item_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>acorn_picked</StateName>
-              <StateValue>0</StateValue>
-            </Item>
-            <Item>
-              <StateName>puzzle_acorn_solved</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-            <Item>
-              <StateName>back_to_present</StateName>
-              <StateValue>100</StateValue>
-            </Item>
-          </EffectedStates>
+          <showIf>
+            <state>
+              <name>acorn_picked</name>
+              <value>100</value>
+            </state>
+          </showIf>
+          <onInteract>
+            <boundX>0</boundX>
+            <boundWidth>600</boundWidth>
+            <text>Fertile soil</text>
+            <callback>drop</callback>
+            <affectedStates>
+              <state>
+                <name>item_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>acorn_picked</name>
+                <value>0</value>
+              </state>
+              <state>
+                <name>puzzle_acorn_solved</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>back_to_present</name>
+                <value>100</value>
+              </state>
+            </affectedStates>
+          </onInteract>
         </Item>
       </GameObjects>
     </Item>
@@ -1813,15 +1363,7 @@
       <GameObjects>        
         <!-- grey square -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>animations\AnimationSquareGreen</TextureName>
               <Position>316 130</Position>
               <Animation>
@@ -1833,7 +1375,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>3</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -1841,23 +1382,12 @@
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.4</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
 
         <!-- grey round -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>animations\AnimationRoundGreen</TextureName>
               <Position>585 130</Position>
               <Animation>
@@ -1869,7 +1399,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>3</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -1877,23 +1406,12 @@
               <Shaded>true</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.4</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
 
         <!-- green round -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>animations\AnimationRoundGreen</TextureName>
               <Position>853 130</Position>
               <Animation>
@@ -1905,7 +1423,6 @@
                     <Item>
                       <Name>default</Name>
                       <Frames>3</Frames>
-                      <DependentStates></DependentStates>
                     </Item>
                   </Playbacks>
                 </Item>
@@ -1913,55 +1430,30 @@
               <Shaded>false</Shaded>
               <Layer>0.6</Layer>
               <Scale>1.4</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
 
         <!-- choose who you want to be text -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>final_room\text1</TextureName>
               <Position>0 0</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
         <!-- and act now text -->
         <Item>
-          <Impassable>false</Impassable>
-          <BoundX>1</BoundX>
-          <BoundWidth>1</BoundWidth>
-          <Text></Text>
-          <Special></Special>
-          <Transition></Transition>
-          <ChatIndex>-99</ChatIndex>
-          <Sprite>
-            <Item>
+          <sprite>
               <TextureName>final_room\text2</TextureName>
               <Position>50 628</Position>
               <Animation></Animation>
               <Shaded>false</Shaded>
               <Layer>0.4</Layer>
               <Scale>1.0</Scale>
-            </Item>
-          </Sprite>
-          <DependentStates></DependentStates>
-          <EffectedStates></EffectedStates>
+          </sprite>
         </Item>
       </GameObjects>
     </Item>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
@@ -21,17 +22,20 @@ namespace GreenTimeGameData.Components
         /// <summary>
         /// a set of states that this chat depends on
         /// </summary>
-        public StateDependency[] DependentStates { get; set; }
+        [ContentSerializer(ElementName = "showIf", CollectionItemName = "state", Optional = true)]
+        public State[] dependencies = null;
 
         /// <summary>
         /// a set of answers for this chat
         /// </summary>
-        public Answer[] Answers { get; set; }
+        [ContentSerializer(Optional = true)]
+        public Answer[] answers = null;
 
         /// <summary>
         /// a set of states that this chat effects
         /// </summary>
-        public State[] States { get; set; }
+        [ContentSerializer(CollectionItemName = "state", Optional = true)]
+        public State[] affectedStates = null;
         #endregion
     }
 }

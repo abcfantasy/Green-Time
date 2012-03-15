@@ -48,7 +48,8 @@ namespace GreenTime.Screens
         SpriteFont gameFont;
         AnimatedObject player;
         AnimatedObject player_other;
-        List<BaseObject> gameObjects = new List<BaseObject>();
+        List<BaseObject> visibleObjects = new List<BaseObject>();       
+        List<InteractiveObject> activeObjects = new List<InteractiveObject>();
         InteractiveObject interactingObject;
         BaseObject pickedObject = null;     // is not null when an object is currently picked up
         SoundEffect ambientSound;
@@ -160,13 +161,13 @@ namespace GreenTime.Screens
         public void LoadGameObjects()
         {
             BaseObject newGameObject;
-            Sprite sprite;
             Animation animation;
 
-            gameObjects.Clear();
+            visibleObjects.Clear();
+            activeObjects.Clear();
 
             // Load ambient soud if any
-            if (LevelManager.State.CurrentLevel.AmbientSound.Length > 0 && StateManager.Current.DependentStatesSatisfied(LevelManager.State.CurrentLevel.AmbientSound[0].DependentStates))
+            if (LevelManager.State.CurrentLevel.AmbientSound.Length > 0 && StateManager.Current.CheckDependencies(LevelManager.State.CurrentLevel.AmbientSound[0].dependencies))
             {
                 ambientSound = content.Load<SoundEffect>(LevelManager.State.CurrentLevel.AmbientSound[0].Resource);
                 ambientSoundInstance = ambientSound.CreateInstance();
@@ -177,30 +178,32 @@ namespace GreenTime.Screens
             // Load the background
             newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER, 1.0f);
             newGameObject.Load(content, LevelManager.State.CurrentLevel.BackgroundTexture.TextureName);
-            gameObjects.Add(newGameObject);
+            visibleObjects.Add(newGameObject);
 
-            for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
+            foreach ( InteractiveObject io in LevelManager.State.CurrentLevel.GameObjects )
             {
-                if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0
-                    && StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
+                if (StateManager.Current.CheckDependencies(io.dependencies))
                 {
-                    sprite = LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0];
-
-                    // static object
-                    if (sprite.Animation.Count == 0)
+                    if (io.interaction != null)
+                        activeObjects.Add(io);
+                    if (io.sprite != null)
                     {
-                        newGameObject = new BaseObject( sprite.Position, sprite.Shaded, sprite.Layer, sprite.Scale);
+                        // static object
+                        if (io.sprite.Animation.Count == 0)
+                        {
+                            newGameObject = new BaseObject(io.sprite.Position, io.sprite.Shaded, io.sprite.Layer, io.sprite.Scale);
+                        }
+                        // animated object
+                        else
+                        {
+                            animation = io.sprite.Animation[0];
+                            newGameObject = new AnimatedObject(io.sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, io.sprite.Shaded, io.sprite.Layer, io.sprite.Scale);
+                            // add animations
+                            ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
+                        }
+                        newGameObject.Load(content, io.sprite.TextureName);
+                        visibleObjects.Add(newGameObject);
                     }
-                    // animated object
-                    else
-                    {
-                        animation = sprite.Animation[0];
-                        newGameObject = new AnimatedObject( sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded, sprite.Layer, sprite.Scale);
-                        // add animations
-                        ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
-                    }
-                    newGameObject.Load(content, sprite.TextureName);
-                    gameObjects.Add( newGameObject );
                 }
             }
         }
@@ -322,10 +325,8 @@ namespace GreenTime.Screens
             spriteBatch.Begin( SpriteSortMode.BackToFront, null, null, null, null, ( StateManager.Current.GetState("is_in_past") == 100 ? sepiaShader : desaturateShader ) );            
 
             // game objects
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                gameObjects[i].Draw( spriteBatch, new Color(( gameObjects[i].Shaded ? (byte)desaturationAmount : 64 ), 255, 255, 255), gameObjects[i].Scale );
-            }
+            foreach (BaseObject bo in visibleObjects)
+                bo.Draw(spriteBatch, new Color((bo.Shaded ? (byte)desaturationAmount : 64), 255, 255, 255), bo.Scale);            
 
             // player
             player.Draw(spriteBatch, new Color((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f ), 255, 255, 255 - ((byte)(StateManager.Current.GetState(StateManager.STATE_PLAYERROUND) * 2.55)) ), 1.2f );
@@ -337,12 +338,12 @@ namespace GreenTime.Screens
                 pickedObject.Draw(spriteBatch, new Color((pickedObject.Shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
 
             // text only if easy mode
-            if ( SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && interactingObject.Text != "" )
+            if ( SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && !String.IsNullOrEmpty( interactingObject.interaction.text ) )
             {
                 SpriteFont font = ScreenManager.Font;
-                Vector2 textSize = font.MeasureString(interactingObject.Text);
+                Vector2 textSize = font.MeasureString(interactingObject.interaction.text);
                 Vector2 textPosition = new Vector2( (SettingsManager.GAME_WIDTH - textSize.X) / 2, 670 );
-                spriteBatch.DrawString(ScreenManager.Font, interactingObject.Text, textPosition, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, TEXT_LAYER );
+                spriteBatch.DrawString(ScreenManager.Font, interactingObject.interaction.text, textPosition, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, TEXT_LAYER );
             }
 
             spriteBatch.End();
@@ -400,45 +401,45 @@ namespace GreenTime.Screens
             else if ( this.IsActive && this.TransitionPosition == 0 && playerFading == 0 )
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
-                if (input.IsMenuSelect() && interactingObject != null && (pickedObject == null || (pickedObject != null && interactingObject.Special == "drop")) && 
-                    ( StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS ) > 0 || LevelManager.State.CurrentLevel.Name.Equals( "bedroom" ) || LevelManager.State.CurrentLevel.Name.Equals( "kitchen" ) ) &&
-                    ( StateManager.Current.GetState("progress") != 100 || ( interactingObject.Special == "news" && StateManager.Current.GetState("progress") == 100 ) ) )
+                if (input.IsMenuSelect() && interactingObject != null
+                    && (pickedObject == null || (pickedObject != null && interactingObject.interaction.callback == "drop"))
+                    && ( StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS ) > 0 || LevelManager.State.CurrentLevel.Name.Equals( "bedroom" ) || LevelManager.State.CurrentLevel.Name.Equals( "kitchen" ) )
+                    && ( StateManager.Current.GetState("progress") != 100 || ( interactingObject.interaction.callback == "news" && StateManager.Current.GetState("progress") == 100 ) ) )
                 {
-                    // handling special news case
-                    if (interactingObject.Special == "news")
+                    // Handling callbacks (aka special interactions)
+                    if ( ! String.IsNullOrEmpty( interactingObject.interaction.callback ))
                     {
-                        ScreenManager.AddScreen(new NewsScreen());
+                        switch (interactingObject.interaction.callback)
+                        {
+                            case "news":
+                                ScreenManager.AddScreen(new NewsScreen());
+                                break;
+                            case "pickup":
+                                PickupObject(interactingObject);
+                                break;
+                            case "drop":
+                                DropObject(interactingObject);
+                                break;
+                        }
                     }
-                    // handling special pickup case
-                    else if (interactingObject.Special == "pickup")
+                    // Handling talking
+                    if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)                    
+                        ScreenManager.AddScreen(new ChatScreen(LevelManager.State.GetChat(interactingObject.interaction.chatIndex), true));
+                    
+                    // Handling affected states
+                    if (interactingObject.interaction.affectedStates != null)
                     {
-                        PickupObject(interactingObject);
-                    }
-                    // handling special dropping case
-                    else if (interactingObject.Special == "drop")
-                    {
-                        DropObject(interactingObject);
-                    }
-                    // chat if available
-                    else if (interactingObject.ChatIndex != LevelManager.EMPTY_VALUE)
-                    {
-                        ScreenManager.AddScreen(new ChatScreen(LevelManager.State.GetChat(interactingObject.ChatIndex), true));
-                    }
-                    // change states if any are effected
-                    if (interactingObject.EffectedStates.Length != 0)
-                    {
-                        StateManager.Current.ModifyStates(interactingObject.EffectedStates);
+                        StateManager.Current.ModifyStates(interactingObject.interaction.affectedStates);
                         LoadGameObjects();
                     }
-
                 }
                 // check for time warp button
                 else if (input.IsReverseTime() && interactingObject != null && StateManager.Current.GetState("progress") != 100 && StateManager.Current.GetState(StateManager.STATE_PLAYERSTATUS) > 50 )
                 {
                     // transition into past
-                    if (!String.IsNullOrEmpty(interactingObject.Transition))
+                    if (!String.IsNullOrEmpty(interactingObject.interaction.transition))
                     {
-                        LevelManager.State.TransitionPast(interactingObject.Transition);
+                        LevelManager.State.TransitionPast(interactingObject.interaction.transition);
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
                         this.transition = TransitionType.ToPast;
                         TransitionOffTime = TimeSpan.FromSeconds(2.0f);
@@ -627,29 +628,23 @@ namespace GreenTime.Screens
         {
             interactingObject = null;
 
-            for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
-            {
-                if ( player.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
-                     player.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth &&
-                     StateManager.Current.DependentStatesSatisfied( LevelManager.State.CurrentLevel.GameObjects[i].DependentStates ) )
+            foreach( InteractiveObject io in activeObjects ) {
+                if ( io.interaction != null)
                 {
-                    interactingObject = LevelManager.State.CurrentLevel.GameObjects[i];
-
-                    // if terrain is impassable, check which direction player is colliding and prevent movement
-                    if (LevelManager.State.CurrentLevel.GameObjects[i].Impassable)
+                    if (player.X >= io.interaction.boundX
+                        && player.X <= (io.interaction.boundX + io.interaction.boundWidth) )
                     {
-                        // to safely determine the side in which the player collided, we check first if the player is between the left edge of the object and the middle of the object
-                        // since player moves more than 1 pixels at a time. This would mean he collided on the left side, otherwise it's the right side
-                        if (player.X >= LevelManager.State.CurrentLevel.GameObjects[i].BoundX &&
-                            player.X <= LevelManager.State.CurrentLevel.GameObjects[i].BoundX + ( LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth / 2 ))
+                        interactingObject = io;
+
+                        if (io.interaction.solid)
                         {
-                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX;
+                            if (player.X <= io.interaction.boundX + (io.interaction.boundWidth / 2))
+                                player.X = io.interaction.boundX;
+                            else
+                                player.X = io.interaction.boundX + io.interaction.boundWidth;
                         }
-                        else
-                            player.X = LevelManager.State.CurrentLevel.GameObjects[i].BoundX + LevelManager.State.CurrentLevel.GameObjects[i].BoundWidth;
                     }
                 }
-
             }
         }
 
@@ -671,21 +666,21 @@ namespace GreenTime.Screens
         /// <param name="interactingObject"></param>
         private void PickupObject(InteractiveObject interactingObject)
         {
-            Vector2 pos = interactingObject.Sprite[0].Position;
+            Vector2 pos = interactingObject.sprite.Position;
 
             // search for the game object
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (int i = 0; i < visibleObjects.Count; i++)
             {
                 // if the object is found
-                if (gameObjects[i].Position == pos)
+                if (visibleObjects[i].Position == pos)
                 {
-                    gameObjects[i].Layer = 0.4f;
+                    visibleObjects[i].Layer = 0.4f;
                     // pick up object
-                    pickedObject = gameObjects[i];
+                    pickedObject = visibleObjects[i];
                     // save in level manager (in case changing scene)
-                    LevelManager.State.PickedObject = interactingObject.Sprite[0];
+                    LevelManager.State.PickedObject = interactingObject.sprite;
                     // prevent object from being drawn typically
-                    gameObjects.RemoveAt(i);
+                    visibleObjects.RemoveAt(i);
                 }
             }
         }
@@ -703,13 +698,9 @@ namespace GreenTime.Screens
             player_other.UpdateFrame(elapsedSeconds);
 
             // update object animations
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                if (gameObjects[i].GetType() == typeof(AnimatedObject))
-                {
-                    ((AnimatedObject)gameObjects[i]).UpdateFrame(elapsedSeconds);
-                }
-            }
+            foreach( BaseObject bo in visibleObjects )
+                if (bo.GetType() == typeof(AnimatedObject))
+                    ((AnimatedObject)bo).UpdateFrame(elapsedSeconds);
         }
         #endregion
     }

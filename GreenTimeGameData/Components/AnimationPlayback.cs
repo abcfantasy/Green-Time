@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
@@ -21,7 +22,8 @@ namespace GreenTimeGameData.Components
         /// <summary>
         /// The states this animation depends on to play
         /// </summary>
-        public StateDependency[] DependentStates { get; set; }
+        [ContentSerializer(ElementName = "playIf", CollectionItemName = "state", Optional = true)]
+        public State[] dependencies = null;
         #endregion
     }
 }

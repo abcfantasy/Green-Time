@@ -50,7 +50,7 @@ namespace GreenTime.Managers
 
         private static bool fullscreen = false;
 
-        private static Game_Difficulties gameDifficulty = Game_Difficulties.NORMAL;
+        private static Game_Difficulties gameDifficulty = Game_Difficulties.EASY;
 
         #region Properties
         public static GraphicsDeviceManager GraphicsDevice { get; set; }

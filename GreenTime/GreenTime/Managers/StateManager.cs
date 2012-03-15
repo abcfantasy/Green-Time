@@ -80,8 +80,14 @@ namespace GreenTime.Managers
         /// <param name="stateName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+        public void SetState(State s)
+        {
+            SetState(s.name, s.value);
+        }
+
         public void SetState(string stateName, int value)
         {
+            if (value < 0) return;
             // if puzzle solved
             if (stateName.StartsWith("puzzle") && value == 100)
             {
@@ -125,22 +131,28 @@ namespace GreenTime.Managers
         /// </summary>
         /// <param name="states"></param>
         /// <returns></returns>
-        public bool DependentStatesSatisfied(StateDependency[] states)
+        public bool CheckDependencies( State[] states )
         {
-            if (states.Length == 0)
+            if (states == null || states.Length == 0)
                 return true;
 
-            bool satisfied = true;
+            bool satisfied;
+            int currentStateValue;
 
-            for (int i = 0; i < states.Length; i++)
-            {
-                int currentStateValue = GetState(states[i].StateName);
-                // state value must be between state dependency values
-                if (currentStateValue < states[i].StateLowValue || currentStateValue > states[i].StateHighValue)
+            foreach( State s in states ) {
+                currentStateValue = GetState(s.name);
+                if (s.value != -1)
+                    satisfied = s.value == currentStateValue;
+                else if (s.minmax.X != -1 && s.minmax.Y != -1)
+                    satisfied = (s.minmax.X <= currentStateValue && currentStateValue <= s.minmax.Y);
+                else
                     satisfied = false;
+
+                if (!satisfied)
+                    return false;
             }
 
-            return satisfied;
+            return true;
         }
 
         /// <summary>
@@ -149,9 +161,9 @@ namespace GreenTime.Managers
         /// <param name="states"></param>
         public void ModifyStates(State[] states)
         {
-            for (int i = 0; i < states.Length; i++)
-            {
-                SetState(states[i].StateName, states[i].StateValue);
+            if (states == null) return;
+            foreach (State s in states) {
+                SetState( s );
             }
         }
 

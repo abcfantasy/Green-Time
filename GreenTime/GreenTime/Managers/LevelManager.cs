@@ -185,7 +185,7 @@ namespace GreenTime.Managers
         {
             for (int i = 0; i < chats.Length; i++)
             {
-                if (chats[i].Index == chatIndex && StateManager.Current.DependentStatesSatisfied( chats[i].DependentStates ) )
+                if (chats[i].Index == chatIndex && StateManager.Current.CheckDependencies( chats[i].dependencies ) )
                     return chats[i];
             }
             return null;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
@@ -12,7 +13,8 @@ namespace GreenTimeGameData.Components
 
         public bool Looping { get; set; }
 
-        public StateDependency[] DependentStates;
+        [ContentSerializer(ElementName = "playIf", CollectionItemName = "state", Optional = true)]        
+        public State[] dependencies = null;
         #endregion
     }
 }

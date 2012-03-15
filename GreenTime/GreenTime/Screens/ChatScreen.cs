@@ -42,9 +42,10 @@ namespace GreenTime.Screens
             currentText = chat.Text;
 
             // add any answers if available
-            for (int i = 0; i < chat.Answers.Length; i++)
+            if (chat.answers != null)
             {
-                answerEntries.Add(new AnswerEntry(chat.Answers[i].Text));
+                foreach (Answer a in chat.answers)
+                    answerEntries.Add(new AnswerEntry(a.Text));
             }
         }
 
@@ -106,12 +107,13 @@ namespace GreenTime.Screens
         protected virtual void OnSelectEntry(int entryIndex)
         {
             // change states if any
-            StateManager.Current.ModifyStates(chat.States);
+            if( chat.affectedStates != null )
+                StateManager.Current.ModifyStates(chat.affectedStates);
 
             // if answers available, check chosen answer
             if (answerEntries.Count > 0)
             {
-                ChatScreen s = new ChatScreen(LevelManager.State.GetChat(chat.Answers[entryIndex].ResponseIndex), false);
+                ChatScreen s = new ChatScreen(LevelManager.State.GetChat(chat.answers[entryIndex].ResponseIndex), false);
                 ScreenManager.AddScreen(s);
                 ScreenManager.RemoveScreen(this);
             }

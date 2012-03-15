@@ -67,9 +67,9 @@ namespace GreenTime.Screens
 
             for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
             {
-                if (LevelManager.State.CurrentLevel.GameObjects[i].Sprite.Length > 0)
+                if (LevelManager.State.CurrentLevel.GameObjects[i].sprite != null)
                 {
-                    sprite = LevelManager.State.CurrentLevel.GameObjects[i].Sprite[0];
+                    sprite = LevelManager.State.CurrentLevel.GameObjects[i].sprite;
 
                     // static object
                     if (sprite.Animation.Count == 0)

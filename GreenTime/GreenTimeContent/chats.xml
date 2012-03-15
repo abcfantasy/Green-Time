@@ -5,21 +5,18 @@
     <Item>
       <Index>0</Index>
       <Text>You: Good day sir, how are you?</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>Continue...</Text>
           <ResponseIndex>1</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>1</Index>
       <Text>Man: I am doing fine, just putting away my thrash.</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>You: Good for you, everyone needs to do that.</Text>
           <ResponseIndex>2</ResponseIndex>
@@ -28,53 +25,47 @@
           <Text>You: You shouldn't leave garbage here.</Text>
           <ResponseIndex>3</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>2</Index>
       <Text>Man: Thank you. Have a nice day!</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>3</Index>
       <Text>Man: What do you care about what I think? Let me be.</Text>
-      <DependentStates>
-        <Item>
-          <StateName>player_status</StateName>
-          <StateLowValue>0</StateLowValue>
-          <StateHighValue>50</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <showIf>
+        <state>
+          <name>player_status</name>
+          <between>0 50</between>
+        </state>
+      </showIf>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
     
     <Item>
       <Index>3</Index>
       <Text>Man: Where else should I put it?</Text>
-      <DependentStates>
-        <Item>
-          <StateName>player_status</StateName>
-          <StateLowValue>100</StateLowValue>
-          <StateHighValue>100</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers>
+      <showIf>
+        <state>
+          <name>player_status</name>
+          <value>100</value>
+        </state>
+      </showIf>
+      <answers>
         <Item>
           <Text>You: In the garbage bin, over there.</Text>
           <ResponseIndex>4</ResponseIndex>
@@ -87,105 +78,90 @@
           <Text>You: Maybe you should dig a hole in the ground so we don't see it.</Text>
           <ResponseIndex>7</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>4</Index>
       <Text>Man: Well, it's a bit more effort but I guess you're right.</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>You: Great. Have a nice day and a bright future sir!</Text>
           <ResponseIndex>5</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>5</Index>
       <Text>Man: You too.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>puzzle_garbage_solved</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>puzzle_garbage_solved</name>
+          <value>100</value>
+        </state>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>6</Index>
       <Text>Man: Thank you for pointing out my current spot. I will keep using it in the future.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>7</Index>
       <Text>Man: No, I found that to be too much work.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
     
     <!-- Car engine chat -->
     <Item>
       <Index>20</Index>
       <Text>You: Good day sir. Why are you sitting in the car?</Text>
-      <DependentStates>
-        <Item>
-          <StateName>puzzle_car_solved</StateName>
-          <StateLowValue>0</StateLowValue>
-          <StateHighValue>0</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers>
+      <showIf>
+        <state>
+          <name>puzzle_car_solved</name>
+          <value>0</value>
+        </state>
+      </showIf>
+      <answers>
         <Item>
           <Text>Continue...</Text>
           <ResponseIndex>21</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>20</Index>
       <Text>Man: What a beautiful day, and such nice, fresh air.</Text>
-      <DependentStates>
-        <Item>
-          <StateName>puzzle_car_solved</StateName>
-          <StateLowValue>100</StateLowValue>
-          <StateHighValue>100</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers></Answers>
-      <States></States>
+      <showIf>
+        <state>
+          <name>puzzle_car_solved</name>
+          <value>100</value>
+        </state>
+      </showIf>
     </Item>
     
     <Item>
       <Index>21</Index>
       <Text>Man: I am waiting for my wife. She is shopping.</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>You: Yeah, they always need more time than we think.</Text>
           <ResponseIndex>22</ResponseIndex>
@@ -194,28 +170,24 @@
           <Text>You: Why is your car engine still running then?</Text>
           <ResponseIndex>23</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>22</Index>
       <Text>Man: Indeed. Nice day to you.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>advance_day</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>advance_day</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>23</Index>
       <Text>Man: Why not? It shouldn't take much longer now.</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>You: Yeah, why not on such a beautiful day?</Text>
           <ResponseIndex>24</ResponseIndex>
@@ -228,97 +200,85 @@
           <Text>You: You will receive a fine if you leave it running for more than 3 minutes.</Text>
           <ResponseIndex>26</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>24</Index>
       <Text>Man: I don't care.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>advance_day</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>advance_day</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>25</Index>
       <Text>Man: Right, CO2. How about you look at yourself first, before lecturing me on that?</Text>
-      <DependentStates>
-        <Item>
-          <StateName>player_status</StateName>
-          <StateLowValue>0</StateLowValue>
-          <StateHighValue>50</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>advance_day</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <showIf>
+        <state>
+          <name>player_status</name>
+          <between>0 50</between>
+        </state>
+      </showIf>
+      <affectedStates>
+        <state>
+          <name>advance_day</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
-    
+
     <Item>
       <Index>25</Index>
       <Text>Man: Oh yes, CO2 emissions. I will put off the engine.</Text>
-      <DependentStates>
-        <Item>
-          <StateName>player_status</StateName>
-          <StateLowValue>100</StateLowValue>
-          <StateHighValue>100</StateHighValue>
-        </Item>
-      </DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>puzzle_car_solved</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-        <Item>
-          <StateName>advance_day</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <showIf>
+        <state>
+          <name>player_status</name>
+          <value>100</value>
+        </state>
+      </showIf>
+      <affectedStates>
+        <state>
+          <name>puzzle_car_solved</name>
+          <value>100</value>
+        </state>
+        <state>
+          <name>advance_day</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>26</Index>
       <Text>Man: I heard about it, but it only happens in Denmark!</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>advance_day</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>advance_day</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
     
     <!-- Smoker chat -->
     <Item>
       <Index>40</Index>
       <Text>You: Hello miss, did you just drop something on the ground?</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>Continue...</Text>
           <ResponseIndex>41</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>41</Index>
       <Text>Lady: No, I did not.</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>You: Oh, my mistake. Sorry for bothering you.</Text>
           <ResponseIndex>42</ResponseIndex>
@@ -331,41 +291,35 @@
           <Text>You: Hmmm, I must have seen some ghost then.</Text>
           <ResponseIndex>43</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>42</Index>
       <Text>Lady: Have a nice day.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>43</Index>
       <Text>Lady: You are a strange one.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>44</Index>
       <Text>Lady: Yes, I guess I did...</Text>
-      <DependentStates></DependentStates>
-      <Answers>
+      <answers>
         <Item>
           <Text>Fire is dangerous in the woods, you really should not do that.</Text>
           <ResponseIndex>45</ResponseIndex>
@@ -374,38 +328,33 @@
           <Text>Interesting, we might start a fire!</Text>
           <ResponseIndex>46</ResponseIndex>
         </Item>
-      </Answers>
-      <States></States>
+      </answers>
     </Item>
 
     <Item>
       <Index>45</Index>
       <Text>Lady: You are right, I will put it out and throw it away.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-        <Item>
-          <StateName>puzzle_cig_solved</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+        <state>
+          <name>puzzle_cig_solved</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
 
     <Item>
       <Index>46</Index>
       <Text>Lady: Yes, interesting thought. I like good fire.</Text>
-      <DependentStates></DependentStates>
-      <Answers></Answers>
-      <States>
-        <Item>
-          <StateName>back_to_present</StateName>
-          <StateValue>100</StateValue>
-        </Item>
-      </States>
+      <affectedStates>
+        <state>
+          <name>back_to_present</name>
+          <value>100</value>
+        </state>
+      </affectedStates>
     </Item>
     
   </Asset>

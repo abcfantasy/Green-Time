@@ -90,12 +90,12 @@
     <Compile Include="Components\AnimationPlayback.cs" />
     <Compile Include="Components\Answer.cs" />
     <Compile Include="Components\Chat.cs" />
+    <Compile Include="Components\Interaction.cs" />
     <Compile Include="Components\InteractiveObject.cs" />
     <Compile Include="Components\Level.cs" />
     <Compile Include="Components\Sound.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\State.cs" />
-    <Compile Include="Components\StateDependency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

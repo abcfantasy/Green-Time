@@ -88,7 +88,7 @@ namespace GreenTime.GameObjects
         {
             for (int i = 0; i < animations.Length; i++)
             {
-                if ( StateManager.Current.DependentStatesSatisfied( animations[i].DependentStates ) )
+                if ( StateManager.Current.CheckDependencies( animations[i].dependencies ) )
                     AddAnimation(animations[i].Name, animations[i].Frames);
             }
         }

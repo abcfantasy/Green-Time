@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
     public class State
     {
         #region Properties
-        /// <summary>
-        /// the name of this state
-        /// </summary>
-        public string StateName { get; set; }
+        public string name;
 
-        /// <summary>
-        /// the value of this state (0 to 100)
-        /// </summary>
-        public int StateValue { get; set; }
+        [ContentSerializer(Optional = true)]
+        public int value = -1;
+
+        [ContentSerializer(ElementName = "between", Optional = true)]
+        public Vector2 minmax = new Vector2( -1, -1 );
         #endregion
     }
 }
