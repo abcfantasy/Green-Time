@@ -108,12 +108,12 @@ namespace GreenTime.Screens
         {
             // change states if any
             if( chat.affectedStates != null )
-                StateManager.Current.ModifyStates(chat.affectedStates);
+                StateManager.Instance.ModifyStates(chat.affectedStates);
 
             // if answers available, check chosen answer
             if (answerEntries.Count > 0)
             {
-                ChatScreen s = new ChatScreen(LevelManager.State.GetChat(chat.answers[entryIndex].ResponseIndex), false);
+                ChatScreen s = new ChatScreen(LevelManager.Instance.GetChat(chat.answers[entryIndex].ResponseIndex), false);
                 ScreenManager.AddScreen(s);
                 ScreenManager.RemoveScreen(this);
             }

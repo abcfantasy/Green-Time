@@ -40,7 +40,7 @@ namespace GreenTime.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            newsTexture = content.Load<Texture2D>(LevelManager.State.GetNewsTexture());
+            newsTexture = content.Load<Texture2D>(LevelManager.Instance.GetNewsTexture());
         }
 
         /// <summary>

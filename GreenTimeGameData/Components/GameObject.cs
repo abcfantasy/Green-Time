@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
-    public class InteractiveObject
+    public class GameObject
     {
         #region Properties
         /// <summary>

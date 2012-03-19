@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>forest_past</name>
+    <backgroundTexture>
+      <texture>outdoor_forest\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName></rightScreenName>
+    <gameObjects>
+      <!-- tree 3 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree03</texture>
+          <position>878 234</position>
+          <layer>0.68</layer>
+        </sprite>
+      </Item>
+      <!-- tree 5 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree05</texture>
+          <position>1050 175</position>
+          <layer>0.64</layer>
+        </sprite>
+      </Item>
+      <!-- healthy tree 1 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree01b</texture>
+          <position>673 212</position>
+          <layer>0.7</layer>
+        </sprite>
+      </Item>
+      <!-- healthy tree 2 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree02b</texture>
+          <position>953 160</position>
+          <layer>0.7</layer>
+        </sprite>
+      </Item>
+      <!-- healthy tree 4 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree04b</texture>
+          <position>657 75</position>
+          <layer>0.6</layer>
+        </sprite>
+      </Item>
+
+      <!-- cigarette -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\cigar</texture>
+          <position>690 560</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>progress</name>
+            <between>0 99</between>
+          </state>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- smoking person -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\garbage_man</texture>
+          <position>706 307</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>progress</name>
+            <between>0 99</between>
+          </state>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>546</boundX>
+          <boundWidth>320</boundWidth>
+          <text>Smoker</text>
+          <chatIndex>40</chatIndex>
+        </onInteract>
+      </Item>
+
+      <!-- acorn seeding area -->
+      <Item>
+        <showIf>
+          <state>
+            <name>acorn_picked</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>600</boundWidth>
+          <text>Fertile soil</text>
+          <callback>drop</callback>
+          <affectedStates>
+            <state>
+              <name>item_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>acorn_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>puzzle_acorn_solved</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>back_to_present</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

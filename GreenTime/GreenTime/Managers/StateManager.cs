@@ -185,9 +185,9 @@ namespace GreenTime.Managers
             SetState("acorn_picked", 0);
             SetState("item_picked", 0);
 
-            LevelManager.State.PickedObject = null;
+            LevelManager.Instance.PickedObject = null;
 
-            LevelManager.State.GoHome();
+            LevelManager.Instance.GoHome();
         }
 
         #endregion
@@ -200,7 +200,7 @@ namespace GreenTime.Managers
             SetState( STATE_DAY, 0);
         }
 
-        public static StateManager Current
+        public static StateManager Instance
         {
             get
             {

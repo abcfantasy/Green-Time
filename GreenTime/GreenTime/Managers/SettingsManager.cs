@@ -113,13 +113,13 @@ namespace GreenTime.Managers
         {
             // create the data
             SaveData data = new SaveData();
-            Dictionary<string, int> States = StateManager.Current.AllStates;
+            Dictionary<string, int> States = StateManager.Instance.AllStates;
             data.StateKeys = States.Keys.ToArray();
             data.StateValues = States.Keys.Select(key => States[key]).ToArray();
-            data.CurrentLevel = LevelManager.State.CurrentLevel;
-            data.LastLevel = LevelManager.State.LastPresentLevel;
-            data.PickedObject = LevelManager.State.PickedObject;
-            data.PlayerPosition = LevelManager.State.PlayerPosition;
+            data.CurrentLevel = LevelManager.Instance.CurrentLevel;
+            data.LastLevel = LevelManager.Instance.LastPresentLevel;
+            data.PickedObject = LevelManager.Instance.PickedObject;
+            data.PlayerPosition = LevelManager.Instance.PlayerPosition;
             data.MusicEnabled = MusicEnabled;
             data.SoundEnabled = SoundEnabled;
             data.FullscreenMode = FullScreenMode;
@@ -211,11 +211,11 @@ namespace GreenTime.Managers
             for (int i = 0; i < data.StateKeys.Length; i++)
                 states.Add(data.StateKeys[i], data.StateValues[i]);
 
-            StateManager.Current.AllStates = states;
-            LevelManager.State.PlayerPosition = data.PlayerPosition;
-            LevelManager.State.PickedObject = data.PickedObject;
-            LevelManager.State.CurrentLevel = data.CurrentLevel;
-            LevelManager.State.LastPresentLevel = data.LastLevel;
+            StateManager.Instance.AllStates = states;
+            LevelManager.Instance.PlayerPosition = data.PlayerPosition;
+            LevelManager.Instance.PickedObject = data.PickedObject;
+            LevelManager.Instance.CurrentLevel = data.CurrentLevel;
+            LevelManager.Instance.LastPresentLevel = data.LastLevel;
 
             MusicEnabled = data.MusicEnabled;
             SoundEnabled = data.SoundEnabled;
@@ -223,7 +223,7 @@ namespace GreenTime.Managers
             Difficulty = (Game_Difficulties)data.Difficulty;
 
             // mark as loaded game
-            StateManager.Current.SetState(StateManager.STATE_LOAD, 100);
+            StateManager.Instance.SetState(StateManager.STATE_LOAD, 100);
 
             return true;
         }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using GreenTime.GameObjects;
 using GreenTimeGameData.Components;
 using Microsoft.Xna.Framework;
 using GreenTime.Managers;
@@ -14,7 +13,7 @@ namespace GreenTime.Screens
     class FinalScreen : GameScreen
     {
         static readonly float BACKGROUND_LAYER  = 0.75f;
-        List<BaseObject> gameObjects = new List<BaseObject>();
+        List<Sprite> visibleObjects = new List<Sprite>();
 
         ContentManager content;
         SpriteFont gameFont;
@@ -25,7 +24,7 @@ namespace GreenTime.Screens
 
         public FinalScreen()
         {
-            StateManager.Current.SetState("progress", 0);   // to set full saturation
+            StateManager.Instance.SetState("progress", 0);   // to set full saturation
         }
 
         /// <summary>
@@ -53,39 +52,18 @@ namespace GreenTime.Screens
         }
 
         public void LoadGameObjects()
-        {
-            BaseObject newGameObject;
-            Sprite sprite;
-            Animation animation;
-
-            gameObjects.Clear();
+        {            
+            visibleObjects.Clear();
 
             // Load the background
-            newGameObject = new BaseObject(Vector2.Zero, LevelManager.State.CurrentLevel.BackgroundTexture.Shaded, BACKGROUND_LAYER, 1.0f);
-            newGameObject.Load(content, LevelManager.State.CurrentLevel.BackgroundTexture.TextureName);
-            gameObjects.Add(newGameObject);
+            visibleObjects.Add( LevelManager.Instance.CurrentLevel.backgroundTexture );
 
-            for (int i = 0; i < LevelManager.State.CurrentLevel.GameObjects.Count; i++)
+            for (int i = 0; i < LevelManager.Instance.CurrentLevel.gameObjects.Count; i++)
             {
-                if (LevelManager.State.CurrentLevel.GameObjects[i].sprite != null)
+                if (LevelManager.Instance.CurrentLevel.gameObjects[i].sprite != null)
                 {
-                    sprite = LevelManager.State.CurrentLevel.GameObjects[i].sprite;
-
-                    // static object
-                    if (sprite.Animation.Count == 0)
-                    {
-                        newGameObject = new BaseObject(sprite.Position, sprite.Shaded, sprite.Layer, sprite.Scale);
-                    }
-                    // animated object
-                    else
-                    {
-                        animation = sprite.Animation[0];
-                        newGameObject = new AnimatedObject(sprite.Position, animation.FrameWidth, animation.FrameHeight, animation.FramesPerSecond, sprite.Shaded, sprite.Layer, sprite.Scale);
-                        // add animations
-                        ((AnimatedObject)newGameObject).AddAnimations(animation.Playbacks);
-                    }
-                    newGameObject.Load(content, sprite.TextureName);
-                    gameObjects.Add(newGameObject);
+                    LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.Load(content);
+                    visibleObjects.Add(LevelManager.Instance.CurrentLevel.gameObjects[i].sprite);                    
                 }
             }
         }
@@ -115,78 +93,78 @@ namespace GreenTime.Screens
         {
 
             // update object animations
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (int i = 0; i < visibleObjects.Count; i++)
             {
-                if (gameObjects[i].GetType() == typeof(AnimatedObject))
+                if (visibleObjects[i].GetType() == typeof(AnimatedSprite))
                 {
-                    ((AnimatedObject)gameObjects[i]).UpdateFrame(gameTime.ElapsedGameTime.Seconds);
+                    ((AnimatedSprite)visibleObjects[i]).UpdateFrame(gameTime.ElapsedGameTime.Seconds);
                 }
             }
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             #region /* The following states manage the player fading from green to grey or circle to square or vice versa */
-            if (StateManager.Current.GetState("state_final_fading_square_grey") == 100 && TransitionPosition == 0)
+            if (StateManager.Instance.GetState("state_final_fading_square_grey") == 100 && TransitionPosition == 0)
             {
                 objectFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
-                StateManager.Current.SetState("state_final_square_grey", (int)objectFading);
-                if (StateManager.Current.GetState("state_final_square_grey") >= 100)
+                StateManager.Instance.SetState("state_final_square_grey", (int)objectFading);
+                if (StateManager.Instance.GetState("state_final_square_grey") >= 100)
                 {
                     objectFading = 0;
-                    StateManager.Current.SetState("state_final_square_grey", 100);
-                    StateManager.Current.SetState("state_final_fading_square_grey", 0);
-                    StateManager.Current.SetState("state_final_fading_round_grey", 100);
+                    StateManager.Instance.SetState("state_final_square_grey", 100);
+                    StateManager.Instance.SetState("state_final_fading_square_grey", 0);
+                    StateManager.Instance.SetState("state_final_fading_round_grey", 100);
                 }
             }
-            else if (StateManager.Current.GetState("state_final_fading_round_grey") == 100 && TransitionPosition == 0)
+            else if (StateManager.Instance.GetState("state_final_fading_round_grey") == 100 && TransitionPosition == 0)
             {
                 objectFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
-                StateManager.Current.SetState("state_final_round_grey", (int)objectFading);
-                if (StateManager.Current.GetState("state_final_round_grey") >= 100)
+                StateManager.Instance.SetState("state_final_round_grey", (int)objectFading);
+                if (StateManager.Instance.GetState("state_final_round_grey") >= 100)
                 {
                     objectFading = 0;
-                    StateManager.Current.SetState("state_final_round_grey", 100);
-                    StateManager.Current.SetState("state_final_fading_round_grey", 0);
-                    StateManager.Current.SetState("state_final_fading_round_green", 100);
+                    StateManager.Instance.SetState("state_final_round_grey", 100);
+                    StateManager.Instance.SetState("state_final_fading_round_grey", 0);
+                    StateManager.Instance.SetState("state_final_fading_round_green", 100);
                 }
             }
-            else if (StateManager.Current.GetState("state_final_fading_round_green") == 100 && TransitionPosition == 0)
+            else if (StateManager.Instance.GetState("state_final_fading_round_green") == 100 && TransitionPosition == 0)
             {
                 objectFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
-                StateManager.Current.SetState("state_final_round_green", (int)objectFading);
-                if (StateManager.Current.GetState("state_final_round_green") >= 100)
+                StateManager.Instance.SetState("state_final_round_green", (int)objectFading);
+                if (StateManager.Instance.GetState("state_final_round_green") >= 100)
                 {
                     objectFading = 0;
-                    StateManager.Current.SetState("state_final_round_green", 100);
-                    StateManager.Current.SetState("state_final_fading_round_green", 0);
-                    StateManager.Current.SetState("state_final_fading_text1", 100);
+                    StateManager.Instance.SetState("state_final_round_green", 100);
+                    StateManager.Instance.SetState("state_final_fading_round_green", 0);
+                    StateManager.Instance.SetState("state_final_fading_text1", 100);
                 }
             }
-            else if (StateManager.Current.GetState("state_final_fading_text1") == 100 && TransitionPosition == 0)
+            else if (StateManager.Instance.GetState("state_final_fading_text1") == 100 && TransitionPosition == 0)
             {
                 objectFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
-                StateManager.Current.SetState("state_final_text1", (int)objectFading);
-                if (StateManager.Current.GetState("state_final_text1") >= 100)
+                StateManager.Instance.SetState("state_final_text1", (int)objectFading);
+                if (StateManager.Instance.GetState("state_final_text1") >= 100)
                 {
                     objectFading = 0;
-                    StateManager.Current.SetState("state_final_text1", 100);
-                    StateManager.Current.SetState("state_final_fading_text1", 0);
-                    StateManager.Current.SetState("state_final_fading_text2", 100);
+                    StateManager.Instance.SetState("state_final_text1", 100);
+                    StateManager.Instance.SetState("state_final_fading_text1", 0);
+                    StateManager.Instance.SetState("state_final_fading_text2", 100);
                 }
             }
-            else if (StateManager.Current.GetState("state_final_fading_text2") == 100 && TransitionPosition == 0)
+            else if (StateManager.Instance.GetState("state_final_fading_text2") == 100 && TransitionPosition == 0)
             {
                 objectFading += gameTime.ElapsedGameTime.Milliseconds / 15.0f;
-                StateManager.Current.SetState("state_final_text2", (int)objectFading);
-                if (StateManager.Current.GetState("state_final_text2") >= 100)
+                StateManager.Instance.SetState("state_final_text2", (int)objectFading);
+                if (StateManager.Instance.GetState("state_final_text2") >= 100)
                 {
                     objectFading = 0;
-                    StateManager.Current.SetState("state_final_text2", 100);
-                    StateManager.Current.SetState("state_final_fading_text2", 0);
+                    StateManager.Instance.SetState("state_final_text2", 100);
+                    StateManager.Instance.SetState("state_final_fading_text2", 0);
                 }
             }
-            else if (StateManager.Current.GetState("state_final_square_grey") == 0)
-                StateManager.Current.SetState("state_final_fading_square_grey", 100);
+            else if (StateManager.Instance.GetState("state_final_square_grey") == 0)
+                StateManager.Instance.SetState("state_final_fading_square_grey", 100);
             #endregion
 
         }
@@ -202,13 +180,13 @@ namespace GreenTime.Screens
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, desaturateShader);
 
             // bg
-            gameObjects[0].Draw(spriteBatch, new Color((gameObjects[0].Shaded ? 0 : 64), 255, 255, 255), gameObjects[0].Scale);
+            visibleObjects[0].Draw(spriteBatch, new Color((visibleObjects[0].shaded ? 0 : 64), 255, 255, 255));
 
-            gameObjects[1].Draw(spriteBatch, new Color((gameObjects[1].Shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Current.GetState("state_final_square_grey") * 2.55)) ), gameObjects[1].Scale );
-            gameObjects[2].Draw(spriteBatch, new Color((gameObjects[2].Shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Current.GetState("state_final_round_grey") * 2.55))), gameObjects[2].Scale);
-            gameObjects[3].Draw(spriteBatch, new Color((gameObjects[3].Shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Current.GetState("state_final_round_green") * 2.55))), gameObjects[3].Scale);
-            gameObjects[4].Draw(spriteBatch, new Color((gameObjects[4].Shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Current.GetState("state_final_text1") * 2.55))), gameObjects[4].Scale);
-            gameObjects[5].Draw(spriteBatch, new Color((gameObjects[5].Shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Current.GetState("state_final_text2") * 2.55))), gameObjects[5].Scale);
+            visibleObjects[1].Draw(spriteBatch, new Color((visibleObjects[1].shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Instance.GetState("state_final_square_grey") * 2.55))));
+            visibleObjects[2].Draw(spriteBatch, new Color((visibleObjects[2].shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Instance.GetState("state_final_round_grey") * 2.55))));
+            visibleObjects[3].Draw(spriteBatch, new Color((visibleObjects[3].shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Instance.GetState("state_final_round_green") * 2.55))));
+            visibleObjects[4].Draw(spriteBatch, new Color((visibleObjects[4].shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Instance.GetState("state_final_text1") * 2.55))));
+            visibleObjects[5].Draw(spriteBatch, new Color((visibleObjects[5].shaded ? 0 : 64), 255, 255, ((byte)(StateManager.Instance.GetState("state_final_text2") * 2.55))));
 
             spriteBatch.End();      
         }

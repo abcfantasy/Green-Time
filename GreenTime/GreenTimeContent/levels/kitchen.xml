@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>kitchen</name>
+    <backgroundTexture>
+      <texture>kitchen\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+      <shaded>false</shaded>
+    </backgroundTexture>
+    <leftScreenName>bedroom</leftScreenName>
+    <rightScreenName>outdoor</rightScreenName>
+    <gameObjects>
+      <!-- Water drop -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>kitchen\drop</texture>
+          <position>414 308</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <frameSize>4 62</frameSize>
+          <framesPerSecond>10</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 3 3 3 3 3 3 3 3 3 3 4 5 6 7 8 9 10 11 12 13 14</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>60</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>320</boundX>
+          <boundWidth>100</boundWidth>
+          <text>Tap</text>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Cereal Box -->
+      <Item>
+        <sprite>
+          <texture>kitchen\CerealBox</texture>
+          <position>530 305</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>40</value>
+          </state>
+          <state>
+            <name>cereal_picked</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>420</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Empty Cereal Box</text>
+          <callback>pickup</callback>
+          <affectedStates>
+            <state>
+              <name>cereal_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Water Bottle -->
+      <Item>
+        <sprite>
+          <texture>kitchen\WaterBottle</texture>
+          <position>530 245</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>50</value>
+          </state>
+          <state>
+            <name>bottle_picked</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>420</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Empty Water Bottle</text>
+          <callback>pickup</callback>
+          <affectedStates>
+            <state>
+              <name>bottle_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- All Bins -->
+      <Item>
+        <showIf>
+          <state>
+            <name>item_picked</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>530</boundX>
+          <boundWidth>380</boundWidth>
+          <text>Bins</text>
+          <callback>drop</callback>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>cereal_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>bottle_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Plastic Bin (while bottle picked) -->
+      <Item>
+        <showIf>
+          <state>
+            <name>bottle_picked</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>530</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Plastic Bin</text>
+          <callback>drop</callback>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>bottle_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Paper Bin (while cereal picked) -->
+      <Item>
+        <showIf>
+          <state>
+            <name>cereal_picked</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>670</boundX>
+          <boundWidth>110</boundWidth>
+          <text>Paper Bin</text>
+          <callback>drop</callback>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>cereal_picked</name>
+              <value>0</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Newspaper -->
+      <Item>
+        <sprite>
+          <texture>kitchen\newspaper</texture>
+          <position>1200 450</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>news_taken</name>
+            <between>0 99</between>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>1070</boundX>
+          <boundWidth>110</boundWidth>
+          <text>News</text>
+          <solid>true</solid>
+          <callback>news</callback>
+          <affectedStates>
+            <state>
+              <name>news_taken</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

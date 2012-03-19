@@ -64,7 +64,7 @@ namespace GreenTime
             }
 
             // load all levels
-            LevelManager.State.LoadAllLevels(Content);
+            LevelManager.Instance.LoadAllLevels(Content);
 
             // load music
             SoundManager.LoadAllSounds(Content);

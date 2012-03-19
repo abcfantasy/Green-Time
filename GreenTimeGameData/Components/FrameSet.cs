@@ -6,18 +6,16 @@ using Microsoft.Xna.Framework.Content;
 
 namespace GreenTimeGameData.Components
 {
-    public class AnimationPlayback
+    public class FrameSet
     {
         #region Properties
-        /// <summary>
-        /// The name of this animation
-        /// </summary>
-        public string Name { get; set; }
+        [ContentSerializer(Optional = true)]
+        public string name = "default";
 
         /// <summary>
         /// The list of frames to play
         /// </summary>
-        public int[] Frames { get; set; }
+        public int[] frames;
 
         /// <summary>
         /// The states this animation depends on to play

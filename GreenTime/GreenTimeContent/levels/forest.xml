@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>forest</name>
+    <backgroundTexture>
+      <texture>outdoor_forest\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName>outdoor</leftScreenName>
+    <rightScreenName>final_room</rightScreenName>
+    <ambientSound>
+      <name>outdoor_forest\FireCrackling</name>
+      <playIf>
+        <state>
+          <name>puzzle_cig_solved</name>
+          <value>0</value>
+        </state>
+      </playIf>
+    </ambientSound>
+    <gameObjects>
+      <!-- burned tree 1 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree01</texture>
+          <position>715 293</position>
+          <layer>0.7</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- burned tree 2 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree02</texture>
+          <position>985 243</position>
+          <layer>0.7</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- burned tree 3 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree03</texture>
+          <position>878 234</position>
+          <layer>0.68</layer>
+        </sprite>
+      </Item>
+      <!-- burned tree 4 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree04</texture>
+          <position>758 178</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- burned tree 5 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree05</texture>
+          <position>1050 175</position>
+          <layer>0.64</layer>
+        </sprite>
+      </Item>
+
+      <!-- fire -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>outdoor_forest\FireSheet</texture>
+          <position>670 100</position>
+          <layer>0.64</layer>
+          <frameSize>500 500</frameSize>
+          <framesPerSecond>8</framesPerSecond>
+          <animations>
+            <frameSet>
+              <name>default</name>
+
+              <frames>0 1 2 3</frames>
+
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+
+      <!-- healthy tree 1 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree01b</texture>
+          <position>673 212</position>
+          <layer>0.7</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- healthy tree 2 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree02b</texture>
+          <position>953 160</position>
+          <layer>0.7</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- healthy tree 4 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree04b</texture>
+          <position>657 75</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+
+      <!-- grown tree 1 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree-a</texture>
+          <position>0 83</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_acorn_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- grown tree 2 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree-b</texture>
+          <position>120 209</position>
+          <layer>0.7</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_acorn_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- grown tree 3 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree-c</texture>
+          <position>225 65</position>
+          <layer>0.62</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_acorn_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- grown tree 4 -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\tree-d</texture>
+          <position>345 160</position>
+          <layer>0.68</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_acorn_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+
+      <!-- cigarette -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\cigar</texture>
+          <position>690 560</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>560</boundX>
+          <boundWidth>720</boundWidth>
+          <text>Cigarette</text>
+          <transition>forest_past</transition>
+        </onInteract>
+      </Item>
+
+      <!-- acorn -->
+      <Item>
+        <sprite>
+          <texture>outdoor_forest\acorn</texture>
+          <position>1020 553</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>acorn_picked</name>
+            <value>0</value>
+          </state>
+          <state>
+            <name>puzzle_acorn_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>910</boundX>
+          <boundWidth>1050</boundWidth>
+          <text>Acorn</text>
+          <callback>pickup</callback>
+          <affectedStates>
+            <state>
+              <name>acorn_picked</name>
+              <value>100</value>
+            </state>
+            <state>
+              <name>item_picked</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+
+      <!-- acorn going back -->
+      <Item>
+        <showIf>
+          <state>
+            <name>acorn_picked</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>1278</boundWidth>
+          <text>Barren ground</text>
+          <transition>forest_past</transition>
+        </onInteract>
+      </Item>
+    </gameObjects>    
+  </Asset>
+</XnaContent>

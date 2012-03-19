@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>bedroom</name>
+    <backgroundTexture>
+      <texture>bedroom\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+      <shaded>false</shaded>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName>kitchen</rightScreenName>
+    <gameObjects>
+      <!-- Window -->
+      <Item>
+        <sprite>
+          <texture>bedroom\window</texture>
+          <position>165 96</position>
+          <layer>0.8</layer>
+        </sprite>
+      </Item>
+      <!-- Window light beams -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>bedroom\window_light</texture>
+          <position>50 150</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <frameSize>561 360</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+      </Item>
+      <!-- Lightbulb -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>bedroom\lightbulb</texture>
+          <position>494 0</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <frameSize>326 231</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>10</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- Light switch -->
+      <Item>
+        <sprite>
+          <texture>bedroom\switch</texture>
+          <position>1199 283</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>10</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>1070</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Light</text>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Heat -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>bedroom\heating</texture>
+          <position>620 165</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <frameSize>194 118</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>20</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>460</boundX>
+          <boundWidth>320</boundWidth>
+          <text>Heater</text>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Computer -->
+      <Item>
+        <sprite>
+          <texture>bedroom\computer_light</texture>
+          <position>830 178</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle</name>
+            <value>30</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>750</boundX>
+          <boundWidth>280</boundWidth>
+          <text>Computer</text>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

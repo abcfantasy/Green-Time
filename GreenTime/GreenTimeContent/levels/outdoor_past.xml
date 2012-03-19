@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>outdoor_past</name>
+    <backgroundTexture>
+      <texture>outdoor_shop\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+      <shaded>false</shaded>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName></rightScreenName>
+    <gameObjects>
+      <!-- Front grass -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\grass</texture>
+          <position>0 529</position>
+          <layer>0.4</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+      <!-- Live tree (add scale) -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\ctree</texture>
+          <position>200 100</position>
+          <layer>0.65</layer>
+          <shaded>false</shaded>
+          <scale>0.8</scale>
+        </sprite>
+      </Item>
+      <!-- Guy -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\garbage_man</texture>
+          <position>450 300</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <onInteract>
+          <boundX>250</boundX>
+          <boundWidth>410</boundWidth>
+          <text>Garbage man</text>
+          <chatIndex>0</chatIndex>
+        </onInteract>
+      </Item>
+      <!-- Garbage -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\g3</texture>
+          <position>428 388</position>
+          <layer>0.55</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+      <!-- Bin object -->
+      <Item>
+        <sprite>
+          <texture>outdoor_shop\bin</texture>
+          <position>561 553</position>
+          <layer>0.4</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

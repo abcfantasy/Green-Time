@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>final_room</name>
+    <backgroundTexture>
+      <texture>final_room\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+      <shaded>false</shaded>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName></rightScreenName>
+    <gameObjects>
+      <!-- grey square -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>animations\AnimationSquareGreen</texture>
+          <position>316 130</position>
+          <layer>0.6</layer>
+          <scale>1.4</scale>
+          <frameSize>110 325</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>3</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+      </Item>
+
+      <!-- grey round -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>animations\AnimationRoundGreen</texture>
+          <position>585 130</position>
+          <layer>0.6</layer>
+          <scale>1.4</scale>
+          <frameSize>110 325</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>3</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+      </Item>
+
+      <!-- green round -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>animations\AnimationRoundGreen</texture>
+          <position>853 130</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <scale>1.4</scale>
+          <frameSize>110 325</frameSize>
+          <framesPerSecond>1</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>3</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+      </Item>
+
+      <!-- choose who you want to be text -->
+      <Item>
+        <sprite>
+          <texture>final_room\text1</texture>
+          <position>0 0</position>
+          <layer>0.4</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+      <!-- and act now text -->
+      <Item>
+        <sprite>
+          <texture>final_room\text2</texture>
+          <position>50 628</position>
+          <layer>0.4</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

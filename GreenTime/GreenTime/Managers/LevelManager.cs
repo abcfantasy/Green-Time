@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using System.Xml;
 using Microsoft.Xna.Framework.Content;
 using GreenTimeGameData.Components;
-using GreenTime.GameObjects;
 
 namespace GreenTime.Managers
 {
@@ -23,9 +22,11 @@ namespace GreenTime.Managers
 
         #region Constants
         public const int EMPTY_VALUE = -99;
+        public const string HOME = "bedroom";
         #endregion
 
         #region Fields
+        private ContentManager content;
         private Vector2 playerPosition = new Vector2( 0, 250 );
         private Sprite pickedObject;    // currently picked up object - save it here to know when changing scenes
         private Level currentLevel = null;
@@ -91,29 +92,40 @@ namespace GreenTime.Managers
         /// </summary>
         public void LoadAllLevels( ContentManager content )
         {
+            this.content = content;
+            /*string[] levelsList = content.Load<String[]>("levels_list");
+
             Level[] levelArray = content.Load<Level[]>("levels");
             for (int i = 0; i < levelArray.Length; i++)
             {
-                levels.Add(levelArray[i].Name, levelArray[i]);
-            }
+                levels.Add(levelArray[i].name, levelArray[i]);
+            }*/
             chats = content.Load<Chat[]>("chats");
-            StateManager.Current.AdvanceDay();
+            StateManager.Instance.AdvanceDay();
+        }
+
+        public void GoTo( string level )
+        {
+            if ( ! levels.ContainsKey( level ))
+                levels[level] = content.Load<Level>( @"levels\" + level );
+
+            currentLevel = levels[level];
         }
 
         public void GoHome()
         {
-            currentLevel = levels["bedroom"];
+            GoTo( HOME );
             playerPosition = new Vector2(250, 250);
         }
 
         public Boolean CanTransitionRight()
         {
-            return !currentLevel.RightScreenName.Equals("");
+            return !currentLevel.rightScreenName.Equals("");
         }
 
         public Boolean CanTransitionLeft()
         {
-            return !currentLevel.LeftScreenName.Equals("");
+            return !currentLevel.leftScreenName.Equals("");
         }
 
         /// <summary>
@@ -122,10 +134,9 @@ namespace GreenTime.Managers
         public void TransitionRight()
         {
             // reset loaded state (only happens on the starting screen)
-            StateManager.Current.SetState(StateManager.STATE_LOAD, 0);
+            StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
 
-            // modify current level
-            currentLevel = levels[currentLevel.RightScreenName];
+            GoTo(currentLevel.rightScreenName);
 
             // set player position
             this.playerPosition = new Vector2(0, 250);
@@ -137,10 +148,9 @@ namespace GreenTime.Managers
         public void TransitionLeft()
         {
             // reset loaded state (only happens on the starting screen)
-            StateManager.Current.SetState(StateManager.STATE_LOAD, 0);
+            StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
 
-            // modify current level
-            currentLevel = levels[currentLevel.LeftScreenName];
+            GoTo(currentLevel.leftScreenName);
 
             // set player position
             this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 250);
@@ -155,10 +165,9 @@ namespace GreenTime.Managers
             // save current level
             lastLevel = currentLevel;
 
-            // modify current level 
-            currentLevel = levels[transitionIndex];
+            GoTo(transitionIndex);
 
-            StateManager.Current.SetState("is_in_past", 100);
+            StateManager.Instance.SetState("is_in_past", 100);
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
@@ -166,12 +175,12 @@ namespace GreenTime.Managers
         public void TransitionPresent()
         {
             // reset back to present state
-            StateManager.Current.ResetReturnToPresent();
+            StateManager.Instance.ResetReturnToPresent();
 
             // modify current level
             lastLevel = null;
 
-            StateManager.Current.AdvanceDay();
+            StateManager.Instance.AdvanceDay();
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
         }
@@ -185,7 +194,7 @@ namespace GreenTime.Managers
         {
             for (int i = 0; i < chats.Length; i++)
             {
-                if (chats[i].Index == chatIndex && StateManager.Current.CheckDependencies( chats[i].dependencies ) )
+                if (chats[i].Index == chatIndex && StateManager.Instance.CheckDependencies( chats[i].dependencies ) )
                     return chats[i];
             }
             return null;
@@ -198,7 +207,7 @@ namespace GreenTime.Managers
         public string GetNewsTexture()
         {
             // return final newspaper when game completed
-            if (StateManager.Current.GetState("progress") == 100)
+            if (StateManager.Instance.GetState("progress") == 100)
                 return "news\\news_final";
 
             int newsIndex = new Random().Next(1, 5);
@@ -211,7 +220,7 @@ namespace GreenTime.Managers
 
         private LevelManager() { }
 
-        public static LevelManager State
+        public static LevelManager Instance
         {
             get
             {
