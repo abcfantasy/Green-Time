@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GreenTimeGameData.Components
 {
-    public class AnimatedSprite : Sprite
+    public class AnimatedSprite : Sprite, ICloneable
     {
         public Vector2 frameSize;
         public int framesPerSecond;
@@ -147,12 +147,27 @@ namespace GreenTimeGameData.Components
             activeAnimations[name] = frames;
         }
 
+        public void AddAllAnimations()
+        {
+            foreach (FrameSet fs in animations)
+            {
+                activeAnimations[fs.name] = fs.frames;
+            }
+        }
+
         private void UpdateTextureRectangle()
         {
             int frame = activeAnimations[currentFrameSet][currentFrameIndex];
 
-            this.currentFrameBounds.X = (frame * (int)frameSize.X) % texture.Width;
-            this.currentFrameBounds.Y = (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y;
+            currentFrameBounds.X = (frame * (int)frameSize.X) % texture.Width;
+            currentFrameBounds.Y = (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y;
+        }        
+        #endregion
+
+        #region ICloneable
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
         #endregion
     }

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.AnimatedSprite">
+    <texture>animations\player</texture>
+    <position>0 250</position>
+    <layer>0.5</layer>
+    <scale>1.2</scale>
+    <frameSize>110 326</frameSize>
+    <framesPerSecond>15</framesPerSecond>
+    <animations>
+      <frameSet>
+        <name>walk</name>
+        <frames>0 1 2 3 4 5 6 7 8 9</frames>
+      </frameSet>
+      <frameSet>
+        <name>idle</name>
+        <frames>3</frames>
+      </frameSet>
+    </animations>
+  </Asset>
+</XnaContent>

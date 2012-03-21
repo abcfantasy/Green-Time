@@ -11,86 +11,112 @@ namespace GreenTimeGameData.Components
 {
     public class Player
     {
-        private const float PLAYER_POSITION_Y = 250.0f;
+        // The transition speed (in milliseconds) between grey/colored or round/square
+        private const float TRANSITION_SPEED = 1500.0f;
 
-        AnimatedSprite round_sprite;
-        AnimatedSprite square_sprite;
-        AnimatedSprite current_sprite;
+        private AnimatedSprite current_sprite;
+        private AnimatedSprite opposite_sprite;
+
+        private float colorState = 1.0f;
+        private float shapeState = 1.0f;
+        private float colorTransition = 0.0f;
+        private float shapeTransition = 0.0f;
 
         public Player(ContentManager content)
         {
-            round_sprite = new AnimatedSprite();
-            round_sprite.textureName = @"animations\AnimationRoundGreen";
-            round_sprite.frameSize = new Vector2(110, 326);
-            round_sprite.framesPerSecond = 15;
-            round_sprite.layer = 0.5f;
-            round_sprite.scale = 1.2f;
-            round_sprite.Load(content);
-            round_sprite.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            round_sprite.AddAnimation("idle", new int[] { 3 });
-            round_sprite.PlayAnimation("idle");
-            round_sprite.position = new Vector2(0, PLAYER_POSITION_Y);
+            // Loading the player from the XML
+            current_sprite = content.Load<AnimatedSprite>("player");
+            // We need a shallow copy instance to handle the square texture
+            opposite_sprite = (AnimatedSprite)current_sprite.Clone();            
+            opposite_sprite.textureName += "_square";
+            
+            // Loading the content
+            current_sprite.Load(content);
+            opposite_sprite.Load(content);
 
-            square_sprite = new AnimatedSprite();
-            square_sprite.textureName = @"animations\AnimationSquareGreen";
-            square_sprite.frameSize = new Vector2(110, 326);
-            square_sprite.framesPerSecond = 15;
-            square_sprite.layer = 0.5f;
-            square_sprite.scale = 1.2f;
-            square_sprite.Load(content);
-            square_sprite.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            square_sprite.AddAnimation("idle", new int[] { 3 });
-            square_sprite.PlayAnimation("idle");
-            square_sprite.position = new Vector2(0, PLAYER_POSITION_Y);
-
-            current_sprite = round_sprite;
+            // Because we made only a shallow copy, this method will affect the square player too
+            current_sprite.AddAllAnimations();
+            
+            // We set the animations to the default
+            current_sprite.PlayAnimation("idle");
+            opposite_sprite.PlayAnimation("idle");               
         }
 
-        public AnimatedSprite Sprite
-        {
-            get { return current_sprite; }
-        }
-
-        public void swap()
-        {
-            if (current_sprite == round_sprite) current_sprite = square_sprite;
-            else current_sprite = round_sprite;
-        }
+        public AnimatedSprite Sprite { get { return current_sprite; } }
 
         public Vector2 Position
         {
             get { return current_sprite.position; }
-            set { round_sprite.position = value; square_sprite.position = value; }
+            set { current_sprite.position = value; }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Color tint)
-        {
-            round_sprite.Draw(spriteBatch, tint);
-            //square_sprite.Draw(spriteBatch, tint);
+        // Returns true if the player is ready for interaction (not transitioning)
+        public bool IsReady { get { return (colorTransition == 0.0f && shapeTransition == 0.0f); } }
+
+        // Swaps between the round and square sprite
+        public void swap()
+        {           
+            AnimatedSprite aux  = current_sprite;
+            current_sprite      = opposite_sprite;
+            opposite_sprite     = aux;
         }
 
-        public void faceLeft()
+        // Transformation methods
+        public void turnGreen() { colorTransition = 1.0f; }
+        public void turnGrey()  { colorTransition = -1.0f; }
+        public void transformShape()
         {
-            round_sprite.Flipped = true;
-            square_sprite.Flipped = true;
+            // Synchronizing the sprites
+            opposite_sprite.Flipped = current_sprite.Flipped;
+            opposite_sprite.position.X = current_sprite.position.X;
+            shapeTransition = -1.0f; 
         }
 
-        public void faceRight()
+        // Takes care of the transitioning
+        public void Update(GameTime gameTime)
         {
-            round_sprite.Flipped = false;
-            square_sprite.Flipped = false;
+            if (colorTransition != 0.0f)
+            {
+                colorState += colorTransition * (gameTime.ElapsedGameTime.Milliseconds / TRANSITION_SPEED);
+
+                // Check to see if we've reached the maximum / minimum saturation
+                if ((colorTransition < 0.0f && colorState <= 0.0f)
+                    || (colorTransition > 0.0f && colorState >= 1.0f))
+                {
+                    colorState = MathHelper.Clamp( colorState, 0.0f, 1.0f );
+                    colorTransition = 0.0f;
+                }
+            }
+            
+            if (shapeTransition != 0.0f)
+            {
+                shapeState += shapeTransition * (gameTime.ElapsedGameTime.Milliseconds / TRANSITION_SPEED);
+
+                // Check to see if the transition is done
+                if (shapeState <= 0.0f)
+                {
+                    // We switch the opacity back to 1, but we swap the sprites so we only draw one at a time
+                    shapeState = 1.0f;
+                    shapeTransition = 0.0f;
+                    swap();
+                }
+            }
         }
 
-        public void move(float amount)
+        // Draws the currently active sprite
+        public void Draw(SpriteBatch spriteBatch)
         {
-            round_sprite.position.X += amount;
-            square_sprite.position.X += amount;
+            current_sprite.Draw(spriteBatch, new Color((byte)(colorState * 64.0f), 255, 255, (byte)( shapeState * 255.0f )));
+            
+            // We only draw the second sprite if we're transitioning between the two
+            if (shapeTransition != 0)
+                opposite_sprite.Draw(spriteBatch, new Color((byte)(colorState * 64.0f), 255, 255, (byte)( (1 - shapeState) * 255.0f )));                
         }
 
-        public void moveTo(float position)
-        {
-            round_sprite.position.X = position;
-            square_sprite.position.X = position;
-        }
+        // Convenience methods
+        public void faceLeft()              { current_sprite.Flipped = true; }
+        public void faceRight()             { current_sprite.Flipped = false; }
+        public void move(float amount)      { current_sprite.position.X += amount; }
+        public void moveTo(float position)  { current_sprite.position.X = position; }
     }
 }

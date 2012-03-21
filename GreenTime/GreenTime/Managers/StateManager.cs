@@ -17,18 +17,6 @@ namespace GreenTime.Managers
         public const string STATE_INDOOR = "indoor_puzzle";
         // state to keep track of player status (0 = grey square head; 50 = grey round head; 100 = green round head;)
         public const string STATE_PLAYERSTATUS = "player_status";
-        // state to keep track of how green the player is (0 = grey)
-        public const string STATE_PLAYERGREEN = "player_green";
-        // state to mark that player should fade from grey to green
-        public const string STATE_PLAYERFADETOGREEN = "player_fadeToGreen";
-        // state to mark that player should fade from green to grey
-        public const string STATE_PLAYERFADETOGREY = "player_fadeToGrey";
-        // state to keep track of how faded into the sprite the player is
-        public const string STATE_PLAYERROUND = "player_round";
-        // state to mark that player should fade into the round head
-        public const string STATE_PLAYERFADETOROUND = "player_fadeToRound";
-        // state to mark that player should fade into the square head
-        public const string STATE_PLAYERFADETOSQUARE = "player_fadeToSquare";
         // state to mark if game is being loaded from a saved game
         public const string STATE_LOAD = "game_load";
         // state to keep track of which day it is
