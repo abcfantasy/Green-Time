@@ -42,25 +42,24 @@ namespace GreenTime.Screens
             new Vector2( 21, 188 )
         };
 
-        ContentManager content;
-        SpriteFont gameFont;
-        List<Sprite> visibleObjects = new List<Sprite>();
-        List<AnimatedSprite> animatedObjects = new List<AnimatedSprite>();
-        List<GameObject> activeObjects = new List<GameObject>();
-        GameObject interactingObject;
-        Sprite pickedObject = null;     // is not null when an object is currently picked up
-        SoundEffect ambientSound;
-        SoundEffectInstance ambientSoundInstance;
+        private ContentManager content;
+        private SpriteFont gameFont;
+        private List<Sprite> visibleObjects = new List<Sprite>();
+        private List<AnimatedSprite> animatedObjects = new List<AnimatedSprite>();
+        private List<GameObject> activeObjects = new List<GameObject>();
+        private GameObject interactingObject;
+        private Sprite pickedObject = null;     // is not null when an object is currently picked up
+        private SoundEffect ambientSound;
+        private SoundEffectInstance ambientSoundInstance;
 
-        TransitionType transition = TransitionType.Room;
+        private Player player;
 
-        Effect desaturateShader;
-        Effect sepiaShader;
+        private TransitionType transition = TransitionType.Room;
 
-        AnimatedSprite player;
-        AnimatedSprite player_other;
+        private Effect desaturateShader;
+        private Effect sepiaShader;
 
-        float playerFading = 0;
+        private float playerFading = 0;
 
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
@@ -101,20 +100,7 @@ namespace GreenTime.Screens
             }
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
-            // create player
-            player = new AnimatedSprite();
-            player.position = LevelManager.Instance.PlayerPosition;
-            player.frameSize = new Vector2(110, 326);
-            player.framesPerSecond = 15;
-            player.layer = PLAYER_LAYER;
-            player.scale = 1.2f;
-
-            player_other = new AnimatedSprite();
-            player_other.position = LevelManager.Instance.PlayerPosition;
-            player_other.frameSize = new Vector2(110, 326);
-            player_other.framesPerSecond = 15;
-            player_other.layer = PLAYER_LAYER;
-            player_other.scale = 1.2f;
+            player = LevelManager.Instance.Player;
 
             // play game music
             SoundManager.PlayGameMusic();
@@ -133,28 +119,6 @@ namespace GreenTime.Screens
             gameFont = content.Load<SpriteFont>("gamefont");
 
             CheckPlayerStatus();
-
-            if (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) >= 50)
-            {
-                player.textureName = @"animations\AnimationRoundGreen";
-                player_other.textureName = @"animations\AnimationSquareGreen";
-            }
-            else
-            {
-                player.textureName = @"animations\AnimationSquareGreen";
-                player_other.textureName = @"animations\AnimationRoundGreen";
-            }
-
-            player.Load(content);
-            player_other.Load(content);
-
-            player.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            player.AddAnimation("idle", new int[] { 3 });
-            player_other.AddAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            player_other.AddAnimation("idle", new int[] { 3 });
-
-            player.PlayAnimation("idle");
-            player_other.PlayAnimation("idle");
 
             LoadGameObjects();
 
@@ -175,8 +139,7 @@ namespace GreenTime.Screens
             animatedObjects.Clear();
             activeObjects.Clear();
 
-            animatedObjects.Add(player);
-            animatedObjects.Add(player_other);
+            animatedObjects.Add(player.Sprite);
 
             // load picked up object
             if (LevelManager.Instance.PickedObject != null)
@@ -215,7 +178,7 @@ namespace GreenTime.Screens
 
                         if (io.sprite.GetType() == typeof(AnimatedSprite))
                         {                            
-                            animatedObjects.Add((AnimatedSprite)io.sprite);
+                            animatedObjects.Add((AnimatedSprite)io.sprite);                            
                             ((AnimatedSprite)io.sprite).ActiveAnimations.Clear();
                             foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
                             {
@@ -237,6 +200,11 @@ namespace GreenTime.Screens
         {
             if (content != null)
                 content.Unload();
+            player.moveTo(LevelManager.Instance.StartPosition);
+            if (transition == TransitionType.ToPresent)
+            {
+                LevelManager.Instance.MovePresent();
+            }
         }
         #endregion
 
@@ -311,13 +279,13 @@ namespace GreenTime.Screens
                 // update picked up object if any
                 if (pickedObject != null)
                 {
-                    if (player.Flipped)
+                    if (player.Sprite.Flipped)
                     {
-                        pickedObject.position = player.position + (new Vector2(player.frameSize.X - playerHand[player.CurrentFrame].X, playerHand[player.CurrentFrame].Y));
+                        pickedObject.position = player.Sprite.position + (new Vector2(player.Sprite.frameSize.X - playerHand[player.Sprite.CurrentFrame].X, playerHand[player.Sprite.CurrentFrame].Y));
                         pickedObject.position.X -= pickedObject.texture.Width / 2;
                     }
                     else
-                        pickedObject.position = player.position + playerHand[player.CurrentFrame];
+                        pickedObject.position = player.Sprite.position + playerHand[player.Sprite.CurrentFrame];
 
                 }
 
@@ -333,7 +301,6 @@ namespace GreenTime.Screens
                 // update animations
                 UpdateAnimations(gameTime);
             }
-
         }
 
         public override void Draw(GameTime gameTime)
@@ -344,7 +311,7 @@ namespace GreenTime.Screens
 
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.GetState("is_in_past") == 100 ? sepiaShader : desaturateShader));
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? sepiaShader : desaturateShader));
 
             // game objects
             foreach (Sprite s in visibleObjects)
@@ -352,8 +319,8 @@ namespace GreenTime.Screens
 
             // player
             player.Draw(spriteBatch, new Color((byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, 255 - ((byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERROUND) * 2.55))));
-            if (StateManager.Instance.GetState("is_in_past") == 0)
-                player_other.Draw(spriteBatch, new Color((byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, (byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERROUND) * 2.55)));
+            //if (StateManager.Instance.GetState("is_in_past") == 0)
+            //    player_other.Draw(spriteBatch, new Color((byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERGREEN) * 0.64f), 255, 255, (byte)(StateManager.Instance.GetState(StateManager.STATE_PLAYERROUND) * 2.55)));
 
             // picked up object if any
             if (pickedObject != null)
@@ -417,105 +384,109 @@ namespace GreenTime.Screens
 
             if (input.IsPauseGame() || gamePadDisconnected)
             {
-                LevelManager.Instance.PlayerPosition = player.position;    // update position at this point in case of saving
                 ScreenManager.AddScreen(new PauseScreen());
             }
             else if (this.IsActive && this.TransitionPosition == 0 && playerFading == 0)
             {
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
-                if (input.IsMenuSelect() && interactingObject != null
-                    && (pickedObject == null || (pickedObject != null && interactingObject.interaction.callback == "drop"))
-                    && (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 || LevelManager.Instance.CurrentLevel.name.Equals("bedroom") || LevelManager.Instance.CurrentLevel.name.Equals("kitchen"))
-                    && (StateManager.Instance.GetState("progress") != 100 || (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState("progress") == 100)))
+                if (interactingObject != null)
                 {
-                    // Handling callbacks (aka special interactions)
-                    if (!String.IsNullOrEmpty(interactingObject.interaction.callback))
+                    if (input.IsMenuSelect()
+                        && (pickedObject == null || (pickedObject != null && interactingObject.interaction.callback == "drop"))
+                        && (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 || LevelManager.Instance.CurrentLevel.name.Equals("bedroom") || LevelManager.Instance.CurrentLevel.name.Equals("kitchen"))
+                        && (StateManager.Instance.GetState("progress") != 100 || (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState("progress") == 100)))
                     {
-                        switch (interactingObject.interaction.callback)
+                        // Handling callbacks (aka special interactions)
+                        if (!String.IsNullOrEmpty(interactingObject.interaction.callback))
                         {
-                            case "news":
-                                ScreenManager.AddScreen(new NewsScreen());
-                                break;
-                            case "pickup":
-                                PickupObject(interactingObject);
-                                break;
-                            case "drop":
-                                DropObject(interactingObject);
-                                break;
+                            switch (interactingObject.interaction.callback)
+                            {
+                                case "news":
+                                    ScreenManager.AddScreen(new NewsScreen());
+                                    break;
+                                case "pickup":
+                                    PickupObject(interactingObject);
+                                    break;
+                                case "drop":
+                                    DropObject(interactingObject);
+                                    break;
+                            }
+                        }
+                        // Handling talking
+                        if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
+                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true));
+
+                        // Handling affected states
+                        if (interactingObject.interaction.affectedStates != null)
+                        {
+                            StateManager.Instance.ModifyStates(interactingObject.interaction.affectedStates);
+                            LoadGameObjects();
                         }
                     }
-                    // Handling talking
-                    if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
-                        ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true));
-
-                    // Handling affected states
-                    if (interactingObject.interaction.affectedStates != null)
+                    // check for time warp button
+                    else if (input.IsReverseTime() && StateManager.Instance.CanTimeTravel())
                     {
-                        StateManager.Instance.ModifyStates(interactingObject.interaction.affectedStates);
-                        LoadGameObjects();
-                    }
-                }
-                // check for time warp button
-                else if (input.IsReverseTime() && interactingObject != null && StateManager.Instance.GetState("progress") != 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 50)
-                {
-                    // transition into past
-                    if (!String.IsNullOrEmpty(interactingObject.interaction.transition))
-                    {
-                        LevelManager.Instance.TransitionPast(interactingObject.interaction.transition);
-                        LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
-                        this.transition = TransitionType.ToPast;
-                        TransitionOffTime = TimeSpan.FromSeconds(2.0f);
+                        // transition into past
+                        if (!String.IsNullOrEmpty(interactingObject.interaction.transition))
+                        {
+                            LevelManager.Instance.MovePast(interactingObject.interaction.transition);
+                            LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
+                            this.transition = TransitionType.ToPast;
+                            TransitionOffTime = TimeSpan.FromSeconds(2.0f);
+                        }
                     }
                 }
 
+                // TEST CODE: D key advances the day
                 if (keyboardState.IsKeyDown(Keys.D))
                 {
                     StateManager.Instance.AdvanceDay();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
 
-                // move the player position.
-                Vector2 movement = Vector2.Zero;
+                // Check movement keys and move the player
+                #region Movement
+                float movement = 0.0f;
 
                 if (keyboardState.IsKeyDown(Keys.Left))
                 {
-                    player.Flipped = true;  // flip player
-                    movement.X--;
+                    player.faceLeft();
+                    --movement;
                 }
 
                 if (keyboardState.IsKeyDown(Keys.Right))
                 {
-                    player.Flipped = false;
-                    movement.X++;
+                    player.faceRight();
+                    ++movement;
                 }
 
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
+                // Checking gamepad controls only if we have one
+                if (input.GamePadWasConnected)
+                {
+                    movement += gamePadState.ThumbSticks.Left.X;
+                    if (movement != 0)
+                        movement /= Math.Abs(movement);
+                }
 
                 /* uncomment this if you wanna be shufflin'
                 if (keyboardState.IsKeyDown(Keys.Space))
-                    movement.X = 0;
+                    movement = 0;
                 
-                player.Position += movement * -2;
+                player.move( movement * -2 );
                 */
 
-                player.position += movement * 5;
+                player.move(movement * 5);
 
                 // play walk animation if moving
-                if (movement.X != 0)
-                {
-                    if (!player.CurrentlyPlaying("walk"))
-                        player.PlayAnimation("walk");
-                }
+                if (movement != 0)
+                    player.Sprite.PlayAnimation("walk");
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
-                {
-                    if (!player.CurrentlyPlaying("idle"))
-                        player.PlayAnimation("idle");
-                }
+                    player.Sprite.PlayAnimation("idle");
+                #endregion
+            }
+            else
+            {
+                player.Sprite.PlayAnimation("idle");
             }
         }
         #endregion
@@ -564,9 +535,9 @@ namespace GreenTime.Screens
         /// </summary>
         private void CheckPastPresentState()
         {
-            if (StateManager.Instance.ShouldReturnToPresent() && LevelManager.Instance.LastPresentLevel != null)
+            if ( StateManager.Instance.IsInPast() && StateManager.Instance.ShouldReturnToPresent() && LevelManager.Instance.LastPresentLevel != null)
             {
-                LevelManager.Instance.TransitionPresent();
+                //LevelManager.Instance.MovePresent();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPast));
                 this.transition = TransitionType.ToPresent;
                 TransitionOffTime = TimeSpan.FromSeconds(2.0f);
@@ -584,21 +555,21 @@ namespace GreenTime.Screens
         private void CheckTransitionBoundaries()
         {
             // If we're trying to move in a direction but there's no level there, we need to stop
-            if (player.position.X + SettingsManager.PLAYER_WIDTH >= SettingsManager.GAME_WIDTH
-                && !LevelManager.Instance.CanTransitionRight())
+            if (player.Position.X + SettingsManager.PLAYER_WIDTH >= SettingsManager.GAME_WIDTH
+                && !LevelManager.Instance.CanMoveRight())
             {
-                player.position.X = SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH;
+                player.moveTo( SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH );
                 return;
             }
-            else if (player.position.X <= 0
-                     && !LevelManager.Instance.CanTransitionLeft())
+            else if (player.Position.X <= 0
+                     && !LevelManager.Instance.CanMoveLeft())
             {
-                player.position.X = 0;
+                player.moveTo( 0 );
                 return;
             }
 
             // if player moves outside the right boundary
-            if (player.position.X > SettingsManager.GAME_WIDTH)
+            if (player.Position.X > SettingsManager.GAME_WIDTH)
             {
                 // is it final room?
                 if (LevelManager.Instance.CurrentLevel.rightScreenName == "final_room")
@@ -606,7 +577,7 @@ namespace GreenTime.Screens
                     if (StateManager.Instance.GetState("progress") == 100)
                     {
                         // transition to the right
-                        LevelManager.Instance.TransitionRight();
+                        LevelManager.Instance.MoveRight();
                         LoadingScreen.Load(ScreenManager, false, new FinalScreen());
                     }
                     // let player go through whole 
@@ -631,15 +602,15 @@ namespace GreenTime.Screens
                         StateManager.Instance.SetState("just_went_out", 100);
 
                     // transition to the right
-                    LevelManager.Instance.TransitionRight();
+                    LevelManager.Instance.MoveRight();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
             }
             // if player moves outside left boundary
-            else if (player.position.X < -SettingsManager.PLAYER_WIDTH)
+            else if (player.Position.X < -SettingsManager.PLAYER_WIDTH)
             {
                 // transition to the left
-                LevelManager.Instance.TransitionLeft();
+                LevelManager.Instance.MoveLeft();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());
             }
         }
@@ -662,17 +633,17 @@ namespace GreenTime.Screens
                     //if( ( player.position.X - ( io.interaction.boundX + io.interaction.boundWidth ) )
                     //    * ( ( player.position.X + player.texture.Width ) - io.interaction.boundX ) <= 0 )
                     
-                    if (player.position.X >= io.interaction.boundX
-                        && player.position.X <= (io.interaction.boundX + io.interaction.boundWidth))
+                    if (player.Position.X >= io.interaction.boundX
+                        && player.Position.X <= (io.interaction.boundX + io.interaction.boundWidth))
                     {
                         interactingObject = io;
 
                         if (io.interaction.solid)
                         {
-                            if (player.position.X <= io.interaction.boundX + (io.interaction.boundWidth / 2))
-                                player.position.X = io.interaction.boundX;
+                            if (player.Position.X <= io.interaction.boundX + (io.interaction.boundWidth / 2))
+                                player.moveTo( io.interaction.boundX );
                             else
-                                player.position.X = io.interaction.boundX + io.interaction.boundWidth;
+                                player.moveTo( io.interaction.boundX + io.interaction.boundWidth );
                         }
                     }
                 }

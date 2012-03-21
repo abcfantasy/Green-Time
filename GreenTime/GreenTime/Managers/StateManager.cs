@@ -12,27 +12,29 @@ namespace GreenTime.Managers
         public static readonly int TOTAL_PUZZLES = 4;
 
         // state to mark game should transition back to present
-        public static readonly string STATE_BACKTOPRESENT = "back_to_present";
+        public const string STATE_BACKTOPRESENT = "back_to_present";
         // state to keep track of the indoor puzzles and whether or not they're solved
-        public static readonly string STATE_INDOOR = "indoor_puzzle";
+        public const string STATE_INDOOR = "indoor_puzzle";
         // state to keep track of player status (0 = grey square head; 50 = grey round head; 100 = green round head;)
-        public static readonly string STATE_PLAYERSTATUS = "player_status";
+        public const string STATE_PLAYERSTATUS = "player_status";
         // state to keep track of how green the player is (0 = grey)
-        public static readonly string STATE_PLAYERGREEN = "player_green";
+        public const string STATE_PLAYERGREEN = "player_green";
         // state to mark that player should fade from grey to green
-        public static readonly string STATE_PLAYERFADETOGREEN = "player_fadeToGreen";
+        public const string STATE_PLAYERFADETOGREEN = "player_fadeToGreen";
         // state to mark that player should fade from green to grey
-        public static readonly string STATE_PLAYERFADETOGREY = "player_fadeToGrey";
+        public const string STATE_PLAYERFADETOGREY = "player_fadeToGrey";
         // state to keep track of how faded into the sprite the player is
-        public static readonly string STATE_PLAYERROUND = "player_round";
+        public const string STATE_PLAYERROUND = "player_round";
         // state to mark that player should fade into the round head
-        public static readonly string STATE_PLAYERFADETOROUND = "player_fadeToRound";
+        public const string STATE_PLAYERFADETOROUND = "player_fadeToRound";
         // state to mark that player should fade into the square head
-        public static readonly string STATE_PLAYERFADETOSQUARE = "player_fadeToSquare";
+        public const string STATE_PLAYERFADETOSQUARE = "player_fadeToSquare";
         // state to mark if game is being loaded from a saved game
-        public static readonly string STATE_LOAD = "game_load";
+        public const string STATE_LOAD = "game_load";
         // state to keep track of which day it is
-        public static readonly string STATE_DAY = "day";
+        public const string STATE_DAY = "day";
+        // state that tells us whether or not we're in the past
+        public const string STATE_IN_PAST = "state_in_past";
         #endregion
 
         #region Fields
@@ -50,7 +52,42 @@ namespace GreenTime.Managers
             {
                 states = value;
             }
+        }       
+        #endregion
+
+        #region Time Travelling        
+        public bool CanTimeTravel()
+        {
+            // Can only do timetravelling if you haven't finished the game
+            // And if you are green and round (daily puzzle completed)
+            return ( GetState("progress") != 100 && GetState( STATE_PLAYERSTATUS ) > 50 );
         }
+
+        public bool IsInPast()
+        {
+            return (GetState(STATE_IN_PAST) == 100);
+        }
+
+        public void GoToPast()
+        {
+            SetState(STATE_IN_PAST, 100);
+        }
+
+        public void GoToPresent()
+        {
+            SetState(STATE_IN_PAST, 0);
+        }
+
+        public bool ShouldReturnToPresent()
+        {
+            return GetState(STATE_BACKTOPRESENT) == 100;
+        }
+
+        public void ResetReturnToPresent()
+        {
+            SetState(STATE_BACKTOPRESENT, 0);
+        }
+
         #endregion
 
         #region Public Methods
@@ -101,29 +138,12 @@ namespace GreenTime.Managers
         }
 
         /// <summary>
-        /// Checks the global state 'back_to_present' to see if player should be returned to present (100 = return)
-        /// </summary>
-        /// <returns></returns>
-        public bool ShouldReturnToPresent()
-        {
-            return GetState(STATE_BACKTOPRESENT) == 100;
-        }
-
-        /// <summary>
         /// Checks the global state 'advance_day' to see if player should advance the day
         /// </summary>
         /// <returns></returns>
         public bool ShouldAdvanceDay()
         {
             return GetState("advance_day") == 100;
-        }
-
-        /// <summary>
-        /// Resets the state to return to present
-        /// </summary>
-        public void ResetReturnToPresent()
-        {
-            SetState(STATE_BACKTOPRESENT, 0);
         }
 
         /// <summary>

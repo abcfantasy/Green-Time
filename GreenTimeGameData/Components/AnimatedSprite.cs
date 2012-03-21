@@ -74,6 +74,8 @@ namespace GreenTimeGameData.Components
         /// <param name="name"></param>
         public void PlayAnimation(string name)
         {
+            if (CurrentlyPlaying(name))
+                return;
             currentFrameSet = name;
             paused = false;
             Reset();

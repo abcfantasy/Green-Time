@@ -27,62 +27,44 @@ namespace GreenTime.Managers
 
         #region Fields
         private ContentManager content;
-        private Vector2 playerPosition = new Vector2( 0, 250 );
         private Sprite pickedObject;    // currently picked up object - save it here to know when changing scenes
         private Level currentLevel = null;
         private Level lastLevel = null;     // the level the player was in before going to the past
 
         private Dictionary<String, Level> levels = new Dictionary<string,Level>();
         private Chat[] chats;
+
+        private Player player;
+        private float startPosition = 0.0f;
         #endregion
 
         #region Properties
-        public Vector2 PlayerPosition
+        public Player Player
         {
-            get
-            {
-                return playerPosition;
-            }
-            set
-            {
-                playerPosition = value;
-            }
+            get { return player; }
         }
 
         public Sprite PickedObject
         {
-            get
-            {
-                return pickedObject;
-            }
-            set
-            {
-                pickedObject = value;
-            }
+            get { return pickedObject; }
+            set { pickedObject = value; }
         }
 
         public Level CurrentLevel
         {
-            get
-            {
-                return currentLevel;
-            }
-            set
-            {
-                currentLevel = value;
-            }
+            get { return currentLevel; }
+            set { currentLevel = value; }
         }
 
         public Level LastPresentLevel
         {
-            get
-            {
-                return lastLevel;
-            }
-            set
-            {
-                lastLevel = value;
-            }
+            get { return lastLevel; }
+            set { lastLevel = value; }
+        }
+
+        public float StartPosition
+        {
+            get { return startPosition; }
         }
         #endregion
 
@@ -93,15 +75,9 @@ namespace GreenTime.Managers
         public void LoadAllLevels( ContentManager content )
         {
             this.content = content;
-            /*string[] levelsList = content.Load<String[]>("levels_list");
-
-            Level[] levelArray = content.Load<Level[]>("levels");
-            for (int i = 0; i < levelArray.Length; i++)
-            {
-                levels.Add(levelArray[i].name, levelArray[i]);
-            }*/
+            player = new Player(content);
             chats = content.Load<Chat[]>("chats");
-            StateManager.Instance.AdvanceDay();
+            StateManager.Instance.AdvanceDay();            
         }
 
         public void GoTo( string level )
@@ -115,15 +91,15 @@ namespace GreenTime.Managers
         public void GoHome()
         {
             GoTo( HOME );
-            playerPosition = new Vector2(250, 250);
+            startPosition = 250.0f;
         }
 
-        public Boolean CanTransitionRight()
+        public Boolean CanMoveRight()
         {
             return !currentLevel.rightScreenName.Equals("");
         }
 
-        public Boolean CanTransitionLeft()
+        public Boolean CanMoveLeft()
         {
             return !currentLevel.leftScreenName.Equals("");
         }
@@ -131,51 +107,46 @@ namespace GreenTime.Managers
         /// <summary>
         /// Moves the level state to one screen to the right
         /// </summary>
-        public void TransitionRight()
+        public void MoveRight()
         {
             // reset loaded state (only happens on the starting screen)
             StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
-
             GoTo(currentLevel.rightScreenName);
-
-            // set player position
-            this.playerPosition = new Vector2(0, 250);
+            startPosition = 0.0f;
         }
 
         /// <summary>
         /// Moves the level state to one screen to the left
         /// </summary>
-        public void TransitionLeft()
+        public void MoveLeft()
         {
             // reset loaded state (only happens on the starting screen)
             StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
-
             GoTo(currentLevel.leftScreenName);
-
-            // set player position
-            this.playerPosition = new Vector2(SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH, 250);
+            startPosition = SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH;           
         }
 
         /// <summary>
         /// Moves the level state to a past transition
         /// </summary>
         /// <param name="transitionIndex"></param>
-        public void TransitionPast( string transitionIndex )
+        public void MovePast( string transitionIndex )
         {
             // save current level
             lastLevel = currentLevel;
 
             GoTo(transitionIndex);
 
-            StateManager.Instance.SetState("is_in_past", 100);
-
+            StateManager.Instance.GoToPast();
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
+            startPosition = player.Position.X;
         }
 
-        public void TransitionPresent()
+        public void MovePresent()
         {
             // reset back to present state
             StateManager.Instance.ResetReturnToPresent();
+            StateManager.Instance.GoToPresent();
 
             // modify current level
             lastLevel = null;
@@ -183,6 +154,7 @@ namespace GreenTime.Managers
             StateManager.Instance.AdvanceDay();
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
+            startPosition = player.Position.X;
         }
 
         /// <summary>
