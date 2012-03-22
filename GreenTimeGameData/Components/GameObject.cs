@@ -8,19 +8,17 @@ namespace GreenTimeGameData.Components
 {
     public class GameObject
     {
-        #region Properties
-        /// <summary>
-        /// sprite graphic for the object (null if no graphic)
-        /// </summary>
+        #region Fields
+
+        // Graphic representation of the object
         [ContentSerializer(Optional = true)]
         public Sprite sprite = null;
 
-        /// <summary>
-        /// game states that the object relies on
-        /// </summary>
+        // Game states where the object is visible
         [ContentSerializer(ElementName = "showIf", CollectionItemName = "state", Optional = true)]
         public State[] dependencies = null;
 
+        // Interaction object that determines how the object reacts when we interact with it
         [ContentSerializer(ElementName = "onInteract", Optional = true)]
         public Interaction interaction = null;
 

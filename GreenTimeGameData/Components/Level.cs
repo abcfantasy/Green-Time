@@ -8,7 +8,7 @@ namespace GreenTimeGameData.Components
 {
     public class Level
     {
-        #region Properties
+        #region Fields
         /// <summary>
         /// the name of the level
         /// </summary>

@@ -10,12 +10,11 @@
     <framesPerSecond>15</framesPerSecond>
     <animations>
       <frameSet>
-        <name>walk</name>
-        <frames>0 1 2 3 4 5 6 7 8 9</frames>
+        <frames>3</frames>
       </frameSet>
       <frameSet>
-        <name>idle</name>
-        <frames>3</frames>
+        <name>walk</name>
+        <frames>0 1 2 3 4 5 6 7 8 9</frames>
       </frameSet>
     </animations>
   </Asset>

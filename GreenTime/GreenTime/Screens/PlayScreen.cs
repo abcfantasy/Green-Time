@@ -340,6 +340,7 @@ namespace GreenTime.Screens
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (interactingObject != null)
                 {
+                    #region Action Button
                     if (input.IsMenuSelect()
                         && (pickedObject == null || (pickedObject != null && interactingObject.interaction.callback == "drop"))
                         && (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 || LevelManager.Instance.CurrentLevel.name.Equals("bedroom") || LevelManager.Instance.CurrentLevel.name.Equals("kitchen"))
@@ -372,7 +373,8 @@ namespace GreenTime.Screens
                             LoadGameObjects();
                         }
                     }
-                    // check for time warp button
+                    #endregion                    
+                    #region Time Warp Button
                     else if (input.IsReverseTime() && StateManager.Instance.CanTimeTravel())
                     {
                         // transition into past
@@ -384,34 +386,27 @@ namespace GreenTime.Screens
                             TransitionOffTime = TimeSpan.FromSeconds(2.0f);
                         }
                     }
+                    #endregion
                 }
 
                 // TEST CODE: D key advances the day
+                #region Advance Day
                 if (keyboardState.IsKeyDown(Keys.D))
                 {
                     StateManager.Instance.AdvanceDay();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
+                #endregion
 
                 // Check movement keys and move the player
                 #region Movement
                 float movement = 0.0f;
 
-                if (keyboardState.IsKeyDown(Keys.Left))
-                {
-                    player.faceLeft();
-                    --movement;
-                }
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                {
-                    player.faceRight();
-                    ++movement;
-                }
+                if (keyboardState.IsKeyDown(Keys.Left))     --movement;                
+                if (keyboardState.IsKeyDown(Keys.Right))    ++movement;
 
                 // Checking gamepad controls only if we have one
-                if (input.GamePadWasConnected)
-                {
+                if (input.GamePadWasConnected) {
                     movement += gamePadState.ThumbSticks.Left.X;
                     if (movement != 0)
                         movement /= Math.Abs(movement);
@@ -423,19 +418,19 @@ namespace GreenTime.Screens
                 
                 player.move( movement * -2 );
                 */
-
-                player.move(movement * 5);
-
-                // play walk animation if moving
-                if (movement != 0)
-                    player.Sprite.PlayAnimation("walk");
+               
+                // Update movement if we have any
+                if (movement != 0.0f) {
+                    player.move(movement * 5);
+                    player.walk();
+                }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
-                    player.Sprite.PlayAnimation("idle");
+                    player.idle();
                 #endregion
             }
             else
             {
-                player.Sprite.PlayAnimation("idle");
+                player.Sprite.Play( FrameSet.IDLE );
             }
         }
         #endregion

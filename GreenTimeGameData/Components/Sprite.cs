@@ -11,41 +11,32 @@ namespace GreenTimeGameData.Components
 {
     public class Sprite
     {
-        #region Properties
+        #region Fields
 
-        [ContentSerializerIgnore]
-        public Texture2D texture;
-
-        /// <summary>
-        /// the texture name of the sprite
-        /// </summary>
+        // The name of the texture
         [ContentSerializer(ElementName = "texture")]
         public string textureName;
 
-        /// <summary>
-        /// the x position
-        /// </summary>
+        // The actual texture that the sprite will use
+        [ContentSerializerIgnore]
+        public Texture2D texture;
+
+        // Position in the scene
         public Vector2 position;
 
-        /// <summary>
-        /// the sprite's layer depth
-        /// </summary>        
+        // The sprite's layer depth
         public float layer;
         
-        /// <summary>
-        /// whether or not the object is affected by the desaturation shader
-        /// </summary>
+        // Whether or not the object is affected by the desaturation shader
         [ContentSerializer(Optional = true)]
         public bool shaded = true;
 
-        /// <summary>
-        /// the sprite's scale factor
-        /// </summary>
+        // The sprite's scale factor
         [ContentSerializer(Optional = true )]
         public float scale = 1.0f;
         #endregion
 
-        #region Public Methods
+        #region Initialization
         public virtual void Load(ContentManager content)
         {
             texture = content.Load<Texture2D>(textureName);

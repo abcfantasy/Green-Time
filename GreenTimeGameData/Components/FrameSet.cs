@@ -8,18 +8,19 @@ namespace GreenTimeGameData.Components
 {
     public class FrameSet
     {
-        #region Properties
-        [ContentSerializer(Optional = true)]
-        public string name = "default";
+        #region Constants
+        // Constant string that represents the default, idle animation
+        public const string IDLE = "idle";
+        #endregion
 
-        /// <summary>
-        /// The list of frames to play
-        /// </summary>
+        #region Fields
+        [ContentSerializer(Optional = true)]
+        public string name = IDLE;
+
+        // The list of frames to play
         public int[] frames;
 
-        /// <summary>
-        /// The states this animation depends on to play
-        /// </summary>
+        // The states this animation depends on to play
         [ContentSerializer(ElementName = "playIf", CollectionItemName = "state", Optional = true)]
         public State[] dependencies = null;
         #endregion
