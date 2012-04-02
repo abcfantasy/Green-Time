@@ -60,9 +60,13 @@ namespace GreenTime.Screens
         private Effect sepiaShader;
 
         // HUD states
-        private Texture2D hud_states_green_round;
-        private Texture2D hud_states_grey_round;
-        private Texture2D hud_states_grey_square;
+        private Texture2D hud_states;
+        //private Texture2D hud_states_green_round;
+        //private Texture2D hud_states_grey_round;
+        //private Texture2D hud_states_grey_square;
+
+        // HUD time travel
+        private Texture2D hud_timetravel;
 
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
@@ -197,9 +201,28 @@ namespace GreenTime.Screens
 
         public void LoadHUDObjects()
         {
-            hud_states_green_round = content.Load<Texture2D>("hud/states_green_round");
-            hud_states_grey_round = content.Load<Texture2D>("hud/states_grey_round");
-            hud_states_grey_square = content.Load<Texture2D>("hud/states_grey_square");
+            int playerState = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
+
+            switch (playerState)
+            {
+                case 0:
+                    hud_states = content.Load<Texture2D>("hud/states_grey_square");
+                    break;
+                case 50:
+                    hud_states = content.Load<Texture2D>("hud/states_grey_round");
+                    break;
+                case 100:
+                    hud_states = content.Load<Texture2D>("hud/states_green_round");
+                    break;
+            }
+            //hud_states_green_round = content.Load<Texture2D>("hud/states_green_round");
+            //hud_states_grey_round = content.Load<Texture2D>("hud/states_grey_round");
+            //hud_states_grey_square = content.Load<Texture2D>("hud/states_grey_square");
+
+            if (playerState < 100)
+                hud_timetravel = content.Load<Texture2D>("hud/timetravel_disabled");
+            else
+                hud_timetravel = content.Load<Texture2D>("hud/timetravel_enabled");
         }
         /// <summary>
         /// Unload graphics content used by the game
@@ -277,19 +300,9 @@ namespace GreenTime.Screens
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? sepiaShader : desaturateShader));
 
             // hud elements
-            int playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
-            switch (playerStatus)
-            {
-                case 0:
-                    spriteBatch.Draw(hud_states_grey_square, new Vector2(1140, 15), new Color( 64, 255, 255, 255 ) );
-                    break;
-                case 50:
-                    spriteBatch.Draw(hud_states_grey_round, new Vector2(1140, 15), new Color(64, 255, 255, 255));
-                    break;
-                case 100:
-                    spriteBatch.Draw(hud_states_green_round, new Vector2(1140, 15), new Color(64, 255, 255, 255));
-                    break;
-            }
+            spriteBatch.Draw(hud_states, new Vector2(1140, 15), new Color( 64, 255, 255, 255 ) );
+            spriteBatch.Draw(hud_timetravel, new Vector2(15, 15), new Color(64, 255, 255, 255));
+
             // game objects
             foreach (Sprite s in visibleObjects)
                 s.Draw(spriteBatch, new Color((s.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
