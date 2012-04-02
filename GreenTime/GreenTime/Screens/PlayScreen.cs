@@ -59,6 +59,11 @@ namespace GreenTime.Screens
         private Effect desaturateShader;
         private Effect sepiaShader;
 
+        // HUD states
+        private Texture2D hud_states_green_round;
+        private Texture2D hud_states_grey_round;
+        private Texture2D hud_states_grey_square;
+
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
         // When it's used, it is cast into a byte
@@ -120,6 +125,7 @@ namespace GreenTime.Screens
 
             LoadGameObjects();
 
+            LoadHUDObjects();
             // A real game would probably have more content than this sample, so
             // it would take longer to load. We simulate that by delaying for a
             // while, giving you a chance to admire the beautiful loading screen.
@@ -189,6 +195,12 @@ namespace GreenTime.Screens
             }
         }
 
+        public void LoadHUDObjects()
+        {
+            hud_states_green_round = content.Load<Texture2D>("hud/states_green_round");
+            hud_states_grey_round = content.Load<Texture2D>("hud/states_grey_round");
+            hud_states_grey_square = content.Load<Texture2D>("hud/states_grey_square");
+        }
         /// <summary>
         /// Unload graphics content used by the game
         /// </summary>
@@ -264,6 +276,20 @@ namespace GreenTime.Screens
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? sepiaShader : desaturateShader));
 
+            // hud elements
+            int playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
+            switch (playerStatus)
+            {
+                case 0:
+                    spriteBatch.Draw(hud_states_grey_square, new Vector2(1140, 15), new Color( 64, 255, 255, 255 ) );
+                    break;
+                case 50:
+                    spriteBatch.Draw(hud_states_grey_round, new Vector2(1140, 15), new Color(64, 255, 255, 255));
+                    break;
+                case 100:
+                    spriteBatch.Draw(hud_states_green_round, new Vector2(1140, 15), new Color(64, 255, 255, 255));
+                    break;
+            }
             // game objects
             foreach (Sprite s in visibleObjects)
                 s.Draw(spriteBatch, new Color((s.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));

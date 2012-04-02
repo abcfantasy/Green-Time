@@ -10,11 +10,11 @@ namespace GreenTime
         /// </summary>
         static void Main(string[] args)
         {
-            //using (Game game = new Game())
-            //{
-            //    game.Run();
-            //}
-            try
+            using (Game game = new Game())
+            {
+                game.Run();
+            }
+            /*try
             {
                 using (Game game = new Game())
                     game.Run();
@@ -23,7 +23,7 @@ namespace GreenTime
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.ToString());
-            }
+            }*/
         }
     }
 #endif
