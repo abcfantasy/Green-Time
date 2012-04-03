@@ -478,6 +478,7 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
+            /*
             int playerStatus;
             if (LevelManager.Instance.CurrentLevel.name.Equals("outdoor") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
             {
@@ -499,6 +500,7 @@ namespace GreenTime.Screens
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Max(playerStatus - 50, 0));                   
                 }
             }
+             */
         }
         /// <summary>
         /// Checks to see if the screen should transition to the present
@@ -567,12 +569,21 @@ namespace GreenTime.Screens
                 }
                 else
                 {
-                    if (LevelManager.Instance.CurrentLevel.name == "kitchen")
-                        StateManager.Instance.SetState("just_went_out", 100);
-
-                    // transition to the right
-                    LevelManager.Instance.MoveRight();
-                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    // if player moves outside, and player needs to transition - show state transition screen
+                    if (LevelManager.Instance.CurrentLevel.name == "kitchen" && StateManager.Instance.GetState("progress") != 100 &&
+                       ((StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) != 100) ||     // transform better
+                         (StateManager.Instance.GetState(StateManager.STATE_INDOOR) != 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0)))         // transform worse
+                    {
+                        //StateManager.Instance.SetState("just_went_out", 100);
+                        LevelManager.Instance.MoveRight();
+                        LoadingScreen.Load(ScreenManager, false, (SettingsManager.GAME_WIDTH / 2.0f) - SettingsManager.PLAYER_WIDTH, new StateTransitionScreen());
+                    }
+                    else
+                    {
+                        // transition to the right
+                        LevelManager.Instance.MoveRight();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
                 }
             }
             // if player moves outside left boundary

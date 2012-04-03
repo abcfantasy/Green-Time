@@ -143,6 +143,7 @@
     <Compile Include="Screens\PastPresentTransitionScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
+    <Compile Include="Screens\StateTransitionScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
