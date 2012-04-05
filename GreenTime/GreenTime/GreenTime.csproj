@@ -131,6 +131,7 @@
     <Compile Include="Screens\BackgroundScreen.cs" />
     <Compile Include="Screens\ChatScreen.cs" />
     <Compile Include="Screens\AnswerEntry.cs" />
+    <Compile Include="Screens\ComputerScreen.cs" />
     <Compile Include="Screens\FinalScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Screens\PastPresentTransitionScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
+    <Compile Include="Screens\SearchEntry.cs" />
     <Compile Include="Screens\StateTransitionScreen.cs" />
   </ItemGroup>
   <ItemGroup>
