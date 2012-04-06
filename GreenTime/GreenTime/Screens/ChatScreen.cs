@@ -22,6 +22,15 @@ namespace GreenTime.Screens
 
         private Chat chat;
         Texture2D gradientTexture;
+        Texture2D chatBubble;
+        Texture2D chatArrow;
+        SpriteFont chatFont;
+
+        private Vector2 playerPosition;
+        private Vector2 npcPosition;
+
+        private bool npcSpeaking;
+        private double optionArrowsBlinking = 0.0;
         #endregion
 
         #region Initialization
@@ -38,8 +47,24 @@ namespace GreenTime.Screens
                 TransitionOnTime = TimeSpan.FromSeconds(0);
             TransitionOffTime = TimeSpan.FromSeconds(0.2);
 
+            InitializeChat(chat);
+        }
+
+        public ChatScreen(Chat chat, bool transition, Vector2 playerPosition, Vector2 npcPosition)
+            : this(chat, transition)
+        {
+            this.playerPosition = playerPosition;
+            this.npcPosition = npcPosition;
+        }
+
+        private void InitializeChat(Chat chat)
+        {
             this.chat = chat;
             currentText = chat.Text;
+
+            answerEntries.Clear();
+
+            npcSpeaking = true;
 
             // add any answers if available
             if (chat.answers != null)
@@ -60,6 +85,9 @@ namespace GreenTime.Screens
             ContentManager content = ScreenManager.Game.Content;
 
             gradientTexture = content.Load<Texture2D>("gradient");
+            chatBubble = content.Load<Texture2D>("chatBubble");
+            chatArrow = content.Load<Texture2D>("chat_arrow");
+            chatFont = content.Load<SpriteFont>("chatfont");
         }
         #endregion
 
@@ -106,6 +134,13 @@ namespace GreenTime.Screens
         /// </summary>
         protected virtual void OnSelectEntry(int entryIndex)
         {
+            // show player options
+            if (npcSpeaking && answerEntries != null )
+            {
+                npcSpeaking = false;
+                return;
+            }
+
             // change states if any
             if( chat.affectedStates != null )
                 StateManager.Instance.ModifyStates(chat.affectedStates);
@@ -113,9 +148,7 @@ namespace GreenTime.Screens
             // if answers available, check chosen answer
             if (answerEntries.Count > 0)
             {
-                ChatScreen s = new ChatScreen(LevelManager.Instance.GetChat(chat.answers[entryIndex].ResponseIndex), false);
-                ScreenManager.AddScreen(s);
-                ScreenManager.RemoveScreen(this);
+                InitializeChat(LevelManager.Instance.GetChat(chat.answers[entryIndex].ResponseIndex));
             }
 
             // otherwise, just close this screen
@@ -132,12 +165,12 @@ namespace GreenTime.Screens
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             // Update each nested MenuEntry object.
-            for (int i = 0; i < answerEntries.Count; i++)
-            {
-                bool isSelected = IsActive && (i == selectedEntry);
+            //for (int i = 0; i < answerEntries.Count; i++)
+            //{
+            //    bool isSelected = IsActive && (i == selectedEntry);
 
-                answerEntries[i].Update(isSelected, gameTime);
-            }
+            //    answerEntries[i].Update(isSelected, gameTime);
+            //}
         }
 
         /// <summary>
@@ -146,7 +179,7 @@ namespace GreenTime.Screens
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            SpriteFont font = ScreenManager.Font;
+            //SpriteFont font = ScreenManager.Font;
 
             // Darken down any other screens that were drawn beneath the popup.
             ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
@@ -154,7 +187,7 @@ namespace GreenTime.Screens
             // Center the message text in the viewport.
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-            Vector2 textSize = font.MeasureString(currentText);
+            Vector2 textSize = chatFont.MeasureString(currentText);
             Vector2 textPosition = (viewportSize - textSize) / 2;
             textPosition.Y -= 256;
 
@@ -172,36 +205,88 @@ namespace GreenTime.Screens
 
             spriteBatch.Begin();
 
-            // Draw the background rectangle.
-            spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
-
-            // Draw the message box text.
-            spriteBatch.DrawString(font, currentText, textPosition, color);
-
-            // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(0f, textPosition.Y + textSize.Y);
-
-            // update each menu entry's location in turn
-            for (int i = 0; i < answerEntries.Count; i++)
+            if (npcSpeaking)
             {
-                AnswerEntry answerEntry = answerEntries[i];
-
-                // move down for the next entry the size of this entry
-                position.Y += ScreenManager.Font.LineSpacing;
-
-                // each entry is to be centered horizontally
-                position.X = 50; // -(viewportSize.X / 3);
-
-                // set the entry's position
-                answerEntry.Position = position;
-
-
-                // draw
-                bool isSelected = IsActive && (i == selectedEntry);
-                answerEntry.Draw(this, isSelected, gameTime);
+                // draw npc bubble
+                DrawText(spriteBatch, chatFont, npcPosition - new Vector2(0.0f, 200.0f), 300.0f, currentText);
+            }
+            else
+            {
+                // draw player bubble
+                if (answerEntries != null && answerEntries.Count > 0 )
+                {
+                    // if there is 1 answer, draw simple text without arrows blinking
+                    if (answerEntries.Count == 1)
+                        DrawText(spriteBatch, chatFont, playerPosition, 300.0f, answerEntries[selectedEntry].Text);
+                    else
+                        DrawAnswer(gameTime, spriteBatch, chatFont, playerPosition, 300.0f, answerEntries[selectedEntry].Text);
+                }
             }
 
             spriteBatch.End();
+        }
+
+        public void DrawText(SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
+        {
+            List<string> lines = WrapText(font, text, width);
+            Vector2 currentPosition = topLeftCorner;
+
+            spriteBatch.Draw(chatBubble, topLeftCorner, Color.White);
+
+            foreach (string line in lines)
+            {
+                spriteBatch.DrawString(font, line, currentPosition + new Vector2( 30.0f, 35.0f ), Color.Black, 0.0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.5f);
+                currentPosition.Y += ( font.LineSpacing / 2 );
+            }
+        }
+
+        public void DrawAnswer(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
+        {
+            DrawText(spriteBatch, font, topLeftCorner, width, text);
+
+            // update blinking counter
+            optionArrowsBlinking += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (optionArrowsBlinking > 1000) optionArrowsBlinking = 0;
+
+            // draw blinking arrows
+            if (optionArrowsBlinking > 500)
+            {
+                spriteBatch.Draw(chatArrow, new Vector2( topLeftCorner.X + width - 55.0f, topLeftCorner.Y + chatBubble.Height - 70.0f), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
+                spriteBatch.Draw(chatArrow, new Vector2( topLeftCorner.X + width - 35.0f, topLeftCorner.Y + 40.0f), null, Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+            }
+        }
+
+        public List<string> WrapText(SpriteFont font, string text, float width)
+        {
+            List<string> lines = new List<string>();
+            string[] words = text.Split(' ');
+            string line = "";
+
+            foreach (string word in words)
+            {
+                if (word == words[0])
+                {
+                    line = word;
+                    continue;
+                }
+
+                if (font.MeasureString(line + " " + word).X > width)
+                {
+                    lines.Add(line);
+                    line = word;
+                }
+                else
+                {
+                    line += " " + word;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(line))
+            {
+                lines.Add(line);
+            }
+
+            return lines;
         }
         #endregion
     }

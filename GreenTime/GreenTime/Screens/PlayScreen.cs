@@ -376,9 +376,6 @@ namespace GreenTime.Screens
             }
             else if (this.IsActive && player.IsReady && this.TransitionPosition == 0)
             {
-                // TEST ONLY - ANDREW
-                if (input.IsMenuSelect()) ScreenManager.AddScreen(new ComputerScreen());
-
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (interactingObject != null)
                 {
@@ -407,7 +404,7 @@ namespace GreenTime.Screens
                         }
                         // Handling talking
                         if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
-                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true));
+                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true, player.Position, interactingObject.sprite.position));
 
                         // Handling affected states
                         if (interactingObject.interaction.affectedStates != null)
