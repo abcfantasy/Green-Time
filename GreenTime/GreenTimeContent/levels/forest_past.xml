@@ -97,35 +97,25 @@
 
       <!-- acorn seeding area -->
       <Item>
-        <showIf>
-          <state>
-            <name>acorn_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
         <onInteract>
           <boundX>0</boundX>
           <boundWidth>600</boundWidth>
           <text>Fertile soil</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>acorn_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>puzzle_acorn_solved</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>back_to_present</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <dropper>
+            <drops>
+              <Item>acorn</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>puzzle_acorn_solved</name>
+                <value>100</value>
+              </state>
+              <state>
+                <name>back_to_present</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
         </onInteract>
       </Item>
     </gameObjects>

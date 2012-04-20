@@ -156,7 +156,7 @@ namespace GreenTimeGameData.Components
         #endregion
 
         #region ICloneable
-        public object Clone()
+        new public object Clone()
         {
             return this.MemberwiseClone();
         }

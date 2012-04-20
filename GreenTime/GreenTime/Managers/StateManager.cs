@@ -139,9 +139,9 @@ namespace GreenTime.Managers
         /// </summary>
         /// <param name="states"></param>
         /// <returns></returns>
-        public bool CheckDependencies( State[] states )
+        public bool CheckDependencies( List<State> states )
         {
-            if (states == null || states.Length == 0)
+            if (states == null || states.Count == 0)
                 return true;
 
             bool satisfied;
@@ -163,11 +163,61 @@ namespace GreenTime.Managers
             return true;
         }
 
+        public bool AllTrue(List<State> states)
+        {
+            if (states == null || states.Count == 0)
+                return true;
+
+            bool satisfied;
+            int currentStateValue;
+
+            foreach (State s in states)
+            {
+                currentStateValue = GetState(s.name);
+                if (s.value != -1)
+                    satisfied = s.value == currentStateValue;
+                else if (s.minmax.X != -1 && s.minmax.Y != -1)
+                    satisfied = (s.minmax.X <= currentStateValue && currentStateValue <= s.minmax.Y);
+                else
+                    satisfied = false;
+
+                if (!satisfied)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool AnyTrue(List<State> states)
+        {
+            if (states == null || states.Count == 0)
+                return true;
+
+            bool satisfied;
+            int currentStateValue;
+
+            foreach (State s in states)
+            {
+                currentStateValue = GetState(s.name);
+                if (s.value != -1)
+                    satisfied = s.value == currentStateValue;
+                else if (s.minmax.X != -1 && s.minmax.Y != -1)
+                    satisfied = (s.minmax.X <= currentStateValue && currentStateValue <= s.minmax.Y);
+                else
+                    satisfied = false;
+
+                if (satisfied)
+                    return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Helper method to change one or more states
         /// </summary>
         /// <param name="states"></param>
-        public void ModifyStates(State[] states)
+        public void ModifyStates(List<State> states)
         {
             if (states == null) return;
             foreach (State s in states) {
@@ -186,15 +236,14 @@ namespace GreenTime.Managers
             SetState("news_taken", 0);
             //SetState("is_in_past", 0);
 
-            // reset other states (hardcoded!)
-            SetState("garbage1_picked", 0);
-            SetState("garbage2_picked", 0);
-            SetState("garbage3_picked", 0);
-            SetState("acorn_picked", 0);
-            SetState("item_picked", 0);
+            // The picked objects reset daily
+            List<State> toModify = new List<State>();
+            foreach (string s in states.Keys)
+                if (s.EndsWith("_picked"))
+                    toModify.Add(new State(s, 0));
+            ModifyStates(toModify);
 
             LevelManager.Instance.PickedObject = null;
-
             LevelManager.Instance.GoHome();
         }
 
@@ -204,17 +253,11 @@ namespace GreenTime.Managers
         private static readonly StateManager instance = new StateManager();
 
         private StateManager() {
-            SetState( STATE_PLAYERSTATUS, 100 );
-            SetState( STATE_DAY, 0);
+            SetState(STATE_PLAYERSTATUS, 100);
+            SetState(STATE_DAY, 0);
         }
 
-        public static StateManager Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static StateManager Instance { get { return instance; } }
         #endregion
     }
 }

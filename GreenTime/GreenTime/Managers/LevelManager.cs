@@ -28,6 +28,7 @@ namespace GreenTime.Managers
         #region Fields
         private ContentManager content;
         private Sprite pickedObject;    // currently picked up object - save it here to know when changing scenes
+        private string pickedObjectState;
         private Level currentLevel = null;
         private Level lastLevel = null;     // the level the player was in before going to the past
 
@@ -47,7 +48,15 @@ namespace GreenTime.Managers
         public Sprite PickedObject
         {
             get { return pickedObject; }
-            set { pickedObject = value; }
+            set {
+                pickedObject = value;
+                if( pickedObject != null ) pickedObject.layer = 0.4f;
+            }
+        }
+
+        public string PickedObjectState { 
+            get { return pickedObjectState; }
+            set { pickedObjectState = value; }
         }
 
         public Level CurrentLevel
@@ -82,8 +91,12 @@ namespace GreenTime.Managers
 
         public void GoTo( string level )
         {
-            if ( ! levels.ContainsKey( level ))
-                levels[level] = content.Load<Level>( @"levels\" + level );
+            if (!levels.ContainsKey(level))
+            {
+                levels[level] = content.Load<Level>(@"levels\" + level);
+                foreach (GameObject o in levels[level].gameObjects)
+                    o.Load();
+            }
 
             currentLevel = levels[level];
         }

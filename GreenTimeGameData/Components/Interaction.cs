@@ -33,10 +33,17 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(Optional = true)]
         public int chatIndex = -99;
 
+        // An identifier for the object when it's picked up
+        [ContentSerializer(Optional = true)]
+        public string pickUpName = null;
+
+        // Information about the items that can be dropped in this object and their effects
+        [ContentSerializer(Optional = true)]
+        public Dropper dropper = null;        
+
         // Change of states
         [ContentSerializer(Optional = true, CollectionItemName="state")]
-        public State[] affectedStates = null;
-        
+        public List<State> affectedStates = null;
         #endregion
     }
 }

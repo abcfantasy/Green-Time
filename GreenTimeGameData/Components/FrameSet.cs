@@ -22,7 +22,7 @@ namespace GreenTimeGameData.Components
 
         // The states this animation depends on to play
         [ContentSerializer(ElementName = "playIf", CollectionItemName = "state", Optional = true)]
-        public State[] dependencies = null;
+        public List<State> dependencies = null;
         #endregion
     }
 }

@@ -8,14 +8,14 @@ namespace GreenTimeGameData.Components
 {
     public class Sound
     {
-        #region Properties
+        #region Fields
         public string name;
 
         [ContentSerializer(Optional = true)]
         public bool looping = true;
 
         [ContentSerializer(ElementName = "playIf", CollectionItemName = "state", Optional = true)]        
-        public State[] dependencies = null;
+        public List<State> dependencies = null;
         #endregion
     }
 }

@@ -59,10 +59,6 @@
         </sprite>
         <showIf>
           <state>
-            <name>garbage1_picked</name>
-            <value>0</value>
-          </state>
-          <state>
             <name>puzzle_garbage_solved</name>
             <value>0</value>
           </state>
@@ -71,18 +67,8 @@
           <boundX>130</boundX>
           <boundWidth>227</boundWidth>
           <text>Garbage</text>
-          <callback>pickup</callback>
           <transition>outdoor_past</transition>
-          <affectedStates>
-            <state>
-              <name>garbage1_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>garbage1</pickUpName>
         </onInteract>
       </Item>
       <!-- Garbage 2 -->
@@ -94,10 +80,6 @@
         </sprite>
         <showIf>
           <state>
-            <name>garbage2_picked</name>
-            <value>0</value>
-          </state>
-          <state>
             <name>puzzle_garbage_solved</name>
             <value>0</value>
           </state>
@@ -106,18 +88,8 @@
           <boundX>269</boundX>
           <boundWidth>220</boundWidth>
           <text>Garbage</text>
-          <callback>pickup</callback>
           <transition>outdoor_past</transition>
-          <affectedStates>
-            <state>
-              <name>garbage2_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>garbage2</pickUpName>
         </onInteract>
       </Item>
       <!-- Garbage 3 -->
@@ -129,10 +101,6 @@
         </sprite>
         <showIf>
           <state>
-            <name>garbage3_picked</name>
-            <value>0</value>
-          </state>
-          <state>
             <name>puzzle_garbage_solved</name>
             <value>0</value>
           </state>
@@ -141,18 +109,8 @@
           <boundX>318</boundX>
           <boundWidth>196</boundWidth>
           <text>Garbage</text>
-          <callback>pickup</callback>
           <transition>outdoor_past</transition>
-          <affectedStates>
-            <state>
-              <name>garbage3_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>garbage3</pickUpName>
         </onInteract>
       </Item>
       <!-- Bin object -->
@@ -165,64 +123,25 @@
       </Item>
       <!-- Bin when object is carried -->
       <Item>
-        <showIf>
-          <state>
-            <name>item_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
         <onInteract>
           <boundX>427</boundX>
           <boundWidth>268</boundWidth>
           <text>Bin</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>acorn_picked</name>
-              <value>0</value>
-            </state>
-          </affectedStates>
-        </onInteract>
-      </Item>
-      <!-- Bin when all garbages have been put in - transition -->
-      <Item>
-        <showIf>
-          <state>
-            <name>item_picked</name>
-            <value>100</value>
-          </state>
-          <state>
-            <name>garbage1_picked</name>
-            <value>100</value>
-          </state>
-          <state>
-            <name>garbage2_picked</name>
-            <value>100</value>
-          </state>
-          <state>
-            <name>garbage3_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
-        <onInteract>
-          <boundX>427</boundX>
-          <boundWidth>268</boundWidth>
-          <text>Bin</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>advance_day</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <dropper>
+            <drops>
+              <Item>garbage1</Item>
+              <Item>garbage2</Item>
+              <Item>garbage3</Item>
+            </drops>
+            <trigger>all</trigger>
+            <reset>true</reset>
+            <effects>
+              <state>
+                <name>advance_day</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
         </onInteract>
       </Item>
       <!-- Car -->

@@ -23,7 +23,7 @@ namespace GreenTimeGameData.Components
         /// a set of states that this chat depends on
         /// </summary>
         [ContentSerializer(ElementName = "showIf", CollectionItemName = "state", Optional = true)]
-        public State[] dependencies = null;
+        public List<State> dependencies = null;
 
         /// <summary>
         /// a set of answers for this chat
@@ -35,7 +35,7 @@ namespace GreenTimeGameData.Components
         /// a set of states that this chat effects
         /// </summary>
         [ContentSerializer(CollectionItemName = "state", Optional = true)]
-        public State[] affectedStates = null;
+        public List<State> affectedStates = null;
         #endregion
     }
 }

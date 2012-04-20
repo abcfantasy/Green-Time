@@ -67,17 +67,7 @@
           <boundX>420</boundX>
           <boundWidth>150</boundWidth>
           <text>Empty Cereal Box</text>
-          <callback>pickup</callback>
-          <affectedStates>
-            <state>
-              <name>cereal_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>cereal</pickUpName>
         </onInteract>
       </Item>
       <!-- Water Bottle -->
@@ -93,117 +83,70 @@
             <name>indoor_puzzle</name>
             <value>50</value>
           </state>
-          <state>
-            <name>bottle_picked</name>
-            <value>0</value>
-          </state>
         </showIf>
         <onInteract>
           <boundX>420</boundX>
           <boundWidth>150</boundWidth>
           <text>Empty Water Bottle</text>
-          <callback>pickup</callback>
-          <affectedStates>
-            <state>
-              <name>bottle_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>bottle</pickUpName>
         </onInteract>
       </Item>
       <!-- All Bins -->
       <Item>
-        <showIf>
-          <state>
-            <name>item_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
         <onInteract>
           <boundX>530</boundX>
           <boundWidth>380</boundWidth>
           <text>Bins</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>indoor_puzzle</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>cereal_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>bottle_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-          </affectedStates>
+          <dropper>
+            <drops>
+              <Item>cereal</Item>
+              <Item>bottle</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>0</value>
+              </state>
+            </effects>
+          </dropper>
         </onInteract>
       </Item>
       <!-- Plastic Bin (while bottle picked) -->
       <Item>
-        <showIf>
-          <state>
-            <name>bottle_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
         <onInteract>
           <boundX>530</boundX>
           <boundWidth>150</boundWidth>
           <text>Plastic Bin</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>indoor_puzzle</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>bottle_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-          </affectedStates>
+          <dropper>
+            <drops>
+              <Item>bottle</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
         </onInteract>
       </Item>
       <!-- Paper Bin (while cereal picked) -->
       <Item>
-        <showIf>
-          <state>
-            <name>cereal_picked</name>
-            <value>100</value>
-          </state>
-        </showIf>
         <onInteract>
           <boundX>670</boundX>
           <boundWidth>110</boundWidth>
           <text>Paper Bin</text>
-          <callback>drop</callback>
-          <affectedStates>
-            <state>
-              <name>indoor_puzzle</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>cereal_picked</name>
-              <value>0</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>0</value>
-            </state>
-          </affectedStates>
+          <dropper>
+            <drops>
+              <Item>cereal</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>indoor_puzzle</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
         </onInteract>
       </Item>
       <!-- Newspaper -->

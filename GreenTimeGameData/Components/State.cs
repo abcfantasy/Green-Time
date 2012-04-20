@@ -20,5 +20,15 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(ElementName = "between", Optional = true)]
         public Vector2 minmax = new Vector2( -1, -1 );
         #endregion
+
+        #region Initialization
+        public State() { }
+
+        public State(string name, int value)
+        {
+            this.name = name;
+            this.value = value;
+        }
+        #endregion
     }
 }

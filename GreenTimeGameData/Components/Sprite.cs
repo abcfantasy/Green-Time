@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GreenTimeGameData.Components
 {
-    public class Sprite
+    public class Sprite : ICloneable
     {
         #region Fields
 
@@ -47,6 +47,13 @@ namespace GreenTimeGameData.Components
         public virtual void Draw(SpriteBatch spriteBatch, Color tint)
         {
             spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, scale, SpriteEffects.None, layer);
+        }
+        #endregion
+
+        #region ICloneable
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
         #endregion
     }

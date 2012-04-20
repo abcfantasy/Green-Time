@@ -48,11 +48,11 @@ namespace GreenTime.Screens
         private List<AnimatedSprite> animatedObjects = new List<AnimatedSprite>();
         private List<GameObject> activeObjects = new List<GameObject>();
         private GameObject interactingObject;
-        private Sprite pickedObject = null;     // is not null when an object is currently picked up
         private SoundEffect ambientSound;
         private SoundEffectInstance ambientSoundInstance;
 
         private Player player;
+        private Sprite pickedObject;
 
         private TransitionType transition = TransitionType.Room;
 
@@ -84,7 +84,7 @@ namespace GreenTime.Screens
                     break;
 
                 case TransitionType.FromPast:
-                    StateManager.Instance.SetState("is_in_past", 0);
+                    StateManager.Instance.GoToPast();
                     TransitionOnTime = TimeSpan.FromSeconds(0.5);
                     break;
                 case TransitionType.FromPresent:
@@ -97,8 +97,6 @@ namespace GreenTime.Screens
                     break;
             }
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-
-            player = LevelManager.Instance.Player;
 
             // play game music
             SoundManager.PlayGameMusic();
@@ -116,9 +114,8 @@ namespace GreenTime.Screens
             desaturateShader = content.Load<Effect>("desaturate");
             gameFont = content.Load<SpriteFont>("gamefont");
 
-            CheckPlayerStatus();
-
             LoadGameObjects();
+            CheckPlayerStatus();
 
             // A real game would probably have more content than this sample, so
             // it would take longer to load. We simulate that by delaying for a
@@ -137,12 +134,11 @@ namespace GreenTime.Screens
             animatedObjects.Clear();
             activeObjects.Clear();
 
-            // load picked up object
-            if (LevelManager.Instance.PickedObject != null)
-            {
-                pickedObject = LevelManager.Instance.PickedObject;
-                pickedObject.layer = 0.4f;
-            }
+            // Load the objects that carry across levels
+            player = LevelManager.Instance.Player;
+            pickedObject = LevelManager.Instance.PickedObject;
+            if( pickedObject != null )
+                pickedObject.Load(content);
 
             // Load ambient soud if any
             if (LevelManager.Instance.CurrentLevel.ambientSound != null)
@@ -161,28 +157,19 @@ namespace GreenTime.Screens
             LevelManager.Instance.CurrentLevel.backgroundTexture.Load(content);
 
             // Load the objects
-            foreach (GameObject io in LevelManager.Instance.CurrentLevel.gameObjects)
-            {
-                if (StateManager.Instance.CheckDependencies(io.dependencies))
-                {
-                    if (io.interaction != null)
-                        activeObjects.Add(io);
-                    if (io.sprite != null)
-                    {
+            foreach (GameObject io in LevelManager.Instance.CurrentLevel.gameObjects) {
+                if (StateManager.Instance.CheckDependencies(io.dependencies)) {
+                    if (io.interaction != null) activeObjects.Add(io);
+                    if (io.sprite != null) {
                         io.sprite.Load(content);
                         visibleObjects.Add(io.sprite);
 
-                        if (io.sprite.GetType() == typeof(AnimatedSprite))
-                        {                            
-                            animatedObjects.Add((AnimatedSprite)io.sprite);                            
+                        if (io.sprite.GetType() == typeof(AnimatedSprite)) {
+                            animatedObjects.Add((AnimatedSprite)io.sprite);
                             ((AnimatedSprite)io.sprite).ActiveAnimations.Clear();
                             foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
-                            {
                                 if (StateManager.Instance.CheckDependencies(ap.dependencies))
-                                {
                                     ((AnimatedSprite)io.sprite).ActiveAnimations[ap.name] = ap.frames;
-                                }
-                            }
                         }
                     }
                 }
@@ -342,10 +329,13 @@ namespace GreenTime.Screens
                 {
                     #region Action Button
                     if (input.IsMenuSelect()
-                        && (pickedObject == null || (pickedObject != null && interactingObject.interaction.callback == "drop"))
                         && (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 || LevelManager.Instance.CurrentLevel.name.Equals("bedroom") || LevelManager.Instance.CurrentLevel.name.Equals("kitchen"))
                         && (StateManager.Instance.GetState("progress") != 100 || (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState("progress") == 100)))
                     {
+                        // Pick up the object
+                        if( pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName) ) {
+                                PickupObject(interactingObject);
+                        }
                         // Handling callbacks (aka special interactions)
                         if (!String.IsNullOrEmpty(interactingObject.interaction.callback))
                         {
@@ -354,14 +344,9 @@ namespace GreenTime.Screens
                                 case "news":
                                     ScreenManager.AddScreen(new NewsScreen());
                                     break;
-                                case "pickup":
-                                    PickupObject(interactingObject);
-                                    break;
-                                case "drop":
-                                    DropObject(interactingObject);
-                                    break;
                             }
                         }
+                        
                         // Handling talking
                         if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
                             ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true));
@@ -370,6 +355,12 @@ namespace GreenTime.Screens
                         if (interactingObject.interaction.affectedStates != null)
                         {
                             StateManager.Instance.ModifyStates(interactingObject.interaction.affectedStates);
+                            LoadGameObjects();
+                        }
+
+                        // Drop the picked up item into this object
+                        if (pickedObject != null && interactingObject.interaction.dropper != null) {
+                            DropObject(interactingObject);
                             LoadGameObjects();
                         }
                     }
@@ -557,6 +548,7 @@ namespace GreenTime.Screens
                 if (io.interaction != null)
                 {
                     // 1D collision detection
+                    // Disabled: doesn't work
                     // We have 2 intervals (a, b) and (c, d)
                     // If (a-d)*(b-c) <= 0 then we have collision
 
@@ -586,10 +578,20 @@ namespace GreenTime.Screens
         /// <param name="interactingObject"></param>
         private void DropObject(GameObject interactingObject)
         {
-            // remove picked object
-            pickedObject = null;
-            // remove from level manager
             LevelManager.Instance.PickedObject = null;
+            pickedObject = null;
+
+            StateManager.Instance.SetState( "item_picked", 0);
+            StateManager.Instance.SetState( LevelManager.Instance.PickedObjectState, 100 );
+
+            List<State> checkedStates = new List<State>();
+            foreach (string s in interactingObject.interaction.dropper.drops)
+                checkedStates.Add( new State( (s + "_picked"), 100 ) );
+
+            if( ( interactingObject.interaction.dropper.trigger.Equals( Dropper.ANY ) && StateManager.Instance.AnyTrue( checkedStates ) ) ||
+                ( interactingObject.interaction.dropper.trigger.Equals( Dropper.ALL ) && StateManager.Instance.AllTrue( checkedStates ) ) ) {
+                    StateManager.Instance.ModifyStates( interactingObject.interaction.dropper.effects );
+            }
         }
 
         /// <summary>
@@ -598,23 +600,8 @@ namespace GreenTime.Screens
         /// <param name="interactingObject"></param>
         private void PickupObject(GameObject interactingObject)
         {
-            Vector2 pos = interactingObject.sprite.position;
-
-            // search for the game object
-            for (int i = 0; i < visibleObjects.Count; i++)
-            {
-                // if the object is found
-                if (visibleObjects[i].position == pos)
-                {
-                    visibleObjects[i].layer = 0.4f;
-                    // pick up object
-                    pickedObject = visibleObjects[i];
-                    // save in level manager (in case changing scene)
-                    LevelManager.Instance.PickedObject = interactingObject.sprite;
-                    // prevent object from being drawn typically
-                    visibleObjects.RemoveAt(i);
-                }
-            }
+            LevelManager.Instance.PickedObject = (Sprite)interactingObject.sprite.Clone();
+            LevelManager.Instance.PickedObjectState = interactingObject.interaction.pickUpName + "_picked";
         }
 
         /// <summary>

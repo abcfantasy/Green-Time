@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AnimatedSprite.cs" />
+    <Compile Include="Components\Dropper.cs" />
     <Compile Include="Components\FrameSet.cs" />
     <Compile Include="Components\Answer.cs" />
     <Compile Include="Components\Chat.cs" />

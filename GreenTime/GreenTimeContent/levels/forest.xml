@@ -89,10 +89,7 @@
           <framesPerSecond>8</framesPerSecond>
           <animations>
             <frameSet>
-              <name>default</name>
-
               <frames>0 1 2 3</frames>
-
             </frameSet>
           </animations>
         </sprite>
@@ -238,10 +235,6 @@
             <value>100</value>
           </state>
           <state>
-            <name>acorn_picked</name>
-            <value>0</value>
-          </state>
-          <state>
             <name>puzzle_acorn_solved</name>
             <value>0</value>
           </state>
@@ -250,17 +243,7 @@
           <boundX>910</boundX>
           <boundWidth>1050</boundWidth>
           <text>Acorn</text>
-          <callback>pickup</callback>
-          <affectedStates>
-            <state>
-              <name>acorn_picked</name>
-              <value>100</value>
-            </state>
-            <state>
-              <name>item_picked</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <pickUpName>acorn</pickUpName>
         </onInteract>
       </Item>
 
@@ -269,7 +252,7 @@
         <showIf>
           <state>
             <name>acorn_picked</name>
-            <value>100</value>
+            <value>50</value>
           </state>
         </showIf>
         <onInteract>
