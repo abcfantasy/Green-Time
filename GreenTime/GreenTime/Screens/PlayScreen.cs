@@ -470,6 +470,7 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
+            /*
             int playerStatus;
             if (LevelManager.Instance.CurrentLevel.name.Equals("outdoor") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
             {
@@ -491,6 +492,7 @@ namespace GreenTime.Screens
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Max(playerStatus - 50, 0));                   
                 }
             }
+             */
         }
         /// <summary>
         /// Checks to see if the screen should transition to the present

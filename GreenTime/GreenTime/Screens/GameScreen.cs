@@ -15,7 +15,7 @@ namespace GreenTime.Screens
         TransitionOn,
         Active,
         TransitionOff,
-        Hidden,
+        Hidden
     }
 
 
