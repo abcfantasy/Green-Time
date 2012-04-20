@@ -59,6 +59,15 @@ namespace GreenTime.Screens
         private Effect desaturateShader;
         private Effect sepiaShader;
 
+        // HUD states
+        private Texture2D hud_states;
+        //private Texture2D hud_states_green_round;
+        //private Texture2D hud_states_grey_round;
+        //private Texture2D hud_states_grey_square;
+
+        // HUD time travel
+        private Texture2D hud_timetravel;
+
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
         // When it's used, it is cast into a byte
@@ -98,6 +107,8 @@ namespace GreenTime.Screens
             }
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
+            player = LevelManager.Instance.Player;
+
             // play game music
             SoundManager.PlayGameMusic();
         }
@@ -117,6 +128,9 @@ namespace GreenTime.Screens
             LoadGameObjects();
             CheckPlayerStatus();
 
+            LoadGameObjects();
+
+            LoadHUDObjects();
             // A real game would probably have more content than this sample, so
             // it would take longer to load. We simulate that by delaying for a
             // while, giving you a chance to admire the beautiful loading screen.
@@ -176,6 +190,28 @@ namespace GreenTime.Screens
             }
         }
 
+        public void LoadHUDObjects()
+        {
+            int playerState = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
+
+            switch (playerState)
+            {
+                case 0:
+                    hud_states = content.Load<Texture2D>("hud/states_grey_square");
+                    break;
+                case 50:
+                    hud_states = content.Load<Texture2D>("hud/states_grey_round");
+                    break;
+                case 100:
+                    hud_states = content.Load<Texture2D>("hud/states_green_round");
+                    break;
+            }
+
+            if (playerState < 100)
+                hud_timetravel = content.Load<Texture2D>("hud/timetravel_disabled");
+            else
+                hud_timetravel = content.Load<Texture2D>("hud/timetravel_enabled");
+        }
         /// <summary>
         /// Unload graphics content used by the game
         /// </summary>
@@ -250,6 +286,10 @@ namespace GreenTime.Screens
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? sepiaShader : desaturateShader));
+
+            // hud elements
+            spriteBatch.Draw(hud_states, new Vector2(1140, 15), new Color( 64, 255, 255, 255 ) );
+            spriteBatch.Draw(hud_timetravel, new Vector2(15, 15), new Color(64, 255, 255, 255));
 
             // game objects
             foreach (Sprite s in visibleObjects)
@@ -342,14 +382,14 @@ namespace GreenTime.Screens
                             switch (interactingObject.interaction.callback)
                             {
                                 case "news":
-                                    ScreenManager.AddScreen(new NewsScreen());
+                                    ScreenManager.AddScreen(new ComputerScreen());
                                     break;
                             }
                         }
                         
                         // Handling talking
                         if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
-                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true));
+                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true, player.Position, interactingObject.sprite.position));
 
                         // Handling affected states
                         if (interactingObject.interaction.affectedStates != null)
@@ -519,12 +559,28 @@ namespace GreenTime.Screens
                 }
                 else
                 {
-                    if (LevelManager.Instance.CurrentLevel.name == "kitchen")
+                    /*if (LevelManager.Instance.CurrentLevel.name == "kitchen")
                         StateManager.Instance.SetState("just_went_out", 100);
 
                     // transition to the right
                     LevelManager.Instance.MoveRight();
-                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());*/
+					
+                    // if player moves outside, and player needs to transition - show state transition screen
+                    if (LevelManager.Instance.CurrentLevel.name == "kitchen" && StateManager.Instance.GetState("progress") != 100 &&
+                       ((StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) != 100) ||     // transform better
+                         (StateManager.Instance.GetState(StateManager.STATE_INDOOR) != 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0)))         // transform worse
+                    {
+                        //StateManager.Instance.SetState("just_went_out", 100);
+                        LevelManager.Instance.MoveRight();
+                        LoadingScreen.Load(ScreenManager, false, (SettingsManager.GAME_WIDTH / 2.0f) - SettingsManager.PLAYER_WIDTH, new StateTransitionScreen());
+                    }
+                    else
+                    {
+                        // transition to the right
+                        LevelManager.Instance.MoveRight();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
                 }
             }
             // if player moves outside left boundary

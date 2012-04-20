@@ -43,7 +43,7 @@ namespace GreenTime.Managers
         }       
         #endregion
 
-        #region Time Travelling        
+        #region Time Travelling
         public bool CanTimeTravel()
         {
             // Can only do timetravelling if you haven't finished the game

@@ -29,6 +29,8 @@ namespace GreenTime.Screens
         bool loadingIsSlow;
         bool otherScreensAreGone;
 
+        float newPlayerPosition;
+
         GameScreen[] screensToLoad;
 
         #endregion
@@ -49,7 +51,6 @@ namespace GreenTime.Screens
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
         }
 
-
         /// <summary>
         /// Activates the loading screen.
         /// </summary>
@@ -68,7 +69,22 @@ namespace GreenTime.Screens
             screenManager.AddScreen(loadingScreen);
         }
 
+        public static void Load(ScreenManager screenManager, bool loadingIsSlow,
+                                float newPlayerPosition, params GameScreen[] screensToLoad )
+        {
+            // Tell all the current screens to transition off.
+            foreach (GameScreen screen in screenManager.GetScreens())
+                screen.ExitScreen();
 
+            // Create and activate the loading screen.
+            LoadingScreen loadingScreen = new LoadingScreen(screenManager,
+                                                            loadingIsSlow,
+                                                            screensToLoad);
+
+            loadingScreen.newPlayerPosition = newPlayerPosition;
+
+            screenManager.AddScreen(loadingScreen);
+        }
         #endregion
 
         #region Update and Draw
@@ -119,6 +135,9 @@ namespace GreenTime.Screens
                 (ScreenManager.GetScreens().Length == 1))
             {
                 otherScreensAreGone = true;
+
+                // reset player position here to avoid flicker
+                LevelManager.Instance.Player.moveTo(newPlayerPosition);
 
                 ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                    Color.Black, 0, 0);
