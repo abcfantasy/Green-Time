@@ -37,6 +37,10 @@
           <boundX>320</boundX>
           <boundWidth>100</boundWidth>
           <text>Tap</text>
+          <sound>
+            <name>closingTap</name>
+            <looping>false</looping>
+          </sound>
           <affectedStates>
             <state>
               <name>indoor_puzzle</name>
@@ -150,6 +154,7 @@
         </onInteract>
       </Item>
       <!-- Newspaper -->
+      <!--
       <Item>
         <sprite>
           <texture>kitchen\newspaper</texture>
@@ -177,6 +182,7 @@
           </affectedStates>
         </onInteract>
       </Item>
+      -->
     </gameObjects>
   </Asset>
 </XnaContent>

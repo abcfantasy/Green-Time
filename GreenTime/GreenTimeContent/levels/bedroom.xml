@@ -76,6 +76,10 @@
           <boundX>1070</boundX>
           <boundWidth>150</boundWidth>
           <text>Light</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
           <affectedStates>
             <state>
               <name>indoor_puzzle</name>
@@ -109,6 +113,10 @@
           <boundX>460</boundX>
           <boundWidth>320</boundWidth>
           <text>Heater</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
           <affectedStates>
             <state>
               <name>indoor_puzzle</name>
@@ -119,28 +127,28 @@
       </Item>
       <!-- Computer -->
       <Item>
+        <!--
         <sprite>
           <texture>bedroom\computer_light</texture>
           <position>830 178</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
         </sprite>
+        -->
+        <!--
         <showIf>
           <state>
             <name>indoor_puzzle</name>
             <value>30</value>
           </state>
         </showIf>
+        -->
         <onInteract>
           <boundX>750</boundX>
           <boundWidth>280</boundWidth>
           <text>Computer</text>
-          <affectedStates>
-            <state>
-              <name>indoor_puzzle</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
+          <solid>false</solid>
+          <callback>news</callback>
         </onInteract>
       </Item>
     </gameObjects>

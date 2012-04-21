@@ -56,6 +56,8 @@ namespace GreenTime.Screens
             // Move to the previous menu entry?
             if (input.IsMenuUp())
             {
+                SoundManager.PlaySound(SoundManager.SOUND_MENU_UP);
+
                 selectedEntry--;
 
                 if (selectedEntry < 0)
@@ -65,6 +67,8 @@ namespace GreenTime.Screens
             // Move to the next menu entry?
             if (input.IsMenuDown())
             {
+                SoundManager.PlaySound(SoundManager.SOUND_MENU_DOWN);
+
                 selectedEntry++;
 
                 if (selectedEntry >= menuEntries.Count)

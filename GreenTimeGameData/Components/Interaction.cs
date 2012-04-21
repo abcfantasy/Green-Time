@@ -39,7 +39,10 @@ namespace GreenTimeGameData.Components
 
         // Information about the items that can be dropped in this object and their effects
         [ContentSerializer(Optional = true)]
-        public Dropper dropper = null;        
+        public Dropper dropper = null;
+
+        [ContentSerializer(Optional = true)]
+        public Sound sound = null;
 
         // Change of states
         [ContentSerializer(Optional = true, CollectionItemName="state")]
