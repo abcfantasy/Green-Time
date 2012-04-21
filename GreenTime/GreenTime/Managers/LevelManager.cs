@@ -33,7 +33,7 @@ namespace GreenTime.Managers
         private Level lastLevel = null;     // the level the player was in before going to the past
 
         private Dictionary<String, Level> levels = new Dictionary<string,Level>();
-        private Chat[] chats;
+        private Dictionary<string, Dictionary<int, Chat>> chats = new Dictionary<string,Dictionary<int, Chat>>();
 
         private Player player;
         private float startPosition = 0.0f;
@@ -85,7 +85,6 @@ namespace GreenTime.Managers
         {
             this.content = content;
             player = new Player(content);
-            chats = content.Load<Chat[]>("chats");
             StateManager.Instance.AdvanceDay();            
         }
 
@@ -99,6 +98,14 @@ namespace GreenTime.Managers
             }
 
             currentLevel = levels[level];
+        }
+
+        public Dictionary<int,Chat> StartChat(string chat)
+        {
+            if (!chats.ContainsKey(chat))
+                chats[chat] = content.Load<Dictionary<int, Chat>>(@"chats\" + chat);
+
+            return chats[chat];
         }
 
         public void GoHome()
@@ -168,21 +175,6 @@ namespace GreenTime.Managers
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
             startPosition = player.Position.X;
-        }
-
-        /// <summary>
-        /// Gets a specific chat by index
-        /// </summary>
-        /// <param name="chatIndex"></param>
-        /// <returns></returns>
-        public Chat GetChat(int chatIndex)
-        {
-            for (int i = 0; i < chats.Length; i++)
-            {
-                if (chats[i].Index == chatIndex && StateManager.Instance.CheckDependencies( chats[i].dependencies ) )
-                    return chats[i];
-            }
-            return null;
         }
 
         /// <summary>

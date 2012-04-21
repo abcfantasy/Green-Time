@@ -31,7 +31,7 @@ namespace GreenTimeGameData.Components
 
         // Start of a conversation
         [ContentSerializer(Optional = true)]
-        public int chatIndex = -99;
+        public string chat = null;
 
         // An identifier for the object when it's picked up
         [ContentSerializer(Optional = true)]

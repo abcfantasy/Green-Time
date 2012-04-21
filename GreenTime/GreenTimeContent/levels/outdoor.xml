@@ -177,7 +177,7 @@
           <boundX>720</boundX>
           <boundWidth>368</boundWidth>
           <text>Stranger in car</text>
-          <chatIndex>20</chatIndex>
+          <chat>car_man</chat>
         </onInteract>
       </Item>
       <!-- Smoke -->

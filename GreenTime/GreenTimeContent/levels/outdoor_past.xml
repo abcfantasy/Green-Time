@@ -43,7 +43,7 @@
           <boundX>250</boundX>
           <boundWidth>410</boundWidth>
           <text>Garbage man</text>
-          <chatIndex>0</chatIndex>
+          <chat>garbage_man</chat>
         </onInteract>
       </Item>
       <!-- Garbage -->
