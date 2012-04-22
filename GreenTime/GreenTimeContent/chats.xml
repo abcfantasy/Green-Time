@@ -1,153 +1,201 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-  <Asset Type="GreenTimeGameData.Components.Chat[]">
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
     <!-- Garbage man chat -->
     <Item>
-      <Index>0</Index>
-      <Text>You: Good day sir, how are you?</Text>
-      <answers>
-        <Item>
-          <Text>Continue...</Text>
-          <ResponseIndex>1</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>0</Key>
+      <Value>
+        <text><line>You: Good day sir, how are you?</line></text>
+        <leadsTo>1</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>1</Index>
-      <Text>Man: I am doing fine, just putting away my thrash.</Text>
-      <answers>
-        <Item>
-          <Text>You: Good for you, everyone needs to do that.</Text>
-          <ResponseIndex>2</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: You shouldn't leave garbage here.</Text>
-          <ResponseIndex>3</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>1</Key>
+      <Value>
+        <text><line>Man: I am doing fine, just putting away my thrash.</line></text>
+        <leadsTo>2 3</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>2</Index>
-      <Text>Man: Thank you. Have a nice day!</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>2</Key>
+      <Value>
+        <text><line>You: Good for you, everyone needs to do that.</line></text>
+        <leadsTo>4</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>3</Index>
-      <Text>Man: What do you care about what I think? Let me be.</Text>
-      <showIf>
-        <state>
-          <name>player_status</name>
-          <between>0 50</between>
-        </state>
-      </showIf>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
-    </Item>
-    
-    <Item>
-      <Index>3</Index>
-      <Text>Man: Where else should I put it?</Text>
-      <showIf>
-        <state>
-          <name>player_status</name>
-          <value>100</value>
-        </state>
-      </showIf>
-      <answers>
-        <Item>
-          <Text>You: In the garbage bin, over there.</Text>
-          <ResponseIndex>4</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: Under the tree is indeed a good place.</Text>
-          <ResponseIndex>6</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: Maybe you should dig a hole in the ground so we don't see it.</Text>
-          <ResponseIndex>7</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>3</Key>
+      <Value>
+        <text><line>You: You shouldn't leave garbage here.</line></text>
+        <leadsTo>5 6</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>4</Index>
-      <Text>Man: Well, it's a bit more effort but I guess you're right.</Text>
-      <answers>
-        <Item>
-          <Text>You: Great. Have a nice day and a bright future sir!</Text>
-          <ResponseIndex>5</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>4</Key>
+      <Value>
+        <text><line>Man: Thank you. Have a nice day!</line></text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
     </Item>
 
     <Item>
-      <Index>5</Index>
-      <Text>Man: You too.</Text>
-      <affectedStates>
-        <state>
-          <name>puzzle_garbage_solved</name>
-          <value>100</value>
-        </state>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>5</Key>
+      <Value>
+        <text><line>Man: What do you care about what I think? Let me be.</line></text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <between>0 50</between>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
     </Item>
 
     <Item>
-      <Index>6</Index>
-      <Text>Man: Thank you for pointing out my current spot. I will keep using it in the future.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>6</Key>
+      <Value>
+        <text><line>Man: Where else should I put it?</line></text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <leadsTo>7 8 9</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>7</Index>
-      <Text>Man: No, I found that to be too much work.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>7</Key>
+      <Value>
+        <text><line>You: In the garbage bin, over there.</line>
+        </text>
+        <leadsTo>10</leadsTo>
+      </Value>
     </Item>
-    
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>You: Under the tree is indeed a good place.</line>
+        </text>
+        <leadsTo>11</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>You: Maybe you should dig a hole in the ground so we don't see it.</line>
+        </text>
+        <leadsTo>12</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>Man: Well, it's a bit more effort but I guess you're right.</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>Man: Thank you for pointing out my current spot. I will keep using it in the future.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <text>
+          <line>Man: No, I found that to be too much work.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>13</Key>
+      <Value>
+        <text>
+          <line>Man: You too.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>puzzle_garbage_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>          
+        </affectedStates>
+      </Value>
+    </Item>
+
     <!-- Car engine chat -->
     <Item>
-      <Index>20</Index>
-      <Text>You: Good day sir. Why are you sitting in the car?</Text>
-      <showIf>
-        <state>
-          <name>puzzle_car_solved</name>
-          <value>0</value>
-        </state>
-      </showIf>
-      <answers>
-        <Item>
-          <Text>Continue...</Text>
-          <ResponseIndex>21</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>20</Key>
+      <Value>
+        <text>
+          <line>You: Good day sir. Why are you sitting in the car?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>21</leadsTo>
+      </Value>
     </Item>
 
     <Item>
+      <Key>21</Key>
+      <Value>
+        <text>
+          <line>Man: I am waiting for my wife. She is shopping.</line>
+        </text>
+        <leadsTo>22 23</leadsTo>
+      </Value>
+    </Item>
+
+    <!--<Item>
       <Index>20</Index>
       <Text>Man: What a beautiful day, and such nice, fresh air.</Text>
       <showIf>
@@ -156,206 +204,303 @@
           <value>100</value>
         </state>
       </showIf>
-    </Item>
-    
+    </Item>-->
+
     <Item>
-      <Index>21</Index>
-      <Text>Man: I am waiting for my wife. She is shopping.</Text>
-      <answers>
-        <Item>
-          <Text>You: Yeah, they always need more time than we think.</Text>
-          <ResponseIndex>22</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: Why is your car engine still running then?</Text>
-          <ResponseIndex>23</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>22</Key>
+      <Value>
+        <text>
+          <line>You: Yeah, they always need more time than we think.</line>
+        </text>
+        <leadsTo>24</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>22</Index>
-      <Text>Man: Indeed. Nice day to you.</Text>
-      <affectedStates>
-        <state>
-          <name>advance_day</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>23</Key>
+      <Value>
+        <text>
+          <line>You: Why is your car engine still running then?</line>
+        </text>
+        <leadsTo>25</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>23</Index>
-      <Text>Man: Why not? It shouldn't take much longer now.</Text>
-      <answers>
-        <Item>
-          <Text>You: Yeah, why not on such a beautiful day?</Text>
-          <ResponseIndex>24</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: A running engine pollutes the atmosphere through CO2 emission.</Text>
-          <ResponseIndex>25</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: You will receive a fine if you leave it running for more than 3 minutes.</Text>
-          <ResponseIndex>26</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>24</Key>
+      <Value>
+        <text>
+          <line>Man: Indeed. Nice day to you.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
     </Item>
 
     <Item>
-      <Index>24</Index>
-      <Text>Man: I don't care.</Text>
-      <affectedStates>
-        <state>
-          <name>advance_day</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>25</Key>
+      <Value>
+        <text>
+          <line>Man: Why not? It shouldn't take much longer now.</line>
+        </text>
+        <leadsTo>26 27 28</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>25</Index>
-      <Text>Man: Right, CO2. How about you look at yourself first, before lecturing me on that?</Text>
-      <showIf>
-        <state>
-          <name>player_status</name>
-          <between>0 50</between>
-        </state>
-      </showIf>
-      <affectedStates>
-        <state>
-          <name>advance_day</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>26</Key>
+      <Value>
+        <text>
+          <line>You: Yeah, why not on such a beautiful day?</line>
+        </text>
+        <leadsTo>29</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>25</Index>
-      <Text>Man: Oh yes, CO2 emissions. I will put off the engine.</Text>
-      <showIf>
-        <state>
-          <name>player_status</name>
-          <value>100</value>
-        </state>
-      </showIf>
-      <affectedStates>
-        <state>
-          <name>puzzle_car_solved</name>
-          <value>100</value>
-        </state>
-        <state>
-          <name>advance_day</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>27</Key>
+      <Value>
+        <text>
+          <line>You: A running engine pollutes the atmosphere through CO2 emission.</line>
+        </text>
+        <leadsTo>30 31</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>26</Index>
-      <Text>Man: I heard about it, but it only happens in Denmark!</Text>
-      <affectedStates>
-        <state>
-          <name>advance_day</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>28</Key>
+      <Value>
+        <text>
+          <line>You: You will receive a fine if you leave it running for more than 3 minutes.</line>
+        </text>
+        <leadsTo>32</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>29</Key>
+      <Value>
+        <text>
+          <line>Man: I don't care.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>30</Key>
+      <Value>
+        <text>
+          <line>Man: Right, CO2. How about you look at yourself first, before lecturing me on that?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <between>0 50</between>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>    
+
+    <Item>
+      <Key>31</Key>
+      <Value>
+        <text>
+          <line>Man: Oh yes, CO2 emissions. I will put off the engine.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>32</Key>
+      <Value>
+        <text>
+          <line>Man: I heard about it, but it only happens in Denmark!</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
     </Item>
     
     <!-- Smoker chat -->
     <Item>
-      <Index>40</Index>
-      <Text>You: Hello miss, did you just drop something on the ground?</Text>
-      <answers>
-        <Item>
-          <Text>Continue...</Text>
-          <ResponseIndex>41</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>40</Key>
+      <Value>
+        <text>
+          <line>You: Hello miss, did you just drop something on the ground?</line>
+        </text>
+        <leadsTo>41</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>41</Index>
-      <Text>Lady: No, I did not.</Text>
-      <answers>
-        <Item>
-          <Text>You: Oh, my mistake. Sorry for bothering you.</Text>
-          <ResponseIndex>42</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: But I saw you dropping a burning cigarette there on the ground.</Text>
-          <ResponseIndex>44</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>You: Hmmm, I must have seen some ghost then.</Text>
-          <ResponseIndex>43</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>41</Key>
+      <Value>
+        <text>
+          <line>Lady: No, I did not.</line>
+        </text>
+        <leadsTo>42 43 44</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>42</Index>
-      <Text>Lady: Have a nice day.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>42</Key>
+      <Value>
+        <text>
+          <line>You: Oh, my mistake. Sorry for bothering you.</line>
+        </text>
+        <leadsTo>45</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>43</Index>
-      <Text>Lady: You are a strange one.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>43</Key>
+      <Value>
+        <text>
+          <line>You: But I saw you dropping a burning cigarette there on the ground.</line>
+        </text>
+        <leadsTo>46</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>44</Index>
-      <Text>Lady: Yes, I guess I did...</Text>
-      <answers>
-        <Item>
-          <Text>Fire is dangerous in the woods, you really should not do that.</Text>
-          <ResponseIndex>45</ResponseIndex>
-        </Item>
-        <Item>
-          <Text>Interesting, we might start a fire!</Text>
-          <ResponseIndex>46</ResponseIndex>
-        </Item>
-      </answers>
+      <Key>44</Key>
+      <Value>
+        <text>
+          <line>You: Hmmm, I must have seen some ghost then.</line>
+        </text>
+        <leadsTo>47</leadsTo>
+      </Value>
     </Item>
 
     <Item>
-      <Index>45</Index>
-      <Text>Lady: You are right, I will put it out and throw it away.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-        <state>
-          <name>puzzle_cig_solved</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>45</Key>
+      <Value>
+        <text>
+          <line>Lady: Have a nice day.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
     </Item>
 
     <Item>
-      <Index>46</Index>
-      <Text>Lady: Yes, interesting thought. I like good fire.</Text>
-      <affectedStates>
-        <state>
-          <name>back_to_present</name>
-          <value>100</value>
-        </state>
-      </affectedStates>
+      <Key>46</Key>
+      <Value>
+        <text>
+          <line>Lady: Yes, I guess I did...</line>
+        </text>
+        <leadsTo>48 49</leadsTo>
+      </Value>
     </Item>
-    
+
+    <Item>
+      <Key>47</Key>
+      <Value>
+        <text>
+          <line>Lady: You are a strange one.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>48</Key>
+      <Value>
+        <text>
+          <line>Fire is dangerous in the woods, you really should not do that.</line>
+        </text>
+        <leadsTo>50</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>49</Key>
+      <Value>
+        <text>
+          <line>Interesting, we might start a fire!</line>
+        </text>
+        <leadsTo>51</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>50</Key>
+      <Value>
+        <text>
+          <line>Lady: You are right, I will put it out and throw it away.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>51</Key>
+      <Value>
+        <text>
+          <line>Lady: Yes, interesting thought. I like good fire.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
   </Asset>
 </XnaContent>

@@ -126,6 +126,7 @@ namespace GreenTime.Screens
             gameFont = content.Load<SpriteFont>("gamefont");
 
             LoadGameObjects();
+
             CheckPlayerStatus();
 
             LoadGameObjects();
@@ -173,7 +174,13 @@ namespace GreenTime.Screens
             // Load the objects
             foreach (GameObject io in LevelManager.Instance.CurrentLevel.gameObjects) {
                 if (StateManager.Instance.CheckDependencies(io.dependencies)) {
-                    if (io.interaction != null) activeObjects.Add(io);
+                    if (io.interaction != null)
+                    {
+                        activeObjects.Add(io);
+                        // load interaction sounds
+                        if (io.interaction.sound != null)
+                            SoundManager.LoadSound(content, io.interaction.sound.name);
+                    }
                     if (io.sprite != null) {
                         io.sprite.Load(content);
                         visibleObjects.Add(io.sprite);
@@ -372,10 +379,15 @@ namespace GreenTime.Screens
                         && (StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 || LevelManager.Instance.CurrentLevel.name.Equals("bedroom") || LevelManager.Instance.CurrentLevel.name.Equals("kitchen"))
                         && (StateManager.Instance.GetState("progress") != 100 || (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState("progress") == 100)))
                     {
+                        // play sound if available
+                        if (interactingObject.interaction.sound != null)
+                            SoundManager.PlaySound(interactingObject.interaction.sound.name, interactingObject.interaction.sound.looping);
+
                         // Pick up the object
                         if( pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName) ) {
                                 PickupObject(interactingObject);
                         }
+
                         // Handling callbacks (aka special interactions)
                         if (!String.IsNullOrEmpty(interactingObject.interaction.callback))
                         {
@@ -400,11 +412,13 @@ namespace GreenTime.Screens
 
                         // Drop the picked up item into this object
                         if (pickedObject != null && interactingObject.interaction.dropper != null) {
+                            SoundManager.PlaySound(SoundManager.SOUND_DROP);
                             DropObject(interactingObject);
                             LoadGameObjects();
                         }
                     }
                     #endregion                    
+
                     #region Time Warp Button
                     else if (input.IsReverseTime() && StateManager.Instance.CanTimeTravel())
                     {

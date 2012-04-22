@@ -13,17 +13,24 @@ namespace GreenTime.Managers
     {
         // constants determining the sound index in the array
         public static readonly int SOUND_TIMETRAVEL = 0;
+        public static readonly int SOUND_MENU_UP = 1;
+        public static readonly int SOUND_MENU_DOWN = 2;
+        public static readonly int SOUND_DROP = 3;
 
         // content file names
         private static readonly string GAME_MUSIC_FILENAME = "greentime";
         private static readonly string TRAVEL_SOUND_FILENAME = "timeTravel";
+        private static readonly string MENU_UP_FILENAME = @"audio\scrollUp";
+        private static readonly string MENU_DOWN_FILENAME = @"audio\scrollDown";
+        private static readonly string DROP_FILENAME = @"audio\throwingGarbage";
 
         // the in game music
         private static Song gameMusic;
 
         // game sound effects
-        private static int soundCount = 1;
+        private static int soundCount = 4;
         private static SoundEffect[] sounds;
+        private static Dictionary<string, SoundEffect> levelSounds = new Dictionary<string,SoundEffect>();
 
         // flag marking if game music is playing
         private static bool gameMusicPlaying = false;
@@ -40,6 +47,25 @@ namespace GreenTime.Managers
             // sound effects
             sounds = new SoundEffect[soundCount];
             sounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
+            sounds[SOUND_MENU_UP] = content.Load<SoundEffect>(MENU_UP_FILENAME);
+            sounds[SOUND_MENU_DOWN] = content.Load<SoundEffect>(MENU_DOWN_FILENAME);
+            sounds[SOUND_DROP] = content.Load<SoundEffect>(DROP_FILENAME);
+        }
+
+        /// <summary>
+        /// Loads a sound specific in a level (needs to be unloaded)
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="soundName"></param>
+        public static void LoadSound(ContentManager content, string soundName)
+        {
+            // cleanup sound if it was disposed
+            if (levelSounds.ContainsKey(soundName) && levelSounds[soundName].IsDisposed)
+                levelSounds.Remove(soundName);
+
+            // add sound if not already there
+            if ( !levelSounds.ContainsKey(soundName) )
+                levelSounds.Add(soundName, content.Load<SoundEffect>(@"audio\" + soundName));
         }
 
         /// <summary>
@@ -75,6 +101,27 @@ namespace GreenTime.Managers
         {
             if ( SettingsManager.SoundEnabled )
                 sounds[soundIndex].Play();
+        }
+
+        /// <summary>
+        /// Plays a level specific sound effect
+        /// </summary>
+        /// <param name="soundName"></param>
+        public static void PlaySound(string soundName, bool looping)
+        {
+            if (SettingsManager.SoundEnabled)
+            {
+                if (looping)
+                {
+                    SoundEffectInstance i = levelSounds[soundName].CreateInstance();
+                    i.IsLooped = true;
+                    i.Play();
+                }
+                else
+                {
+                    levelSounds[soundName].Play();
+                }
+            }
         }
 
         public static void ToggleMusic()
