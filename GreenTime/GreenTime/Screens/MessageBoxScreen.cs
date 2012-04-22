@@ -41,8 +41,7 @@ namespace GreenTime.Screens
         /// </summary>
         public MessageBoxScreen(string message, bool includeUsageText)
         {
-            const string usageText = "\nA button, Space, Enter = ok" +
-                                     "\nB button, Esc = cancel";
+            const string usageText = "\nOK (Space) | Cancel (Esc)";
 
             if (includeUsageText)
                 this.message = message + usageText;
