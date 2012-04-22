@@ -2,28 +2,19 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
-    <name>outdoor</name>
+    <name>neighbourhood</name>
     <backgroundTexture>
-      <texture>outdoor_shop\bg</texture>
+      <texture>neighbourhood\bg</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
     <leftScreenName></leftScreenName>
-    <rightScreenName>forest</rightScreenName>
-    <ambientSound>
-      <name>outdoor_shop\carRunning</name>
-      <playIf>
-        <state>
-          <name>puzzle_car_solved</name>
-          <value>0</value>
-        </state>
-      </playIf>
-    </ambientSound>
+    <rightScreenName>shop</rightScreenName>
     <gameObjects>
       <!-- Front grass -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\grass</texture>
+          <texture>neighbourhood\grass</texture>
           <position>0 529</position>
           <layer>0.4</layer>
         </sprite>
@@ -31,7 +22,7 @@
       <!-- Dead tree -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\cdtree</texture>
+          <texture>neighbourhood\cdtree</texture>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -39,7 +30,7 @@
       <!-- Live tree -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\ctree</texture>
+          <texture>neighbourhood\ctree</texture>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -53,7 +44,7 @@
       <!-- Garbage 1 -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\g2</texture>
+          <texture>neighbourhood\g2</texture>
           <position>240 387</position>
           <layer>0.6</layer>
         </sprite>
@@ -67,14 +58,14 @@
           <boundX>130</boundX>
           <boundWidth>227</boundWidth>
           <text>Garbage</text>
-          <transition>outdoor_past</transition>
+          <transition>neighbourhood_past</transition>
           <pickUpName>garbage1</pickUpName>
         </onInteract>
       </Item>
       <!-- Garbage 2 -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\g1</texture>
+          <texture>neighbourhood\g1</texture>
           <position>379 339</position>
           <layer>0.6</layer>
         </sprite>
@@ -88,14 +79,14 @@
           <boundX>269</boundX>
           <boundWidth>220</boundWidth>
           <text>Garbage</text>
-          <transition>outdoor_past</transition>
+          <transition>neighbourhood_past</transition>
           <pickUpName>garbage2</pickUpName>
         </onInteract>
       </Item>
       <!-- Garbage 3 -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\g3</texture>
+          <texture>neighbourhood\g3</texture>
           <position>428 388</position>
           <layer>0.55</layer>
         </sprite>
@@ -109,14 +100,14 @@
           <boundX>318</boundX>
           <boundWidth>196</boundWidth>
           <text>Garbage</text>
-          <transition>outdoor_past</transition>
+          <transition>neighbourhood_past</transition>
           <pickUpName>garbage3</pickUpName>
         </onInteract>
       </Item>
       <!-- Bin object -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\bin</texture>
+          <texture>neighbourhood\bin</texture>
           <position>561 553</position>
           <layer>0.4</layer>
         </sprite>
@@ -144,62 +135,13 @@
           </dropper>
         </onInteract>
       </Item>
-      <!-- Car -->
+      <!-- dead flowers -->
       <Item>
-        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>outdoor_shop\car2</texture>
-          <position>680 354</position>
+        <sprite>
+          <texture>neighbourhood/flowers</texture>
+          <position>935 372</position>
           <layer>0.6</layer>
-          <frameSize>570 258</frameSize>
-          <framesPerSecond>15</framesPerSecond>
-          <animations>
-            <frameSet>
-              <frames>0 1</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>0</value>
-                </state>
-              </playIf>
-            </frameSet>
-            <frameSet>
-              <frames>0</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>100</value>
-                </state>
-              </playIf>
-            </frameSet>
-          </animations>
         </sprite>
-        <onInteract>
-          <boundX>720</boundX>
-          <boundWidth>368</boundWidth>
-          <text>Stranger in car</text>
-          <chatIndex>20</chatIndex>
-        </onInteract>
-      </Item>
-      <!-- Smoke -->
-      <Item>
-        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>outdoor_shop\smoke</texture>
-          <position>1243 392</position>
-          <layer>0.55</layer>
-          <frameSize>30 151</frameSize>
-          <framesPerSecond>10</framesPerSecond>
-          <animations>
-            <frameSet>
-              <frames>0 1 2 3 4 5 6 7 8 9 10 11</frames>
-            </frameSet>
-          </animations>
-        </sprite>
-        <showIf>
-          <state>
-            <name>puzzle_car_solved</name>
-            <value>0</value>
-          </state>
-        </showIf>
       </Item>
     </gameObjects>
   </Asset>

@@ -2,9 +2,9 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
-    <name>outdoor_past</name>
+    <name>neighbourhood_past</name>
     <backgroundTexture>
-      <texture>outdoor_shop\bg</texture>
+      <texture>neighbourhood\bg</texture>
       <position>0 0</position>
       <layer>0.75</layer>
       <shaded>false</shaded>
@@ -15,7 +15,7 @@
       <!-- Front grass -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\grass</texture>
+          <texture>neighbourhood\grass</texture>
           <position>0 529</position>
           <layer>0.4</layer>
           <shaded>false</shaded>
@@ -24,7 +24,7 @@
       <!-- Live tree (add scale) -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\ctree</texture>
+          <texture>neighbourhood\ctree</texture>
           <position>200 100</position>
           <layer>0.65</layer>
           <shaded>false</shaded>
@@ -34,7 +34,7 @@
       <!-- Guy -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\garbage_man</texture>
+          <texture>neighbourhood\garbage_man</texture>
           <position>450 300</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
@@ -49,7 +49,7 @@
       <!-- Garbage -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\g3</texture>
+          <texture>neighbourhood\g3</texture>
           <position>428 388</position>
           <layer>0.55</layer>
           <shaded>false</shaded>
@@ -58,7 +58,7 @@
       <!-- Bin object -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\bin</texture>
+          <texture>neighbourhood\bin</texture>
           <position>561 553</position>
           <layer>0.4</layer>
           <shaded>false</shaded>

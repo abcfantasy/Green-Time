@@ -209,7 +209,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\grass.png">
+    <Compile Include="neighbourhood\grass.png">
       <Name>grass</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -228,42 +228,37 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\bg.png">
-      <Name>bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="outdoor_shop\bin.png">
+    <Compile Include="neighbourhood\bin.png">
       <Name>bin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\car.png">
+    <Compile Include="shop\car.png">
       <Name>car</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\cdtree.png">
+    <Compile Include="neighbourhood\cdtree.png">
       <Name>cdtree</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\ctree.png">
+    <Compile Include="neighbourhood\ctree.png">
       <Name>ctree</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\g1.png">
+    <Compile Include="neighbourhood\g1.png">
       <Name>g1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\g2.png">
+    <Compile Include="neighbourhood\g2.png">
       <Name>g2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="outdoor_shop\g3.png">
+    <Compile Include="neighbourhood\g3.png">
       <Name>g3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -277,21 +272,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\smoke.png">
+    <Compile Include="shop\smoke.png">
       <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\car2.png">
+    <Compile Include="shop\car2.png">
       <Name>car2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\garbage_man.png">
+    <Compile Include="neighbourhood\garbage_man.png">
       <Name>garbage_man</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -444,7 +439,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_shop\carRunning.wav">
+    <Compile Include="shop\carRunning.wav">
       <Name>carRunning</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
@@ -467,22 +462,6 @@
   <ItemGroup>
     <Compile Include="levels\kitchen.xml">
       <Name>kitchen</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="levels\outdoor.xml">
-      <Name>outdoor</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="levels\outdoor_past.xml">
-      <Name>outdoor_past</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
@@ -615,6 +594,53 @@
       <Name>closingTap</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighbourhood.xml">
+      <Name>neighbourhood</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighbourhood\bg.png">
+      <Name>bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighbourhood\flowers.png">
+      <Name>flowers</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="neighbourhood\flowers1.png">
+      <Name>flowers1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\shop.xml">
+      <Name>shop</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighbourhood_past.xml">
+      <Name>neighbourhood_past</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="shop\bg.png">
+      <Name>bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

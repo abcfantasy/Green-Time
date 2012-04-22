@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>shop</name>
+    <backgroundTexture>
+      <texture>shop\bg</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName>forest</rightScreenName>
+    <ambientSound>
+      <name>shop\carRunning</name>
+      <playIf>
+        <state>
+          <name>puzzle_car_solved</name>
+          <value>0</value>
+        </state>
+      </playIf>
+    </ambientSound>
+    <gameObjects>
+      <!-- Car -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>shop\car2</texture>
+          <position>680 354</position>
+          <layer>0.6</layer>
+          <frameSize>570 258</frameSize>
+          <framesPerSecond>15</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1</frames>
+              <playIf>
+                <state>
+                  <name>puzzle_car_solved</name>
+                  <value>0</value>
+                </state>
+              </playIf>
+            </frameSet>
+            <frameSet>
+              <frames>0</frames>
+              <playIf>
+                <state>
+                  <name>puzzle_car_solved</name>
+                  <value>100</value>
+                </state>
+              </playIf>
+            </frameSet>
+          </animations>
+        </sprite>
+        <onInteract>
+          <boundX>720</boundX>
+          <boundWidth>368</boundWidth>
+          <text>Stranger in car</text>
+          <chatIndex>20</chatIndex>
+        </onInteract>
+      </Item>
+      <!-- Smoke -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>shop\smoke</texture>
+          <position>1243 392</position>
+          <layer>0.55</layer>
+          <frameSize>30 151</frameSize>
+          <framesPerSecond>10</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 4 5 6 7 8 9 10 11</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+    </gameObjects>
+  </Asset>
+</XnaContent>

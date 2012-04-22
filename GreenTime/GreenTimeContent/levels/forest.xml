@@ -8,7 +8,7 @@
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
-    <leftScreenName>outdoor</leftScreenName>
+    <leftScreenName>shop</leftScreenName>
     <rightScreenName>final_room</rightScreenName>
     <ambientSound>
       <name>outdoor_forest\FireCrackling</name>
