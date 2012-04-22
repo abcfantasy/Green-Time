@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Good day sir, how are you?</line>
+        </text>
+        <leadsTo>1</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>I am doing fine, just putting away my thrash.</line>
+        </text>
+        <leadsTo>2 3</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>Good for you, everyone needs to do that.</line>
+        </text>
+        <leadsTo>4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>You shouldn't leave garbage here.</line>
+        </text>
+        <leadsTo>5 6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>Thank you. Have a nice day!</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>What do you care about what I think? Let me be.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <between>0 50</between>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Where else should I put it?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <leadsTo>7 8 9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>In the garbage bin, over there.</line>
+        </text>
+        <leadsTo>10</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>Under the tree is indeed a good place.</line>
+        </text>
+        <leadsTo>11</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>Maybe you should dig a hole in the ground so we don't see it.</line>
+        </text>
+        <leadsTo>12</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>Well, it's a bit more effort but I guess you're right.</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>Thank you for pointing out my current spot. I will keep using it in the future.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <text>
+          <line>No, I found that to be too much work.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>13</Key>
+      <Value>
+        <text>
+          <line>Great. Have a nice day and a bright future sir!</line>
+        </text>
+        <leadsTo>14</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>14</Key>
+      <Value>
+        <text>
+          <line>You too.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>puzzle_garbage_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+  </Asset>
+</XnaContent>

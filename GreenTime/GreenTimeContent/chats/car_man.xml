@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Good day sir. Why are you sitting in the car?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>1</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>I am waiting for my wife. She is shopping.</line>
+        </text>
+        <leadsTo>2 3</leadsTo>
+      </Value>
+    </Item>
+
+    <!--<Item>
+      <Index>20</Index>
+      <Text>What a beautiful day, and such nice, fresh air.</Text>
+      <showIf>
+        <state>
+          <name>puzzle_car_solved</name>
+          <value>100</value>
+        </state>
+      </showIf>
+    </Item>-->
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>Yeah, they always need more time than we think.</line>
+        </text>
+        <leadsTo>4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>Why is your car engine still running then?</line>
+        </text>
+        <leadsTo>5</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>Indeed. Nice day to you.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>Why not? It shouldn't take much longer now.</line>
+        </text>
+        <leadsTo>6 7 8</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Yeah, why not on such a beautiful day?</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>A running engine pollutes the atmosphere through CO2 emission.</line>
+        </text>
+        <leadsTo>10 11</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>You will receive a fine if you leave it running for more than 3 minutes.</line>
+        </text>
+        <leadsTo>12</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>I don't care.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>Right, CO2. How about you look at yourself first, before lecturing me on that?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <between>0 50</between>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>Oh yes, CO2 emissions. I will put off the engine.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>player_status</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <affectedStates>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <text>
+          <line>I heard about it, but it only happens in Denmark!</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+  </Asset>
+</XnaContent>

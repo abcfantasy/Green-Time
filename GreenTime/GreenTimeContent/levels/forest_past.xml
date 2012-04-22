@@ -91,7 +91,7 @@
           <boundX>546</boundX>
           <boundWidth>320</boundWidth>
           <text>Smoker</text>
-          <chatIndex>40</chatIndex>
+          <chat>forest_man</chat>
         </onInteract>
       </Item>
 

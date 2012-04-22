@@ -226,9 +226,7 @@ namespace GreenTime.Screens
         {
             if (content != null)
                 content.Unload();
-
             player.moveTo(LevelManager.Instance.StartPosition);
-
             if (transition == TransitionType.ToPresent)
             {
                 LevelManager.Instance.MovePresent();
@@ -402,8 +400,8 @@ namespace GreenTime.Screens
                         }
                         
                         // Handling talking
-                        if (interactingObject.interaction.chatIndex != LevelManager.EMPTY_VALUE)
-                            ScreenManager.AddScreen(new ChatScreen(LevelManager.Instance.GetChat(interactingObject.interaction.chatIndex), true, player.Position, interactingObject.sprite.position));
+                        if (interactingObject.interaction.chat != null)
+                            ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, player.Position, interactingObject.sprite.position));
 
                         // Handling affected states
                         if (interactingObject.interaction.affectedStates != null)

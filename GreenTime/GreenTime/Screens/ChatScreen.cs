@@ -10,16 +10,27 @@ using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
+    public enum ChatStatus
+    {
+        PlayerText,
+        NpcText,
+        PlayerAnswer,
+    }
+
     /// <summary>
     /// A popup message box screen, used to display game chats
     /// </summary>
     class ChatScreen : GameScreen
     {
         #region Fields
-        private string currentText;
-        private List<AnswerEntry> answerEntries = new List<AnswerEntry>();
-        private int selectedEntry = 0;
+        private ChatStatus status = ChatStatus.PlayerText;
 
+        private string currentText;
+        private int nextLine;
+        private List<Chat> answers = new List<Chat>();
+        private int selectedEntry;
+
+        private Dictionary<int, Chat> conversation;
         private Chat chat;
         Texture2D gradientTexture;
         Texture2D chatBubble;
@@ -29,7 +40,6 @@ namespace GreenTime.Screens
         private Vector2 playerPosition;
         private Vector2 npcPosition;
 
-        private bool npcSpeaking;
         private double optionArrowsBlinking = 0.0;
         #endregion
 
@@ -37,7 +47,7 @@ namespace GreenTime.Screens
         /// <summary>
         /// Constructor
         /// </summary>
-        public ChatScreen(Chat chat, bool transition)
+        public ChatScreen(string chatFile, bool transition)
         {
             IsPopup = true;
 
@@ -47,30 +57,55 @@ namespace GreenTime.Screens
                 TransitionOnTime = TimeSpan.FromSeconds(0);
             TransitionOffTime = TimeSpan.FromSeconds(0.2);
 
-            InitializeChat(chat);
+            conversation = LevelManager.Instance.StartChat(chatFile);
+
+            InitializeChat( GetChat( 0 ) );
         }
 
-        public ChatScreen(Chat chat, bool transition, Vector2 playerPosition, Vector2 npcPosition)
-            : this(chat, transition)
+        public ChatScreen(string chatFile, bool transition, Vector2 playerPosition, Vector2 npcPosition)
+            : this(chatFile, transition)
         {
             this.playerPosition = playerPosition;
             this.npcPosition = npcPosition;
         }
 
+        public Chat GetChat(int index)
+        {
+            if (index < 0) return null;
+
+            Chat chat = conversation[index];
+            if (chat != null && StateManager.Instance.AllTrue(chat.dependencies))
+                return chat;
+            return null;
+        }
+
         private void InitializeChat(Chat chat)
         {
-            this.chat = chat;
-            currentText = chat.Text;
-
-            answerEntries.Clear();
-
-            npcSpeaking = true;
-
-            // add any answers if available
-            if (chat.answers != null)
+            if (chat == null)
             {
-                foreach (Answer a in chat.answers)
-                    answerEntries.Add(new AnswerEntry(a.Text));
+                this.ExitScreen();
+                return;
+            }
+
+            this.chat = chat;
+            currentText = chat.text[0];
+            nextLine = 1;
+            selectedEntry = 0;
+
+            FilterAnswers(chat, this.answers);
+        }
+
+        private void FilterAnswers(Chat chat, List<Chat> answers)
+        {
+            answers.Clear();
+            if (chat.answers == null) return;
+
+            Chat c;
+            foreach (int a in chat.answers)
+            {
+                c = GetChat(a);
+                if (c != null && StateManager.Instance.AllTrue(c.dependencies))
+                    answers.Add(c);
             }
         }
 
@@ -98,34 +133,30 @@ namespace GreenTime.Screens
         /// </summary>
         public override void HandleInput(InputManager input)
         {
-            // Move to the previous menu entry?
-            if (input.IsMenuUp())
+            // Only if we are currently answering
+            if (status == ChatStatus.PlayerAnswer)
             {
-                selectedEntry--;
+                // Move to the previous menu entry?
+                if (input.IsMenuUp())
+                {
+                    selectedEntry--;
 
-                if (selectedEntry < 0)
-                    selectedEntry = answerEntries.Count - 1;
-            }
+                    if (selectedEntry < 0)
+                        selectedEntry = answers.Count - 1;
+                }
 
-            // Move to the next menu entry?
-            if (input.IsMenuDown())
-            {
-                selectedEntry++;
+                // Move to the next menu entry?
+                if (input.IsMenuDown())
+                {
+                    selectedEntry++;
 
-                if (selectedEntry >= answerEntries.Count)
-                    selectedEntry = 0;
-            }
-
-            // Accept or cancel the menu? We pass in our ControllingPlayer, which may
-            // either be null (to accept input from any player) or a specific index.
-            // If we pass a null controlling player, the InputState helper returns to
-            // us which player actually provided the input. We pass that through to
-            // OnSelectEntry and OnCancel, so they can tell which player triggered them.
-
+                    if (selectedEntry >= answers.Count)
+                        selectedEntry = 0;
+                }
+            }            
+            
             if (input.IsMenuSelect())
-            {
                 OnSelectEntry(selectedEntry);
-            }
         }
 
 
@@ -134,27 +165,55 @@ namespace GreenTime.Screens
         /// </summary>
         protected virtual void OnSelectEntry(int entryIndex)
         {
-            // show player options
-            if (npcSpeaking && answerEntries != null )
+            if (chat.affectedStates != null)
+                StateManager.Instance.ModifyStates(chat.affectedStates);
+
+            if (answers == null || answers.Count == 0)
             {
-                npcSpeaking = false;
+                this.ExitScreen();
                 return;
             }
 
-            // change states if any
-            if( chat.affectedStates != null )
-                StateManager.Instance.ModifyStates(chat.affectedStates);
-
-            // if answers available, check chosen answer
-            if (answerEntries.Count > 0)
+            switch (status)
             {
-                InitializeChat(LevelManager.Instance.GetChat(chat.answers[entryIndex].ResponseIndex));
-            }
-
-            // otherwise, just close this screen
-            else
-            {
-                this.ExitScreen();
+                case ChatStatus.NpcText:
+                    if (nextLine < chat.text.Count)
+                    {
+                        currentText = chat.text[nextLine++];
+                        break;
+                    }
+                    if (answers.Count == 1)
+                    {
+                        status = ChatStatus.PlayerText;
+                        InitializeChat(answers[0]);
+                    }
+                    else
+                        status = ChatStatus.PlayerAnswer;
+                    break;
+                case ChatStatus.PlayerText:
+                    if (nextLine < chat.text.Count)
+                    {
+                        currentText = chat.text[nextLine++];
+                        return;
+                    }
+                    status = ChatStatus.NpcText;
+                    InitializeChat(answers[0]);
+                    break;
+                case ChatStatus.PlayerAnswer:
+                    status = ChatStatus.NpcText;
+                    List<Chat> nextAnswers = new List<Chat>();
+                    if (answers[entryIndex] != null)
+                    {
+                        FilterAnswers(answers[entryIndex], nextAnswers);
+                        if (nextAnswers.Count > 0)
+                            InitializeChat(nextAnswers[0]);
+                        else
+                            this.ExitScreen();
+                    }
+                    break;
+                default:
+                    this.ExitScreen();
+                    break;
             }
         }
         #endregion
@@ -163,14 +222,6 @@ namespace GreenTime.Screens
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-            // Update each nested MenuEntry object.
-            //for (int i = 0; i < answerEntries.Count; i++)
-            //{
-            //    bool isSelected = IsActive && (i == selectedEntry);
-
-            //    answerEntries[i].Update(isSelected, gameTime);
-            //}
         }
 
         /// <summary>
@@ -205,22 +256,17 @@ namespace GreenTime.Screens
 
             spriteBatch.Begin();
 
-            if (npcSpeaking)
+            switch (status)
             {
-                // draw npc bubble
-                DrawText(spriteBatch, chatFont, npcPosition - new Vector2(0.0f, 200.0f), 300.0f, currentText);
-            }
-            else
-            {
-                // draw player bubble
-                if (answerEntries != null && answerEntries.Count > 0 )
-                {
-                    // if there is 1 answer, draw simple text without arrows blinking
-                    if (answerEntries.Count == 1)
-                        DrawText(spriteBatch, chatFont, playerPosition, 300.0f, answerEntries[selectedEntry].Text);
-                    else
-                        DrawAnswer(gameTime, spriteBatch, chatFont, playerPosition, 300.0f, answerEntries[selectedEntry].Text);
-                }
+                case ChatStatus.NpcText:
+                    DrawText(spriteBatch, chatFont, npcPosition - new Vector2(0.0f, 200.0f), 300.0f, currentText);
+                    break;
+                case ChatStatus.PlayerText:
+                    DrawText(spriteBatch, chatFont, playerPosition, 300.0f, currentText);
+                    break;
+                case ChatStatus.PlayerAnswer:
+                    DrawAnswer(gameTime, spriteBatch, chatFont, playerPosition, 300.0f, answers[selectedEntry].text[0]);
+                    break;
             }
 
             spriteBatch.End();
