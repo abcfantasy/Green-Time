@@ -634,6 +634,31 @@ namespace GreenTime.Screens
                     {
                         interactingObject = io;
 
+                        #region Tutorial Popups
+                        if (interactingObject.interaction != null && interactingObject.interaction.callback != "news" )
+                        {
+                            // press SPACE to interact
+                            if (StateManager.Instance.GetState("tutorial_interaction") < 100)
+                            {
+                                StateManager.Instance.SetState("tutorial_interaction", 100);
+                                MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Press SPACE to interact with objects.", false);
+                                ScreenManager.AddScreen(confirmQuitMessageBox);
+                            }
+                            // press Z to time travel
+                            else if (StateManager.Instance.GetState("tutorial_timetravel") < 100 && !String.IsNullOrEmpty(interactingObject.interaction.transition) && 
+                                StateManager.Instance.GetState(StateManager.STATE_DAY) > 1 )
+                            {
+                                StateManager.Instance.SetState("tutorial_timetravel", 100);
+                                MessageBoxScreen tutorialPopupBox;
+                                if (StateManager.Instance.CanTimeTravel())
+                                    tutorialPopupBox = new MessageBoxScreen("Tutorial: Sometimes you can attempt to time travel\nin the past by pressing Z.", false);
+                                else
+                                    tutorialPopupBox = new MessageBoxScreen("Tutorial: Sometimes you can attempt to time travel\nin the past by pressing Z. However you cannot do this\n if you are not in the green state.", false);
+                                ScreenManager.AddScreen(tutorialPopupBox);
+                            }
+                        }
+                        #endregion
+
                         if (io.interaction.solid)
                         {
                             if (player.Position.X <= io.interaction.boundX + (io.interaction.boundWidth / 2))
