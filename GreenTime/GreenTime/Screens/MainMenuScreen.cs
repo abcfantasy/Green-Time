@@ -78,6 +78,7 @@ namespace GreenTime.Screens
         {
             StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
             LoadingScreen.Load(ScreenManager, true, new PlayScreen());
+            //LoadingScreen.Load(ScreenManager, true, new IntroScreen());   // uncomment this line and comment the line above to start with storyline
         }
 
 

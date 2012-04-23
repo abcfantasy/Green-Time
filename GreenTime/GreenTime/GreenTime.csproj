@@ -134,6 +134,7 @@
     <Compile Include="Screens\ComputerScreen.cs" />
     <Compile Include="Screens\FinalScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\LogoScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
