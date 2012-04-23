@@ -8,7 +8,7 @@
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
-    <leftScreenName></leftScreenName>
+    <leftScreenName>neighbourhood</leftScreenName>
     <rightScreenName>forest</rightScreenName>
     <ambientSound>
       <name>shop\carRunning</name>

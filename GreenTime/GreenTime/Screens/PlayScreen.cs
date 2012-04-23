@@ -270,6 +270,8 @@ namespace GreenTime.Screens
 
                 }
 
+                CheckPlayerStatus();
+
                 // check if player should return to present
                 CheckPastPresentState();
 
@@ -371,6 +373,23 @@ namespace GreenTime.Screens
             }
             else if (this.IsActive && player.IsReady && this.TransitionPosition == 0)
             {
+                #region Tutorial Popups
+                // grey
+                if (StateManager.Instance.GetState("tutorial_grey") < 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
+                {
+                    StateManager.Instance.SetState("tutorial_grey", 100);
+                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Oh no! When you do not take care of the environment\nin your house, you become grey. You lose the ability to\ntime travel until you solve a problem in your house the next \nday.", false);
+                    ScreenManager.AddScreen(confirmQuitMessageBox);
+                }
+                // square
+                else if (StateManager.Instance.GetState("tutorial_square") < 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) == 0)
+                {
+                    StateManager.Instance.SetState("tutorial_square", 100);
+                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: You are a square head! You are not caring about\nthe environment. You'll have a hard time convincing other people\nnow. Press D to start a new day and improve yourself.", false);
+                    ScreenManager.AddScreen(confirmQuitMessageBox);
+                }
+                #endregion
+
                 // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (interactingObject != null)
                 {
@@ -484,9 +503,9 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
-            /*
+            
             int playerStatus;
-            if (LevelManager.Instance.CurrentLevel.name.Equals("outdoor") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
+            if (LevelManager.Instance.CurrentLevel.name.Equals("neighbourhood") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
             {
                 StateManager.Instance.SetState("just_went_out", 0);
                 if (StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100)
@@ -500,13 +519,15 @@ namespace GreenTime.Screens
                 else
                 {
                     playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
-                    if (playerStatus == 100) player.turnGrey();
-                    else if (playerStatus == 50) player.transformShape();
+                    if (playerStatus == 100)
+                        player.turnGrey();
+                    else if (playerStatus == 50)
+                        player.transformShape();
 
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Max(playerStatus - 50, 0));                   
                 }
             }
-             */
+             
         }
         /// <summary>
         /// Checks to see if the screen should transition to the present
@@ -587,9 +608,9 @@ namespace GreenTime.Screens
                        ((StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) != 100) ||     // transform better
                          (StateManager.Instance.GetState(StateManager.STATE_INDOOR) != 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0)))         // transform worse
                     {
-                        //StateManager.Instance.SetState("just_went_out", 100);
+                        StateManager.Instance.SetState("just_went_out", 100);
                         LevelManager.Instance.MoveRight();
-                        LoadingScreen.Load(ScreenManager, false, (SettingsManager.GAME_WIDTH / 2.0f) - SettingsManager.PLAYER_WIDTH, new StateTransitionScreen());
+                        //LoadingScreen.Load(ScreenManager, false, (SettingsManager.GAME_WIDTH / 2.0f) - SettingsManager.PLAYER_WIDTH, new StateTransitionScreen());
                     }
                     else
                     {
