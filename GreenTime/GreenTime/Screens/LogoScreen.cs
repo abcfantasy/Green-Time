@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using GreenTime.Managers;
+using GreenTimeGameData.Components;
 
 namespace GreenTime.Screens
 {
@@ -20,6 +21,16 @@ namespace GreenTime.Screens
 
         Texture2D background;
         Texture2D backgroundTexture;
+        Texture2D leaf;
+        Texture2D alternateLeaf;
+        List<Leaf> leaves = new List<Leaf>();
+
+        //float leafY = 0.0f;
+        //float leafRotation = 0.0f;
+        //bool leafRotationIncreasing = true;
+        float leafInterval = 0.0f;
+        float nextLeaf = 100.0f;
+        float maxLeaves = 30;
 
         public LogoScreen( bool noAnimation = false )
         {
@@ -49,6 +60,8 @@ namespace GreenTime.Screens
 
             logo = content.Load<Texture2D>("GreenTimeLogo");
             backgroundTexture = content.Load<Texture2D>("background");
+            leaf = content.Load<Texture2D>("leaf");
+            alternateLeaf = content.Load<Texture2D>("leaf2");
 
             // create the rectangle texture without colors
             background = new Texture2D(
@@ -103,8 +116,29 @@ namespace GreenTime.Screens
             }
             else
             {
+                leafInterval += gameTime.ElapsedGameTime.Milliseconds;
+
                 if (backgroundAlpha > 0.0f)
                     backgroundAlpha -= 0.01f;
+
+                for (int i = 0; i < leaves.Count; i++)
+                {
+                    leaves[i].Update();
+                    if (leaves[i].Y > SettingsManager.GAME_HEIGHT + 50)
+                    {
+                        leaves.RemoveAt(i);
+                        i--;
+                    }
+                    
+                }
+
+                if (leafInterval >= nextLeaf)
+                {
+                    leafInterval = 0.0f;
+                    nextLeaf = new Random().Next(1000, 2500);
+                    if ( leaves.Count < maxLeaves )
+                        leaves.Add(new Leaf());
+                }
             }
 
         }
@@ -125,6 +159,12 @@ namespace GreenTime.Screens
             if (!IsActive)
             {
                 spriteBatch.Draw(background, new Rectangle(0, 0, SettingsManager.GAME_WIDTH, SettingsManager.GAME_HEIGHT), Color.White * backgroundAlpha);
+
+                // leaf
+                for ( int i = 0; i < leaves.Count; i++ )
+                    spriteBatch.Draw(leaves[i].Kind ? leaf : alternateLeaf, new Vector2(leaves[i].X, leaves[i].Y), null, Color.White * 0.5f, (float)Math.Atan(leaves[i].Rotation*2.0f)/2.0f, new Vector2(leaf.Width / 2, -50), leaves[i].Scale, leaves[i].Effects, 0.0f);
+                //for ( int i = 1; i < leaves.Count; i += 2 )
+                //    spriteBatch.Draw(alternateLeaf, new Vector2(leaves[i].X, leaves[i].Y), null, Color.White * 0.5f, (float)Math.Asin(leaves[i].Rotation / 2.0f) / 2.0f, new Vector2(leaf.Width / 2, -50), leaves[i].Scale, SpriteEffects.None, 0.0f);
             }
 
             //spriteBatch.Draw(, new Vector2(0, 0), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.8f);

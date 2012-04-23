@@ -8,9 +8,6 @@ namespace GreenTime.Screens
 {
     class MainMenuScreen : MenuScreen
     {
-        bool GameLoadRequested = false;
-        IAsyncResult result;
-
         #region Initialization
         /// <summary>
         /// Constructor fills in the menu contents.
