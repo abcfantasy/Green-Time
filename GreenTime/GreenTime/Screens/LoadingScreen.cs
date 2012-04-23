@@ -48,7 +48,8 @@ namespace GreenTime.Screens
             this.loadingIsSlow = loadingIsSlow;
             this.screensToLoad = screensToLoad;
 
-            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+            TransitionOnTime = TimeSpan.FromSeconds(0);
+            TransitionOffTime = TimeSpan.FromSeconds(0);
         }
 
         /// <summary>
@@ -125,13 +126,12 @@ namespace GreenTime.Screens
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-
             // If we are the only active screen, that means all the previous screens
             // must have finished transitioning off. We check for this in the Draw
             // method, rather than in Update, because it isn't enough just for the
             // screens to be gone: in order for the transition to look good we must
             // have actually drawn a frame without them before we perform the load.
-            if ((ScreenState == ScreenState.Active) &&
+            if (/*(ScreenState == ScreenState.Active) &&*/
                 (ScreenManager.GetScreens().Length == 1))
             {
                 otherScreensAreGone = true;

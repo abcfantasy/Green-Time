@@ -378,7 +378,7 @@ namespace GreenTime.Screens
                 if (StateManager.Instance.GetState("tutorial_grey") < 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
                 {
                     StateManager.Instance.SetState("tutorial_grey", 100);
-                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Oh no! When you do not take care of the environment\nin your house, you become grey. You lose the ability to\ntime travel until you solve a problem in your house the next \nday.", false);
+                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Oh no! When you do not take care of the environment\nin your house, you become grey. You lose the ability to\ntime travel until you solve a problem in your house the next\nday.", false);
                     ScreenManager.AddScreen(confirmQuitMessageBox);
                 }
                 // square

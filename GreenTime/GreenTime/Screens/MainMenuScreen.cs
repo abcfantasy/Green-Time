@@ -16,7 +16,7 @@ namespace GreenTime.Screens
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("Main Menu")
+            : base("Main Menu", 180.0f)
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");

@@ -79,7 +79,17 @@ namespace GreenTime.Screens
             Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
 
             spriteBatch.Begin();
+            /*
+            float rotation = 0;
 
+            for ( int i = 0; i < 5; i++ )
+                for ( int j = 0; j < 3; j++ )
+                {
+                    spriteBatch.Draw(backgroundTexture, new Vector2(i * 256, j * 256), null, Color.White, MathHelper.ToRadians(rotation), Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
+                    //rotation += 180;
+                    //if (rotation == 360) rotation = 0;
+                }
+            */
             spriteBatch.Draw(backgroundTexture, fullscreen,
                              new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
 

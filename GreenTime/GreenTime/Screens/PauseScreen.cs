@@ -143,6 +143,7 @@ namespace GreenTime.Screens
         void ConfirmQuitMessageBoxAccepted(object sender, EventArgs e)
         {
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
+                                                           new LogoScreen(true),
                                                            new MainMenuScreen());
         }
 

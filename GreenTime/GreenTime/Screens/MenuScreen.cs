@@ -18,6 +18,8 @@ namespace GreenTime.Screens
         List<MenuEntry> menuEntries = new List<MenuEntry>();
         int selectedEntry = 0;
         string menuTitle;
+        float locationOffset = 0.0f;
+
         #endregion
 
         #region Properties
@@ -37,9 +39,10 @@ namespace GreenTime.Screens
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MenuScreen(string menuTitle)
+        public MenuScreen(string menuTitle, float locationOffset = 0)
         {
             this.menuTitle = menuTitle;
+            this.locationOffset = locationOffset;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -136,7 +139,7 @@ namespace GreenTime.Screens
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(0f, 175f);
+            Vector2 position = new Vector2(0f, 150f + locationOffset);
 
             // update each menu entry's location in turn
             for (int i = 0; i < menuEntries.Count; i++)
@@ -208,7 +211,7 @@ namespace GreenTime.Screens
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // Draw the menu title centered on the screen
-            Vector2 titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
+            Vector2 titlePosition = new Vector2(graphics.Viewport.Width / 2, 80 + locationOffset);
             Vector2 titleOrigin = font.MeasureString(menuTitle) / 2;
             Color titleColor = new Color(0, 80, 0) * TransitionAlpha;
             float titleScale = 1.25f;

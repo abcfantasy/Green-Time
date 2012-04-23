@@ -14,7 +14,7 @@ namespace GreenTime.Screens
         private MenuEntry difficultyMenuEntry;
 
         public OptionsMenuScreen()
-            : base("Options")
+            : base("Options", 180.0f)
         {
             // Create our menu entries.
             musicMenuEntry = new MenuEntry("Music: ");
