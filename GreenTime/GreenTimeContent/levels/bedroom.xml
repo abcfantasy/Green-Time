@@ -29,6 +29,7 @@
           <shaded>false</shaded>
           <frameSize>561 360</frameSize>
           <framesPerSecond>1</framesPerSecond>
+          <crossFade>true</crossFade>
           <animations>
             <frameSet>
               <frames>0 1</frames>

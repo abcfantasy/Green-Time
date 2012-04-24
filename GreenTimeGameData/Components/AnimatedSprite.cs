@@ -11,12 +11,15 @@ namespace GreenTimeGameData.Components
     public class AnimatedSprite : Sprite, ICloneable
     {
         #region Fields
-
         // Dimensions of a single frame
         public Vector2 frameSize;
 
         // How fast to play
         public int framesPerSecond;
+
+        // True to fade between frames
+        [ContentSerializer(Optional = true)]
+        public bool crossFade = false;
 
         // All the possible animations for an object (without dependency checking)
         [ContentSerializer(CollectionItemName = "frameSet")]
@@ -39,11 +42,17 @@ namespace GreenTimeGameData.Components
         // The current area of the texture that we are drawing
         private Rectangle currentFrameBounds;
 
+        // The next area of the texture to draw
+        private Rectangle nextFrameBounds;
+
         // Whather or not to flip the sprite
         private bool flipped = false;
 
         // Whether or not to play animations
         private bool paused = false;
+
+        // The percentage of fading between frames
+        private float fadePercentage = 0.0f;
 
         // The list of active animations; they are the ones that satisfy the dependencies
         private Dictionary<string, int[]> activeAnimations = new Dictionary<string, int[]>();
@@ -75,6 +84,9 @@ namespace GreenTimeGameData.Components
             timePerFrame = 1.0d / framesPerSecond;
             this.currentFrameBounds.Width = (int)frameSize.X;
             this.currentFrameBounds.Height = (int)frameSize.Y;
+
+            this.nextFrameBounds.Width = currentFrameBounds.Width;
+            this.nextFrameBounds.Height = currentFrameBounds.Height;
         }
         #endregion
 
@@ -94,7 +106,16 @@ namespace GreenTimeGameData.Components
         {
             currentFrameIndex = 0;
             totalElapsed = 0;
-            UpdateTextureRectangle();
+
+            /*UpdateTextureRectangle();*/
+            Point currentPoint = GetTextureRectangleXY(currentFrameSet, currentFrameIndex);
+            currentFrameBounds.X = currentPoint.X;
+            currentFrameBounds.Y = currentPoint.Y;
+
+            Point nextPoint = GetTextureRectangleXY(currentFrameSet, (currentFrameIndex + 1) % activeAnimations[currentFrameSet].Length);
+            nextFrameBounds.X = nextPoint.X;
+            nextFrameBounds.Y = nextPoint.Y;
+
             Resume();
         }
 
@@ -129,8 +150,15 @@ namespace GreenTimeGameData.Components
             if (activeAnimations[currentFrameSet].Length == 1) return;
 
             totalElapsed += elapsed;
+
+            // calculate cross fading between frames
+            fadePercentage = MathHelper.Clamp( (float)(totalElapsed / timePerFrame), 0.0f, 1.0f ) ;
+
             if (totalElapsed > timePerFrame)
             {
+                // reset fading percentage
+                fadePercentage = 0.0f;
+
                 // Next frame (looping if at the end)
                 currentFrameIndex = (currentFrameIndex + 1) % activeAnimations[currentFrameSet].Length;
 
@@ -143,15 +171,42 @@ namespace GreenTimeGameData.Components
 
         private void UpdateTextureRectangle()
         {
+            /*
             int frame = activeAnimations[currentFrameSet][currentFrameIndex];
 
             currentFrameBounds.X = (frame * (int)frameSize.X) % texture.Width;
             currentFrameBounds.Y = (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y;
+             */
+            /*
+            Point currentPoint = GetTextureRectangleXY(currentFrameSet, currentFrameIndex);
+            currentFrameBounds.X = currentPoint.X;
+            currentFrameBounds.Y = currentPoint.Y;
+            */
+            currentFrameBounds.X = nextFrameBounds.X;
+            currentFrameBounds.Y = nextFrameBounds.Y;
+
+            Point nextPoint = GetTextureRectangleXY(currentFrameSet, (currentFrameIndex + 1) % activeAnimations[currentFrameSet].Length);
+            nextFrameBounds.X = nextPoint.X;
+            nextFrameBounds.Y = nextPoint.Y;
+        }
+
+        // TEST
+        private Point GetTextureRectangleXY(string frameSet, int frameIndex)
+        {
+            int frame = activeAnimations[frameSet][frameIndex];
+
+            return new Point( (frame * (int)frameSize.X) % texture.Width, (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y );
         }
 
         override public void Draw(SpriteBatch spriteBatch, Color tint)
         {
-            spriteBatch.Draw(texture, position, currentFrameBounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+            if (crossFade)
+            {
+                spriteBatch.Draw(texture, position, currentFrameBounds, new Color(tint.R, tint.G, tint.B, (byte)((1 - fadePercentage) * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+                spriteBatch.Draw(texture, position, nextFrameBounds, new Color(tint.R, tint.G, tint.B, (byte)(fadePercentage * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+            }
+            else
+                spriteBatch.Draw(texture, position, currentFrameBounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
         }
         #endregion
 
