@@ -133,18 +133,18 @@
     <Compile Include="Screens\ChatScreen.cs" />
     <Compile Include="Screens\AnswerEntry.cs" />
     <Compile Include="Screens\ComputerScreen.cs" />
-    <Compile Include="Screens\ControlsMenuScreen.cs" />
+    <Compile Include="Screens\Menus\ControlsMenuScreen.cs" />
     <Compile Include="Screens\FinalScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\LogoScreen.cs" />
-    <Compile Include="Screens\MainMenuScreen.cs" />
-    <Compile Include="Screens\MenuEntry.cs" />
-    <Compile Include="Screens\MenuScreen.cs" />
+    <Compile Include="Screens\Menus\MainMenuScreen.cs" />
+    <Compile Include="Screens\Menus\MenuEntry.cs" />
+    <Compile Include="Screens\Menus\MenuScreen.cs" />
     <Compile Include="Screens\MessageBoxScreen.cs" />
     <Compile Include="Screens\NewsScreen.cs" />
-    <Compile Include="Screens\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\Menus\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PastPresentTransitionScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
@@ -196,6 +196,7 @@
   <ItemGroup>
     <None Include="GreenTime_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
