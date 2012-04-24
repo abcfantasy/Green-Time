@@ -12,6 +12,7 @@ namespace GreenTime.Screens
         private MenuEntry soundMenuEntry;
         private MenuEntry fullscreenMenuEntry;
         private MenuEntry difficultyMenuEntry;
+        private MenuEntry controlsMenuEntry;
 
         public OptionsMenuScreen()
             : base("Options", 180.0f)
@@ -21,6 +22,7 @@ namespace GreenTime.Screens
             soundMenuEntry = new MenuEntry("Sound Effects: ");
             fullscreenMenuEntry = new MenuEntry("Fullscreen Mode: Off");
             difficultyMenuEntry = new MenuEntry("Difficulty: ");
+            controlsMenuEntry = new MenuEntry("Controls");
             MenuEntry backMenuEntry = new MenuEntry("Back");
             UpdateMenuEntries();
 
@@ -29,6 +31,7 @@ namespace GreenTime.Screens
             soundMenuEntry.Selected += SoundMenuEntrySelected;
             fullscreenMenuEntry.Selected += FullscreenMenuEntrySelected;
             difficultyMenuEntry.Selected += DifficultyMenuEntrySelected;
+            controlsMenuEntry.Selected += ControlsMenuEntrySelected;
             backMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
@@ -36,6 +39,7 @@ namespace GreenTime.Screens
             MenuEntries.Add(soundMenuEntry);
             MenuEntries.Add(fullscreenMenuEntry);
             MenuEntries.Add(difficultyMenuEntry);
+            MenuEntries.Add(controlsMenuEntry);
             MenuEntries.Add(backMenuEntry);
         }
 
@@ -66,6 +70,11 @@ namespace GreenTime.Screens
         void DifficultyMenuEntrySelected(object sender, EventArgs e)
         {
             SettingsManager.ToggleDifficulty();
+        }
+
+        void ControlsMenuEntrySelected(object sender, EventArgs e)
+        {
+            ScreenManager.AddScreen(new ControlsMenuScreen());
         }
 
         protected override void OnCancel()

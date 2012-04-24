@@ -16,7 +16,7 @@ namespace GreenTime.Screens
     {
         #region Fields
         List<MenuEntry> menuEntries = new List<MenuEntry>();
-        int selectedEntry = 0;
+        protected int selectedEntry = 0;
         string menuTitle;
         float locationOffset = 0.0f;
 
