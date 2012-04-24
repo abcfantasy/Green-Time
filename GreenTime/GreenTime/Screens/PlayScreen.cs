@@ -420,7 +420,7 @@ namespace GreenTime.Screens
                         
                         // Handling talking
                         if (interactingObject.interaction.chat != null)
-                            ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, player.Position, interactingObject.sprite.position));
+                            ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth));
 
                         // Handling affected states
                         if (interactingObject.interaction.affectedStates != null)
@@ -559,7 +559,7 @@ namespace GreenTime.Screens
                 player.moveTo( SettingsManager.GAME_WIDTH - SettingsManager.PLAYER_WIDTH );
                 return;
             }
-            else if (player.Position.X <= 0
+            else if (player.Position.X < 0
                      && !LevelManager.Instance.CanMoveLeft())
             {
                 player.moveTo( 0 );

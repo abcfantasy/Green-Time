@@ -73,7 +73,7 @@
       <!-- smoking person -->
       <Item>
         <sprite>
-          <texture>outdoor_shop\garbage_man</texture>
+          <texture>neighbourhood\garbage_man</texture>
           <position>706 307</position>
           <layer>0.6</layer>
         </sprite>
@@ -92,6 +92,7 @@
           <boundWidth>320</boundWidth>
           <text>Smoker</text>
           <chat>forest_man</chat>
+          <mouth>776 302</mouth>
         </onInteract>
       </Item>
 

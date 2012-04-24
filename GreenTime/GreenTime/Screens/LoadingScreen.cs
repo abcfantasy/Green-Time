@@ -137,7 +137,7 @@ namespace GreenTime.Screens
                 otherScreensAreGone = true;
 
                 // reset player position here to avoid flicker
-                LevelManager.Instance.Player.moveTo(newPlayerPosition);
+                //LevelManager.Instance.Player.moveTo(newPlayerPosition);
 
                 ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                    Color.Black, 0, 0);

@@ -44,6 +44,7 @@
           <boundWidth>410</boundWidth>
           <text>Garbage man</text>
           <chat>garbage_man</chat>
+          <mouth>510 280</mouth>
         </onInteract>
       </Item>
       <!-- Garbage -->

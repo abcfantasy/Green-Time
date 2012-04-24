@@ -46,6 +46,7 @@
           <shaded>false</shaded>
           <frameSize>326 231</frameSize>
           <framesPerSecond>1</framesPerSecond>
+          <crossFade>true</crossFade>
           <animations>
             <frameSet>
               <frames>0 1</frames>
@@ -98,6 +99,7 @@
           <shaded>false</shaded>
           <frameSize>194 118</frameSize>
           <framesPerSecond>1</framesPerSecond>
+          <crossFade>true</crossFade>
           <animations>
             <frameSet>
               <frames>0 1</frames>

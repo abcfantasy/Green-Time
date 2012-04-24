@@ -22,6 +22,8 @@ namespace GreenTime.Screens
     /// </summary>
     class ChatScreen : GameScreen
     {
+        private static readonly Vector2 chatBubbleAnchor = new Vector2(154, 159);
+
         #region Fields
         private ChatStatus status = ChatStatus.PlayerText;
 
@@ -37,8 +39,8 @@ namespace GreenTime.Screens
         Texture2D chatArrow;
         SpriteFont chatFont;
 
-        private Vector2 playerPosition;
-        private Vector2 npcPosition;
+        private Vector2 playerMouth;
+        private Vector2 npcMouth;
 
         private double optionArrowsBlinking = 0.0;
         #endregion
@@ -58,15 +60,15 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.2);
 
             conversation = LevelManager.Instance.StartChat(chatFile);
+            playerMouth = LevelManager.Instance.Player.Mouth;
 
             InitializeChat( GetChat( 0 ) );
         }
 
-        public ChatScreen(string chatFile, bool transition, Vector2 playerPosition, Vector2 npcPosition)
+        public ChatScreen(string chatFile, bool transition, Vector2 npcMouth)
             : this(chatFile, transition)
         {
-            this.playerPosition = playerPosition;
-            this.npcPosition = npcPosition;
+            this.npcMouth = npcMouth;
         }
 
         public Chat GetChat(int index)
@@ -259,13 +261,13 @@ namespace GreenTime.Screens
             switch (status)
             {
                 case ChatStatus.NpcText:
-                    DrawText(spriteBatch, chatFont, npcPosition - new Vector2(0.0f, 200.0f), 300.0f, currentText);
+                    DrawText(spriteBatch, chatFont, npcMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerText:
-                    DrawText(spriteBatch, chatFont, playerPosition, 300.0f, currentText);
+                    DrawText(spriteBatch, chatFont, playerMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerAnswer:
-                    DrawAnswer(gameTime, spriteBatch, chatFont, playerPosition, 300.0f, answers[selectedEntry].text[0]);
+                    DrawAnswer(gameTime, spriteBatch, chatFont, playerMouth, 300.0f, answers[selectedEntry].text[0]);
                     break;
             }
 
@@ -275,9 +277,9 @@ namespace GreenTime.Screens
         public void DrawText(SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
         {
             List<string> lines = WrapText(font, text, width);
-            Vector2 currentPosition = topLeftCorner;
+            Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
 
-            spriteBatch.Draw(chatBubble, topLeftCorner, Color.White);
+            spriteBatch.Draw(chatBubble, currentPosition, Color.White);
 
             foreach (string line in lines)
             {
@@ -288,17 +290,17 @@ namespace GreenTime.Screens
 
         public void DrawAnswer(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
         {
+            Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
             DrawText(spriteBatch, font, topLeftCorner, width, text);
 
             // update blinking counter
-            optionArrowsBlinking += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (optionArrowsBlinking > 1000) optionArrowsBlinking = 0;
+            optionArrowsBlinking = (optionArrowsBlinking + gameTime.ElapsedGameTime.TotalMilliseconds) % 500;
 
             // draw blinking arrows
-            if (optionArrowsBlinking > 500)
+            if (optionArrowsBlinking > 250)
             {
-                spriteBatch.Draw(chatArrow, new Vector2( topLeftCorner.X + width - 55.0f, topLeftCorner.Y + chatBubble.Height - 70.0f), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
-                spriteBatch.Draw(chatArrow, new Vector2( topLeftCorner.X + width - 35.0f, topLeftCorner.Y + 40.0f), null, Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 55.0f, chatBubble.Height - 70.0f ), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
+                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 35.0f, 40.0f ), null, Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

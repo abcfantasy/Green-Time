@@ -14,6 +14,7 @@ namespace GreenTimeGameData.Components
         #region Constants
         // The transition speed (in milliseconds) between grey/colored or round/square
         private const float TRANSITION_SPEED = 1500.0f;
+        private static readonly Vector2 PLAYER_MOUTH = new Vector2(90, 30);
         #endregion
 
         #region Fields
@@ -35,6 +36,9 @@ namespace GreenTimeGameData.Components
 
         // Returns the current position
         public Vector2 Position { get { return current_sprite.position; } set { current_sprite.position = value; } }
+
+        // Returns the mouth position (for chat)
+        public Vector2 Mouth { get { return current_sprite.position + PLAYER_MOUTH; } }
 
         // Returns true if the player is ready for interaction (not transitioning)
         public bool IsReady { get { return (colorTransition == 0.0f && shapeTransition == 0.0f); } }

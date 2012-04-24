@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework;
 
 namespace GreenTimeGameData.Components
 {
@@ -32,6 +33,9 @@ namespace GreenTimeGameData.Components
         // Start of a conversation
         [ContentSerializer(Optional = true)]
         public string chat = null;
+
+        [ContentSerializer(Optional = true)]
+        public Vector2 mouth = Vector2.Zero;
 
         // An identifier for the object when it's picked up
         [ContentSerializer(Optional = true)]

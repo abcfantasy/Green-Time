@@ -54,6 +54,7 @@
           <boundWidth>368</boundWidth>
           <text>Stranger in car</text>
           <chat>car_man</chat>
+          <mouth>920 354</mouth>
         </onInteract>
       </Item>
       <!-- Smoke -->
