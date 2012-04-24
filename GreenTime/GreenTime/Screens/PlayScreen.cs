@@ -596,28 +596,12 @@ namespace GreenTime.Screens
                 }
                 else
                 {
-                    /*if (LevelManager.Instance.CurrentLevel.name == "kitchen")
+                    if (LevelManager.Instance.CurrentLevel.name == "kitchen")
                         StateManager.Instance.SetState("just_went_out", 100);
 
                     // transition to the right
                     LevelManager.Instance.MoveRight();
-                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());*/
-					
-                    // if player moves outside, and player needs to transition - show state transition screen
-                    if (LevelManager.Instance.CurrentLevel.name == "kitchen" && StateManager.Instance.GetState("progress") != 100 &&
-                       ((StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) != 100) ||     // transform better
-                         (StateManager.Instance.GetState(StateManager.STATE_INDOOR) != 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0)))         // transform worse
-                    {
-                        StateManager.Instance.SetState("just_went_out", 100);
-                        LevelManager.Instance.MoveRight();
-                        //LoadingScreen.Load(ScreenManager, false, (SettingsManager.GAME_WIDTH / 2.0f) - SettingsManager.PLAYER_WIDTH, new StateTransitionScreen());
-                    }
-                    else
-                    {
-                        // transition to the right
-                        LevelManager.Instance.MoveRight();
-                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
-                    }
+                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
             }
             // if player moves outside left boundary

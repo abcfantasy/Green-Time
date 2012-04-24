@@ -149,7 +149,6 @@
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
     <Compile Include="Screens\SearchEntry.cs" />
-    <Compile Include="Screens\StateTransitionScreen.cs" />
     <Compile Include="Screens\TextOnBlackScreen.cs" />
   </ItemGroup>
   <ItemGroup>
