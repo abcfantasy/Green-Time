@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameRateCounter.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
     <Compile Include="Managers\ScreenManager.cs" />

@@ -48,6 +48,9 @@ namespace GreenTime
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
 
+            // frame rate counter for testing
+            Components.Add(new FrameRateCounter(this));
+
             // active the first screens
             // THESE LINES SHOULD BE COMMENTED AND LAST LINE UNCOMMENTED TO INCLUDE INTRO SCREEN AND MENU
             //screenManager.AddScreen(new IntroScreen());
