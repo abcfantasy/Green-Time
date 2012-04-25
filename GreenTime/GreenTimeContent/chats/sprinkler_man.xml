@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+    
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Hello neighbor, your plants do not look so good, what happened?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>1</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>Honestly, I don't know! I give them water every day.</line>
+        </text>
+        <leadsTo>2 3 4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>I see, strange indeed.</line>
+        </text>
+        <leadsTo>5</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>Don't you think that might be the problem?</line>
+        </text>
+        <leadsTo>7</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>The sun is hot these days, the plants really need lots of water.</line>
+        </text>
+        <leadsTo>8</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>So I keep the sprinkler on and go to work now. Have a nice day.</line>
+        </text>
+        <leadsTo>6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Nice day to you neighbor.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>How so?</line>
+        </text>
+        <leadsTo>10 11 12</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>That's why I put the sprinkler on while I am at work. It only does not seem to help, strange huh.</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>Strange indeed. Have a nice day neighbor.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>Too much water can drown your flowers.</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>The sprinkler might be defected.</line>
+        </text>
+        <leadsTo>14</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <text>
+          <line>The flowers need rain, not water from the crane, this might be the problem.</line>
+        </text>
+        <leadsTo>15</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>13</Key>
+      <Value>
+        <text>
+          <line>You might be right, I will put the sprinkler on for half an hour when I am back from work instead of the whole day. Thank you for the advice!</line>
+        </text>
+        <leadsTo>16</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>14</Key>
+      <Value>
+        <text>
+          <line>I just bought it recently, I highly doubt it can be it.</line>
+        </text>
+        <leadsTo>17</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>15</Key>
+      <Value>
+        <text>
+          <line>Hmmmm, no that can't be it, the guidelines show that crane water is perfect for flowers when there is no rain.</line>
+        </text>
+        <leadsTo>18</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>16</Key>
+      <Value>
+        <text>
+          <line>Glad to help. Half an hour is also better for the environment because you are wasting a lot of water in 8 hours!</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>17</Key>
+      <Value>
+        <text>
+          <line>Indeed, that would be strange, I don't have the solution then.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>18</Key>
+      <Value>
+        <text>
+          <line>Then rain is not the solution. Sorry I can't help you further</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+    
+  </Asset>
+</XnaContent>

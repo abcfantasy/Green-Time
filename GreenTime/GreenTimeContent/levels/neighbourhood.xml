@@ -135,6 +135,34 @@
           </dropper>
         </onInteract>
       </Item>
+      <!-- sprinklers -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>neighbourhood\Sprinkler</texture>
+          <position>974 304</position>
+          <layer>0.51</layer>
+          <scale>2</scale>
+          <frameSize>140 96</frameSize>
+          <framesPerSecond>10</framesPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>830</boundX>
+          <boundWidth>280</boundWidth>
+          <text>Sprinklers</text>
+          <transition>neighbourhood_past_sprinkler</transition>
+        </onInteract>
+      </Item>
       <!-- dead flowers -->
       <Item>
         <sprite>
@@ -142,6 +170,26 @@
           <position>935 372</position>
           <layer>0.6</layer>
         </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- healthy flowers -->
+      <Item>
+        <sprite>
+          <texture>neighbourhood/flowers1</texture>
+          <position>935 322</position>
+          <layer>0.6</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
       </Item>
     </gameObjects>
   </Asset>
