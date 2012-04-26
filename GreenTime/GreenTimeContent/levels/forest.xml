@@ -11,7 +11,8 @@
     <leftScreenName>shop</leftScreenName>
     <rightScreenName>final_room</rightScreenName>
     <ambientSound>
-      <name>outdoor_forest\FireCrackling</name>
+      <name>FireCrackling</name>
+      <position>920</position>
       <playIf>
         <state>
           <name>puzzle_cig_solved</name>

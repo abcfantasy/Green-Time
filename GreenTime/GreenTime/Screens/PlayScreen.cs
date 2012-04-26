@@ -160,10 +160,13 @@ namespace GreenTime.Screens
             {
                 if( StateManager.Instance.CheckDependencies( LevelManager.Instance.CurrentLevel.ambientSound.dependencies ) )
                 {
+                    SoundManager.LoadAmbientSound(content, LevelManager.Instance.CurrentLevel.ambientSound.name);
+                    SoundManager.PlayAmbientSound();
+                    /*
                     ambientSound = content.Load<SoundEffect>(LevelManager.Instance.CurrentLevel.ambientSound.name);
                     ambientSoundInstance = ambientSound.CreateInstance();
                     ambientSoundInstance.IsLooped = LevelManager.Instance.CurrentLevel.ambientSound.looping;
-                    ambientSoundInstance.Play();
+                    ambientSoundInstance.Play();*/
                 }
             }            
 
@@ -226,7 +229,11 @@ namespace GreenTime.Screens
         {
             if (content != null)
                 content.Unload();
+
+            SoundManager.Unload();
+
             player.moveTo(LevelManager.Instance.StartPosition);
+
             if (transition == TransitionType.ToPresent)
             {
                 LevelManager.Instance.MovePresent();
@@ -245,6 +252,7 @@ namespace GreenTime.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
+            SoundManager.Update(player.Position.X);
             SoundManager.UpdateFade(TransitionPosition);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.

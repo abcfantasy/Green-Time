@@ -432,14 +432,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_forest\FireCrackling.wav">
+    <Compile Include="audio\FireCrackling.wav">
       <Name>FireCrackling</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="shop\carRunning.wav">
+    <Compile Include="audio\carRunning.wav">
       <Name>carRunning</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>

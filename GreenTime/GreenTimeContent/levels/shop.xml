@@ -11,7 +11,8 @@
     <leftScreenName>neighbourhood</leftScreenName>
     <rightScreenName>forest</rightScreenName>
     <ambientSound>
-      <name>shop\carRunning</name>
+      <name>carRunning</name>
+      <position>795</position>
       <playIf>
         <state>
           <name>puzzle_car_solved</name>
