@@ -57,13 +57,22 @@ namespace GreenTime.Screens
 
             // Load the background
             visibleObjects.Add( LevelManager.Instance.CurrentLevel.backgroundTexture );
+            LevelManager.Instance.CurrentLevel.backgroundTexture.Load(content);
 
             for (int i = 0; i < LevelManager.Instance.CurrentLevel.gameObjects.Count; i++)
             {
                 if (LevelManager.Instance.CurrentLevel.gameObjects[i].sprite != null)
                 {
                     LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.Load(content);
-                    visibleObjects.Add(LevelManager.Instance.CurrentLevel.gameObjects[i].sprite);                    
+                    visibleObjects.Add(LevelManager.Instance.CurrentLevel.gameObjects[i].sprite);
+
+                    if (LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.GetType() == typeof(AnimatedSprite))
+                    {
+                        ((AnimatedSprite)LevelManager.Instance.CurrentLevel.gameObjects[i].sprite).ActiveAnimations.Clear();
+                        foreach (FrameSet ap in ((AnimatedSprite)LevelManager.Instance.CurrentLevel.gameObjects[i].sprite).animations)
+                            if (StateManager.Instance.CheckDependencies(ap.dependencies))
+                                ((AnimatedSprite)LevelManager.Instance.CurrentLevel.gameObjects[i].sprite).ActiveAnimations[ap.name] = ap.frames;
+                    }
                 }
             }
         }
@@ -75,7 +84,6 @@ namespace GreenTime.Screens
 
             if ( this.IsActive && this.TransitionPosition == 0 )
             {
-                // check for action button, only if player is over interactive object, and if player is either dropping an object or has no object in hand
                 if (input.IsMenuCancel())
                     ScreenManager.Game.Exit();
             }
