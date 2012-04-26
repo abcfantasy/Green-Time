@@ -260,7 +260,7 @@ namespace GreenTime.Screens
                 // update picked up object if any
                 if (pickedObject != null)
                 {
-                    if (player.Sprite.Flipped)
+                    if (player.Sprite.flipped)
                     {
                         pickedObject.position = player.Sprite.position + (new Vector2(player.Sprite.frameSize.X - playerHand[player.Sprite.CurrentFrame].X, playerHand[player.Sprite.CurrentFrame].Y));
                         pickedObject.position.X -= pickedObject.texture.Width / 2;
@@ -420,7 +420,12 @@ namespace GreenTime.Screens
                         
                         // Handling talking
                         if (interactingObject.interaction.chat != null)
+                        {
+                            // flip NPC to face player
+                            interactingObject.sprite.flipped = interactingObject.sprite.flippable && (interactingObject.sprite.position.X < player.Position.X);
+
                             ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth));
+                        }
 
                         // Handling affected states
                         if (interactingObject.interaction.affectedStates != null)

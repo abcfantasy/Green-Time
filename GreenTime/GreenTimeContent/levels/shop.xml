@@ -26,6 +26,7 @@
           <texture>shop\car2</texture>
           <position>680 354</position>
           <layer>0.6</layer>
+          <flippable>false</flippable>
           <frameSize>570 258</frameSize>
           <framesPerSecond>15</framesPerSecond>
           <animations>
