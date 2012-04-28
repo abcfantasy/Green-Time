@@ -12,6 +12,7 @@
     <leftScreenName></leftScreenName>
     <rightScreenName></rightScreenName>
     <gameObjects>
+
       <!-- Front grass -->
       <Item>
         <sprite>
@@ -21,6 +22,7 @@
           <shaded>false</shaded>
         </sprite>
       </Item>
+
       <!-- Live tree (add scale) -->
       <Item>
         <sprite>
@@ -31,6 +33,7 @@
           <scale>0.8</scale>
         </sprite>
       </Item>
+
       <!-- Guy -->
       <Item>
         <sprite>
@@ -47,6 +50,7 @@
           <mouth>510 280</mouth>
         </onInteract>
       </Item>
+
       <!-- Garbage -->
       <Item>
         <sprite>
@@ -56,6 +60,7 @@
           <shaded>false</shaded>
         </sprite>
       </Item>
+
       <!-- Bin object -->
       <Item>
         <sprite>
@@ -65,6 +70,7 @@
           <shaded>false</shaded>
         </sprite>
       </Item>
+
     </gameObjects>
   </Asset>
 </XnaContent>

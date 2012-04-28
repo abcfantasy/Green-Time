@@ -46,7 +46,7 @@ namespace GreenTimeGameData.Components
         private Rectangle nextFrameBounds;
 
         // Whather or not to flip the sprite
-        private bool flipped = false;
+        //private bool flipped = false;
 
         // Whether or not to play animations
         private bool paused = false;
@@ -65,8 +65,8 @@ namespace GreenTimeGameData.Components
         [ContentSerializerIgnore]
         public bool IsStopped { get { return paused; } }
 
-        [ContentSerializerIgnore]
-        public bool Flipped { get { return flipped; } set { flipped = value; } }
+        //[ContentSerializerIgnore]
+        //public bool Flipped { get { return flipped; } set { flipped = value; } }
 
         [ContentSerializerIgnore]
         public int CurrentFrame { get { return activeAnimations[currentFrameSet][currentFrameIndex]; } }

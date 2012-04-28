@@ -56,6 +56,7 @@ namespace GreenTime
             //screenManager.AddScreen(new IntroScreen());
             screenManager.AddScreen(new BackgroundScreen());
             screenManager.AddScreen(new MainMenuScreen());
+            //screenManager.AddScreen(new LogoScreen());
             //screenManager.AddScreen(new TextOnBlackScreen("AVANTgarde",  new GameScreen[] { new BackgroundScreen(), new LogoScreen() }));
         }
 

@@ -15,7 +15,7 @@
       <!-- grey square -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\AnimationSquareGreen</texture>
+          <texture>animations\player_square</texture>
           <position>316 130</position>
           <layer>0.6</layer>
           <scale>1.4</scale>
@@ -32,7 +32,7 @@
       <!-- grey round -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\AnimationRoundGreen</texture>
+          <texture>animations\player</texture>
           <position>585 130</position>
           <layer>0.6</layer>
           <scale>1.4</scale>
@@ -49,7 +49,7 @@
       <!-- green round -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\AnimationRoundGreen</texture>
+          <texture>animations\player</texture>
           <position>853 130</position>
           <layer>0.6</layer>
           <shaded>false</shaded>

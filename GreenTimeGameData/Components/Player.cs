@@ -121,14 +121,14 @@ namespace GreenTimeGameData.Components
         public void transformShape()
         {
             // Synchronizing the sprites
-            opposite_sprite.Flipped = current_sprite.Flipped;
+            opposite_sprite.flipped = current_sprite.flipped;
             opposite_sprite.position.X = current_sprite.position.X;
             shapeTransition = -1.0f; 
         }
 
         // Convenience methods
-        public void faceLeft()              { current_sprite.Flipped = true; }
-        public void faceRight()             { current_sprite.Flipped = false; }
+        public void faceLeft()              { current_sprite.flipped = true; }
+        public void faceRight()             { current_sprite.flipped = false; }
         public void move(float amount) {
             current_sprite.position.X += amount;
             if (amount > 0)         faceRight();

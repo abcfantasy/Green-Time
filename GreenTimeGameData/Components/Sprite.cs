@@ -12,6 +12,8 @@ namespace GreenTimeGameData.Components
     public class Sprite : ICloneable
     {
         #region Fields
+        // Whather or not to flip the sprite
+        //private bool flipped = false;
 
         // The name of the texture
         [ContentSerializer(ElementName = "texture")]
@@ -34,6 +36,14 @@ namespace GreenTimeGameData.Components
         // The sprite's scale factor
         [ContentSerializer(Optional = true )]
         public float scale = 1.0f;
+
+        // The sprite direction
+        [ContentSerializer(Optional = true)]
+        public bool flipped = false;
+
+        // If the sprite can be flipped
+        [ContentSerializer(Optional = true)]
+        public bool flippable = true;
         #endregion
 
         #region Initialization
@@ -46,7 +56,7 @@ namespace GreenTimeGameData.Components
         #region Draw
         public virtual void Draw(SpriteBatch spriteBatch, Color tint)
         {
-            spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, scale, SpriteEffects.None, layer);
+            spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
         }
         #endregion
 

@@ -11,7 +11,8 @@
     <leftScreenName>neighbourhood</leftScreenName>
     <rightScreenName>forest</rightScreenName>
     <ambientSound>
-      <name>shop\carRunning</name>
+      <name>carRunning</name>
+      <position>795</position>
       <playIf>
         <state>
           <name>puzzle_car_solved</name>
@@ -26,6 +27,7 @@
           <texture>shop\car2</texture>
           <position>680 354</position>
           <layer>0.6</layer>
+          <flippable>false</flippable>
           <frameSize>570 258</frameSize>
           <framesPerSecond>15</framesPerSecond>
           <animations>

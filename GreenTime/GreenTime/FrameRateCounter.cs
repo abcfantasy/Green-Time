@@ -61,8 +61,8 @@ namespace GreenTime
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(spriteFont, fps, new Vector2(33, 33), Color.Black);
-            spriteBatch.DrawString(spriteFont, fps, new Vector2(32, 32), Color.White);
+            spriteBatch.DrawString(spriteFont, fps, new Vector2(71, 20), Color.Black);
+            spriteBatch.DrawString(spriteFont, fps, new Vector2(70, 19), Color.White);
 
             spriteBatch.End();
         }

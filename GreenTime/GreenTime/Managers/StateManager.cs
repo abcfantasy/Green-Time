@@ -9,7 +9,7 @@ namespace GreenTime.Managers
     public class StateManager
     {
         #region State Constants
-        public static readonly int TOTAL_PUZZLES = 4;
+        public static readonly int TOTAL_PUZZLES = 5;
 
         // state to mark game should transition back to present
         public const string STATE_BACKTOPRESENT = "back_to_present";

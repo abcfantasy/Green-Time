@@ -432,14 +432,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="outdoor_forest\FireCrackling.wav">
+    <Compile Include="audio\FireCrackling.wav">
       <Name>FireCrackling</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="shop\carRunning.wav">
+    <Compile Include="audio\carRunning.wav">
       <Name>carRunning</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
@@ -736,22 +736,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="chats\sprinkler_man.xml">
+      <Name>sprinkler_man</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighbourhood\Sprinkler.png">
+      <Name>Sprinkler</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighbourhood_past_sprinkler.xml">
+      <Name>neighbourhood_past_sprinkler</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="timeTravel_shader.fx">
       <Name>timeTravel_shader</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="greenTime_clock256x256.png">
-      <Name>greenTime_clock256x256</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="greenTime_clock512x512.png">
-      <Name>greenTime_clock512x512</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
