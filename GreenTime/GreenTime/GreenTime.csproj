@@ -122,6 +122,7 @@
     <Compile Include="FrameRateCounter.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\LevelManager.cs" />
+    <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Managers\SoundManager.cs" />
@@ -150,6 +151,10 @@
     <Compile Include="Screens\PlayScreen.cs" />
     <Compile Include="Screens\SearchEntry.cs" />
     <Compile Include="Screens\TextOnBlackScreen.cs" />
+    <Compile Include="Transitions\TimeTravelTransition.cs" />
+    <Compile Include="Transitions\FadeInTransition.cs" />
+    <Compile Include="Transitions\FadeOutTransition.cs" />
+    <Compile Include="Transitions\Transition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

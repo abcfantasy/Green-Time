@@ -157,7 +157,6 @@ namespace GreenTime.Managers
 
             GoTo(transitionIndex);
 
-            StateManager.Instance.GoToPast();
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
             startPosition = player.Position.X;
         }
@@ -166,7 +165,6 @@ namespace GreenTime.Managers
         {
             // reset back to present state
             StateManager.Instance.ResetReturnToPresent();
-            StateManager.Instance.GoToPresent();
 
             // modify current level
             lastLevel = null;

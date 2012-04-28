@@ -227,9 +227,13 @@ namespace GreenTime.Screens
             if (content != null)
                 content.Unload();
             player.moveTo(LevelManager.Instance.StartPosition);
+            if (transition == TransitionType.ToPast)
+            {
+                StateManager.Instance.GoToPast();
+            }
             if (transition == TransitionType.ToPresent)
             {
-                LevelManager.Instance.MovePresent();
+                StateManager.Instance.GoToPresent();
             }
         }
         #endregion
@@ -288,6 +292,9 @@ namespace GreenTime.Screens
 
         public override void Draw(GameTime gameTime)
         {
+            if (transition == TransitionType.ToPast || transition == TransitionType.ToPresent)
+                ScreenManager.InitTimeTravel();
+
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.CornflowerBlue, 0, 0);
@@ -331,12 +338,16 @@ namespace GreenTime.Screens
                     break;
 
                 case TransitionType.ToPast:
-                    ScreenManager.TimeTravelMotionEffect(alpha);
-                    break;
-
                 case TransitionType.ToPresent:
-                    // Same time travel screen... only in reverse :D
-                    ScreenManager.TimeTravelMotionEffect(alpha, true);
+                    if ( alpha >= 0.8f)
+                    {
+                        alpha = (alpha - 0.8f) * 5;
+                    }
+                    else
+                    {
+                        alpha = 0.0f;
+                    }
+                    ScreenManager.ApplyTimeTravel(alpha);
                     break;
 
                 case TransitionType.FromPast:
@@ -447,6 +458,7 @@ namespace GreenTime.Screens
                             LevelManager.Instance.MovePast(interactingObject.interaction.transition);
                             LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
                             this.transition = TransitionType.ToPast;
+                            ScreenManager.timeTravelInterval = 0f;
                             TransitionOffTime = TimeSpan.FromSeconds(2.0f);
                         }
                     }
@@ -536,8 +548,10 @@ namespace GreenTime.Screens
         {
             if ( StateManager.Instance.IsInPast() && StateManager.Instance.ShouldReturnToPresent() && LevelManager.Instance.LastPresentLevel != null)
             {
+                LevelManager.Instance.MovePresent();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPast));
                 this.transition = TransitionType.ToPresent;
+                ScreenManager.timeTravelInterval = 0f;
                 TransitionOffTime = TimeSpan.FromSeconds(2.0f);
             }
             else if (StateManager.Instance.ShouldAdvanceDay())
