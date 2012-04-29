@@ -19,14 +19,33 @@ namespace GreenTime.Screens
         private float textAlpha = 0.0f;
         private bool fadeIn = true;
 
-        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens)
+        private bool playMusic;
+
+        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false)
         {
             _title = title;
             _text = text;
             _nextScreens = nextScreens;
 
+            playMusic = playAlternateMusic;
+
             TransitionOnTime = TimeSpan.FromSeconds(3);
             TransitionOffTime = TimeSpan.FromSeconds(3);
+        }
+
+        public override void LoadContent()
+        {
+            if ( playMusic )
+                SoundManager.PlayMusic(true, false, 1.0f);
+        }
+
+        public override void HandleInput(InputManager input)
+        {
+            if (input.IsMenuCancel())
+            {
+                this.TransitionOffTime = TimeSpan.FromSeconds(0.0);
+                elapsed = 3000;
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

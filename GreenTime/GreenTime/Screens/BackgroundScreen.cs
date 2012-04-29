@@ -23,7 +23,7 @@ namespace GreenTime.Screens
         public BackgroundScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            TransitionOffTime = TimeSpan.FromSeconds(1.5);
         }
 
 

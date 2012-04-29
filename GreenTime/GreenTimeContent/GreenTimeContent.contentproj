@@ -57,12 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gamefont.spritefont">
+    <Compile Include="fonts\gamefont.spritefont">
       <Name>gamefont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <Compile Include="menufont.spritefont">
+    <Compile Include="fonts\menufont.spritefont">
       <Name>menufont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -106,7 +106,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="desaturate.fx">
+    <Compile Include="effects\desaturate.fx">
       <Name>desaturate</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
@@ -120,7 +120,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="greentime.mp3">
+    <Compile Include="audio\greentime.mp3">
       <Name>greentime</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
@@ -134,17 +134,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="timeTravel.wav">
+    <Compile Include="audio\timeTravel.wav">
       <Name>timeTravel</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="tt_effect.png">
-      <Name>tt_effect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +196,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sepia.fx">
+    <Compile Include="effects\sepia.fx">
       <Name>sepia</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
@@ -265,7 +258,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chatfont.spritefont">
+    <Compile Include="fonts\chatfont.spritefont">
       <Name>chatfont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -313,11 +306,6 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="audio\throwingGarbage.wav">
-      <Name>throwingGarbage</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="audio\closingTap.wav">
@@ -327,35 +315,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="audio\hitSwitch.wav">
-      <Name>hitSwitch</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\scrollDown.wav">
-      <Name>scrollDown</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\scrollUp.wav">
-      <Name>scrollUp</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\sprinkler.wav">
-      <Name>sprinkler</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="audio\throwingGarbage.wav">
       <Name>throwingGarbage</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="audio\closingTap.wav">
-      <Name>closingTap</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
@@ -477,7 +438,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="timeTravel_shader.fx">
+    <Compile Include="effects\timeTravel_shader.fx">
       <Name>timeTravel_shader</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
@@ -488,6 +449,26 @@
       <Name>greenTime_clock128x128</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="audio\MenuSong.mp3">
+      <Name>MenuSong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <ProcessorParameters_Quality>Medium</ProcessorParameters_Quality>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="audio\CancelSound.wav">
+      <Name>CancelSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="audio\ConfirmationSound.wav">
+      <Name>ConfirmationSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

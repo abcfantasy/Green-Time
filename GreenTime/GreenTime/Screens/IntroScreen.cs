@@ -81,9 +81,10 @@ namespace GreenTime.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
+            if (elapsed > 53000)
+                SoundManager.UpdateFade(TransitionPosition);
 
             //milliseconds = SoundManager.TestPosition();
-
             textY -= 0.35f;
 
             elapsed += gameTime.ElapsedGameTime.Milliseconds;

@@ -221,7 +221,7 @@ namespace GreenTime.Screens
             // Center the message text in the viewport.
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-            Vector2 textSize = chatFont.MeasureString(currentText);
+            Vector2 textSize = ResourceManager.Instance.ChatFont.MeasureString(currentText);
             Vector2 textPosition = (viewportSize - textSize) / 2;
             textPosition.Y -= 256;
 

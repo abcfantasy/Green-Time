@@ -55,46 +55,27 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
-            //if (content == null)
-            //    content = new ContentManager(ScreenManager.Game.Services, "Content");
-
-            //logo = content.Load<Texture2D>("GreenTimeLogo");
-            //backgroundTexture = content.Load<Texture2D>("background");
-            //leaf = content.Load<Texture2D>("leaf");
-            //alternateLeaf = content.Load<Texture2D>("leaf2");
-
-            // create the rectangle texture without colors
-            //background = new Texture2D(
-            //    ScreenManager.GraphicsDevice,
-            //    1,
-            //    1);
-
-            // Set the color data for the texture
-            //background.SetData(new Color[] { Color.Black });
-
-            // A real game would probably have more content than this sample, so
-            // it would take longer to load. We simulate that by delaying for a
-            // while, giving you a chance to admire the beautiful loading screen.
-            //System.Threading.Thread.Sleep(1000);
-
-            // once the load has finished, we use ResetElapsedTime to tell the game's
-            // timing mechanism that we have just finished a very long frame, and that
-            // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
         }
 
-        /// <summary>
-        /// Unloads graphics content for this screen.
-        /// </summary>
-        public override void UnloadContent()
+        public override void HandleInput(InputManager input)
         {
-            //if (content != null)
-            //    content.Unload();
+            if (input.IsMenuCancel())
+            {
+                TransitionOnTime = TimeSpan.FromSeconds(0.0);
+                TransitionOffTime = TimeSpan.FromSeconds(0.0);
+                elapsed = 2000;
+                yOffset = 120;
+                backgroundAlpha = 0.0f;
+                scaleOffset = 0.519999f;
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
+
+            SoundManager.UpdateFade(TransitionPosition);
 
             if (IsActive)
             {

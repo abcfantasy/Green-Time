@@ -38,6 +38,7 @@ namespace GreenTime.Managers
         
         public Effect DesaturationShader;
         public Effect SepiaShader;
+        public Effect TimeTravelShader;
 
         #region Initialization
         public void InitializeContent(Game game)
@@ -56,7 +57,7 @@ namespace GreenTime.Managers
             if (isLocalContentLoaded)
             {
                 localContent.Unload();
-                SoundManager.Unload();
+                SoundManager.UnloadLocal();
                 isLocalContentLoaded = false;
             }
         }
@@ -69,6 +70,7 @@ namespace GreenTime.Managers
             if (isGlobalContentLoaded)
             {
                 globalContent.Unload();
+                SoundManager.UnloadGlobal();
                 isGlobalContentLoaded = false;
                 isGameplayLoaded = false;
                 isMenuLoaded = false;
@@ -89,6 +91,7 @@ namespace GreenTime.Managers
         public void LoadLevelTexture(string textureName)
         {
             LevelTexture = localContent.Load<Texture2D>(textureName);
+            isLocalContentLoaded = true;
         }
 
         public void LoadGameplayTexture()
@@ -134,6 +137,7 @@ namespace GreenTime.Managers
                 SoundManager.LoadAmbientSound(localContent, soundName);
             else
                 SoundManager.LoadSound(localContent, soundName);
+            isLocalContentLoaded = true;
         }
 
         public void LoadSong(string songName)
@@ -146,11 +150,13 @@ namespace GreenTime.Managers
             // load texture list
             textureDictionary = globalContent.Load<Dictionary<string, Rectangle>>("textures");
             // load font
-            MainFont = globalContent.Load<SpriteFont>("menuFont");
-            ChatFont = globalContent.Load<SpriteFont>("chatfont");
+            MainFont = globalContent.Load<SpriteFont>("fonts\\menuFont");
+            ChatFont = globalContent.Load<SpriteFont>("fonts\\chatfont");
             // load shaders
-            DesaturationShader = globalContent.Load<Effect>("desaturate");
-            SepiaShader = globalContent.Load<Effect>("sepia");
+            DesaturationShader = globalContent.Load<Effect>("effects\\desaturate");
+            SepiaShader = globalContent.Load<Effect>("effects\\sepia");
+            TimeTravelShader = globalContent.Load<Effect>("effects\\timeTravel_shader");
+
             // load sounds
             if ( forGameplay )
                 SoundManager.LoadGameplaySounds(globalContent);

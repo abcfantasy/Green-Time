@@ -86,10 +86,17 @@ namespace GreenTime.Screens
 
             if (input.IsMenuSelect())
             {
+                if (selectedEntry == menuEntries.Count - 1)
+                    SoundManager.PlaySound(SoundManager.SOUND_MENU_CANCEL);
+                else
+                    SoundManager.PlaySound(SoundManager.SOUND_MENU_CONFIRM);
+
                 OnSelectEntry(selectedEntry);
             }
             else if (input.IsMenuCancel())
             {
+                SoundManager.PlaySound(SoundManager.SOUND_MENU_CANCEL);
+
                 OnCancel();
             }
         }

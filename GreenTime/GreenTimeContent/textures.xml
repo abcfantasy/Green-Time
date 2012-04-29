@@ -84,7 +84,11 @@
       <Key>chat_arrow</Key>
       <Value>629 652 21 20</Value>
     </Item>
-    
+
+    <Item>
+      <Key>timetravel_clock</Key>
+      <Value>650 652 128 128</Value>
+    </Item>
     <!-- intro stuff -->
     <Item>
       <Key>intro_clock</Key>

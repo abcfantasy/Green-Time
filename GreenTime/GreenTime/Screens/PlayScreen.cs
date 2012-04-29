@@ -117,6 +117,8 @@ namespace GreenTime.Screens
             ResourceManager.Instance.LoadGameplayTexture();
             ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
+            SoundManager.PlayMusic();
+
             LoadGameObjects();
 
             CheckPlayerStatus();
@@ -224,7 +226,7 @@ namespace GreenTime.Screens
         {
             ResourceManager.Instance.UnloadLocalContent();
 
-            SoundManager.Unload();
+            SoundManager.UnloadLocal();
 
             player.moveTo(LevelManager.Instance.StartPosition);
             if (transition == TransitionType.ToPast)
