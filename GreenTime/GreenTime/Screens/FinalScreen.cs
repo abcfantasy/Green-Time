@@ -57,13 +57,13 @@ namespace GreenTime.Screens
 
             // Load the background
             visibleObjects.Add( LevelManager.Instance.CurrentLevel.backgroundTexture );
-            LevelManager.Instance.CurrentLevel.backgroundTexture.Load(content);
+            LevelManager.Instance.CurrentLevel.backgroundTexture.Load();
 
             for (int i = 0; i < LevelManager.Instance.CurrentLevel.gameObjects.Count; i++)
             {
                 if (LevelManager.Instance.CurrentLevel.gameObjects[i].sprite != null)
                 {
-                    LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.Load(content);
+                    LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.Load();
                     visibleObjects.Add(LevelManager.Instance.CurrentLevel.gameObjects[i].sprite);
 
                     if (LevelManager.Instance.CurrentLevel.gameObjects[i].sprite.GetType() == typeof(AnimatedSprite))

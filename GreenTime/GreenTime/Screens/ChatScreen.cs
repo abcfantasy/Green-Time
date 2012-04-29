@@ -34,9 +34,6 @@ namespace GreenTime.Screens
 
         private Dictionary<int, Chat> conversation;
         private Chat chat;
-        Texture2D gradientTexture;
-        Texture2D chatBubble;
-        Texture2D chatArrow;
         SpriteFont chatFont;
 
         private Vector2 playerMouth;
@@ -109,22 +106,6 @@ namespace GreenTime.Screens
                 if (c != null && StateManager.Instance.AllTrue(c.dependencies))
                     answers.Add(c);
             }
-        }
-
-        /// <summary>
-        /// Loads graphics content for this screen. This uses the shared ContentManager
-        /// provided by the Game class, so the content will remain loaded forever.
-        /// Whenever a subsequent MessageBoxScreen tries to load this same content,
-        /// it will just get back another reference to the already loaded data.
-        /// </summary>
-        public override void LoadContent()
-        {
-            ContentManager content = ScreenManager.Game.Content;
-
-            gradientTexture = content.Load<Texture2D>("gradient");
-            chatBubble = content.Load<Texture2D>("chatBubble");
-            chatArrow = content.Load<Texture2D>("chat_arrow");
-            chatFont = content.Load<SpriteFont>("chatfont");
         }
         #endregion
 
@@ -261,13 +242,13 @@ namespace GreenTime.Screens
             switch (status)
             {
                 case ChatStatus.NpcText:
-                    DrawText(spriteBatch, chatFont, npcMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, ResourceManager.Instance.ChatFont, npcMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerText:
-                    DrawText(spriteBatch, chatFont, playerMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, ResourceManager.Instance.ChatFont, playerMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerAnswer:
-                    DrawAnswer(gameTime, spriteBatch, chatFont, playerMouth, 300.0f, answers[selectedEntry].text[0]);
+                    DrawAnswer(gameTime, spriteBatch, ResourceManager.Instance.ChatFont, playerMouth, 300.0f, answers[selectedEntry].text[0]);
                     break;
             }
 
@@ -279,7 +260,7 @@ namespace GreenTime.Screens
             List<string> lines = WrapText(font, text, width);
             Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
 
-            spriteBatch.Draw(chatBubble, currentPosition, Color.White);
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition, ResourceManager.Instance["chat_bubble"], Color.White);
 
             foreach (string line in lines)
             {
@@ -299,8 +280,8 @@ namespace GreenTime.Screens
             // draw blinking arrows
             if (optionArrowsBlinking > 250)
             {
-                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 55.0f, chatBubble.Height - 70.0f ), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
-                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 35.0f, 40.0f ), null, Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 55.0f, ResourceManager.Instance["chat_bubble"].Height - 70.0f), ResourceManager.Instance["chat_arrow"], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 35.0f, 40.0f), ResourceManager.Instance["chat_arrow"], Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

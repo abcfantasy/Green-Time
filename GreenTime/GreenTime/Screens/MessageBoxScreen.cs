@@ -17,7 +17,7 @@ namespace GreenTime.Screens
     {
         #region Fields
         string message;
-        Texture2D gradientTexture;
+        //Texture2D gradientTexture;
         #endregion
 
         #region Events
@@ -63,9 +63,9 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
-            ContentManager content = ScreenManager.Game.Content;
+            //ContentManager content = ScreenManager.Game.Content;
 
-            gradientTexture = content.Load<Texture2D>("gradient");
+            //gradientTexture = content.Load<Texture2D>("gradient");
         }
 
 
@@ -136,7 +136,7 @@ namespace GreenTime.Screens
             spriteBatch.Begin();
 
             // Draw the background rectangle.
-            spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, backgroundRectangle, ResourceManager.Instance["gradient"], color);
 
             // Draw the message box text.
             spriteBatch.DrawString(font, message, textPosition, color);

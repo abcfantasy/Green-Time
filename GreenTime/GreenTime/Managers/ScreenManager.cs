@@ -25,8 +25,6 @@ namespace GreenTime.Managers
         InputManager input = new InputManager();
 
         SpriteBatch spriteBatch;
-        SpriteFont font;
-        Texture2D blankTexture;
         Texture2D transitionTexture;
 
         bool isInitialized;
@@ -51,7 +49,7 @@ namespace GreenTime.Managers
         /// </summary>
         public SpriteFont Font
         {
-            get { return font; }
+            get { return ResourceManager.Instance.MainFont; }
         }
 
 
@@ -100,8 +98,6 @@ namespace GreenTime.Managers
             ContentManager content = Game.Content;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = content.Load<SpriteFont>("menuFont");
-            blankTexture = content.Load<Texture2D>("blank");
             transitionTexture = content.Load<Texture2D>("tt_effect");
 
             // Tell each of the screens to load their content.
@@ -279,8 +275,9 @@ namespace GreenTime.Managers
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(blankTexture,
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture,
                              new Rectangle(0, 0, viewport.Width, viewport.Height),
+                             ResourceManager.Instance["blank"],
                              Color.Black * alpha);
 
             spriteBatch.End();
@@ -309,7 +306,7 @@ namespace GreenTime.Managers
             Viewport viewport = GraphicsDevice.Viewport;
 
             spriteBatch.Begin();
-            spriteBatch.Draw( blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount );
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), ResourceManager.Instance["blank"], Color.White * amount);
             spriteBatch.End();
         }
 

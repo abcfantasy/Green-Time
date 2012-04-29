@@ -125,6 +125,7 @@
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="Managers\StateManager.cs" />
+    <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />

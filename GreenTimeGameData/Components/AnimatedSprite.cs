@@ -14,6 +14,9 @@ namespace GreenTimeGameData.Components
         // Dimensions of a single frame
         public Vector2 frameSize;
 
+        [ContentSerializer(Optional = true)]
+        public int framesPerLine = 0;
+
         // How fast to play
         public int framesPerSecond;
 
@@ -78,15 +81,25 @@ namespace GreenTimeGameData.Components
 
         #region Initialization
         // Loads the texture and performs initializations
-        override public void Load(ContentManager content)
+        override public void Load()
         {
-            base.Load(content);
             timePerFrame = 1.0d / framesPerSecond;
             this.currentFrameBounds.Width = (int)frameSize.X;
             this.currentFrameBounds.Height = (int)frameSize.Y;
 
             this.nextFrameBounds.Width = currentFrameBounds.Width;
             this.nextFrameBounds.Height = currentFrameBounds.Height;
+
+            this.currentFrameBounds.X = 0;
+            this.currentFrameBounds.Y = 0;
+            this.nextFrameBounds.X = 0;
+            this.nextFrameBounds.Y = 0;
+            /*
+            this.currentFrameBounds.X = textureRect.X;
+            this.currentFrameBounds.Y = textureRect.Y;
+            this.nextFrameBounds.X = textureRect.X;
+            this.nextFrameBounds.Y = textureRect.Y;
+             */
         }
         #endregion
 
@@ -195,11 +208,15 @@ namespace GreenTimeGameData.Components
         {
             int frame = activeAnimations[frameSet][frameIndex];
 
-            return new Point( (frame * (int)frameSize.X) % texture.Width, (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y );
+            //if ( texture == null )
+                return new Point((int)((frame * (int)frameSize.X) % (double)(frameSize.X * framesPerLine)/*texture.Width + textureRect.X*/), (int)Math.Floor(frame * frameSize.X / (double)(frameSize.X * framesPerLine)/*texture.Width*/) * (int)frameSize.Y /*+ textureRect.Y*/);
+            //else
+            //    return new Point((frame * (int)frameSize.X) % texture.Width + textureRect.X, (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y + textureRect.Y);
         }
 
         override public void Draw(SpriteBatch spriteBatch, Color tint)
         {
+            /*
             if (crossFade)
             {
                 spriteBatch.Draw(texture, position, currentFrameBounds, new Color(tint.R, tint.G, tint.B, (byte)((1 - fadePercentage) * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
@@ -207,6 +224,18 @@ namespace GreenTimeGameData.Components
             }
             else
                 spriteBatch.Draw(texture, position, currentFrameBounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+             */
+        }
+
+        public override void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle textureRect, Color tint)
+        {
+            if (crossFade)
+            {
+                spriteBatch.Draw(texture, position, new Rectangle( currentFrameBounds.X + textureRect.X, currentFrameBounds.Y + textureRect.Y, currentFrameBounds.Width, currentFrameBounds.Height ), new Color(tint.R, tint.G, tint.B, (byte)((1 - fadePercentage) * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+                spriteBatch.Draw(texture, position, new Rectangle(nextFrameBounds.X + textureRect.X, nextFrameBounds.Y + textureRect.Y, nextFrameBounds.Width, nextFrameBounds.Height), new Color(tint.R, tint.G, tint.B, (byte)(fadePercentage * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+            }
+            else
+                spriteBatch.Draw(texture, position, new Rectangle(currentFrameBounds.X + textureRect.X, currentFrameBounds.Y + textureRect.Y, currentFrameBounds.Width, currentFrameBounds.Height), tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
         }
         #endregion
 

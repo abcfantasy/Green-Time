@@ -5,19 +5,13 @@ using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
     public class IntroScreen : GameScreen
     {
-        ContentManager content;
-        Texture2D blackBackground;
-        Texture2D worldBackground;
-        Texture2D watch;
-        Texture2D tree;
-        Texture2D light;
-        Texture2D player;
-        private Effect desaturateShader;
+        //double milliseconds;
 
         float elapsed = 0.0f;
 
@@ -62,27 +56,12 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
-            if (content == null)
-                content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            desaturateShader = content.Load<Effect>("desaturate");
-
-            worldBackground = content.Load<Texture2D>(@"shop\bg");
-            watch = content.Load<Texture2D>("big_watch");
-            tree = content.Load<Texture2D>(@"outdoor_forest\tree-b");
-            light = content.Load<Texture2D>(@"bedroom\window_light");
-            player = content.Load<Texture2D>(@"animations\player");
-
-            // create the rectangle texture without colors
-            blackBackground = new Texture2D(
-                ScreenManager.GraphicsDevice,
-                1,
-                1);
-
-            // Set the color data for the texture
-            blackBackground.SetData(new Color[] { Color.Black });
+            //desaturateShader = content.Load<Effect>("desaturate");
+            ResourceManager.Instance.LoadLevelTexture("introTexture");
 
             lineSize = ScreenManager.Font.MeasureString(lines[0]);
+
 
             // once the load has finished, we use ResetElapsedTime to tell the game's
             // timing mechanism that we have just finished a very long frame, and that
@@ -95,13 +74,15 @@ namespace GreenTime.Screens
         /// </summary>
         public override void UnloadContent()
         {
-            if (content != null)
-                content.Unload();
+            
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
+
+
+            //milliseconds = SoundManager.TestPosition();
 
             textY -= 0.35f;
 
@@ -167,27 +148,27 @@ namespace GreenTime.Screens
             if (this.TransitionAlpha < 1.0f && elapsed < 10000)
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(worldBackground, Vector2.Zero, Color.White * this.TransitionAlpha);
+                spriteBatch.Draw(ResourceManager.Instance.LevelTexture, Vector2.Zero, ResourceManager.Instance["background"], Color.White * this.TransitionAlpha);
                 spriteBatch.End();
             }
             else
             {
-                spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, desaturateShader);
-                spriteBatch.Draw(worldBackground, Vector2.Zero, null, new Color((int)worldGrayscale, 255, 255, 255), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, ResourceManager.Instance.DesaturationShader);
+                spriteBatch.Draw(ResourceManager.Instance.LevelTexture, Vector2.Zero, ResourceManager.Instance["background"], new Color((int)worldGrayscale, 255, 255, 255), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
                 spriteBatch.End();
             }
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(blackBackground, Vector2.Zero, new Rectangle( 0, 0, 1280, 720 ), Color.White * blackBackgroundAlpha, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
+            spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Rectangle( 0, 0, 1280, 720 ), ResourceManager.Instance["intro_black"], Color.Black * blackBackgroundAlpha, 0.0f, Vector2.Zero, SpriteEffects.None, 0.5f);
 
-            spriteBatch.Draw(watch, new Vector2(850, 250), Color.White * watchAlpha);
+            spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Vector2(880, 250), ResourceManager.Instance["intro_clock"], Color.White * watchAlpha);
 
-            spriteBatch.Draw(light, new Vector2(0, 0), new Rectangle(0, 0, 561, 359), Color.White * lightAlpha, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.6f);
+            spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Vector2(0, 0), ResourceManager.Instance["intro_light"], Color.White * lightAlpha, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.6f);
 
-            spriteBatch.Draw(tree, new Vector2(1000, 370), null, Color.White * treeAlpha, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0.6f); ;
+            spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Vector2(1000, 370), ResourceManager.Instance["intro_tree"], Color.White * treeAlpha, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0.6f); ;
 
-            spriteBatch.Draw(player, new Vector2(20, 400), new Rectangle( 440, 0, 110, 325 ), Color.White * playerAlpha);
+            spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Vector2(20, 400), ResourceManager.Instance["intro_player"], Color.White * playerAlpha);
 
             //spriteBatch.Draw(light, new Vector2(-100, 350), new Rectangle( 0, 0, 561, 359 ), Color.White * treeAlpha, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0.6f );
             
@@ -206,8 +187,8 @@ namespace GreenTime.Screens
             }
 
             if (elapsed > 62000)
-                spriteBatch.Draw(blackBackground, Vector2.Zero, new Rectangle(0, 0, 1280, 720), Color.White * ( 1.0f - this.TransitionAlpha ), 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
-
+                spriteBatch.Draw(ResourceManager.Instance.LevelTexture, new Rectangle(0, 0, 1280, 720), ResourceManager.Instance["intro_black"], Color.Black * (1.0f - this.TransitionAlpha), 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
+ 
             spriteBatch.End();
         }
     }

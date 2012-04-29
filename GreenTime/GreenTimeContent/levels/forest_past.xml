@@ -1,61 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-  <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>forest_past</name>
+    <texture>outdoor_forest\forestTexture</texture>
     <backgroundTexture>
-      <texture>outdoor_forest\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
     <leftScreenName></leftScreenName>
     <rightScreenName></rightScreenName>
     <gameObjects>
-      <!-- tree 3 -->
+      
+      <!-- trees -->
       <Item>
         <sprite>
-          <texture>outdoor_forest\tree03</texture>
-          <position>878 234</position>
+          <texture>healthy_trees</texture>
+          <position>658 73</position>
           <layer>0.68</layer>
-        </sprite>
-      </Item>
-      <!-- tree 5 -->
-      <Item>
-        <sprite>
-          <texture>outdoor_forest\tree05</texture>
-          <position>1050 175</position>
-          <layer>0.64</layer>
-        </sprite>
-      </Item>
-      <!-- healthy tree 1 -->
-      <Item>
-        <sprite>
-          <texture>outdoor_forest\tree01b</texture>
-          <position>673 212</position>
-          <layer>0.7</layer>
-        </sprite>
-      </Item>
-      <!-- healthy tree 2 -->
-      <Item>
-        <sprite>
-          <texture>outdoor_forest\tree02b</texture>
-          <position>953 160</position>
-          <layer>0.7</layer>
-        </sprite>
-      </Item>
-      <!-- healthy tree 4 -->
-      <Item>
-        <sprite>
-          <texture>outdoor_forest\tree04b</texture>
-          <position>657 75</position>
-          <layer>0.6</layer>
         </sprite>
       </Item>
 
       <!-- cigarette -->
       <Item>
         <sprite>
-          <texture>outdoor_forest\cigar</texture>
+          <texture>cigarette</texture>
           <position>690 560</position>
           <layer>0.6</layer>
         </sprite>
@@ -70,10 +39,11 @@
           </state>
         </showIf>
       </Item>
+      
       <!-- smoking person -->
       <Item>
         <sprite>
-          <texture>neighbourhood\garbage_man</texture>
+          <texture>forest_npc</texture>
           <position>706 307</position>
           <layer>0.6</layer>
         </sprite>

@@ -3,8 +3,9 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>shop</name>
+    <texture>shop\shopTexture</texture>
     <backgroundTexture>
-      <texture>shop\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
@@ -24,11 +25,12 @@
       <!-- Car -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>shop\car2</texture>
+          <texture>car</texture>
           <position>680 354</position>
           <layer>0.6</layer>
           <flippable>false</flippable>
           <frameSize>570 258</frameSize>
+          <framesPerLine>2</framesPerLine>
           <framesPerSecond>15</framesPerSecond>
           <animations>
             <frameSet>
@@ -62,10 +64,11 @@
       <!-- Smoke -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>shop\smoke</texture>
+          <texture>smoke</texture>
           <position>1243 392</position>
           <layer>0.55</layer>
           <frameSize>30 151</frameSize>
+          <framesPerLine>12</framesPerLine>
           <framesPerSecond>10</framesPerSecond>
           <animations>
             <frameSet>

@@ -55,8 +55,8 @@ namespace GreenTimeGameData.Components
             opposite_sprite.textureName += "_square";
             
             // Loading the content
-            current_sprite.Load(content);
-            opposite_sprite.Load(content);
+            current_sprite.Load();
+            opposite_sprite.Load();
 
             // Because we made only a shallow copy, this method will affect the square player too
             current_sprite.AddAllAnimations();            
@@ -96,13 +96,13 @@ namespace GreenTimeGameData.Components
         }
 
         // Draws the currently active sprite
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle textureRect)
         {
-            current_sprite.Draw(spriteBatch, new Color((byte)(colorState * 64.0f), 255, 255, (byte)(shapeState * 255.0f)));
+            current_sprite.Draw(texture, spriteBatch, textureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)(shapeState * 255.0f)));
 
             // We only draw the second sprite if we're transitioning between the two
             if (shapeTransition != 0)
-                opposite_sprite.Draw(spriteBatch, new Color((byte)(colorState * 64.0f), 255, 255, (byte)((1 - shapeState) * 255.0f)));
+                opposite_sprite.Draw(texture, spriteBatch, textureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)((1 - shapeState) * 255.0f)));
         }
         #endregion
 

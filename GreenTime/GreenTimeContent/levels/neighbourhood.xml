@@ -3,8 +3,9 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>neighbourhood</name>
+    <texture>neighbourhood\neighborTexture</texture>
     <backgroundTexture>
-      <texture>neighbourhood\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
@@ -14,7 +15,7 @@
       <!-- Front grass -->
       <Item>
         <sprite>
-          <texture>neighbourhood\grass</texture>
+          <texture>grass</texture>
           <position>0 529</position>
           <layer>0.4</layer>
         </sprite>
@@ -22,7 +23,7 @@
       <!-- Dead tree -->
       <Item>
         <sprite>
-          <texture>neighbourhood\cdtree</texture>
+          <texture>deadtree</texture>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -30,7 +31,7 @@
       <!-- Live tree -->
       <Item>
         <sprite>
-          <texture>neighbourhood\ctree</texture>
+          <texture>livetree</texture>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -44,7 +45,7 @@
       <!-- Garbage 1 -->
       <Item>
         <sprite>
-          <texture>neighbourhood\g2</texture>
+          <texture>garbage1</texture>
           <position>240 387</position>
           <layer>0.6</layer>
         </sprite>
@@ -65,7 +66,7 @@
       <!-- Garbage 2 -->
       <Item>
         <sprite>
-          <texture>neighbourhood\g1</texture>
+          <texture>garbage2</texture>
           <position>379 339</position>
           <layer>0.6</layer>
         </sprite>
@@ -86,7 +87,7 @@
       <!-- Garbage 3 -->
       <Item>
         <sprite>
-          <texture>neighbourhood\g3</texture>
+          <texture>garbage3</texture>
           <position>428 388</position>
           <layer>0.55</layer>
         </sprite>
@@ -107,7 +108,7 @@
       <!-- Bin object -->
       <Item>
         <sprite>
-          <texture>neighbourhood\bin</texture>
+          <texture>bin</texture>
           <position>561 553</position>
           <layer>0.4</layer>
         </sprite>
@@ -138,15 +139,15 @@
       <!-- sprinklers -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>neighbourhood\Sprinkler</texture>
+          <texture>sprinklers</texture>
           <position>974 304</position>
           <layer>0.51</layer>
-          <scale>2</scale>
-          <frameSize>140 96</frameSize>
+          <frameSize>280 192</frameSize>
+          <framesPerLine>4</framesPerLine>
           <framesPerSecond>10</framesPerSecond>
           <animations>
             <frameSet>
-              <frames>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</frames>
+              <frames>0 1 2 3 4 5 6 7 6 5 4 3 2 1</frames>
             </frameSet>
           </animations>
         </sprite>
@@ -166,7 +167,7 @@
       <!-- dead flowers -->
       <Item>
         <sprite>
-          <texture>neighbourhood/flowers</texture>
+          <texture>deadflowers</texture>
           <position>935 372</position>
           <layer>0.6</layer>
         </sprite>
@@ -180,7 +181,7 @@
       <!-- healthy flowers -->
       <Item>
         <sprite>
-          <texture>neighbourhood/flowers1</texture>
+          <texture>liveflowers</texture>
           <position>935 322</position>
           <layer>0.6</layer>
         </sprite>

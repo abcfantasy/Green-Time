@@ -10,16 +10,16 @@ namespace GreenTime
         /// </summary>
         static void Main(string[] args)
         {
-            try
-            {
+            //try
+            //{
                 using (Game game = new Game())
                     game.Run();
-            }
+            //}
 
-            catch (Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.ToString());
-            }
+            //catch (Exception e)
+            //{
+            //    System.Windows.Forms.MessageBox.Show(e.ToString());
+            //}
         }
     }
 #endif

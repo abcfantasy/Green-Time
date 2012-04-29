@@ -33,6 +33,11 @@ namespace GreenTime.Screens
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
+
+        public override void LoadContent()
+        {
+            ResourceManager.Instance.LoadMenuTexture();
+        }
         #endregion
 
         #region Update
@@ -78,7 +83,9 @@ namespace GreenTime.Screens
         {
             StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
             LoadingScreen.Load(ScreenManager, true, new PlayScreen());
-            //LoadingScreen.Load(ScreenManager, true, new IntroScreen());   // uncomment this line and comment the line above to start with storyline
+
+            //SoundManager.PlayMusic(true, false, 1.0f);
+            //LoadingScreen.Load(ScreenManager, true, new TextOnBlackScreen( "AVANTgarde", "presents", new GameScreen[] { new TextOnBlackScreen("GreenTime", "", new GameScreen[] { new IntroScreen() } ) } ) );   // uncomment this line and comment the line above to start with storyline
         }
 
 
@@ -96,7 +103,7 @@ namespace GreenTime.Screens
         /// </summary>
         protected override void OnCancel()
         {
-            const string message = "Are you sure you want to exit this sample?";
+            const string message = "Are you sure you want to exit this game?";
 
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
 

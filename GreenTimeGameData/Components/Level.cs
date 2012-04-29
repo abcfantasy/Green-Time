@@ -14,6 +14,9 @@ namespace GreenTimeGameData.Components
         /// </summary>
         public string name;
 
+        [ContentSerializer(Optional = true)]
+        public string texture;
+
         /// <summary>
         /// the background texture of the level
         /// </summary>
