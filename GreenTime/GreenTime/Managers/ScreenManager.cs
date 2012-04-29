@@ -25,7 +25,14 @@ namespace GreenTime.Managers
         InputManager input = new InputManager();
 
         SpriteBatch spriteBatch;
-        Texture2D transitionTexture;
+
+        SpriteFont font;
+        Texture2D blankTexture;
+        Texture2D clockTexture;
+
+        RenderTarget2D renderTarget;
+        Effect timeTravel;
+        public float timeTravelInterval = 0.0f;
 
         bool isInitialized;
 
@@ -96,9 +103,14 @@ namespace GreenTime.Managers
         {
             // Load content belonging to the screen manager.
             ContentManager content = Game.Content;
+            ResourceManager.Instance.Load(content);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            transitionTexture = content.Load<Texture2D>("tt_effect");
+
+            font = content.Load<SpriteFont>("menuFont");
+            blankTexture = content.Load<Texture2D>("blank");
+            clockTexture = content.Load<Texture2D>("greenTime_clock128x128");
+            timeTravel = content.Load<Effect>("timeTravel_shader");
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
@@ -170,6 +182,8 @@ namespace GreenTime.Managers
                 }
             }
 
+            timeTravelInterval += ( (float)gameTime.ElapsedGameTime.Milliseconds ) / 500.0f;
+
             // Print debug trace?
             if (traceEnabled)
                 TraceScreens();
@@ -221,9 +235,6 @@ namespace GreenTime.Managers
             }
 
             screens.Add(screen);
-
-            // update the TouchPanel to respond to gestures this screen is interested in
-            //TouchPanel.EnabledGestures = screen.EnabledGestures;
         }
 
 
@@ -237,20 +248,10 @@ namespace GreenTime.Managers
         {
             // If we have a graphics device, tell the screen to unload content.
             if (isInitialized)
-            {
                 screen.UnloadContent();
-            }
 
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
-
-            // if there is a screen still in the manager, update TouchPanel
-            // to respond to gestures that screen is interested in.
-            /*
-            if (screens.Count > 0)
-            {
-                TouchPanel.EnabledGestures = screens[screens.Count - 1].EnabledGestures;
-            }*/
         }
 
 
@@ -283,30 +284,50 @@ namespace GreenTime.Managers
             spriteBatch.End();
         }
 
-        public void TimeTravelMotionEffect(float amount, bool reverse = false)
-        {
-            Viewport viewport = GraphicsDevice.Viewport;
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(transitionTexture, new Rectangle(
-                (reverse ? (int)MathHelper.Lerp(-4387.0f, 0.0f, amount) :
-                           (int)MathHelper.Lerp(1280.0f, -3107.0f, amount) ), 0, 4387, 720 ),
-                transitionTexture.Bounds,
-                Color.White,
-                0.0f,
-                Vector2.Zero,
-                ( reverse ? SpriteEffects.FlipHorizontally : SpriteEffects.None ),
-                1.0f
-            );
-            spriteBatch.End();
-        }
-
         public void TimeTravelFadeEffect(float amount)
         {
             Viewport viewport = GraphicsDevice.Viewport;
 
             spriteBatch.Begin();
-            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), ResourceManager.Instance["blank"], Color.White * amount);
+            spriteBatch.Draw( blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount );
+            spriteBatch.End();
+        }
+
+        public void InitTimeTravel()
+        {
+            PresentationParameters pp = GraphicsDevice.PresentationParameters;
+            renderTarget = new RenderTarget2D(GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight);
+            GraphicsDevice.SetRenderTarget(renderTarget);
+        }
+
+        public void ApplyTimeTravel( float amount )
+        {
+            float actualAmount = (float)Math.Pow(timeTravelInterval, 2);
+            timeTravel.Parameters["fTimer"].SetValue( actualAmount );
+            Viewport viewport = GraphicsDevice.Viewport;
+
+            GraphicsDevice.SetRenderTarget(null);
+            Texture2D sceneTexture = (Texture2D)renderTarget;
+            GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.DarkSlateBlue, 1.0f, 0);
+            
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, timeTravel);
+            spriteBatch.Draw(sceneTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(
+                clockTexture,
+                new Vector2(viewport.Width / 2, viewport.Height / 2),
+                null,
+                Color.White,
+                actualAmount,
+                new Vector2(clockTexture.Width / 2, clockTexture.Height / 2),
+                actualAmount,
+                SpriteEffects.None,
+                0f);
+            spriteBatch.Draw(blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount);
+
             spriteBatch.End();
         }
 
