@@ -63,6 +63,8 @@ namespace GreenTimeGameData.Components
         // The list of active animations; they are the ones that satisfy the dependencies
         private Dictionary<string, int[]> activeAnimations = new Dictionary<string, int[]>();
 
+        [ContentSerializerIgnore]
+        private bool isLoaded = false;
         #endregion
 
         #region Properties
@@ -83,6 +85,9 @@ namespace GreenTimeGameData.Components
         // Loads the texture and performs initializations
         override public void Load()
         {
+            if (isLoaded) return;
+            isLoaded = true;
+            
             timePerFrame = 1.0d / framesPerSecond;
             this.currentFrameBounds.Width = (int)frameSize.X;
             this.currentFrameBounds.Height = (int)frameSize.Y;

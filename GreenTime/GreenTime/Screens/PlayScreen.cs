@@ -126,14 +126,7 @@ namespace GreenTime.Screens
             LoadGameObjects();
 
             LoadHUDObjects();
-            // A real game would probably have more content than this sample, so
-            // it would take longer to load. We simulate that by delaying for a
-            // while, giving you a chance to admire the beautiful loading screen.
-            //System.Threading.Thread.Sleep(1000);
 
-            // once the load has finished, we use ResetElapsedTime to tell the game's
-            // timing mechanism that we have just finished a very long frame, and that
-            // it should not try to catch up.
             ScreenManager.Game.ResetElapsedTime();
         }
 
@@ -637,6 +630,7 @@ namespace GreenTime.Screens
                     LevelManager.Instance.MoveRight();
                     LoadingScreen.Load(ScreenManager, false, new PlayScreen());
                 }
+                transition = TransitionType.Room;
             }
             // if player moves outside left boundary
             else if (player.Position.X < -SettingsManager.PLAYER_WIDTH)
@@ -644,6 +638,7 @@ namespace GreenTime.Screens
                 // transition to the left
                 LevelManager.Instance.MoveLeft();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                transition = TransitionType.Room;
             }
         }
 
