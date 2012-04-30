@@ -23,6 +23,11 @@ namespace GreenTimeGameData.Components
         private AnimatedSprite current_sprite;
         private AnimatedSprite opposite_sprite;
 
+        // The player's current thought
+        private string thought;
+        private float thought_time;
+        private float thought_alpha;
+
         // Variables related to the transitions (green/grey, round/square)
         private float colorState = 1.0f;
         private float shapeState = 1.0f;
@@ -42,6 +47,9 @@ namespace GreenTimeGameData.Components
 
         // Returns true if the player is ready for interaction (not transitioning)
         public bool IsReady { get { return (colorTransition == 0.0f && shapeTransition == 0.0f); } }
+
+        public string Thought { get { return thought; } set { thought = value; thought_time = 0.0f; thought_alpha = 1.0f; } }
+        public float ThoughtAlpha { get { return thought_alpha; } }
         #endregion
 
         #region Initialization
@@ -51,7 +59,7 @@ namespace GreenTimeGameData.Components
             current_sprite = content.Load<AnimatedSprite>("player");
 
             // We need a shallow copy instance to handle the square player texture
-            opposite_sprite = (AnimatedSprite)current_sprite.Clone();            
+            opposite_sprite = (AnimatedSprite)current_sprite.Clone();
             opposite_sprite.textureName += "_square";
             
             // Loading the content
@@ -59,7 +67,7 @@ namespace GreenTimeGameData.Components
             opposite_sprite.Load(content);
 
             // Because we made only a shallow copy, this method will affect the square player too
-            current_sprite.AddAllAnimations();            
+            current_sprite.AddAllAnimations();
         }
         #endregion
 
@@ -92,6 +100,15 @@ namespace GreenTimeGameData.Components
                     shapeTransition = 0.0f;
                     swap();
                 }
+            }
+
+            if (thought != null)
+            {
+                thought_time += gameTime.ElapsedGameTime.Milliseconds;
+                if (thought_time >= 3000)
+                    thought_alpha = 1.0f - ( (thought_time - 3000f) / 1000f );
+                if (thought_time >= 4000)
+                    Thought = null;
             }
         }
 

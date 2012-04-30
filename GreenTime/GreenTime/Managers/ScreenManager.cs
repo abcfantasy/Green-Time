@@ -306,7 +306,7 @@ namespace GreenTime.Managers
             GraphicsDevice.SetRenderTarget(null);
             Texture2D sceneTexture = (Texture2D)renderTarget;
             GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.DarkSlateBlue, 1.0f, 0);
-            
+
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, timeTravel);
             spriteBatch.Draw(sceneTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
             spriteBatch.End();

@@ -432,20 +432,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="audio\FireCrackling.wav">
-      <Name>FireCrackling</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="audio\carRunning.wav">
-      <Name>carRunning</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="sepia.fx">
       <Name>sepia</Name>
       <Importer>EffectImporter</Importer>
@@ -618,40 +604,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="audio\hitSwitch.wav">
-      <Name>hitSwitch</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\scrollDown.wav">
-      <Name>scrollDown</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\scrollUp.wav">
-      <Name>scrollUp</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\sprinkler.wav">
-      <Name>sprinkler</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="audio\throwingGarbage.wav">
-      <Name>throwingGarbage</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="audio\closingTap.wav">
-      <Name>closingTap</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="levels\neighbourhood.xml">
       <Name>neighbourhood</Name>
       <Importer>XmlImporter</Importer>
@@ -736,27 +688,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chats\sprinkler_man.xml">
-      <Name>sprinkler_man</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="neighbourhood\Sprinkler.png">
-      <Name>Sprinkler</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="levels\neighbourhood_past_sprinkler.xml">
-      <Name>neighbourhood_past_sprinkler</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="timeTravel_shader.fx">
       <Name>timeTravel_shader</Name>
       <Importer>EffectImporter</Importer>
@@ -766,6 +697,20 @@
   <ItemGroup>
     <Compile Include="greenTime_clock128x128.png">
       <Name>greenTime_clock128x128</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="audio\FireCrackling.wav">
+      <Name>FireCrackling</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighbourhood\Sprinkler.png">
+      <Name>Sprinkler</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

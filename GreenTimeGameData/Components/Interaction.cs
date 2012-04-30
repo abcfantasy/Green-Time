@@ -30,6 +30,10 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(Optional = true)]
         public string transition = null;
 
+        // The thought the player gets when interacting
+        [ContentSerializer(Optional = true)]
+        public string thought = null;
+
         // Start of a conversation
         [ContentSerializer(Optional = true)]
         public string chat = null;

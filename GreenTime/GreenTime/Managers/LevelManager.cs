@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using System.Xml;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using GreenTimeGameData.Components;
 
@@ -34,6 +35,8 @@ namespace GreenTime.Managers
 
         private Dictionary<String, Level> levels = new Dictionary<string,Level>();
         private Dictionary<string, Dictionary<int, Chat>> chats = new Dictionary<string,Dictionary<int, Chat>>();
+        private Texture2D chatBubble;
+        private SpriteFont chatFont;
 
         private Player player;
         private float startPosition = 0.0f;
@@ -75,6 +78,16 @@ namespace GreenTime.Managers
         {
             get { return startPosition; }
         }
+
+        public Texture2D ChatBubble
+        {
+            get { return chatBubble; }
+        }
+
+        public SpriteFont ChatFont
+        {
+            get { return chatFont; }
+        }
         #endregion
 
         #region Public Methods
@@ -84,8 +97,10 @@ namespace GreenTime.Managers
         public void LoadAllLevels( ContentManager content )
         {
             this.content = content;
+            chatBubble = content.Load<Texture2D>("chatBubble");
+            chatFont = content.Load<SpriteFont>("chatfont");
             player = new Player(content);
-            StateManager.Instance.AdvanceDay();            
+            StateManager.Instance.AdvanceDay();
         }
 
         public void GoTo( string level )

@@ -25,9 +25,9 @@ namespace GreenTime.Screens
     public class PlayScreen : GameScreen
     {
         #region Fields
-        static readonly float TEXT_LAYER = 0.0f;
-        static readonly float PLAYER_LAYER = 0.5f;
-        static readonly float BACKGROUND_LAYER = 0.75f;
+        public static readonly float TEXT_LAYER = 0.0f;
+        public static readonly float PLAYER_LAYER = 0.5f;
+        public static readonly float BACKGROUND_LAYER = 0.75f;
 
         static readonly Vector2[] playerHand = new Vector2[] { 
             new Vector2( 44, 208 ),
@@ -336,6 +336,13 @@ namespace GreenTime.Screens
 
             spriteBatch.End();
 
+            if (player.Thought != null)
+            {
+                spriteBatch.Begin();
+                ChatScreen.DrawText(spriteBatch, player.Mouth, 300.0f, player.Thought, player.ThoughtAlpha);
+                spriteBatch.End();
+            }
+
             // Handle the different transition types
             float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
             switch (transition)
@@ -422,8 +429,11 @@ namespace GreenTime.Screens
 
                         // Pick up the object
                         if( pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName) ) {
-                                PickupObject(interactingObject);
+                            PickupObject(interactingObject);
                         }
+
+                        if (interactingObject.interaction.thought != null)
+                            player.Thought = interactingObject.interaction.thought;
 
                         // Handling callbacks (aka special interactions)
                         if (!String.IsNullOrEmpty(interactingObject.interaction.callback))
