@@ -46,6 +46,11 @@ namespace GreenTime.Managers
             globalContent = game.Content;
             localContent = new ContentManager(game.Services, "Content");
         }
+
+        public void InitializeLevelManager()
+        {
+            LevelManager.Instance.Initialize(localContent);
+        }
         #endregion
 
         #region Unloading

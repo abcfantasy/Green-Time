@@ -20,6 +20,9 @@ namespace GreenTimeGameData.Components
         // How fast to play
         public int framesPerSecond;
 
+        [ContentSerializer(Optional = true)]
+        public bool loop = true;
+
         // True to fade between frames
         [ContentSerializer(Optional = true)]
         public bool crossFade = false;
@@ -47,9 +50,6 @@ namespace GreenTimeGameData.Components
 
         // The next area of the texture to draw
         private Rectangle nextFrameBounds;
-
-        // Whather or not to flip the sprite
-        //private bool flipped = false;
 
         // Whether or not to play animations
         private bool paused = false;
@@ -154,7 +154,7 @@ namespace GreenTimeGameData.Components
         #endregion
 
         #region Update and Draw
-        public void UpdateFrame(double elapsed)
+        public virtual void UpdateFrame(double elapsed)
         {
             // Frames aren't updated while the animation is paused
             if (paused) return;
@@ -165,9 +165,10 @@ namespace GreenTimeGameData.Components
             totalElapsed += elapsed;
 
             // calculate cross fading between frames
-            fadePercentage = MathHelper.Clamp( (float)(totalElapsed / timePerFrame), 0.0f, 1.0f ) ;
+            if ( crossFade )
+                fadePercentage = MathHelper.Clamp( (float)(totalElapsed / timePerFrame), 0.0f, 1.0f ) ;
 
-            if (totalElapsed > timePerFrame)
+            if (totalElapsed > timePerFrame && ( loop || ( !loop && currentFrameIndex < activeAnimations[currentFrameSet].Length - 1 ) ) )
             {
                 // reset fading percentage
                 fadePercentage = 0.0f;

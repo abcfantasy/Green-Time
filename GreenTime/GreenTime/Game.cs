@@ -68,13 +68,10 @@ namespace GreenTime
         /// </summary>
         protected override void LoadContent()
         {
-
             ResourceManager.Instance.LoadMenuTexture();
+            ResourceManager.Instance.InitializeLevelManager();
 
             SoundManager.PlayMusic();
-
-            // load all levels
-            LevelManager.Instance.LoadAllLevels(Content);
          }
         #endregion
 

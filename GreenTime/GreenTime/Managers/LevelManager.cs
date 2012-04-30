@@ -79,6 +79,18 @@ namespace GreenTime.Managers
 
         #region Public Methods
         /// <summary>
+        /// Assigns the content manager to load levels
+        /// </summary>
+        /// <param name="content"></param>
+        public void Initialize(ContentManager content)
+        {
+            this.content = content;
+            LoadLevel(HOME);
+            currentLevel = levels[HOME];
+            player = new Player(content);
+            StateManager.Instance.AdvanceDay();   
+        }
+        /// <summary>
         /// Parses levels and chats XML file and stores information in memory
         /// </summary>
         public void LoadAllLevels( ContentManager content )
@@ -88,14 +100,23 @@ namespace GreenTime.Managers
             StateManager.Instance.AdvanceDay();            
         }
 
+        public void LoadLevel(string levelName)
+        {
+            if (!levels.ContainsKey(levelName) )
+            {
+                levels[levelName] = content.Load<Level>(@"levels\" + levelName);
+            }
+        }
+
         public void GoTo( string level )
         {
-            if (!levels.ContainsKey(level))
-            {
-                levels[level] = content.Load<Level>(@"levels\" + level);
-                foreach (GameObject o in levels[level].gameObjects)
-                    o.Load();
-            }
+            LoadLevel(level);
+
+            if ( currentLevel.name != level )
+                levels.Remove(currentLevel.name);
+
+            foreach (GameObject o in levels[level].gameObjects)
+                o.Load();
 
             currentLevel = levels[level];
         }
