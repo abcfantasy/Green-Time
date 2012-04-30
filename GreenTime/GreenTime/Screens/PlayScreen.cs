@@ -321,7 +321,7 @@ namespace GreenTime.Screens
             
             // picked up object if any
             if (pickedObject != null)
-                pickedObject.Draw(ResourceManager.Instance.LevelTexture, spriteBatch, ResourceManager.Instance[pickedObject.textureName], new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
+                pickedObject.Draw(ResourceManager.Instance.PickablesTexture, spriteBatch, ResourceManager.Instance[pickedObject.textureName], new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
 
             // text only if easy mode
             if (SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && !String.IsNullOrEmpty(interactingObject.interaction.text))
@@ -727,6 +727,7 @@ namespace GreenTime.Screens
         private void PickupObject(GameObject interactingObject)
         {
             LevelManager.Instance.PickedObject = (Sprite)interactingObject.sprite.Clone();
+            LevelManager.Instance.PickedObject.textureName = "pick_" + LevelManager.Instance.PickedObject.textureName;
             LevelManager.Instance.PickedObjectState = interactingObject.interaction.pickUpName + "_picked";
         }
 

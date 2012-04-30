@@ -326,6 +326,7 @@
       <Name>neighbourhood</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -445,13 +446,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="greenTime_clock128x128.png">
-      <Name>greenTime_clock128x128</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="audio\MenuSong.mp3">
       <Name>MenuSong</Name>
       <Importer>Mp3Importer</Importer>
@@ -469,6 +463,13 @@
       <Name>ConfirmationSound</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pickablesTexture.png">
+      <Name>pickablesTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

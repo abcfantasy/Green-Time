@@ -41,7 +41,7 @@
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>neighbor_birds</texture>
-          <position>456 130</position>
+          <position>446 130</position>
           <layer>0.70</layer>
           <scale>1.0</scale>
           <frameSize>59 38</frameSize>

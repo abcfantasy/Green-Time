@@ -89,6 +89,43 @@
       <Key>timetravel_clock</Key>
       <Value>650 652 128 128</Value>
     </Item>
+    
+    <!-- pickable stuff -->
+    <Item>
+      <Key>pick_cerealbox</Key>
+      <Value>136 159 50 62</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_waterbottle</Key>
+      <Value>86 159 50 71</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_cigarette</Key>
+      <Value>186 202 39 23</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_acorn</Key>
+      <Value>186 159 57 43</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_garbage2</Key>
+      <Value>96 0 129 159</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_garbage1</Key>
+      <Value>0 0 96 117</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_garbage3</Key>
+      <Value>0 117 86 117</Value>
+    </Item>
+    
     <!-- intro stuff -->
     <Item>
       <Key>intro_clock</Key>
