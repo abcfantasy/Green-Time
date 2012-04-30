@@ -21,7 +21,15 @@
           <layer>0.8</layer>
         </sprite>
       </Item>
-      
+      <!-- Bed -->
+      <Item>
+        <onInteract>
+          <boundX>160</boundX>
+          <boundWidth>560</boundWidth>
+          <text>Bed</text>
+          <thought>I'm not going back to sleep again.</thought>
+        </onInteract>
+      </Item>
       <!-- Window light beams -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">

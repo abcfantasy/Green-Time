@@ -34,7 +34,6 @@ namespace GreenTime.Screens
 
         private Dictionary<int, Chat> conversation;
         private Chat chat;
-        SpriteFont chatFont;
 
         private Vector2 playerMouth;
         private Vector2 npcMouth;
@@ -213,7 +212,6 @@ namespace GreenTime.Screens
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            //SpriteFont font = ScreenManager.Font;
 
             // Darken down any other screens that were drawn beneath the popup.
             ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
@@ -242,37 +240,38 @@ namespace GreenTime.Screens
             switch (status)
             {
                 case ChatStatus.NpcText:
-                    DrawText(spriteBatch, ResourceManager.Instance.ChatFont, npcMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, npcMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerText:
-                    DrawText(spriteBatch, ResourceManager.Instance.ChatFont, playerMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, playerMouth, 300.0f, currentText);
                     break;
                 case ChatStatus.PlayerAnswer:
-                    DrawAnswer(gameTime, spriteBatch, ResourceManager.Instance.ChatFont, playerMouth, 300.0f, answers[selectedEntry].text[0]);
+                    DrawAnswer(gameTime, spriteBatch, playerMouth, 300.0f, answers[selectedEntry].text[0]);
                     break;
             }
 
             spriteBatch.End();
         }
 
-        public void DrawText(SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
+        public static void DrawText(SpriteBatch spriteBatch, Vector2 topLeftCorner, float width, string text, float alpha = 1.0f)
         {
+            SpriteFont font = ResourceManager.Instance.ChatFont;
             List<string> lines = WrapText(font, text, width);
             Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
 
-            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition, ResourceManager.Instance["chat_bubble"], Color.White);
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition, ResourceManager.Instance["chat_bubble"], Color.White * alpha);
 
             foreach (string line in lines)
             {
-                spriteBatch.DrawString(font, line, currentPosition + new Vector2( 30.0f, 35.0f ), Color.Black, 0.0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(font, line, currentPosition + new Vector2( 30.0f, 35.0f ), Color.Black * alpha, 0.0f, Vector2.Zero, 0.7f, SpriteEffects.None, PlayScreen.TEXT_LAYER);
                 currentPosition.Y += ( font.LineSpacing / 2 );
             }
         }
 
-        public void DrawAnswer(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont font, Vector2 topLeftCorner, float width, string text)
+        public void DrawAnswer(GameTime gameTime, SpriteBatch spriteBatch, Vector2 topLeftCorner, float width, string text)
         {
             Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
-            DrawText(spriteBatch, font, topLeftCorner, width, text);
+            DrawText(spriteBatch, topLeftCorner, width, text);
 
             // update blinking counter
             optionArrowsBlinking = (optionArrowsBlinking + gameTime.ElapsedGameTime.TotalMilliseconds) % 500;
@@ -285,7 +284,7 @@ namespace GreenTime.Screens
             }
         }
 
-        public List<string> WrapText(SpriteFont font, string text, float width)
+        public static List<string> WrapText(SpriteFont font, string text, float width)
         {
             List<string> lines = new List<string>();
             string[] words = text.Split(' ');
