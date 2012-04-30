@@ -27,6 +27,9 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(Optional = true)]
         public bool crossFade = false;
 
+        [ContentSerializer(Optional=true)]
+        public Vector2 velocityPerSecond = Vector2.Zero;
+
         // All the possible animations for an object (without dependency checking)
         [ContentSerializer(CollectionItemName = "frameSet")]
         public FrameSet[] animations;
@@ -163,6 +166,12 @@ namespace GreenTimeGameData.Components
             if (activeAnimations[currentFrameSet].Length == 1) return;
 
             totalElapsed += elapsed;
+
+            if (velocityPerSecond != Vector2.Zero)
+            {
+                this.position.X += (float)(velocityPerSecond.X * elapsed);
+                this.position.Y += (float)(velocityPerSecond.Y * elapsed);
+            }
 
             // calculate cross fading between frames
             if ( crossFade )
