@@ -51,12 +51,15 @@ namespace GreenTime
             // frame rate counter for testing
             Components.Add(new FrameRateCounter(this));
 
+            // initialize resource manager
+            ResourceManager.Instance.InitializeContent(this);
+
             // active the first screens
             // THESE LINES SHOULD BE COMMENTED AND LAST LINE UNCOMMENTED TO INCLUDE INTRO SCREEN AND MENU
             //screenManager.AddScreen(new IntroScreen());
             screenManager.AddScreen(new BackgroundScreen());
-            screenManager.AddScreen(new MainMenuScreen());
-            //screenManager.AddScreen(new LogoScreen());
+            //screenManager.AddScreen(new MainMenuScreen());
+            screenManager.AddScreen(new LogoScreen());
             //screenManager.AddScreen(new TextOnBlackScreen("AVANTgarde",  new GameScreen[] { new BackgroundScreen(), new LogoScreen() }));
         }
 
@@ -65,16 +68,10 @@ namespace GreenTime
         /// </summary>
         protected override void LoadContent()
         {
-            foreach (string asset in preloadAssets)
-            {
-                Content.Load<object>(asset);
-            }
+            ResourceManager.Instance.LoadMenuTexture();
+            ResourceManager.Instance.InitializeLevelManager();
 
-            // load all levels
-            LevelManager.Instance.LoadAllLevels(Content);
-
-            // load music
-            SoundManager.LoadAllSounds(Content);
+            SoundManager.PlayMusic();
          }
         #endregion
 
@@ -113,16 +110,16 @@ namespace GreenTime
 
             // TODO: use this.Content to load your game content here
         }
-
+        */
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            ResourceManager.Instance.UnloadAllContent();
         }
-
+        /*
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.

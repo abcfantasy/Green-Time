@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[string,Microsoft.Xna.Framework.Rectangle]">
+    
+    <!-- Common stuff -->
+    <Item>
+      <Key>background</Key>
+      <Value>0 0 1280 720</Value>
+    </Item>
+    
+    <Item>
+      <Key>gradient</Key>
+      <Value>1 1017 6 6</Value>
+    </Item>
+
+    <Item>
+      <Key>blank</Key>
+      <Value>9 1021 2 2</Value>
+    </Item>
+
+    <!-- Menu stuff -->
+    <Item>
+      <Key>menu_black_pixel</Key>
+      <Value>2012 1 1 1</Value>
+    </Item>
+
+    <Item>
+      <Key>menu_leaf1</Key>
+      <Value>1920 0 83 56</Value>
+    </Item>
+
+    <Item>
+      <Key>menu_leaf2</Key>
+      <Value>1920 56 85 57</Value>
+    </Item>
+
+    <Item>
+      <Key>menu_logo</Key>
+      <Value>1285 0 630 480</Value>
+    </Item>
+
+    <!-- Gameplay stuff -->
+    <Item>
+      <Key>character_round</Key>
+      <Value>0 0 990 326</Value>
+    </Item>
+
+    <Item>
+      <Key>character_square</Key>
+      <Value>110 326 880 326</Value>
+    </Item>
+
+    <Item>
+      <Key>hud_state_green</Key>
+      <Value>329 852 128 60</Value>
+    </Item>
+
+    <Item>
+      <Key>hud_state_grey</Key>
+      <Value>457 852 128 60</Value>
+    </Item>
+
+    <Item>
+      <Key>hud_state_square</Key>
+      <Value>585 852 128 60</Value>
+    </Item>
+
+    <Item>
+      <Key>hud_timetravel</Key>
+      <Value>329 912 39 42</Value>
+    </Item>
+
+    <Item>
+      <Key>hud_timetravel_disabled</Key>
+      <Value>368 912 39 42</Value>
+    </Item>
+
+    <Item>
+      <Key>chat_bubble</Key>
+      <Value>329 652 300 200</Value>
+    </Item>
+
+    <Item>
+      <Key>chat_arrow</Key>
+      <Value>629 652 21 20</Value>
+    </Item>
+
+    <Item>
+      <Key>timetravel_clock</Key>
+      <Value>650 652 128 128</Value>
+    </Item>
+    <!-- intro stuff -->
+    <Item>
+      <Key>intro_clock</Key>
+      <Value>1528 360 296 356</Value>
+    </Item>
+
+    <Item>
+      <Key>intro_tree</Key>
+      <Value>1282 360 244 324</Value>
+    </Item>
+
+    <Item>
+      <Key>intro_light</Key>
+      <Value>1280 0 560 360</Value>
+    </Item>
+
+    <Item>
+      <Key>intro_player</Key>
+      <Value>1840 0 110 326</Value>
+    </Item>
+
+    <Item>
+      <Key>intro_black</Key>
+      <Value>2046 1 1 1</Value>
+    </Item>
+    <!-- bedroom -->
+    <Item>
+      <Key>window</Key>
+      <Value>1093 746 187 185</Value>
+    </Item>
+
+    <Item>
+      <Key>window_light</Key>
+      <Value>1290 0 560 360</Value>
+    </Item>
+
+    <Item>
+      <Key>lightbulb</Key>
+      <Value>0 723 326 231</Value>
+    </Item>
+
+    <Item>
+      <Key>lightswitch</Key>
+      <Value>1856 9 23 47</Value>
+    </Item>
+
+    <Item>
+      <Key>heat</Key>
+      <Value>652 723 194 118</Value>
+    </Item>
+    
+    <!-- kitchen -->
+    <Item>
+      <Key>drop</Key>
+      <Value>1280 133 60 62</Value>
+    </Item>
+
+    <Item>
+      <Key>cerealbox</Key>
+      <Value>1280 0 50 62</Value>
+    </Item>
+
+    <Item>
+      <Key>waterbottle</Key>
+      <Value>1280 62 50 71</Value>
+    </Item>
+    
+    <!-- neighborhood -->
+    <Item>
+      <Key>mole</Key>
+      <Value>0 1298 1029 108</Value>
+    </Item>
+
+    <Item>
+      <Key>neighbor_birds</Key>
+      <Value>596 721 236 38</Value>
+    </Item>
+    <Item>
+      <Key>grass</Key>
+      <Value>1780 294 197 191</Value>
+    </Item>
+
+    <Item>
+      <Key>deadtree</Key>
+      <Value>1280 0 500 500</Value>
+    </Item>
+
+    <Item>
+      <Key>livetree</Key>
+      <Value>1280 500 500 500</Value>
+    </Item>
+
+    <Item>
+      <Key>garbage1</Key>
+      <Value>1866 177 96 117</Value>
+    </Item>
+
+    <Item>
+      <Key>garbage2</Key>
+      <Value>1919 0 129 159</Value>
+    </Item>
+
+    <Item>
+      <Key>garbage3</Key>
+      <Value>1780 177 86 117</Value>
+    </Item>
+
+    <Item>
+      <Key>sprinklers</Key>
+      <Value>0 914 1120 192</Value>
+    </Item>
+
+    <Item>
+      <Key>deadflowers</Key>
+      <Value>0 720 308 133</Value>
+    </Item>
+
+    <Item>
+      <Key>bin</Key>
+      <Value>1780 0 139 177</Value>
+    </Item>
+    
+    <Item>
+      <Key>liveflowers</Key>
+      <Value>307 720 289 194</Value>
+    </Item>
+
+    <Item>
+      <Key>neighbor_npc</Key>
+      <Value>1780 485 109 309</Value>
+    </Item>
+    
+    <!-- shop -->
+    <Item>
+      <Key>car</Key>
+      <Value>0 720 1140 258</Value>
+    </Item>
+
+    <Item>
+      <Key>smoke</Key>
+      <Value>1280 0 360 151</Value>
+    </Item>
+    
+    <!-- forest -->
+    <Item>
+      <Key>burned_trees</Key>
+      <Value>1280 981 566 363</Value>
+    </Item>
+
+    <Item>
+      <Key>fire</Key>
+      <Value>0 720 1000 263</Value>
+    </Item>
+
+    <Item>
+      <Key>healthy_trees</Key>
+      <Value>1280 508 622 473</Value>
+    </Item>
+
+    <Item>
+      <Key>grown_trees</Key>
+      <Value>1280 0 689 508</Value>
+    </Item>
+
+    <Item>
+      <Key>cigarette</Key>
+      <Value>1969 43 39 23</Value>
+    </Item>
+
+    <Item>
+      <Key>acorn</Key>
+      <Value>1969 0 57 43</Value>
+    </Item>
+
+    <Item>
+      <Key>forest_npc</Key>
+      <Value>1902 508 109 309</Value>
+    </Item>
+  </Asset>
+</XnaContent>

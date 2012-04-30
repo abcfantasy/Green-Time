@@ -11,24 +11,34 @@ namespace GreenTime.Managers
 {
     public static class SoundManager
     {
-        // constants determining the sound index in the array
-        public static readonly int SOUND_TIMETRAVEL = 0;
-        public static readonly int SOUND_MENU_UP = 1;
-        public static readonly int SOUND_MENU_DOWN = 2;
-        public static readonly int SOUND_DROP = 3;
+        // constants determining the sound index in the gameplay array
+        public static readonly int SOUND_MENU_UP = 0;
+        public static readonly int SOUND_MENU_DOWN = 1;
+        public static readonly int SOUND_MENU_CONFIRM = 2;
+        public static readonly int SOUND_MENU_CANCEL = 3;
+        public static readonly int SOUND_TIMETRAVEL = 4;
+        public static readonly int SOUND_DROP = 5;
 
         // content file names
-        private static readonly string GAME_MUSIC_FILENAME = "greentime";
-        private static readonly string TRAVEL_SOUND_FILENAME = "timeTravel";
         private static readonly string MENU_UP_FILENAME = @"audio\scrollUp";
         private static readonly string MENU_DOWN_FILENAME = @"audio\scrollDown";
+        private static readonly string MENU_CONFIRM_FILENAME = @"audio\ConfirmationSound";
+        private static readonly string MENU_CANCEL_FILENAME = @"audio\CancelSound";
+        private static readonly string TRAVEL_SOUND_FILENAME = @"audio\timeTravel";
         private static readonly string DROP_FILENAME = @"audio\throwingGarbage";
 
+        private static readonly string SONG_GAME = @"audio\greentime";
+        public static readonly string SONG_INTRO = @"audio\IntroSong";
+        public static readonly string SONG_MENU = @"audio\MenuSong";
+
         // the in game music
-        private static Song gameMusic;
+        private static Song music;
+        private static Song alternateMusic;
 
         // game sound effects
-        private static int soundCount = 4;
+        private static int menuSoundCount = 4;
+        private static int gameplaySoundCount = 6;
+
         private static SoundEffect[] globalSounds;
         private static Dictionary<string, SoundEffect> levelSounds = new Dictionary<string,SoundEffect>();
         private static SoundEffectInstance ambientSound;
@@ -43,19 +53,42 @@ namespace GreenTime.Managers
         /// Loads all music files
         /// </summary>
         /// <param name="content"></param>
-        public static void LoadAllSounds(ContentManager content)
+        public static void LoadMenuSounds(ContentManager content)
         {
             SoundEffect.MasterVolume = 1.0f;
 
             // music
-            gameMusic = content.Load<Song>(GAME_MUSIC_FILENAME);
+            music = content.Load<Song>(SONG_MENU);
+            alternateMusic = content.Load<Song>(SONG_INTRO);
 
             // sound effects
-            globalSounds = new SoundEffect[soundCount];
-            globalSounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
+            globalSounds = new SoundEffect[menuSoundCount];
             globalSounds[SOUND_MENU_UP] = content.Load<SoundEffect>(MENU_UP_FILENAME);
             globalSounds[SOUND_MENU_DOWN] = content.Load<SoundEffect>(MENU_DOWN_FILENAME);
+            globalSounds[SOUND_MENU_CONFIRM] = content.Load<SoundEffect>(MENU_CONFIRM_FILENAME);
+            globalSounds[SOUND_MENU_CANCEL] = content.Load<SoundEffect>(MENU_CANCEL_FILENAME);
+        }
+
+        public static void LoadGameplaySounds(ContentManager content)
+        {
+            SoundEffect.MasterVolume = 1.0f;
+
+            // music
+            music = content.Load<Song>(SONG_GAME);
+
+            // sound effects
+            globalSounds = new SoundEffect[gameplaySoundCount];
+            globalSounds[SOUND_MENU_UP] = content.Load<SoundEffect>(MENU_UP_FILENAME);
+            globalSounds[SOUND_MENU_DOWN] = content.Load<SoundEffect>(MENU_DOWN_FILENAME);
+            globalSounds[SOUND_MENU_CONFIRM] = content.Load<SoundEffect>(MENU_CONFIRM_FILENAME);
+            globalSounds[SOUND_MENU_CANCEL] = content.Load<SoundEffect>(MENU_CANCEL_FILENAME);
+            globalSounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
             globalSounds[SOUND_DROP] = content.Load<SoundEffect>(DROP_FILENAME);
+        }
+
+        public static void LoadSong(ContentManager content, string songName)
+        {
+            music = content.Load<Song>(songName);
         }
 
         /// <summary>
@@ -88,30 +121,45 @@ namespace GreenTime.Managers
             ambientSound.IsLooped = LevelManager.Instance.CurrentLevel.ambientSound.looping;
         }
 
-        public static void Unload()
+        public static void UnloadLocal()
         {
             // clear dictionary and ambient sound
+            //gameMusicPlaying = false;
             levelSounds.Clear();
             if ( ambientSound != null && !ambientSound.IsDisposed )
                 ambientSound.Dispose();
         }
 
+        public static void UnloadGlobal()
+        {
+            gameMusicPlaying = false;
+            globalSounds = null;
+        }
+
         /// <summary>
         /// Plays in game music
         /// </summary>
-        public static void PlayGameMusic()
+        public static void PlayMusic(bool alternate = false, bool loop = true, float startVolume = 0.0f)
         {
             // play game music if it is not already playing
-            if (SettingsManager.MusicEnabled && !gameMusicPlaying)
+            if (SettingsManager.MusicEnabled && ( !gameMusicPlaying || alternate))
             {
                 MediaPlayer.Stop();
-                MediaPlayer.Volume = 0.0f;  // mute sound until it fades in
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(gameMusic);
+                MediaPlayer.Volume = startVolume;  // mute sound until it fades in
+                MediaPlayer.IsRepeating = loop;
+                if ( alternate )
+                    MediaPlayer.Play(alternateMusic);
+                else
+                    MediaPlayer.Play(music);
                 gameMusicPlaying = true;
             }
         }
 
+        // for testing only
+        //public static double TestPosition()
+        //{
+        //    return MediaPlayer.PlayPosition.TotalSeconds;
+        //}
 
         public static void Update( float playerX )
         {

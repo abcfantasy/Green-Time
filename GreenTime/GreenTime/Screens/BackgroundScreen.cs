@@ -5,14 +5,15 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
     public class BackgroundScreen : GameScreen
     {
         #region Fields
-        ContentManager content;
-        Texture2D backgroundTexture;
+        //ContentManager content;
+        //Texture2D backgroundTexture;
         #endregion
 
         #region Initialization
@@ -22,7 +23,7 @@ namespace GreenTime.Screens
         public BackgroundScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            TransitionOffTime = TimeSpan.FromSeconds(1.5);
         }
 
 
@@ -35,10 +36,11 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
+            /*
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            backgroundTexture = content.Load<Texture2D>("background");
+            backgroundTexture = content.Load<Texture2D>("background");*/
         }
 
 
@@ -47,8 +49,8 @@ namespace GreenTime.Screens
         /// </summary>
         public override void UnloadContent()
         {
-            if(content != null )
-                content.Unload();
+            //if(content != null )
+            //    content.Unload();
         }
 
 
@@ -79,18 +81,8 @@ namespace GreenTime.Screens
             Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
 
             spriteBatch.Begin();
-            /*
-            float rotation = 0;
 
-            for ( int i = 0; i < 5; i++ )
-                for ( int j = 0; j < 3; j++ )
-                {
-                    spriteBatch.Draw(backgroundTexture, new Vector2(i * 256, j * 256), null, Color.White, MathHelper.ToRadians(rotation), Vector2.Zero, 1.0f, SpriteEffects.None, 0.0f);
-                    //rotation += 180;
-                    //if (rotation == 360) rotation = 0;
-                }
-            */
-            spriteBatch.Draw(backgroundTexture, fullscreen,
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, fullscreen, ResourceManager.Instance["background"],
                              new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
 
             spriteBatch.End();

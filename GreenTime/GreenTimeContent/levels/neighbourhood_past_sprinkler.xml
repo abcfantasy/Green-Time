@@ -3,6 +3,7 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>neighbourhood_past_sprinkler</name>
+    <texture>neighbourhood\neighborTexture</texture>
     <backgroundTexture>
       <texture>neighbourhood\bg</texture>
       <position>0 0</position>
@@ -17,6 +18,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood\grass</texture>
+          <textureRect>1780 294 197 191</textureRect>
           <position>0 529</position>
           <layer>0.4</layer>
           <shaded>false</shaded>
@@ -27,6 +29,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood\cdtree</texture>
+          <textureRect>1280 0 500 500</textureRect>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -36,6 +39,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood\ctree</texture>
+          <textureRect>1280 500 500 500</textureRect>
           <position>100 0</position>
           <layer>0.65</layer>
         </sprite>
@@ -51,6 +55,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood\bin</texture>
+          <textureRect>1780 0 139 177</textureRect>
           <position>561 553</position>
           <layer>0.4</layer>
           <shaded>false</shaded>
@@ -61,14 +66,14 @@
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>neighbourhood\Sprinkler</texture>
+          <textureRect>0 914 1120 192</textureRect>
           <position>974 304</position>
           <layer>0.55</layer>
-          <scale>2</scale>
-          <frameSize>140 96</frameSize>
+          <frameSize>280 192</frameSize>
           <framesPerSecond>10</framesPerSecond>
           <animations>
             <frameSet>
-              <frames>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14</frames>
+              <frames>0 1 2 3 4 5 6 7 6 5 4 3 2 1</frames>
             </frameSet>
           </animations>
         </sprite>
@@ -77,6 +82,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood/flowers</texture>
+          <textureRect>0 719 308 133</textureRect>
           <position>935 372</position>
           <layer>0.6</layer>
         </sprite>
@@ -86,6 +92,7 @@
       <Item>
         <sprite>
           <texture>neighbourhood\garbage_man</texture>
+          <textureRect>1780 485 109 309</textureRect>
           <position>820 300</position>
           <layer>0.6</layer>
           <shaded>false</shaded>

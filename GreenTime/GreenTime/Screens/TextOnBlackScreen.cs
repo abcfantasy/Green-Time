@@ -11,16 +11,41 @@ namespace GreenTime.Screens
     public class TextOnBlackScreen : GameScreen
     {
         private GameScreen[] _nextScreens;
+        private string _title;
         private string _text;
         private int elapsed = 0;
 
-        public TextOnBlackScreen(string text, GameScreen[] nextScreens)
+        private float titleAlpha = 0.0f;
+        private float textAlpha = 0.0f;
+        private bool fadeIn = true;
+
+        private bool playMusic;
+
+        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false)
         {
+            _title = title;
             _text = text;
             _nextScreens = nextScreens;
 
-            TransitionOnTime = TimeSpan.FromSeconds(1.5);
-            TransitionOffTime = TimeSpan.FromSeconds(1.5);
+            playMusic = playAlternateMusic;
+
+            TransitionOnTime = TimeSpan.FromSeconds(3);
+            TransitionOffTime = TimeSpan.FromSeconds(3);
+        }
+
+        public override void LoadContent()
+        {
+            if ( playMusic )
+                SoundManager.PlayMusic(true, false, 1.0f);
+        }
+
+        public override void HandleInput(InputManager input)
+        {
+            if (input.IsMenuCancel())
+            {
+                this.TransitionOffTime = TimeSpan.FromSeconds(0.0);
+                elapsed = 3000;
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -29,13 +54,22 @@ namespace GreenTime.Screens
 
             elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
+            if (fadeIn)
+            {
+                titleAlpha = MathHelper.Clamp(TransitionAlpha * 2.0f, 0.0f, 1.0f);
+                textAlpha = MathHelper.Clamp((TransitionAlpha - 0.5f) * 2.0f, 0.0f, 1.0f);
+            }
+            else
+            {
+                textAlpha = MathHelper.Clamp(TransitionAlpha * 2.0f, 0.0f, 1.0f);
+                titleAlpha = MathHelper.Clamp((TransitionAlpha - 0.5f) * 2.0f, 0.0f, 1.0f);
+            }
+
+            if (fadeIn && elapsed > 3000)
+                fadeIn = false;
+
             if (elapsed > 3000)
             {
-                //LoadingScreen.Load(ScreenManager, true, _nextScreens);
-                //this.ExitScreen();
-                //this.ExitScreen();
-                //ScreenManager.AddScreen(_nextScreens[0]);
-                //ScreenManager.AddScreen(_nextScreens[1]);
                 LoadingScreen.Load(ScreenManager, false, _nextScreens);
             }
         }
@@ -46,16 +80,16 @@ namespace GreenTime.Screens
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.Black, 0, 0);
 
-           
-
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin();
 
-            //spriteBatch.Draw(, new Vector2(0, 0), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.8f);
+            Vector2 titleSize = ScreenManager.Font.MeasureString(_title);
             Vector2 textSize = ScreenManager.Font.MeasureString( _text );
 
-            spriteBatch.DrawString(ScreenManager.Font, _text, new Vector2((SettingsManager.GAME_WIDTH / 2) - (textSize.X / 2), (SettingsManager.GAME_HEIGHT / 2) - (textSize.Y / 2)), Color.White * this.TransitionAlpha );
+            spriteBatch.DrawString(ScreenManager.Font, _title, new Vector2((SettingsManager.GAME_WIDTH / 2), (SettingsManager.GAME_HEIGHT / 2) - (titleSize.Y * 2)), Color.White * titleAlpha, 0.0f, new Vector2( titleSize.X / 2, titleSize.Y / 2 ), 1.3f, SpriteEffects.None, 1.0f);
+            spriteBatch.DrawString(ScreenManager.Font, _text, new Vector2((SettingsManager.GAME_WIDTH / 2) - (textSize.X / 2), (SettingsManager.GAME_HEIGHT / 2) - (textSize.Y / 2)), Color.White * textAlpha );
+
             spriteBatch.End();
         }
     }

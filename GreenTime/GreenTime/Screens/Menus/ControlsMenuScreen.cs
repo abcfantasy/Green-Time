@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GreenTime.Managers;
 
 namespace GreenTime.Screens
 {
@@ -34,6 +35,7 @@ namespace GreenTime.Screens
         {
             if (input.IsMenuSelect() || input.IsMenuCancel())
             {
+                SoundManager.PlaySound(SoundManager.SOUND_MENU_CANCEL);
                 OnCancel();
             }
         }

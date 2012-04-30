@@ -25,12 +25,8 @@ namespace GreenTime.Managers
         InputManager input = new InputManager();
 
         SpriteBatch spriteBatch;
-        SpriteFont font;
-        Texture2D blankTexture;
-        Texture2D clockTexture;
 
         RenderTarget2D renderTarget;
-        Effect timeTravel;
         public float timeTravelInterval = 0.0f;
 
         bool isInitialized;
@@ -55,7 +51,7 @@ namespace GreenTime.Managers
         /// </summary>
         public SpriteFont Font
         {
-            get { return font; }
+            get { return ResourceManager.Instance.MainFont; }
         }
 
 
@@ -101,14 +97,10 @@ namespace GreenTime.Managers
         protected override void LoadContent()
         {
             // Load content belonging to the screen manager.
-            ContentManager content = Game.Content;
-            ResourceManager.Instance.Load(content);
+            //ContentManager content = Game.Content;
+            //ResourceManager.Instance.Load(content);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = content.Load<SpriteFont>("menuFont");
-            blankTexture = content.Load<Texture2D>("blank");
-            clockTexture = content.Load<Texture2D>("greenTime_clock128x128");
-            timeTravel = content.Load<Effect>("timeTravel_shader");
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
@@ -274,8 +266,9 @@ namespace GreenTime.Managers
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(blankTexture,
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture,
                              new Rectangle(0, 0, viewport.Width, viewport.Height),
+                             ResourceManager.Instance["blank"],
                              Color.Black * alpha);
 
             spriteBatch.End();
@@ -286,7 +279,7 @@ namespace GreenTime.Managers
             Viewport viewport = GraphicsDevice.Viewport;
 
             spriteBatch.Begin();
-            spriteBatch.Draw( blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount );
+            spriteBatch.Draw( ResourceManager.Instance.GlobalTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), ResourceManager.Instance["blank"], Color.White * amount );
             spriteBatch.End();
         }
 
@@ -300,29 +293,31 @@ namespace GreenTime.Managers
         public void ApplyTimeTravel( float amount )
         {
             float actualAmount = (float)Math.Pow(timeTravelInterval, 2);
-            timeTravel.Parameters["fTimer"].SetValue( actualAmount );
+            ResourceManager.Instance.TimeTravelShader.Parameters["fTimer"].SetValue( actualAmount );
             Viewport viewport = GraphicsDevice.Viewport;
 
             GraphicsDevice.SetRenderTarget(null);
             Texture2D sceneTexture = (Texture2D)renderTarget;
             GraphicsDevice.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.DarkSlateBlue, 1.0f, 0);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, timeTravel);
+            
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, ResourceManager.Instance.TimeTravelShader);
             spriteBatch.Draw(sceneTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
             spriteBatch.End();
 
             spriteBatch.Begin();
+
             spriteBatch.Draw(
-                clockTexture,
+                ResourceManager.Instance.GlobalTexture,
                 new Vector2(viewport.Width / 2, viewport.Height / 2),
-                null,
+                ResourceManager.Instance["timetravel_clock"],
                 Color.White,
                 actualAmount,
-                new Vector2(clockTexture.Width / 2, clockTexture.Height / 2),
+                new Vector2(ResourceManager.Instance["timetravel_clock"].Width / 2, ResourceManager.Instance["timetravel_clock"].Height / 2),
                 actualAmount,
                 SpriteEffects.None,
                 0f);
-            spriteBatch.Draw(blankTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White * amount);
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Rectangle(0, 0, viewport.Width, viewport.Height), ResourceManager.Instance["blank"], Color.White * amount);
+
             spriteBatch.End();
         }
 

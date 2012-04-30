@@ -34,8 +34,6 @@ namespace GreenTime.Screens
 
         private Dictionary<int, Chat> conversation;
         private Chat chat;
-        Texture2D gradientTexture;
-        Texture2D chatArrow;
 
         private Vector2 playerMouth;
         private Vector2 npcMouth;
@@ -107,20 +105,6 @@ namespace GreenTime.Screens
                 if (c != null && StateManager.Instance.AllTrue(c.dependencies))
                     answers.Add(c);
             }
-        }
-
-        /// <summary>
-        /// Loads graphics content for this screen. This uses the shared ContentManager
-        /// provided by the Game class, so the content will remain loaded forever.
-        /// Whenever a subsequent MessageBoxScreen tries to load this same content,
-        /// it will just get back another reference to the already loaded data.
-        /// </summary>
-        public override void LoadContent()
-        {
-            ContentManager content = ScreenManager.Game.Content;
-
-            gradientTexture = content.Load<Texture2D>("gradient");
-            chatArrow = content.Load<Texture2D>("chat_arrow");
         }
         #endregion
 
@@ -232,6 +216,25 @@ namespace GreenTime.Screens
             // Darken down any other screens that were drawn beneath the popup.
             ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
 
+            // Center the message text in the viewport.
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
+            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
+            Vector2 textSize = ResourceManager.Instance.ChatFont.MeasureString(currentText);
+            Vector2 textPosition = (viewportSize - textSize) / 2;
+            textPosition.Y -= 256;
+
+            // The background includes a border somewhat larger than the text itself.
+            const int hPad = 32;
+            const int vPad = 16;
+
+            Rectangle backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
+                                                          (int)textPosition.Y - vPad,
+                                                          (int)textSize.X + hPad * 2,
+                                                          (int)textSize.Y + vPad * 2);
+
+            // Fade the popup alpha during transitions.
+            Color color = Color.White * TransitionAlpha;
+
             spriteBatch.Begin();
 
             switch (status)
@@ -252,11 +255,11 @@ namespace GreenTime.Screens
 
         public static void DrawText(SpriteBatch spriteBatch, Vector2 topLeftCorner, float width, string text, float alpha = 1.0f)
         {
-            SpriteFont font = LevelManager.Instance.ChatFont;
+            SpriteFont font = ResourceManager.Instance.ChatFont;
             List<string> lines = WrapText(font, text, width);
             Vector2 currentPosition = topLeftCorner - chatBubbleAnchor;
 
-            spriteBatch.Draw(LevelManager.Instance.ChatBubble, currentPosition, Color.White * alpha);
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition, ResourceManager.Instance["chat_bubble"], Color.White * alpha);
 
             foreach (string line in lines)
             {
@@ -276,8 +279,8 @@ namespace GreenTime.Screens
             // draw blinking arrows
             if (optionArrowsBlinking > 250)
             {
-                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 55.0f, LevelManager.Instance.ChatBubble.Height - 70.0f ), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f );
-                spriteBatch.Draw(chatArrow, currentPosition + new Vector2( width - 35.0f, 40.0f ), null, Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 55.0f, ResourceManager.Instance["chat_bubble"].Height - 70.0f), ResourceManager.Instance["chat_arrow"], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 35.0f, 40.0f), ResourceManager.Instance["chat_arrow"], Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

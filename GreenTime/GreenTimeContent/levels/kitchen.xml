@@ -3,8 +3,9 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>kitchen</name>
+    <texture>kitchen\kitchenTexture</texture>
     <backgroundTexture>
-      <texture>kitchen\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
       <shaded>false</shaded>
@@ -15,11 +16,12 @@
       <!-- Water drop -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>kitchen\drop</texture>
+          <texture>drop</texture>
           <position>414 308</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
           <frameSize>4 62</frameSize>
+          <framesPerLine>15</framesPerLine>
           <framesPerSecond>10</framesPerSecond>
           <animations>
             <frameSet>
@@ -52,7 +54,7 @@
       <!-- Cereal Box -->
       <Item>
         <sprite>
-          <texture>kitchen\CerealBox</texture>
+          <texture>cerealbox</texture>
           <position>530 305</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
@@ -77,8 +79,8 @@
       <!-- Water Bottle -->
       <Item>
         <sprite>
-          <texture>kitchen\WaterBottle</texture>
-          <position>530 245</position>
+          <texture>waterbottle</texture>
+          <position>530 290</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
         </sprite>
@@ -153,36 +155,6 @@
           </dropper>
         </onInteract>
       </Item>
-      <!-- Newspaper -->
-      <!--
-      <Item>
-        <sprite>
-          <texture>kitchen\newspaper</texture>
-          <position>1200 450</position>
-          <layer>0.6</layer>
-          <shaded>false</shaded>
-        </sprite>
-        <showIf>
-          <state>
-            <name>news_taken</name>
-            <between>0 99</between>
-          </state>
-        </showIf>
-        <onInteract>
-          <boundX>1070</boundX>
-          <boundWidth>110</boundWidth>
-          <text>News</text>
-          <solid>true</solid>
-          <callback>news</callback>
-          <affectedStates>
-            <state>
-              <name>news_taken</name>
-              <value>100</value>
-            </state>
-          </affectedStates>
-        </onInteract>
-      </Item>
-      -->
     </gameObjects>
   </Asset>
 </XnaContent>

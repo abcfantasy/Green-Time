@@ -3,8 +3,9 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>bedroom</name>
+    <texture>bedroom\bedroomTexture</texture>
     <backgroundTexture>
-      <texture>bedroom\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
       <shaded>false</shaded>
@@ -15,7 +16,7 @@
       <!-- Window -->
       <Item>
         <sprite>
-          <texture>bedroom\window</texture>
+          <texture>window</texture>
           <position>165 96</position>
           <layer>0.8</layer>
         </sprite>
@@ -32,11 +33,12 @@
       <!-- Window light beams -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>bedroom\window_light</texture>
+          <texture>window_light</texture>
           <position>50 150</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
           <frameSize>561 360</frameSize>
+          <framesPerLine>1</framesPerLine>
           <framesPerSecond>1</framesPerSecond>
           <crossFade>true</crossFade>
           <animations>
@@ -49,11 +51,12 @@
       <!-- Lightbulb -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>bedroom\lightbulb</texture>
+          <texture>lightbulb</texture>
           <position>494 0</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
           <frameSize>326 231</frameSize>
+          <framesPerLine>2</framesPerLine>
           <framesPerSecond>1</framesPerSecond>
           <crossFade>true</crossFade>
           <animations>
@@ -72,7 +75,7 @@
       <!-- Light switch -->
       <Item>
         <sprite>
-          <texture>bedroom\switch</texture>
+          <texture>lightswitch</texture>
           <position>1199 283</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
@@ -102,11 +105,12 @@
       <!-- Heat -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>bedroom\heating</texture>
+          <texture>heat</texture>
           <position>620 165</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
           <frameSize>194 118</frameSize>
+          <framesPerLine>2</framesPerLine>
           <framesPerSecond>1</framesPerSecond>
           <crossFade>true</crossFade>
           <animations>

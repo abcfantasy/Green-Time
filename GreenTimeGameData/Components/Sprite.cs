@@ -19,9 +19,12 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(ElementName = "texture")]
         public string textureName;
 
+        [ContentSerializer(Optional = true)]
+        public Rectangle textureRect;
+
         // The actual texture that the sprite will use
-        [ContentSerializerIgnore]
-        public Texture2D texture;
+        //[ContentSerializerIgnore]
+        //public Texture2D texture;
 
         // Position in the scene
         public Vector2 position;
@@ -47,16 +50,21 @@ namespace GreenTimeGameData.Components
         #endregion
 
         #region Initialization
-        public virtual void Load(ContentManager content)
+        public virtual void Load()
         {
-            texture = content.Load<Texture2D>(textureName);
+            //texture = content.Load<Texture2D>(textureName);
         }
         #endregion
 
         #region Draw
         public virtual void Draw(SpriteBatch spriteBatch, Color tint)
         {
-            spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+            //spriteBatch.Draw(texture, position, texture.Bounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
+        }
+
+        public virtual void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle textureRect, Color tint)
+        {
+            spriteBatch.Draw(texture, position, textureRect, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
         }
         #endregion
 

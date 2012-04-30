@@ -42,31 +42,26 @@ namespace GreenTime.Screens
             new Vector2( 21, 188 )
         };
 
-        private ContentManager content;
-        private SpriteFont gameFont;
         private List<Sprite> visibleObjects = new List<Sprite>();
         private List<AnimatedSprite> animatedObjects = new List<AnimatedSprite>();
         private List<GameObject> activeObjects = new List<GameObject>();
         private GameObject interactingObject;
-        private SoundEffect ambientSound;
-        private SoundEffectInstance ambientSoundInstance;
 
         private Player player;
         private Sprite pickedObject;
 
         private TransitionType transition = TransitionType.Room;
 
-        private Effect desaturateShader;
-        private Effect sepiaShader;
-
         // HUD states
-        private Texture2D hud_states;
+        private Rectangle hud_states;
+        //private Texture2D hud_states;
         //private Texture2D hud_states_green_round;
         //private Texture2D hud_states_grey_round;
         //private Texture2D hud_states_grey_square;
 
         // HUD time travel
-        private Texture2D hud_timetravel;
+        private Rectangle hud_timetravel;
+        //private Texture2D hud_timetravel;
 
         // This value should be changed according to the progress in the game
         // I left it as a float so that we can easily calculate it based on the progress
@@ -110,7 +105,7 @@ namespace GreenTime.Screens
             player = LevelManager.Instance.Player;
 
             // play game music
-            SoundManager.PlayGameMusic();
+            SoundManager.PlayMusic();
         }
 
         /// <summary>
@@ -118,12 +113,11 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
-            if (content == null)
-                content = new ContentManager(ScreenManager.Game.Services, "Content");
+            // load game play texture.   NOTE: This is not the most efficient, since it is unloaded and reloaded every level
+            ResourceManager.Instance.LoadGameplayTexture();
+            ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
-            sepiaShader = content.Load<Effect>("sepia");
-            desaturateShader = content.Load<Effect>("desaturate");
-            gameFont = content.Load<SpriteFont>("gamefont");
+            SoundManager.PlayMusic();
 
             LoadGameObjects();
 
@@ -152,15 +146,15 @@ namespace GreenTime.Screens
             // Load the objects that carry across levels
             player = LevelManager.Instance.Player;
             pickedObject = LevelManager.Instance.PickedObject;
-            if( pickedObject != null )
-                pickedObject.Load(content);
+            //if( pickedObject != null )
+            //    pickedObject.Load();
 
             // Load ambient soud if any
             if (LevelManager.Instance.CurrentLevel.ambientSound != null)
             {
                 if( StateManager.Instance.CheckDependencies( LevelManager.Instance.CurrentLevel.ambientSound.dependencies ) )
                 {
-                    SoundManager.LoadAmbientSound(content, LevelManager.Instance.CurrentLevel.ambientSound.name);
+                    ResourceManager.Instance.LoadSound(LevelManager.Instance.CurrentLevel.ambientSound.name, true);
                     SoundManager.PlayAmbientSound();
                     /*
                     ambientSound = content.Load<SoundEffect>(LevelManager.Instance.CurrentLevel.ambientSound.name);
@@ -170,9 +164,11 @@ namespace GreenTime.Screens
                 }
             }            
 
+            // Load the level texture
+            ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
+
             // Load the background
             visibleObjects.Add(LevelManager.Instance.CurrentLevel.backgroundTexture);
-            LevelManager.Instance.CurrentLevel.backgroundTexture.Load(content);
 
             // Load the objects
             foreach (GameObject io in LevelManager.Instance.CurrentLevel.gameObjects) {
@@ -182,10 +178,10 @@ namespace GreenTime.Screens
                         activeObjects.Add(io);
                         // load interaction sounds
                         if (io.interaction.sound != null)
-                            SoundManager.LoadSound(content, io.interaction.sound.name);
+                            ResourceManager.Instance.LoadSound(io.interaction.sound.name);
                     }
                     if (io.sprite != null) {
-                        io.sprite.Load(content);
+                        io.sprite.Load();
                         visibleObjects.Add(io.sprite);
 
                         if (io.sprite.GetType() == typeof(AnimatedSprite)) {
@@ -207,30 +203,30 @@ namespace GreenTime.Screens
             switch (playerState)
             {
                 case 0:
-                    hud_states = content.Load<Texture2D>("hud/states_grey_square");
+                    hud_states = ResourceManager.Instance["hud_state_square"];
                     break;
                 case 50:
-                    hud_states = content.Load<Texture2D>("hud/states_grey_round");
+                    hud_states = ResourceManager.Instance["hud_state_grey"];
                     break;
                 case 100:
-                    hud_states = content.Load<Texture2D>("hud/states_green_round");
+                    hud_states = ResourceManager.Instance["hud_state_green"];
                     break;
             }
 
             if (playerState < 100)
-                hud_timetravel = content.Load<Texture2D>("hud/timetravel_disabled");
+                hud_timetravel = ResourceManager.Instance["hud_timetravel_disabled"];
             else
-                hud_timetravel = content.Load<Texture2D>("hud/timetravel_enabled");
+                hud_timetravel = ResourceManager.Instance["hud_timetravel"];
         }
+
         /// <summary>
         /// Unload graphics content used by the game
         /// </summary>
         public override void UnloadContent()
         {
-            if (content != null)
-                content.Unload();
+            ResourceManager.Instance.UnloadLocalContent();
 
-            SoundManager.Unload();
+            SoundManager.UnloadLocal();
 
             player.moveTo(LevelManager.Instance.StartPosition);
             if (transition == TransitionType.ToPast)
@@ -274,7 +270,7 @@ namespace GreenTime.Screens
                     if (player.Sprite.flipped)
                     {
                         pickedObject.position = player.Sprite.position + (new Vector2(player.Sprite.frameSize.X - playerHand[player.Sprite.CurrentFrame].X, playerHand[player.Sprite.CurrentFrame].Y));
-                        pickedObject.position.X -= pickedObject.texture.Width / 2;
+                        pickedObject.position.X -= pickedObject.textureRect.Width / 2;
                     }
                     else
                         pickedObject.position = player.Sprite.position + playerHand[player.Sprite.CurrentFrame];
@@ -308,22 +304,24 @@ namespace GreenTime.Screens
 
             // draw stuff
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? sepiaShader : desaturateShader));
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, (StateManager.Instance.IsInPast() ? ResourceManager.Instance.SepiaShader : ResourceManager.Instance.DesaturationShader));
 
             // hud elements
-            spriteBatch.Draw(hud_states, new Vector2(1140, 15), new Color( 64, 255, 255, 255 ) );
-            spriteBatch.Draw(hud_timetravel, new Vector2(15, 15), new Color(64, 255, 255, 255));
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Vector2(1140, 15), hud_states, new Color( 64, 255, 255, 255 ) );
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Vector2(15, 15), hud_timetravel, new Color(64, 255, 255, 255));
+
+            // player
+            player.Draw(ResourceManager.Instance.GlobalTexture, spriteBatch, ResourceManager.Instance[player.Sprite.textureName]);
 
             // game objects
             foreach (Sprite s in visibleObjects)
-                s.Draw(spriteBatch, new Color((s.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
-
-            // player
-            player.Draw(spriteBatch);
+            {
+                s.Draw(ResourceManager.Instance.LevelTexture, spriteBatch, ResourceManager.Instance[s.textureName], new Color((s.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
+            }
             
             // picked up object if any
             if (pickedObject != null)
-                pickedObject.Draw(spriteBatch, new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
+                pickedObject.Draw(ResourceManager.Instance.LevelTexture, spriteBatch, ResourceManager.Instance[pickedObject.textureName], new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
 
             // text only if easy mode
             if (SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && !String.IsNullOrEmpty(interactingObject.interaction.text))
