@@ -59,13 +59,8 @@ namespace GreenTimeGameData.Components
             current_sprite = content.Load<AnimatedSprite>("player");
 
             // We need a shallow copy instance to handle the square player texture
-<<<<<<< HEAD
-            opposite_sprite = (AnimatedSprite)current_sprite.Clone();
-            opposite_sprite.textureName += "_square";
-=======
             opposite_sprite = (AnimatedSprite)current_sprite.Clone();            
             opposite_sprite.textureName = "character_square";
->>>>>>> remotes/Green-Time/master
             
             // Loading the content
             current_sprite.Load();
