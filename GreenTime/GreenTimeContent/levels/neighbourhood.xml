@@ -12,6 +12,56 @@
     <leftScreenName></leftScreenName>
     <rightScreenName>shop</rightScreenName>
     <gameObjects>
+      <!-- mole -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>mole</texture>
+          <position>505 402</position>
+          <layer>0.51</layer>
+          <scale>0.75</scale>
+          <flipped>true</flipped>
+          <frameSize>147 108</frameSize>
+          <framesPerLine>7</framesPerLine>
+          <framesPerSecond>5</framesPerSecond>
+          <loop>false</loop>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 4 4 4 5 5 6 1 0 0 0 0 0</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_garbage_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- birds -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>neighbor_birds</texture>
+          <position>456 130</position>
+          <layer>0.70</layer>
+          <scale>1.0</scale>
+          <frameSize>59 38</frameSize>
+          <framesPerLine>4</framesPerLine>
+          <framesPerSecond>8</framesPerSecond>
+          <velocityPerSecond>20.0 -17.0</velocityPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_garbage_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      
       <!-- Front grass -->
       <Item>
         <sprite>
@@ -144,10 +194,12 @@
           <layer>0.51</layer>
           <frameSize>280 192</frameSize>
           <framesPerLine>4</framesPerLine>
-          <framesPerSecond>10</framesPerSecond>
+          <framesPerSecond>3</framesPerSecond>
+          <crossFade>true</crossFade>
           <animations>
             <frameSet>
-              <frames>0 1 2 3 4 5 6 7 6 5 4 3 2 1</frames>
+              <!-- <frames>0 1 2 3 4 5 6 7 6 5 4 3 2 1</frames> -->
+              <frames>0 1 2 3 2 1</frames>
             </frameSet>
           </animations>
         </sprite>

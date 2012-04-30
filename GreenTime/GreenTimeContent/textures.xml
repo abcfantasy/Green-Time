@@ -158,6 +158,15 @@
     
     <!-- neighborhood -->
     <Item>
+      <Key>mole</Key>
+      <Value>0 1298 1029 108</Value>
+    </Item>
+
+    <Item>
+      <Key>neighbor_birds</Key>
+      <Value>596 721 236 38</Value>
+    </Item>
+    <Item>
       <Key>grass</Key>
       <Value>1780 294 197 191</Value>
     </Item>

@@ -27,6 +27,9 @@ namespace GreenTimeGameData.Components
         [ContentSerializer(Optional = true)]
         public bool crossFade = false;
 
+        [ContentSerializer(Optional=true)]
+        public Vector2 velocityPerSecond = Vector2.Zero;
+
         // All the possible animations for an object (without dependency checking)
         [ContentSerializer(CollectionItemName = "frameSet")]
         public FrameSet[] animations;
@@ -68,9 +71,6 @@ namespace GreenTimeGameData.Components
         [ContentSerializerIgnore]
         public bool IsStopped { get { return paused; } }
 
-        //[ContentSerializerIgnore]
-        //public bool Flipped { get { return flipped; } set { flipped = value; } }
-
         [ContentSerializerIgnore]
         public int CurrentFrame { get { return activeAnimations[currentFrameSet][currentFrameIndex]; } }
 
@@ -94,12 +94,6 @@ namespace GreenTimeGameData.Components
             this.currentFrameBounds.Y = 0;
             this.nextFrameBounds.X = 0;
             this.nextFrameBounds.Y = 0;
-            /*
-            this.currentFrameBounds.X = textureRect.X;
-            this.currentFrameBounds.Y = textureRect.Y;
-            this.nextFrameBounds.X = textureRect.X;
-            this.nextFrameBounds.Y = textureRect.Y;
-             */
         }
         #endregion
 
@@ -164,6 +158,12 @@ namespace GreenTimeGameData.Components
 
             totalElapsed += elapsed;
 
+            if (velocityPerSecond != Vector2.Zero)
+            {
+                this.position.X += (float)(velocityPerSecond.X * elapsed);
+                this.position.Y += (float)(velocityPerSecond.Y * elapsed);
+            }
+
             // calculate cross fading between frames
             if ( crossFade )
                 fadePercentage = MathHelper.Clamp( (float)(totalElapsed / timePerFrame), 0.0f, 1.0f ) ;
@@ -185,17 +185,6 @@ namespace GreenTimeGameData.Components
 
         private void UpdateTextureRectangle()
         {
-            /*
-            int frame = activeAnimations[currentFrameSet][currentFrameIndex];
-
-            currentFrameBounds.X = (frame * (int)frameSize.X) % texture.Width;
-            currentFrameBounds.Y = (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y;
-             */
-            /*
-            Point currentPoint = GetTextureRectangleXY(currentFrameSet, currentFrameIndex);
-            currentFrameBounds.X = currentPoint.X;
-            currentFrameBounds.Y = currentPoint.Y;
-            */
             currentFrameBounds.X = nextFrameBounds.X;
             currentFrameBounds.Y = nextFrameBounds.Y;
 
@@ -204,28 +193,11 @@ namespace GreenTimeGameData.Components
             nextFrameBounds.Y = nextPoint.Y;
         }
 
-        // TEST
         private Point GetTextureRectangleXY(string frameSet, int frameIndex)
         {
             int frame = activeAnimations[frameSet][frameIndex];
 
-            //if ( texture == null )
-                return new Point((int)((frame * (int)frameSize.X) % (double)(frameSize.X * framesPerLine)/*texture.Width + textureRect.X*/), (int)Math.Floor(frame * frameSize.X / (double)(frameSize.X * framesPerLine)/*texture.Width*/) * (int)frameSize.Y /*+ textureRect.Y*/);
-            //else
-            //    return new Point((frame * (int)frameSize.X) % texture.Width + textureRect.X, (int)Math.Floor(frame * frameSize.X / (double)texture.Width) * (int)frameSize.Y + textureRect.Y);
-        }
-
-        override public void Draw(SpriteBatch spriteBatch, Color tint)
-        {
-            /*
-            if (crossFade)
-            {
-                spriteBatch.Draw(texture, position, currentFrameBounds, new Color(tint.R, tint.G, tint.B, (byte)((1 - fadePercentage) * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
-                spriteBatch.Draw(texture, position, nextFrameBounds, new Color(tint.R, tint.G, tint.B, (byte)(fadePercentage * 255.0f)), 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
-            }
-            else
-                spriteBatch.Draw(texture, position, currentFrameBounds, tint, 0.0f, Vector2.Zero, scale, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, layer);
-             */
+            return new Point((int)((frame * (int)frameSize.X) % (double)(frameSize.X * framesPerLine)/*texture.Width + textureRect.X*/), (int)Math.Floor(frame * frameSize.X / (double)(frameSize.X * framesPerLine)/*texture.Width*/) * (int)frameSize.Y /*+ textureRect.Y*/);
         }
 
         public override void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle textureRect, Color tint)
