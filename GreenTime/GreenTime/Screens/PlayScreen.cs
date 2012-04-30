@@ -128,6 +128,10 @@ namespace GreenTime.Screens
             LoadHUDObjects();
 
             ScreenManager.Game.ResetElapsedTime();
+
+            foreach (AnimatedSprite s in animatedObjects)
+                if (s.loop == false)
+                    s.Reset();
         }
 
         public void LoadGameObjects()
@@ -418,11 +422,6 @@ namespace GreenTime.Screens
                         if (interactingObject.interaction.sound != null)
                             SoundManager.PlaySound(interactingObject.interaction.sound.name, interactingObject.interaction.sound.looping);
 
-                        // Pick up the object
-                        if( pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName) ) {
-                            PickupObject(interactingObject);
-                        }
-
                         if (interactingObject.interaction.thought != null)
                             player.Thought = interactingObject.interaction.thought;
 
@@ -436,9 +435,9 @@ namespace GreenTime.Screens
                                     break;
                             }
                         }
-                        
+
                         // Handling talking
-                        if (interactingObject.interaction.chat != null)
+                        if ( interactingObject.interaction.chat != null && pickedObject == null)
                         {
                             // flip NPC to face player
                             interactingObject.sprite.flipped = interactingObject.sprite.flippable && (interactingObject.sprite.position.X < player.Position.X);
@@ -446,11 +445,21 @@ namespace GreenTime.Screens
                             ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth));
                         }
 
-                        // Handling affected states
-                        if (interactingObject.interaction.affectedStates != null)
+                        // Pick up the object
+                        if (pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName))
                         {
-                            StateManager.Instance.ModifyStates(interactingObject.interaction.affectedStates);
-                            LoadGameObjects();
+                            PickupObject(interactingObject);
+                        }
+
+                        // This prevents the player from picking up more than one object at a time
+                        if (pickedObject == null || String.IsNullOrEmpty(interactingObject.interaction.pickUpName))
+                        {
+                            // Handling affected states
+                            if (interactingObject.interaction.affectedStates != null)
+                            {
+                                StateManager.Instance.ModifyStates(interactingObject.interaction.affectedStates);
+                                LoadGameObjects();
+                            }
                         }
 
                         // Drop the picked up item into this object
@@ -460,7 +469,7 @@ namespace GreenTime.Screens
                             LoadGameObjects();
                         }
                     }
-                    #endregion                    
+                    #endregion
 
                     #region Time Warp Button
                     else if (input.IsReverseTime() && StateManager.Instance.CanTimeTravel())
@@ -491,7 +500,7 @@ namespace GreenTime.Screens
                 #region Movement
                 float movement = 0.0f;
 
-                if (keyboardState.IsKeyDown(Keys.Left))     --movement;                
+                if (keyboardState.IsKeyDown(Keys.Left))     --movement;
                 if (keyboardState.IsKeyDown(Keys.Right))    ++movement;
 
                 // Checking gamepad controls only if we have one

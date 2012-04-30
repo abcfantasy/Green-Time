@@ -35,8 +35,6 @@ namespace GreenTime.Managers
 
         private Dictionary<String, Level> levels = new Dictionary<string,Level>();
         private Dictionary<string, Dictionary<int, Chat>> chats = new Dictionary<string,Dictionary<int, Chat>>();
-        private Texture2D chatBubble;
-        private SpriteFont chatFont;
 
         private Player player;
         private float startPosition = 0.0f;
@@ -78,16 +76,6 @@ namespace GreenTime.Managers
         {
             get { return startPosition; }
         }
-
-        public Texture2D ChatBubble
-        {
-            get { return chatBubble; }
-        }
-
-        public SpriteFont ChatFont
-        {
-            get { return chatFont; }
-        }
         #endregion
 
         #region Public Methods
@@ -98,10 +86,9 @@ namespace GreenTime.Managers
         public void Initialize(ContentManager content)
         {
             this.content = content;
-            LoadLevel(HOME);
-            currentLevel = levels[HOME];
             player = new Player(content);
-            StateManager.Instance.AdvanceDay();   
+            StateManager.Instance.AdvanceDay();
+            player.moveTo(startPosition);
         }
         /// <summary>
         /// Parses levels and chats XML file and stores information in memory
@@ -109,8 +96,6 @@ namespace GreenTime.Managers
         public void LoadAllLevels( ContentManager content )
         {
             this.content = content;
-            chatBubble = content.Load<Texture2D>("chatBubble");
-            chatFont = content.Load<SpriteFont>("chatfont");
             player = new Player(content);
             StateManager.Instance.AdvanceDay();
         }
@@ -126,9 +111,6 @@ namespace GreenTime.Managers
         public void GoTo( string level )
         {
             LoadLevel(level);
-
-            if ( currentLevel.name != level )
-                levels.Remove(currentLevel.name);
 
             foreach (GameObject o in levels[level].gameObjects)
                 o.Load();
@@ -146,8 +128,8 @@ namespace GreenTime.Managers
 
         public void GoHome()
         {
-            GoTo( HOME );
             startPosition = 250.0f;
+            GoTo( HOME );
         }
 
         public Boolean CanMoveRight()
