@@ -38,6 +38,8 @@ namespace GreenTime.Managers
 
         private Player player;
         private float startPosition = 0.0f;
+
+        private bool loaded = false;
         #endregion
 
         #region Properties
@@ -86,34 +88,39 @@ namespace GreenTime.Managers
         public void Initialize(ContentManager content)
         {
             this.content = content;
-            player = new Player(content);
-            StateManager.Instance.AdvanceDay();
-            player.moveTo(startPosition);
         }
+
         /// <summary>
         /// Parses levels and chats XML file and stores information in memory
         /// </summary>
-        public void LoadAllLevels( ContentManager content )
+        public void LoadAllLevels()
         {
-            this.content = content;
-            player = new Player(content);
-            StateManager.Instance.AdvanceDay();
+            if (!loaded)
+            {
+                //this.content = content;
+                player = new Player(content);
+                StateManager.Instance.AdvanceDay();
+                loaded = true;
+            }
         }
 
+        /*
         public void LoadLevel(string levelName)
         {
             if (!levels.ContainsKey(levelName) )
             {
                 levels[levelName] = content.Load<Level>(@"levels\" + levelName);
             }
-        }
+        }*/
 
         public void GoTo( string level )
         {
-            LoadLevel(level);
-
-            foreach (GameObject o in levels[level].gameObjects)
-                o.Load();
+            if (!levels.ContainsKey(level))
+            {
+                levels[level] = content.Load<Level>(@"levels\" + level);
+                foreach (GameObject o in levels[level].gameObjects)
+                    o.Load();
+            }
 
             currentLevel = levels[level];
         }

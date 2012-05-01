@@ -12,7 +12,7 @@
     <leftScreenName>neighbourhood</leftScreenName>
     <rightScreenName>forest</rightScreenName>
     <ambientSound>
-      <name>audio\carRunning</name>
+      <name>carRunning</name>
       <position>795</position>
       <playIf>
         <state>

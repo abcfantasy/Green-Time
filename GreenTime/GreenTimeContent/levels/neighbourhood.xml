@@ -37,6 +37,7 @@
           </state>
         </showIf>
       </Item>
+      
       <!-- birds -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -186,6 +187,7 @@
           </dropper>
         </onInteract>
       </Item>
+      
       <!-- sprinklers -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -216,6 +218,24 @@
           <transition>neighbourhood_past_sprinkler</transition>
         </onInteract>
       </Item>
+
+      <!-- neighbor -->
+      <Item>
+        <sprite>
+          <texture>neighbor_npc</texture>
+          <position>820 300</position>
+          <layer>0.6</layer>
+          <flipped>true</flipped>
+        </sprite>
+        <onInteract>
+          <boundX>620</boundX>
+          <boundWidth>410</boundWidth>
+          <text>Neighbor</text>
+          <chat>sprinkler_man</chat>
+          <mouth>880 280</mouth>
+        </onInteract>
+      </Item>
+      
       <!-- dead flowers -->
       <Item>
         <sprite>

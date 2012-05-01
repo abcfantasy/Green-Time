@@ -76,7 +76,7 @@
         </text>
         <affectedStates>
           <state>
-            <name>back_to_present</name>
+            <name>advance_day</name>
             <value>100</value>
           </state>
         </affectedStates>
@@ -111,7 +111,7 @@
         </text>
         <affectedStates>
           <state>
-            <name>back_to_present</name>
+            <name>advance_day</name>
             <value>100</value>
           </state>
         </affectedStates>
@@ -186,7 +186,7 @@
         </text>
         <affectedStates>
           <state>
-            <name>back_to_present</name>
+            <name>advance_day</name>
             <value>100</value>
           </state>
           <state>
@@ -205,7 +205,7 @@
         </text>
         <affectedStates>
           <state>
-            <name>back_to_present</name>
+            <name>advance_day</name>
             <value>100</value>
           </state>
         </affectedStates>
@@ -220,7 +220,7 @@
         </text>
         <affectedStates>
           <state>
-            <name>back_to_present</name>
+            <name>advance_day</name>
             <value>100</value>
           </state>
         </affectedStates>

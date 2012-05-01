@@ -358,14 +358,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighbourhood_past_sprinkler.xml">
-      <Name>neighbourhood_past_sprinkler</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="bedroom\bedroomTexture.png">
       <Name>bedroomTexture</Name>
       <Importer>TextureImporter</Importer>
