@@ -83,6 +83,8 @@ namespace GreenTime.Screens
         void PlayGameMenuEntrySelected(object sender, EventArgs e)
         {
             StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
+            StateManager.Instance.NewGame();
+            LevelManager.Instance.NewGame();
             //LoadingScreen.Load(ScreenManager, true, new PlayScreen());
             LoadingScreen.Load(ScreenManager, true, new TextOnBlackScreen( "AVANTgarde", "presents", new GameScreen[] { new TextOnBlackScreen("GreenTime", "", new GameScreen[] { new IntroScreen() } ) }, true ) );   // uncomment this line and comment the line above to start with storyline
         }

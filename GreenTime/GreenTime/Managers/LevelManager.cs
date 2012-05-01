@@ -90,6 +90,18 @@ namespace GreenTime.Managers
             this.content = content;
         }
 
+        public void NewGame()
+        {
+            pickedObject = null;
+            pickedObjectState = null;
+            currentLevel = lastLevel = null;
+            levels.Clear();
+            chats.Clear();
+            loaded = false;
+
+            LoadAllLevels();
+        }
+
         /// <summary>
         /// Parses levels and chats XML file and stores information in memory
         /// </summary>

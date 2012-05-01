@@ -51,7 +51,7 @@ namespace GreenTime.Managers
 
         public void InitializeLevelManager()
         {
-            LevelManager.Instance.Initialize(localContent);
+            LevelManager.Instance.Initialize(globalContent);
             //LevelManager.Instance.LoadAllLevels(globalContent);
         }
         #endregion

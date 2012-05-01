@@ -9,7 +9,7 @@ namespace GreenTime.Managers
     public class StateManager
     {
         #region State Constants
-        public static readonly int TOTAL_PUZZLES = 5;
+        public static readonly int TOTAL_PUZZLES = 8;
 
         // state to mark game should transition back to present
         public const string STATE_BACKTOPRESENT = "back_to_present";
@@ -79,6 +79,13 @@ namespace GreenTime.Managers
         #endregion
 
         #region Public Methods
+        public void NewGame()
+        {
+            states.Clear();
+            SetState(STATE_PLAYERSTATUS, 100);
+            SetState(STATE_DAY, 0);
+        }
+
         /// <summary>
         /// Gets the value of a state
         /// </summary>
