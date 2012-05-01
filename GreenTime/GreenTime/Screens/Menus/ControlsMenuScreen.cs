@@ -18,7 +18,7 @@ namespace GreenTime.Screens
             MenuEntry me4 = new MenuEntry("End day : D");
             MenuEntry me5 = new MenuEntry("Pause/Menu: Esc");
 
-            MenuEntry exitMenuEntry = new MenuEntry("Back");
+            MenuEntry exitMenuEntry = new MenuEntry("Back", "Back to the options menu.");
 
             // Add entries to the menu.
             MenuEntries.Add(me1);

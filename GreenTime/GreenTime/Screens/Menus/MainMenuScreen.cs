@@ -16,10 +16,10 @@ namespace GreenTime.Screens
             : base("Main Menu", 180.0f)
         {
             // Create our menu entries.
-            MenuEntry playGameMenuEntry = new MenuEntry("Start a New Game");
+            MenuEntry playGameMenuEntry = new MenuEntry("Start a New Game", "Press ENTER to start a new game of GreenTime.");
             //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options");
-            MenuEntry exitMenuEntry = new MenuEntry("Exit");
+            MenuEntry optionsMenuEntry = new MenuEntry("Options", "Take a look at options such as audio and controls.");
+            MenuEntry exitMenuEntry = new MenuEntry("Exit", "Quit the game.");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
@@ -82,11 +82,8 @@ namespace GreenTime.Screens
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, EventArgs e)
         {
-            StateManager.Instance.SetState(StateManager.STATE_LOAD, 0);
-            StateManager.Instance.NewGame();
-            LevelManager.Instance.NewGame();
-            //LoadingScreen.Load(ScreenManager, true, new PlayScreen());
-            LoadingScreen.Load(ScreenManager, true, new TextOnBlackScreen( "AVANTgarde", "presents", new GameScreen[] { new TextOnBlackScreen("GreenTime", "", new GameScreen[] { new IntroScreen() } ) }, true ) );   // uncomment this line and comment the line above to start with storyline
+            ScreenManager.AddScreen(new NewGameTutorialsMenuScreen());
+            this.ExitScreen();
         }
 
 

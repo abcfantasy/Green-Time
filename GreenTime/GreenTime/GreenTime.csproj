@@ -142,11 +142,12 @@
     <Compile Include="Screens\Menus\MainMenuScreen.cs" />
     <Compile Include="Screens\Menus\MenuEntry.cs" />
     <Compile Include="Screens\Menus\MenuScreen.cs" />
+    <Compile Include="Screens\Menus\NewGameDifficultyMenuScreen.cs" />
+    <Compile Include="Screens\Menus\NewGameTutorialsMenuScreen.cs" />
     <Compile Include="Screens\MessageBoxScreen.cs" />
-    <Compile Include="Screens\NewsScreen.cs" />
     <Compile Include="Screens\Menus\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PastPresentTransitionScreen.cs" />
-    <Compile Include="Screens\PauseScreen.cs" />
+    <Compile Include="Screens\Menus\PauseScreen.cs" />
     <Compile Include="Screens\PlayScreen.cs" />
     <Compile Include="Screens\SearchEntry.cs" />
     <Compile Include="Screens\TextOnBlackScreen.cs" />
