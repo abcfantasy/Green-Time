@@ -11,7 +11,7 @@
       <shaded>false</shaded>
     </backgroundTexture>
     <leftScreenName>bedroom</leftScreenName>
-    <rightScreenName>neighbourhood</rightScreenName>
+    <rightScreenName>neighborhood</rightScreenName>
     <gameObjects>
       <!-- Water drop -->
       <Item>

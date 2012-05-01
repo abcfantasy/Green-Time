@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Good day to you all.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_ecologicalstand_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>1</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>Hmph, do you see how expensive this food is? Outrageous.</line>
+        </text>
+        <leadsTo>2 3 4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>You're right, really high prices.</line>
+        </text>
+        <leadsTo>5</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>But look at the food, it is special.</line>
+        </text>
+        <leadsTo>6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>I agree, but don't you think that it is a bit rude to say it in front of the shop?</line>
+        </text>
+        <leadsTo>7</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>I'll buy my eggs elsewhere.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Special?</line>
+        </text>
+        <leadsTo>8</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>Rude of me, true. I won't do that again.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>It is ecological food, meaning that the food is made with respect towards nature and animals. That explains the slightly raised price.</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>Still I wouldn't buy it.</line>
+        </text>
+        <leadsTo>10 11 12</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>So you prefer chickens getting slaughtered after three weeks?</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>So you prefer toxic substances on your cheese?</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>12</Key>
+      <Value>
+        <text>
+          <line>So you prefer cows being milked three times a day?</line>
+        </text>
+        <leadsTo>13</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>13</Key>
+      <Value>
+        <text>
+          <line>Is that really so? I did not consider it. It makes me think.</line>
+        </text>
+        <leadsTo>14 15 16</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>14</Key>
+      <Value>
+        <text>
+          <line>I will sponsor half of it, so that you can also taste the better taste of this food.</line>
+        </text>
+        <leadsTo>17</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>15</Key>
+      <Value>
+        <text>
+          <line>The food is healthier and tastes better, so it is worth the extra money, trust me.</line>
+        </text>
+        <leadsTo>18</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>16</Key>
+      <Value>
+        <text>
+          <line>Although a bit more expensive, think about our nature and the animals.</line>
+        </text>
+        <leadsTo>19</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>17</Key>
+      <Value>
+        <text>
+          <line>No thank you, I will buy it myself to taste it.</line>
+        </text>
+        <leadsTo>20</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>18</Key>
+      <Value>
+        <text>
+          <line>Maybe, but I'm not totally convinced. We should take care of our nature, but I wouldn't like to spend more for this.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>19</Key>
+      <Value>
+        <text>
+          <line>I understand your point, still I'm not that kind of person, and prefer buying cheaper food.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>20</Key>
+      <Value>
+        <text>
+          <line>As you wish. Enjoy your meal.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>puzzle_ecologicalstand_solved</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+  </Asset>
+</XnaContent>

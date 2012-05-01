@@ -2,15 +2,15 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
-    <name>neighbourhood</name>
-    <texture>neighbourhood\neighborTexture</texture>
+    <name>neighborhood</name>
+    <texture>neighborhood\neighborTexture</texture>
     <backgroundTexture>
       <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
     <leftScreenName></leftScreenName>
-    <rightScreenName>shop</rightScreenName>
+    <rightScreenName>neighborhood_2</rightScreenName>
     <gameObjects>
       <!-- mole -->
       <Item>
@@ -110,7 +110,7 @@
           <boundX>130</boundX>
           <boundWidth>227</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage1</pickUpName>
         </onInteract>
       </Item>
@@ -131,7 +131,7 @@
           <boundX>269</boundX>
           <boundWidth>220</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage2</pickUpName>
         </onInteract>
       </Item>
@@ -152,7 +152,7 @@
           <boundX>318</boundX>
           <boundWidth>196</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage3</pickUpName>
         </onInteract>
       </Item>

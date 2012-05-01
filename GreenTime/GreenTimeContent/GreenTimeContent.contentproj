@@ -322,8 +322,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighbourhood.xml">
-      <Name>neighbourhood</Name>
+    <Compile Include="levels\neighborhood.xml">
+      <Name>neighborhood</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
@@ -337,8 +337,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighbourhood_past.xml">
-      <Name>neighbourhood_past</Name>
+    <Compile Include="levels\neighborhood_past.xml">
+      <Name>neighborhood_past</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
@@ -379,7 +379,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="neighbourhood\neighborTexture.png">
+    <Compile Include="neighborhood\neighborTexture.png">
       <Name>neighborTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -460,6 +460,48 @@
   <ItemGroup>
     <Compile Include="pickablesTexture.png">
       <Name>pickablesTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chats\garage_sale_man.xml">
+      <Name>garage_sale_man</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighborhood_2.xml">
+      <SubType>Designer</SubType>
+      <Name>neighborhood_2</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighborhood_2_past.xml">
+      <SubType>Designer</SubType>
+      <Name>neighborhood_2_past</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chats\ecological_customer.xml">
+      <Name>ecological_customer</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighborhood2\neighbor2pastTexture.png">
+      <Name>neighbor2pastTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="neighborhood2\neighbor2Texture.png">
+      <Name>neighbor2Texture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

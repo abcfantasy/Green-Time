@@ -258,6 +258,17 @@
       <Value>1780 485 109 309</Value>
     </Item>
     
+    <!-- neighborhood 2 -->
+    <Item>
+      <Key>neighbor2_stuff</Key>
+      <Value>1280 0 545 383</Value>
+    </Item>
+
+    <Item>
+      <Key>neighbor2_npc</Key>
+      <Value>1827 0 109 309</Value>
+    </Item>
+    
     <!-- shop -->
     <Item>
       <Key>car</Key>
