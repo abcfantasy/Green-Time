@@ -45,6 +45,8 @@ namespace GreenTime.Managers
         }
         #endregion
 
+        public static bool TutorialsEnabled = true;
+
         private static bool musicEnabled = true;
         private static bool soundEnabled = true;
 

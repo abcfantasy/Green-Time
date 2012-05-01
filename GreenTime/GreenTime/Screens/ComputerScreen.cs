@@ -230,7 +230,7 @@ namespace GreenTime.Screens
                 spriteBatch.Draw(screenBackground, new Vector2(finalScreenX + 250, finalScreenY), new Rectangle(0, 0, 2, screenBackground.Height), Color.Gray);
 
                 // draw title
-                spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 255.0f, finalScreenY + 50.0f), new Rectangle(0, 0, 693, 482), Color.White);
+                spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 252.0f, finalScreenY + 48.0f), new Rectangle(0, 0, 691, 482), Color.White);
                 //spriteBatch.DrawString(this.ScreenManager.Font, searchTitle, new Vector2(finalScreenX + 270.0f, finalScreenY + 50.0f), Color.DarkGreen, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             }
 

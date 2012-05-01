@@ -30,6 +30,8 @@ namespace GreenTime.Managers
 
         // this represents the news texture on the computer, that changes every day
         public string NewsTextureName;
+
+        private bool tutorialNewsSeen = false;
         #endregion
 
         #region Properties
@@ -85,6 +87,7 @@ namespace GreenTime.Managers
         public void NewGame()
         {
             states.Clear();
+            tutorialNewsSeen = false;
             SetState(STATE_PLAYERSTATUS, 100);
             SetState(STATE_DAY, 0);
         }
@@ -242,7 +245,12 @@ namespace GreenTime.Managers
             int day = GetState( STATE_DAY );
             ++day;
             SetState( STATE_DAY, day);
-            SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
+
+            // on day 1, make puzzle heater
+            if (day == 1)
+                SetState(STATE_INDOOR, 20);
+            else
+                SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
             SetState("news_taken", 0);
             //SetState("is_in_past", 0);
 
@@ -261,10 +269,10 @@ namespace GreenTime.Managers
 
 
         private string[] puzzles = {    "puzzle_garbage",
-                                        //"puzzle_sprinklers_solved",
-                                        //"puzzle_garagesale_solved",
-                                        //"puzzle_ecologicalstand_solved",
-                                        //"puzzle_bags_solved",
+                                        "puzzle_sprinklers",
+                                        "puzzle_garagesale",
+                                        "puzzle_ecologicalstand",
+                                        "puzzle_bags",
                                         "puzzle_car",
                                         "puzzle_cig",
                                         "puzzle_acorn" };
@@ -275,21 +283,24 @@ namespace GreenTime.Managers
         /// <returns>The name of the news texture file</returns>
         private string GetNewsTexture()
         {
-            int newsIndex = new Random().Next(0, 4);
-            return "computer\\" + puzzles[newsIndex];
-
-            /* // this part should be uncommented when news of all puzzles are done
-            int newsIndex = 0;
-            bool found = false;
-
-            while (!found)
+            if (!tutorialNewsSeen)
             {
-                newsIndex = new Random().Next(0, puzzles.Length);
-                if (StateManager.Instance.GetState(puzzles[newsIndex] + "_solved") < 100)
-                    found = true;
+                tutorialNewsSeen = true;
+                return "computer\\tutorial";
             }
-            return "computer\\" + puzzles[newsIndex];*/
+            else
+            {
+                int newsIndex = 0;
+                bool found = false;
 
+                while (!found)
+                {
+                    newsIndex = new Random().Next(0, puzzles.Length);
+                    if (StateManager.Instance.GetState(puzzles[newsIndex] + "_solved") < 100)
+                        found = true;
+                }
+                return "computer\\" + puzzles[newsIndex];
+            }
             /*
             // return final newspaper when game completed
             if (StateManager.Instance.GetState("progress") == 100)
