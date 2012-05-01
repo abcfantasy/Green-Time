@@ -114,6 +114,7 @@ namespace GreenTime.Screens
         public override void LoadContent()
         {
             // load game play texture.   NOTE: This is not the most efficient, since it is unloaded and reloaded every level
+            LevelManager.Instance.LoadAllLevels();
             ResourceManager.Instance.LoadGameplayTexture();
             ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
@@ -162,7 +163,7 @@ namespace GreenTime.Screens
             }            
 
             // Load the level texture
-            ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
+            //ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
             // Load the background
             visibleObjects.Add(LevelManager.Instance.CurrentLevel.backgroundTexture);
