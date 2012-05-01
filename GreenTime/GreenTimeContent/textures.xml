@@ -279,6 +279,11 @@
       <Key>smoke</Key>
       <Value>1280 0 360 151</Value>
     </Item>
+
+    <Item>
+      <Key>shop_npc_bag</Key>
+      <Value>1389 152 109 309</Value>
+    </Item>
     
     <!-- forest -->
     <Item>

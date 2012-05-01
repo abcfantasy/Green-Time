@@ -11,6 +11,16 @@
     </backgroundTexture>
     <leftScreenName></leftScreenName>
     <rightScreenName>neighborhood_2</rightScreenName>
+    <ambientSound>
+      <name>sprinkler</name>
+      <position>1000</position>
+      <playIf>
+        <state>
+          <name>puzzle_sprinklers_solved</name>
+          <value>0</value>
+        </state>
+      </playIf>
+    </ambientSound>
     <gameObjects>
       <!-- mole -->
       <Item>
