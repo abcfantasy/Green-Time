@@ -12,7 +12,7 @@
     <leftScreenName>shop</leftScreenName>
     <rightScreenName>final_room</rightScreenName>
     <ambientSound>
-      <name>audio\FireCrackling</name>
+      <name>FireCrackling</name>
       <position>920</position>
       <playIf>
         <state>

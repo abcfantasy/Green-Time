@@ -212,19 +212,6 @@ namespace GreenTime.Managers
             startPosition = player.Position.X;
         }
 
-        /// <summary>
-        /// Gives the name of a news texture file that matches with the current game state
-        /// </summary>
-        /// <returns>The name of the news texture file</returns>
-        public string GetNewsTexture()
-        {
-            // return final newspaper when game completed
-            if (StateManager.Instance.GetState("progress") == 100)
-                return "news\\news_final";
-
-            int newsIndex = new Random().Next(1, 5);
-            return "news\\news" + newsIndex.ToString();
-        }
         #endregion
 
         #region Singleton

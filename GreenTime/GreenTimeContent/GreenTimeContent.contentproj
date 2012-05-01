@@ -113,7 +113,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news\news1.png">
+    <Compile Include="computer\news1.png">
       <Name>news1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -141,24 +141,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news\news2.png">
+    <Compile Include="computer\news2.png">
       <Name>news2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="news\news3.png">
+    <Compile Include="computer\news3.png">
       <Name>news3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="news\news4.png">
+    <Compile Include="computer\news4.png">
       <Name>news4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news\news_final.png">
+    <Compile Include="computer\news_final.png">
       <Name>news_final</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -502,6 +502,28 @@
     </Compile>
     <Compile Include="neighborhood2\neighbor2Texture.png">
       <Name>neighbor2Texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="computer\puzzle_acorn.png">
+      <Name>puzzle_acorn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_car.png">
+      <Name>puzzle_car</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_cig.png">
+      <Name>puzzle_cig</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_garbage.png">
+      <Name>puzzle_garbage</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

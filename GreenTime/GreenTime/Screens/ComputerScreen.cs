@@ -20,6 +20,7 @@ namespace GreenTime.Screens
         ContentManager content;
         Texture2D screenBackground;
         Texture2D screenOutline;
+        Texture2D screenPicture;
 
         // search options
         List<SearchEntry> searchEntries = new List<SearchEntry>();
@@ -67,6 +68,7 @@ namespace GreenTime.Screens
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             screenOutline = content.Load<Texture2D>("monitor-screen");
+            screenPicture = content.Load<Texture2D>(StateManager.Instance.NewsTextureName);
 
             screenBackground = new Texture2D(SettingsManager.GraphicsDevice.GraphicsDevice, SCREEN_WIDTH, SCREEN_HEIGHT);
             Color[] bgColor = new Color[SCREEN_WIDTH * SCREEN_HEIGHT];
@@ -92,11 +94,7 @@ namespace GreenTime.Screens
         private void AddSearchEntries()
         {
             SearchEntry entryNews = new SearchEntry("News");
-            SearchEntry entryTest1 = new SearchEntry("Test 1");
-            SearchEntry entryTest2 = new SearchEntry("Test 2");
             searchEntries.Add(entryNews);
-            searchEntries.Add(entryTest1);
-            searchEntries.Add(entryTest2);
         }
         #endregion
 
@@ -107,6 +105,9 @@ namespace GreenTime.Screens
         /// </summary>
         public override void HandleInput(InputManager input)
         {
+            if (input.IsMenuSelect() || input.IsMenuCancel())
+                OnCancel();
+            /*
             // Move to the previous menu entry?
             if (input.IsMenuUp())
             {
@@ -142,6 +143,7 @@ namespace GreenTime.Screens
             {
                 OnCancel();
             }
+             */
         }
 
 
@@ -205,7 +207,7 @@ namespace GreenTime.Screens
                     screenBackground,
                     new Vector2(finalScreenX, y),
                     new Rectangle(0, localY, SCREEN_WIDTH, (localCenterScreenY - localY) * 2),
-                    Color.Gainsboro, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.9f);
+                    Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.9f);
             }
 
             // draw the normal stuff
@@ -228,7 +230,8 @@ namespace GreenTime.Screens
                 spriteBatch.Draw(screenBackground, new Vector2(finalScreenX + 250, finalScreenY), new Rectangle(0, 0, 2, screenBackground.Height), Color.Gray);
 
                 // draw title
-                spriteBatch.DrawString(this.ScreenManager.Font, searchTitle, new Vector2(finalScreenX + 270.0f, finalScreenY + 50.0f), Color.DarkGreen, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+                spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 255.0f, finalScreenY + 50.0f), new Rectangle(0, 0, 693, 482), Color.White);
+                //spriteBatch.DrawString(this.ScreenManager.Font, searchTitle, new Vector2(finalScreenX + 270.0f, finalScreenY + 50.0f), Color.DarkGreen, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
             }
 
             spriteBatch.End();

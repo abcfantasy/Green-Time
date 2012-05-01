@@ -27,6 +27,9 @@ namespace GreenTime.Managers
 
         #region Fields
         private Dictionary<string, int> states = new Dictionary<string,int>();
+
+        // this represents the news texture on the computer, that changes every day
+        public string NewsTextureName;
         #endregion
 
         #region Properties
@@ -250,10 +253,52 @@ namespace GreenTime.Managers
                     toModify.Add(new State(s, 0));
             ModifyStates(toModify);
 
+            NewsTextureName = GetNewsTexture();
+
             LevelManager.Instance.PickedObject = null;
             LevelManager.Instance.GoHome();
         }
 
+
+        private string[] puzzles = {    "puzzle_garbage",
+                                        //"puzzle_sprinklers_solved",
+                                        //"puzzle_garagesale_solved",
+                                        //"puzzle_ecologicalstand_solved",
+                                        //"puzzle_bags_solved",
+                                        "puzzle_car",
+                                        "puzzle_cig",
+                                        "puzzle_acorn" };
+
+        /// <summary>
+        /// Gives the name of a news texture file that matches with the current game state
+        /// </summary>
+        /// <returns>The name of the news texture file</returns>
+        private string GetNewsTexture()
+        {
+            int newsIndex = new Random().Next(0, 4);
+            return "computer\\" + puzzles[newsIndex];
+
+            /* // this part should be uncommented when news of all puzzles are done
+            int newsIndex = 0;
+            bool found = false;
+
+            while (!found)
+            {
+                newsIndex = new Random().Next(0, puzzles.Length);
+                if (StateManager.Instance.GetState(puzzles[newsIndex] + "_solved") < 100)
+                    found = true;
+            }
+            return "computer\\" + puzzles[newsIndex];*/
+
+            /*
+            // return final newspaper when game completed
+            if (StateManager.Instance.GetState("progress") == 100)
+                return "news\\news_final";
+
+            int newsIndex = new Random().Next(1, 5);
+            return "news\\news" + newsIndex.ToString();
+             */
+        }
         #endregion
 
         #region Singleton
