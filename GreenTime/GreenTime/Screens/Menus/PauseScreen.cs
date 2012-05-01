@@ -25,11 +25,11 @@ namespace GreenTime.Screens
             : base("Paused")
         {
             // Create our menu entries.
-            MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
+            MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game", "Continue playing GreenTime.");
             //MenuEntry saveGameMenuEntry = new MenuEntry("Save Game");
             //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options");
-            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
+            MenuEntry optionsMenuEntry = new MenuEntry("Options", "Take a look at options such as audio and controls.");
+            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game", "End your session and go back to the main menu (progress is NOT saved)");
 
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;

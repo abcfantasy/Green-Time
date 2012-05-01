@@ -2,15 +2,25 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
-    <name>neighbourhood</name>
-    <texture>neighbourhood\neighborTexture</texture>
+    <name>neighborhood</name>
+    <texture>neighborhood\neighborTexture</texture>
     <backgroundTexture>
       <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
     </backgroundTexture>
     <leftScreenName></leftScreenName>
-    <rightScreenName>shop</rightScreenName>
+    <rightScreenName>neighborhood_2</rightScreenName>
+    <ambientSound>
+      <name>sprinkler</name>
+      <position>1000</position>
+      <playIf>
+        <state>
+          <name>puzzle_sprinklers_solved</name>
+          <value>0</value>
+        </state>
+      </playIf>
+    </ambientSound>
     <gameObjects>
       <!-- mole -->
       <Item>
@@ -37,11 +47,12 @@
           </state>
         </showIf>
       </Item>
+      
       <!-- birds -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>neighbor_birds</texture>
-          <position>456 130</position>
+          <position>446 130</position>
           <layer>0.70</layer>
           <scale>1.0</scale>
           <frameSize>59 38</frameSize>
@@ -109,7 +120,7 @@
           <boundX>130</boundX>
           <boundWidth>227</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage1</pickUpName>
         </onInteract>
       </Item>
@@ -130,7 +141,7 @@
           <boundX>269</boundX>
           <boundWidth>220</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage2</pickUpName>
         </onInteract>
       </Item>
@@ -151,7 +162,7 @@
           <boundX>318</boundX>
           <boundWidth>196</boundWidth>
           <text>Garbage</text>
-          <transition>neighbourhood_past</transition>
+          <transition>neighborhood_past</transition>
           <pickUpName>garbage3</pickUpName>
         </onInteract>
       </Item>
@@ -186,6 +197,7 @@
           </dropper>
         </onInteract>
       </Item>
+      
       <!-- sprinklers -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -216,6 +228,24 @@
           <transition>neighbourhood_past_sprinkler</transition>
         </onInteract>
       </Item>
+
+      <!-- neighbor -->
+      <Item>
+        <sprite>
+          <texture>neighbor_npc</texture>
+          <position>820 300</position>
+          <layer>0.6</layer>
+          <flipped>true</flipped>
+        </sprite>
+        <onInteract>
+          <boundX>620</boundX>
+          <boundWidth>410</boundWidth>
+          <text>Neighbor</text>
+          <chat>sprinkler_man</chat>
+          <mouth>880 280</mouth>
+        </onInteract>
+      </Item>
+      
       <!-- dead flowers -->
       <Item>
         <sprite>

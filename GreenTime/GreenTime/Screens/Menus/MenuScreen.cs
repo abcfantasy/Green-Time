@@ -19,7 +19,7 @@ namespace GreenTime.Screens
         protected int selectedEntry = 0;
         string menuTitle;
         float locationOffset = 0.0f;
-
+        bool lastOptionExit = true;
         #endregion
 
         #region Properties
@@ -39,13 +39,15 @@ namespace GreenTime.Screens
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MenuScreen(string menuTitle, float locationOffset = 0)
+        public MenuScreen(string menuTitle, float locationOffset = 0, bool lastOptionExit = true)
         {
             this.menuTitle = menuTitle;
             this.locationOffset = locationOffset;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            this.lastOptionExit = lastOptionExit;
         }
         #endregion
 
@@ -86,7 +88,7 @@ namespace GreenTime.Screens
 
             if (input.IsMenuSelect())
             {
-                if (selectedEntry == menuEntries.Count - 1)
+                if (selectedEntry == menuEntries.Count - 1 && lastOptionExit)
                     SoundManager.PlaySound(SoundManager.SOUND_MENU_CANCEL);
                 else
                     SoundManager.PlaySound(SoundManager.SOUND_MENU_CONFIRM);

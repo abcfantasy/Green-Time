@@ -18,12 +18,12 @@ namespace GreenTime.Screens
             : base("Options", 180.0f)
         {
             // Create our menu entries.
-            musicMenuEntry = new MenuEntry("Music: ");
-            soundMenuEntry = new MenuEntry("Sound Effects: ");
-            fullscreenMenuEntry = new MenuEntry("Fullscreen Mode: Off");
-            difficultyMenuEntry = new MenuEntry("Difficulty: ");
-            controlsMenuEntry = new MenuEntry("Controls");
-            MenuEntry backMenuEntry = new MenuEntry("Back");
+            musicMenuEntry = new MenuEntry("Music: ", "Enable or disable background music.");
+            soundMenuEntry = new MenuEntry("Sound Effects: ", "Enable or disable sound effects.");
+            fullscreenMenuEntry = new MenuEntry("Fullscreen Mode: Off", "Run the game in windowed mode or full screen.");
+            difficultyMenuEntry = new MenuEntry("Difficulty: ", "Set difficulty level ('easy' mode lets you see what objects you can interact with)");
+            controlsMenuEntry = new MenuEntry("Controls", "Shows you the available game controls.");
+            MenuEntry backMenuEntry = new MenuEntry("Back", "Go back to the main menu.");
             UpdateMenuEntries();
 
             // Hook up menu event handlers.

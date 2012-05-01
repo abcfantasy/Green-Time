@@ -17,6 +17,7 @@ namespace GreenTime.Screens
     {
         #region Fields
         string message;
+        bool tutorial;
         //Texture2D gradientTexture;
         #endregion
 
@@ -39,14 +40,14 @@ namespace GreenTime.Screens
         /// Constructor lets the caller specify whether to include the standard
         /// "A=ok, B=cancel" usage text prompt.
         /// </summary>
-        public MessageBoxScreen(string message, bool includeUsageText)
+        public MessageBoxScreen(string message, bool includeUsageText, bool isTutorial = false )
         {
-            const string usageText = "\nOK (Space) | Cancel (Esc)";
-
             if (includeUsageText)
-                this.message = message + usageText;
+                this.message = message + "\nOK (Space) | Cancel (Esc)";
             else
-                this.message = message;
+                this.message = message + "\nOK (Space)";
+
+            this.tutorial = isTutorial;
 
             IsPopup = true;
 
@@ -119,7 +120,11 @@ namespace GreenTime.Screens
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
             Vector2 textSize = font.MeasureString(message);
-            Vector2 textPosition = (viewportSize - textSize) / 2;
+            Vector2 textPosition;
+            if (tutorial)
+                textPosition = new Vector2( (viewportSize.X - textSize.X) / 2, 100 );
+            else
+                textPosition = (viewportSize - textSize) / 2;
 
             // The background includes a border somewhat larger than the text itself.
             const int hPad = 32;

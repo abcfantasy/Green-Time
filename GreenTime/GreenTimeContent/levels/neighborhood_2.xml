@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>neighborhood_2</name>
+    <texture>neighborhood2\neighbor2Texture</texture>
+    <backgroundTexture>
+      <texture>background</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName>neighborhood</leftScreenName>
+    <rightScreenName>shop</rightScreenName>
+    <gameObjects>
+
+      <!-- dumped stuff -->
+      <Item>
+        <sprite>
+          <texture>neighbor2_stuff</texture>
+          <position>336 233</position>
+          <layer>0.55</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_garagesale_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>316</boundX>
+          <boundWidth>420</boundWidth>
+          <text>Dumped stuff</text>
+          <transition>neighborhood_2_past</transition>
+        </onInteract>
+      </Item>
+
+      <!-- ecological customer npc -->
+      <Item>
+        <sprite>
+          <texture>neighbor2_npc</texture>
+          <position>1133 289</position>
+          <layer>0.55</layer>
+        </sprite>
+        <onInteract>
+          <boundX>880</boundX>
+          <boundWidth>250</boundWidth>
+          <text>Customer</text>
+          <chat>ecological_customer</chat>
+          <mouth>1130 215</mouth>
+        </onInteract>
+      </Item>
+      
+    </gameObjects>
+  </Asset>
+</XnaContent>

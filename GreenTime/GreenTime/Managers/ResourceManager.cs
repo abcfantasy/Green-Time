@@ -25,12 +25,14 @@ namespace GreenTime.Managers
 
         #region Constants
         private readonly string GAMEPLAY_TEXTURE = "gameplayTexture";
+        private readonly string PICKABLE_TEXTURE = "pickablesTexture";
         private readonly string MENU_TEXTURE = "menuTexture";
         #endregion
 
         private Dictionary<string, Rectangle> textureDictionary;
 
         public Texture2D GlobalTexture;
+        public Texture2D PickablesTexture;
         public Texture2D LevelTexture;
 
         public SpriteFont MainFont;
@@ -49,7 +51,8 @@ namespace GreenTime.Managers
 
         public void InitializeLevelManager()
         {
-            LevelManager.Instance.Initialize(localContent);
+            LevelManager.Instance.Initialize(globalContent);
+            //LevelManager.Instance.LoadAllLevels(globalContent);
         }
         #endregion
 
@@ -112,6 +115,7 @@ namespace GreenTime.Managers
 
                 // load gameplay textures
                 GlobalTexture = globalContent.Load<Texture2D>(GAMEPLAY_TEXTURE);
+                PickablesTexture = globalContent.Load<Texture2D>(PICKABLE_TEXTURE);
                 isGameplayLoaded = true;
             }
         }

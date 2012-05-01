@@ -24,6 +24,11 @@ namespace GreenTime.Screens
         string text;
 
         /// <summary>
+        /// Any help for this text
+        /// </summary>
+        string tooltip;
+
+        /// <summary>
         /// Tracks a fading selection effect on the entry.
         /// </summary>
         /// <remarks>
@@ -49,6 +54,11 @@ namespace GreenTime.Screens
             set { text = value; }
         }
 
+        public string Tooltip
+        {
+            get { return tooltip; }
+            set { tooltip = value; }
+        }
 
         /// <summary>
         /// Gets or sets the position at which to draw this menu entry.
@@ -84,6 +94,15 @@ namespace GreenTime.Screens
         public MenuEntry(string text)
         {
             this.text = text;
+        }
+
+        /// <summary>
+        /// Constructs a new menu entry with the specified text.
+        /// </summary>
+        public MenuEntry(string text, string tooltip)
+        {
+            this.text = text;
+            this.tooltip = tooltip;
         }
         #endregion
 
@@ -144,8 +163,14 @@ namespace GreenTime.Screens
 
             spriteBatch.DrawString(font, text, position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
-        }
 
+            // tooltip
+            if (isSelected && tooltip != null)
+            {
+                Vector2 tooltipPos = new Vector2(640 - (GetTooltipWidth(screen) / 2), 700 - GetHeight(screen));
+                spriteBatch.DrawString(font, tooltip, tooltipPos, Color.Gainsboro, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
+            }
+        }
 
         /// <summary>
         /// Queries how much space this menu entry requires.
@@ -162,6 +187,12 @@ namespace GreenTime.Screens
         {
             return (int)screen.ScreenManager.Font.MeasureString(Text).X;
         }
+
+        public virtual int GetTooltipWidth(MenuScreen screen)
+        {
+            return (int)screen.ScreenManager.Font.MeasureString(Tooltip).X;
+        }
         #endregion
     }
 }
+

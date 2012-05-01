@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Hello there, I see you have a lot of stuff in your garage.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_garagesale_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>1</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>That's true. I don't know what to do with it anymore so it stays in my garage until the garbage man can pick up.</line>
+        </text>
+        <leadsTo>2 3 4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>That is indeed a good idea.</line>
+        </text>
+        <leadsTo>5</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>Is it really that broken?</line>
+        </text>
+        <leadsTo>6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>What about recycling?</line>
+        </text>
+        <leadsTo>7</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>Thank you, although they told me it might take a while. I'll just dump it somewhere eventually.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>No, they are actually quite in a good state. I just do not need them anymore.</line>
+        </text>
+        <leadsTo>8</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>Recycling? Never heard of it, sounds stupid.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>So why not a garage sale, and collect some money?</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>That actually sounds like a good idea. I'll give it a try.</line>
+        </text>
+        <leadsTo>10</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>It is always good to recycle products especially if they are still in good shape. Maybe I'll buy something too.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>puzzle_garagesale_solved</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+    
+  </Asset>
+</XnaContent>

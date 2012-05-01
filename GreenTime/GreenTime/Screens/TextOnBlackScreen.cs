@@ -41,7 +41,7 @@ namespace GreenTime.Screens
 
         public override void HandleInput(InputManager input)
         {
-            if (input.IsMenuCancel())
+            if (input.IsMenuCancel() || input.IsMenuSelect() )
             {
                 this.TransitionOffTime = TimeSpan.FromSeconds(0.0);
                 elapsed = 3000;

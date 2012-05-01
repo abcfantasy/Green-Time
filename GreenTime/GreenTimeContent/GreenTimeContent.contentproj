@@ -113,24 +113,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news\news1.png">
-      <Name>news1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="audio\greentime.mp3">
       <Name>greentime</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="carStart.wav">
-      <Name>carStart</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -141,24 +127,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="news\news2.png">
-      <Name>news2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="news\news3.png">
-      <Name>news3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="news\news4.png">
-      <Name>news4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="news\news_final.png">
+    <Compile Include="computer\news_final.png">
       <Name>news_final</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -322,10 +291,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighbourhood.xml">
-      <Name>neighbourhood</Name>
+    <Compile Include="levels\neighborhood.xml">
+      <Name>neighborhood</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -336,8 +306,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighbourhood_past.xml">
-      <Name>neighbourhood_past</Name>
+    <Compile Include="levels\neighborhood_past.xml">
+      <Name>neighborhood_past</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
@@ -354,14 +324,6 @@
       <Name>sprinkler_man</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="levels\neighbourhood_past_sprinkler.xml">
-      <Name>neighbourhood_past_sprinkler</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -386,7 +348,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="neighbourhood\neighborTexture.png">
+    <Compile Include="neighborhood\neighborTexture.png">
       <Name>neighborTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -445,13 +407,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="greenTime_clock128x128.png">
-      <Name>greenTime_clock128x128</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="audio\MenuSong.mp3">
       <Name>MenuSong</Name>
       <Importer>Mp3Importer</Importer>
@@ -469,6 +424,106 @@
       <Name>ConfirmationSound</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pickablesTexture.png">
+      <Name>pickablesTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chats\garage_sale_man.xml">
+      <Name>garage_sale_man</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighborhood_2.xml">
+      <SubType>Designer</SubType>
+      <Name>neighborhood_2</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\neighborhood_2_past.xml">
+      <SubType>Designer</SubType>
+      <Name>neighborhood_2_past</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="chats\ecological_customer.xml">
+      <Name>ecological_customer</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="neighborhood2\neighbor2pastTexture.png">
+      <Name>neighbor2pastTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="neighborhood2\neighbor2Texture.png">
+      <Name>neighbor2Texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="computer\puzzle_acorn.png">
+      <Name>puzzle_acorn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_car.png">
+      <Name>puzzle_car</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_cig.png">
+      <Name>puzzle_cig</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_garbage.png">
+      <Name>puzzle_garbage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="computer\tutorial.png">
+      <Name>tutorial</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="computer\puzzle_bags.png">
+      <Name>puzzle_bags</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_ecologicalstand.png">
+      <Name>puzzle_ecologicalstand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_garagesale.png">
+      <Name>puzzle_garagesale</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="computer\puzzle_sprinklers.png">
+      <Name>puzzle_sprinklers</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

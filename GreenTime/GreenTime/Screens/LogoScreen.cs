@@ -60,7 +60,7 @@ namespace GreenTime.Screens
 
         public override void HandleInput(InputManager input)
         {
-            if (input.IsMenuCancel())
+            if (input.IsMenuCancel() || input.IsMenuSelect() )
             {
                 TransitionOnTime = TimeSpan.FromSeconds(0.0);
                 TransitionOffTime = TimeSpan.FromSeconds(0.0);

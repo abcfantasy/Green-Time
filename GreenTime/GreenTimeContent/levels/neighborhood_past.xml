@@ -2,8 +2,8 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
-    <name>neighbourhood_past</name>
-    <texture>neighbourhood\neighborTexture</texture>
+    <name>neighborhood_past</name>
+    <texture>neighborhood\neighborTexture</texture>
     <backgroundTexture>
       <texture>background</texture>
       <position>0 0</position>

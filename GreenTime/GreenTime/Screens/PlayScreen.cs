@@ -113,7 +113,7 @@ namespace GreenTime.Screens
         /// </summary>
         public override void LoadContent()
         {
-            // load game play texture.   NOTE: This is not the most efficient, since it is unloaded and reloaded every level
+            LevelManager.Instance.LoadAllLevels();
             ResourceManager.Instance.LoadGameplayTexture();
             ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
@@ -162,7 +162,7 @@ namespace GreenTime.Screens
             }            
 
             // Load the level texture
-            ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
+            //ResourceManager.Instance.LoadLevelTexture(LevelManager.Instance.CurrentLevel.texture);
 
             // Load the background
             visibleObjects.Add(LevelManager.Instance.CurrentLevel.backgroundTexture);
@@ -261,6 +261,30 @@ namespace GreenTime.Screens
             {
                 player.Update(gameTime);
 
+                #region tutorials
+                // press SPACE to interact
+                if (StateManager.Instance.GetState("tutorial_movement") < 100 && TransitionAlpha == 1.0f)
+                {
+                    StateManager.Instance.SetState("tutorial_movement", 100);
+                    ShowTutorial("Use the left and right arrow keys to walk around.");
+                }
+                else if ( StateManager.Instance.GetState("tutorial_timetravel") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && LevelManager.Instance.CurrentLevel.name == "neighborhood")
+                {
+                    StateManager.Instance.SetState("tutorial_timetravel", 100);
+                    ShowTutorial("Oh no! It seems the garbages are there again.\nSomeone must be leaving them every morning. Go over the\ngarbages and press Z to time-travel in the past and find out.");
+                }
+                else if (StateManager.Instance.GetState("tutorial_chat") < 100 && StateManager.Instance.IsInPast() && LevelManager.Instance.CurrentLevel.name == "neighborhood_past")
+                {
+                    StateManager.Instance.SetState("tutorial_chat", 100);
+                    ShowTutorial("You can talk to people by pressing SPACE. During the conversation,\nyou may have to choose an answer. You can change your answer with the up\nand down arrow keys. Try and convince him not to repeat his actions.");
+                }
+                if (StateManager.Instance.GetState("tutorial_solved") < 100 && StateManager.Instance.GetState("puzzle_garbage_solved") == 100 && LevelManager.Instance.CurrentLevel.name == "bedroom")
+                {
+                    StateManager.Instance.SetState("tutorial_solved", 100);
+                    ShowTutorial("Congratulations! You solved your first puzzle. Go ahead and\nsolve the remaining puzzles, and watch the world become brighter.");
+                }
+                #endregion
+
                 // update picked up object if any
                 if (pickedObject != null)
                 {
@@ -318,7 +342,7 @@ namespace GreenTime.Screens
             
             // picked up object if any
             if (pickedObject != null)
-                pickedObject.Draw(ResourceManager.Instance.LevelTexture, spriteBatch, ResourceManager.Instance[pickedObject.textureName], new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
+                pickedObject.Draw(ResourceManager.Instance.PickablesTexture, spriteBatch, ResourceManager.Instance[pickedObject.textureName], new Color((pickedObject.shaded ? (byte)desaturationAmount : 64), 255, 255, 255));
 
             // text only if easy mode
             if (SettingsManager.Difficulty == SettingsManager.Game_Difficulties.EASY && interactingObject != null && !String.IsNullOrEmpty(interactingObject.interaction.text))
@@ -398,15 +422,13 @@ namespace GreenTime.Screens
                 if (StateManager.Instance.GetState("tutorial_grey") < 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) == 50)
                 {
                     StateManager.Instance.SetState("tutorial_grey", 100);
-                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Oh no! When you do not take care of the environment\nin your house, you become grey. You lose the ability to\ntime travel until you solve a problem in your house the next\nday.", false);
-                    ScreenManager.AddScreen(confirmQuitMessageBox);
+                    ShowTutorial("Oh no! When you do not take care of the environment\nin your house, you become grey. You lose the ability to\ntime travel until you solve a problem in your house the next\nday.");
                 }
                 // square
                 else if (StateManager.Instance.GetState("tutorial_square") < 100 && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) == 0)
                 {
                     StateManager.Instance.SetState("tutorial_square", 100);
-                    MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: You are a square head! You are not caring about\nthe environment. You'll have a hard time convincing other people\nnow. Press D to start a new day and improve yourself.", false);
-                    ScreenManager.AddScreen(confirmQuitMessageBox);
+                    ShowTutorial("You are a square head! You are not caring about\nthe environment. You'll have a hard time convincing other people\nnow. Press D to start a new day and improve yourself.");
                 }
                 #endregion
 
@@ -431,6 +453,7 @@ namespace GreenTime.Screens
                             switch (interactingObject.interaction.callback)
                             {
                                 case "news":
+                                    StateManager.Instance.SetState("tutorial_computer", 100);   // do not show computer tutorial if already interacted with
                                     ScreenManager.AddScreen(new ComputerScreen());
                                     break;
                             }
@@ -519,7 +542,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 5);
+                    player.move(movement * 15);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
@@ -538,7 +561,7 @@ namespace GreenTime.Screens
         private void CheckPlayerStatus()
         {
             int playerStatus;
-            if (LevelManager.Instance.CurrentLevel.name.Equals("neighbourhood") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
+            if ((StateManager.Instance.GetState(StateManager.STATE_DAY) > 2 ) && LevelManager.Instance.CurrentLevel.name.Equals("neighborhood") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
             {
                 StateManager.Instance.SetState("just_went_out", 0);
                 if (StateManager.Instance.IndoorPuzzleSolved())
@@ -673,26 +696,28 @@ namespace GreenTime.Screens
                         interactingObject = io;
 
                         #region Tutorial Popups
-                        if (interactingObject.interaction != null && interactingObject.interaction.callback != "news" )
+                        if (interactingObject.interaction != null )
                         {
-                            // press SPACE to interact
-                            if (StateManager.Instance.GetState("tutorial_interaction") < 100)
+                            if (interactingObject.interaction.affectedStates != null)
                             {
-                                StateManager.Instance.SetState("tutorial_interaction", 100);
-                                MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen("Tutorial: Press SPACE to interact with objects.", false);
-                                ScreenManager.AddScreen(confirmQuitMessageBox);
+                                // press SPACE to interact with heater
+                                if (StateManager.Instance.GetState("tutorial_interaction") < 100)
+                                {
+                                    StateManager.Instance.SetState("tutorial_interaction", 100);
+                                    ShowTutorial("Press SPACE to interact with objects,\nsuch as turning off the heater.");
+                                }
                             }
-                            // press Z to time travel
-                            else if (StateManager.Instance.GetState("tutorial_timetravel") < 100 && !String.IsNullOrEmpty(interactingObject.interaction.transition) && 
-                                StateManager.Instance.GetState(StateManager.STATE_DAY) > 1 )
+                            // interact with computer
+                            if (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState(StateManager.STATE_DAY) == 2 && StateManager.Instance.GetState("tutorial_computer_interact") < 100)
                             {
-                                StateManager.Instance.SetState("tutorial_timetravel", 100);
-                                MessageBoxScreen tutorialPopupBox;
-                                if (StateManager.Instance.CanTimeTravel())
-                                    tutorialPopupBox = new MessageBoxScreen("Tutorial: Sometimes you can attempt to time travel\nin the past by pressing Z.", false);
-                                else
-                                    tutorialPopupBox = new MessageBoxScreen("Tutorial: Sometimes you can attempt to time travel\nin the past by pressing Z. However you cannot do this\n if you are not in the green state.", false);
-                                ScreenManager.AddScreen(tutorialPopupBox);
+                                StateManager.Instance.SetState("tutorial_computer_interact", 100);
+                                ShowTutorial("You can interact with your computer to look at some news.\nThere might also be some tips within them.");
+                            }
+                            // pick up garbage bags
+                            if (interactingObject.interaction.pickUpName != null && interactingObject.interaction.pickUpName.StartsWith("garbage") && StateManager.Instance.GetState("tutorial_pickup") < 100)
+                            {
+                                StateManager.Instance.SetState("tutorial_pickup", 100);
+                                ShowTutorial("You can also pickup objects and drop them into particular\nplaces using SPACE. Try picking up each garbage bag and\ndropping them in the bin.");
                             }
                         }
                         #endregion
@@ -726,8 +751,16 @@ namespace GreenTime.Screens
                 checkedStates.Add( new State( (s + "_picked"), 100 ) );
 
             if( ( interactingObject.interaction.dropper.trigger.Equals( Dropper.ANY ) && StateManager.Instance.AnyTrue( checkedStates ) ) ||
-                ( interactingObject.interaction.dropper.trigger.Equals( Dropper.ALL ) && StateManager.Instance.AllTrue( checkedStates ) ) ) {
-                    StateManager.Instance.ModifyStates( interactingObject.interaction.dropper.effects );
+                ( interactingObject.interaction.dropper.trigger.Equals( Dropper.ALL ) && StateManager.Instance.AllTrue( checkedStates ) ) )
+            {
+                #region Tutorial
+                if (interactingObject.interaction.text == "Bin" && StateManager.Instance.GetState("tutorial_drop") < 100)
+                {
+                    StateManager.Instance.SetState("tutorial_drop", 100);
+                    ShowTutorial("Good work! Whenever you attempt to solve a puzzle,\nthe day ends and you wake up again in your room.");
+                }
+                #endregion
+                StateManager.Instance.ModifyStates( interactingObject.interaction.dropper.effects );
             }
         }
 
@@ -738,6 +771,7 @@ namespace GreenTime.Screens
         private void PickupObject(GameObject interactingObject)
         {
             LevelManager.Instance.PickedObject = (Sprite)interactingObject.sprite.Clone();
+            LevelManager.Instance.PickedObject.textureName = "pick_" + LevelManager.Instance.PickedObject.textureName;
             LevelManager.Instance.PickedObjectState = interactingObject.interaction.pickUpName + "_picked";
         }
 
@@ -754,6 +788,16 @@ namespace GreenTime.Screens
             // update object animations
             foreach (AnimatedSprite a in animatedObjects)
                 a.UpdateFrame(elapsedSeconds);
+        }
+
+        private void ShowTutorial( string message )
+        {
+            // only show tutorials if enabled
+            if (SettingsManager.TutorialsEnabled)
+            {
+                MessageBoxScreen tutorialMessageBox = new MessageBoxScreen("Tutorial: " + message, false, true);
+                ScreenManager.AddScreen(tutorialMessageBox);
+            }
         }
         #endregion
     }

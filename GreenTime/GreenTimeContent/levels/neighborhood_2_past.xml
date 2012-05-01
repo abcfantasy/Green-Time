@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>neighborhood_2_past</name>
+    <texture>neighborhood2\neighbor2pastTexture</texture>
+    <backgroundTexture>
+      <texture>background</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName></rightScreenName>
+    <gameObjects>
+
+      <!-- garage sale npc -->
+      <Item>
+        <sprite>
+          <texture>neighbor2_npc</texture>
+          <position>303 309</position>
+          <layer>0.55</layer>
+        </sprite>
+        <onInteract>
+          <boundX>280</boundX>
+          <boundWidth>140</boundWidth>
+          <text>Neighbor</text>
+          <chat>garage_sale_man</chat>
+          <mouth>421 314</mouth>
+        </onInteract>
+      </Item>
+      
+    </gameObjects>
+  </Asset>
+</XnaContent>

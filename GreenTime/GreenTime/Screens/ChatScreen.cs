@@ -240,13 +240,13 @@ namespace GreenTime.Screens
             switch (status)
             {
                 case ChatStatus.NpcText:
-                    DrawText(spriteBatch, npcMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, npcMouth, 315.0f, currentText);
                     break;
                 case ChatStatus.PlayerText:
-                    DrawText(spriteBatch, playerMouth, 300.0f, currentText);
+                    DrawText(spriteBatch, playerMouth, 315.0f, currentText);
                     break;
                 case ChatStatus.PlayerAnswer:
-                    DrawAnswer(gameTime, spriteBatch, playerMouth, 300.0f, answers[selectedEntry].text[0]);
+                    DrawAnswer(gameTime, spriteBatch, playerMouth, 310.0f, answers[selectedEntry].text[0]);
                     break;
             }
 
@@ -263,7 +263,7 @@ namespace GreenTime.Screens
 
             foreach (string line in lines)
             {
-                spriteBatch.DrawString(font, line, currentPosition + new Vector2( 30.0f, 35.0f ), Color.Black * alpha, 0.0f, Vector2.Zero, 0.7f, SpriteEffects.None, PlayScreen.TEXT_LAYER);
+                spriteBatch.DrawString(font, line, currentPosition + new Vector2( 30.0f, 30.0f ), Color.Black * alpha, 0.0f, Vector2.Zero, 0.7f, SpriteEffects.None, PlayScreen.TEXT_LAYER);
                 currentPosition.Y += ( font.LineSpacing / 2 );
             }
         }
@@ -279,8 +279,8 @@ namespace GreenTime.Screens
             // draw blinking arrows
             if (optionArrowsBlinking > 250)
             {
-                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 55.0f, ResourceManager.Instance["chat_bubble"].Height - 70.0f), ResourceManager.Instance["chat_arrow"], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 35.0f, 40.0f), ResourceManager.Instance["chat_arrow"], Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 63.0f, ResourceManager.Instance["chat_bubble"].Height - 70.0f), ResourceManager.Instance["chat_arrow"], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, currentPosition + new Vector2(width - 43.0f, 40.0f), ResourceManager.Instance["chat_arrow"], Color.White, (float)Math.PI, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
         }
 

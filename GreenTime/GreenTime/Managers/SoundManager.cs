@@ -213,8 +213,11 @@ namespace GreenTime.Managers
 
         public static void PlayAmbientSound()
         {
-            if ( ambientSound != null && !ambientSound.IsDisposed )
+            if (ambientSound != null && !ambientSound.IsDisposed)
+            {
+                ambientSound.Volume = 0.0f;
                 ambientSound.Play();
+            }
         }
 
         public static void ToggleMusic()
