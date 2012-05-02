@@ -13,7 +13,32 @@
     <leftScreenName>bedroom</leftScreenName>
     <rightScreenName>neighborhood</rightScreenName>
     <gameObjects>
-      <!-- Water drop -->
+      <!-- Water drop on/off -->
+      <!-- Turn on -->
+      <Item>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_3</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>320</boundX>
+          <boundWidth>100</boundWidth>
+          <text>Tap</text>
+          <sound>
+            <name>closingTap</name>
+            <looping>false</looping>
+          </sound>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle_3</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Turn off -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>drop</texture>
@@ -31,8 +56,8 @@
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>60</value>
+            <name>indoor_puzzle_3</name>
+            <value>0</value>
           </state>
         </showIf>
         <onInteract>
@@ -45,7 +70,7 @@
           </sound>
           <affectedStates>
             <state>
-              <name>indoor_puzzle</name>
+              <name>indoor_puzzle_3</name>
               <value>100</value>
             </state>
           </affectedStates>
@@ -55,22 +80,18 @@
       <Item>
         <sprite>
           <texture>cerealbox</texture>
-          <position>530 305</position>
+          <position>500 305</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>40</value>
-          </state>
-          <state>
-            <name>cereal_picked</name>
+            <name>indoor_puzzle_4</name>
             <value>0</value>
           </state>
         </showIf>
         <onInteract>
-          <boundX>420</boundX>
+          <boundX>390</boundX>
           <boundWidth>150</boundWidth>
           <text>Empty Cereal Box</text>
           <pickUpName>cereal</pickUpName>
@@ -80,18 +101,18 @@
       <Item>
         <sprite>
           <texture>waterbottle</texture>
-          <position>530 290</position>
+          <position>550 290</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>50</value>
+            <name>indoor_puzzle_5</name>
+            <value>0</value>
           </state>
         </showIf>
         <onInteract>
-          <boundX>420</boundX>
+          <boundX>440</boundX>
           <boundWidth>150</boundWidth>
           <text>Empty Water Bottle</text>
           <pickUpName>bottle</pickUpName>
@@ -110,8 +131,12 @@
             </drops>
             <effects>
               <state>
-                <name>indoor_puzzle</name>
-                <value>0</value>
+                <name>indoor_puzzle_4</name>
+                <value>50</value>
+              </state>
+              <state>
+                <name>indoor_puzzle_5</name>
+                <value>50</value>
               </state>
             </effects>
           </dropper>
@@ -129,7 +154,7 @@
             </drops>
             <effects>
               <state>
-                <name>indoor_puzzle</name>
+                <name>indoor_puzzle_5</name>
                 <value>100</value>
               </state>
             </effects>
@@ -148,7 +173,7 @@
             </drops>
             <effects>
               <state>
-                <name>indoor_puzzle</name>
+                <name>indoor_puzzle_4</name>
                 <value>100</value>
               </state>
             </effects>

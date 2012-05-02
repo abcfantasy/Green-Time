@@ -560,15 +560,14 @@ namespace GreenTime.Screens
         // check if player should change color or shape
         private void CheckPlayerStatus()
         {
-            
             int playerStatus;
             if ((StateManager.Instance.GetState(StateManager.STATE_DAY) > 2 ) && LevelManager.Instance.CurrentLevel.name.Equals("neighborhood") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
             {
                 StateManager.Instance.SetState("just_went_out", 0);
-                if (StateManager.Instance.GetState(StateManager.STATE_INDOOR) == 100)
+                if (StateManager.Instance.IndoorPuzzleSolved())
                 {
                     playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
-                    if (playerStatus == 50) player.turnGreen();
+                    if (playerStatus == 50)     player.turnGreen();
                     else if (playerStatus == 0) player.transformShape();
 
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Min(playerStatus + 50, 100));
@@ -576,10 +575,8 @@ namespace GreenTime.Screens
                 else
                 {
                     playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
-                    if (playerStatus == 100)
-                        player.turnGrey();
-                    else if (playerStatus == 50)
-                        player.transformShape();
+                    if (playerStatus == 100)        player.turnGrey();
+                    else if (playerStatus == 50)    player.transformShape();
 
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Max(playerStatus - 50, 0));                   
                 }

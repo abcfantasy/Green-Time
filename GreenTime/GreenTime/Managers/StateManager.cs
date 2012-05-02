@@ -14,7 +14,7 @@ namespace GreenTime.Managers
         // state to mark game should transition back to present
         public const string STATE_BACKTOPRESENT = "back_to_present";
         // state to keep track of the indoor puzzles and whether or not they're solved
-        public const string STATE_INDOOR = "indoor_puzzle";
+        public const string STATE_INDOOR = "indoor_puzzle_";
         // state to keep track of player status (0 = grey square head; 50 = grey round head; 100 = green round head;)
         public const string STATE_PLAYERSTATUS = "player_status";
         // state to mark if game is being loaded from a saved game
@@ -32,6 +32,7 @@ namespace GreenTime.Managers
         public string NewsTextureName;
 
         private bool tutorialNewsSeen = false;
+        private List<State> indoor_states = new List<State>();
         #endregion
 
         #region Properties
@@ -90,6 +91,7 @@ namespace GreenTime.Managers
             tutorialNewsSeen = false;
             SetState(STATE_PLAYERSTATUS, 100);
             SetState(STATE_DAY, 0);
+            ModifyStates(indoor_states);
         }
 
         /// <summary>
@@ -244,13 +246,13 @@ namespace GreenTime.Managers
 
             int day = GetState( STATE_DAY );
             ++day;
-            SetState( STATE_DAY, day);
+            SetState( STATE_DAY, day );
 
             // on day 1, make puzzle heater
             if (day == 1)
-                SetState(STATE_INDOOR, 20);
+                SetState(STATE_INDOOR + 2, 0);
             else
-                SetState( STATE_INDOOR, (new Random()).Next( 1, 7 ) * 10 );
+                SetState( STATE_INDOOR + (new Random()).Next( 1, 6 ), 0 );
             SetState("news_taken", 0);
             //SetState("is_in_past", 0);
 
@@ -267,6 +269,10 @@ namespace GreenTime.Managers
             LevelManager.Instance.GoHome();
         }
 
+        public bool IndoorPuzzleSolved()
+        {
+            return AllTrue(indoor_states);
+        }
 
         private string[] puzzles = {    "puzzle_garbage",
                                         "puzzle_sprinklers",
@@ -318,6 +324,9 @@ namespace GreenTime.Managers
         private StateManager() {
             SetState(STATE_PLAYERSTATUS, 100);
             SetState(STATE_DAY, 0);
+            for (int i = 1; i < 6; i++)
+                indoor_states.Add(new State(STATE_INDOOR + i, 100));
+            ModifyStates(indoor_states);
         }
 
         public static StateManager Instance { get { return instance; } }

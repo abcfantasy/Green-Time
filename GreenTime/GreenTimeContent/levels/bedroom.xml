@@ -67,23 +67,18 @@
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>10</value>
+            <name>indoor_puzzle_1</name>
+            <value>0</value>
           </state>
         </showIf>
       </Item>
-      <!-- Light switch -->
+      <!-- Light switch on/off -->
+      <!-- Turn on-->
       <Item>
-        <sprite>
-          <texture>lightswitch</texture>
-          <position>1199 283</position>
-          <layer>0.6</layer>
-          <shaded>false</shaded>
-        </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>10</value>
+            <name>indoor_puzzle_1</name>
+            <value>100</value>
           </state>
         </showIf>
         <onInteract>
@@ -96,13 +91,68 @@
           </sound>
           <affectedStates>
             <state>
-              <name>indoor_puzzle</name>
+              <name>indoor_puzzle_1</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Turn off -->
+      <Item>
+        <sprite>
+          <texture>lightswitch</texture>
+          <position>1199 283</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_1</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>1070</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Light</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle_1</name>
               <value>100</value>
             </state>
           </affectedStates>
         </onInteract>
       </Item>
-      <!-- Heat -->
+      <!-- Heat on/off -->
+      <!-- Turn on -->
+      <Item>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_2</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>460</boundX>
+          <boundWidth>320</boundWidth>
+          <text>Heater</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle_2</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Turn off -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>heat</texture>
@@ -121,8 +171,8 @@
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle</name>
-            <value>20</value>
+            <name>indoor_puzzle_2</name>
+            <value>0</value>
           </state>
         </showIf>
         <onInteract>
@@ -135,7 +185,7 @@
           </sound>
           <affectedStates>
             <state>
-              <name>indoor_puzzle</name>
+              <name>indoor_puzzle_2</name>
               <value>100</value>
             </state>
           </affectedStates>
@@ -143,22 +193,6 @@
       </Item>
       <!-- Computer -->
       <Item>
-        <!--
-        <sprite>
-          <texture>bedroom\computer_light</texture>
-          <position>830 178</position>
-          <layer>0.6</layer>
-          <shaded>false</shaded>
-        </sprite>
-        -->
-        <!--
-        <showIf>
-          <state>
-            <name>indoor_puzzle</name>
-            <value>30</value>
-          </state>
-        </showIf>
-        -->
         <onInteract>
           <boundX>750</boundX>
           <boundWidth>280</boundWidth>
