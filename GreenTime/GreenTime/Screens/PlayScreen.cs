@@ -463,9 +463,10 @@ namespace GreenTime.Screens
                         if ( interactingObject.interaction.chat != null && pickedObject == null)
                         {
                             // flip NPC to face player
-                            interactingObject.sprite.flipped = interactingObject.sprite.flippable && (interactingObject.sprite.position.X < player.Position.X);
+                            if ( interactingObject.sprite != null)
+                                interactingObject.sprite.flipped = interactingObject.sprite.flippable && (interactingObject.sprite.position.X < player.Position.X);
 
-                            ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth));
+                            ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth, interactingObject.interaction.startChatIndex));
                         }
 
                         // Pick up the object

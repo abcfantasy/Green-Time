@@ -226,6 +226,31 @@
         </affectedStates>
       </Value>
     </Item>
+
+    <Item>
+      <Key>19</Key>
+      <Value>
+        <text>
+          <line>Good day, neighbor!</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <leadsTo>20</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>20</Key>
+      <Value>
+        <text>
+          <line>Thank you neighbor, my flowers bloom nicely now!</line>
+        </text>
+      </Value>
+    </Item>
     
   </Asset>
 </XnaContent>

@@ -39,6 +39,9 @@ namespace GreenTimeGameData.Components
         public string chat = null;
 
         [ContentSerializer(Optional = true)]
+        public int startChatIndex = 0;
+
+        [ContentSerializer(Optional = true)]
         public Vector2 mouth = Vector2.Zero;
 
         // An identifier for the object when it's picked up

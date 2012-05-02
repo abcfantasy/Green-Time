@@ -27,16 +27,31 @@
       </Value>
     </Item>
 
-    <!--<Item>
-      <Index>20</Index>
-      <Text>What a beautiful day, and such nice, fresh air.</Text>
-      <showIf>
-        <state>
-          <name>puzzle_car_solved</name>
-          <value>100</value>
-        </state>
-      </showIf>
-    </Item>-->
+    <Item>
+      <Key>20</Key>
+      <Value>
+        <text>
+          <line>Good day, sir.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_car_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <leadsTo>21</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>21</Key>
+      <Value>
+        <text>
+          <line> What a beautiful day, and such nice, fresh air.</line>
+        </text>
+      </Value>
+    </Item>
+    
 
     <Item>
       <Key>2</Key>

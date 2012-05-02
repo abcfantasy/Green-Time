@@ -281,8 +281,18 @@
     </Item>
 
     <Item>
+      <Key>shop_npc</Key>
+      <Value>1280 152 109 309</Value>
+    </Item>
+    
+    <Item>
       <Key>shop_npc_bag</Key>
       <Value>1389 152 109 309</Value>
+    </Item>
+
+    <Item>
+      <Key>shop_npc_reusable_bag</Key>
+      <Value>1498 152 109 309</Value>
     </Item>
     
     <!-- forest -->

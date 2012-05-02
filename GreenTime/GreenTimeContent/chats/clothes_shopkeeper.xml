@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Good day, sir.</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>50</value>
+          </state>
+        </showIf>
+        <leadsTo>2</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>One moment please, sir. I just need to give these bags to this good customer, then I can help you.</line>
+        </text>
+        <leadsTo>3</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>Of course.</line>
+        </text>
+        <leadsTo>4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>Thank you.</line>
+        </text>
+        <leadsTo>5 6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>The clothes are very nice. Are they organic clothes?</line>
+        </text>
+        <leadsTo>7</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Why do you give your customers plastic bags?</line>
+        </text>
+        <leadsTo>8</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>Yes, but did you know they're called organic even when only 5% of what they're made is actually natural material? Not very helpful, I'd say.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>To carry what they buy, naturally.</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>But don't you know that plastic bags are bad for the environment?</line>
+        </text>
+        <leadsTo>10</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>I see your point. I will start recycling bags like paper bags.</line>
+        </text>
+        <leadsTo>11</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>That is very nice to hear. Have a nice day sir.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>back_to_present</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+    
+  </Asset>
+</XnaContent>

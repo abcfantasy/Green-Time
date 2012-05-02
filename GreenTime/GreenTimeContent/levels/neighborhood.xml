@@ -237,11 +237,41 @@
           <layer>0.6</layer>
           <flipped>true</flipped>
         </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
         <onInteract>
           <boundX>620</boundX>
           <boundWidth>410</boundWidth>
           <text>Neighbor</text>
           <chat>sprinkler_man</chat>
+          <mouth>880 280</mouth>
+        </onInteract>
+      </Item>
+
+      <!-- neighbor after puzzle -->
+      <Item>
+        <sprite>
+          <texture>neighbor_npc</texture>
+          <position>820 300</position>
+          <layer>0.6</layer>
+          <flipped>true</flipped>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_sprinklers_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>620</boundX>
+          <boundWidth>410</boundWidth>
+          <text>Neighbor</text>
+          <chat>sprinkler_man</chat>
+          <startChatIndex>19</startChatIndex>
           <mouth>880 280</mouth>
         </onInteract>
       </Item>

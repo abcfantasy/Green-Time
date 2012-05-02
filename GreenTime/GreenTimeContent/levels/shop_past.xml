@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <!-- TODO: replace this Asset with your own XML asset data. -->
+  <Asset Type="GreenTimeGameData.Components.Level">
+    <name>shop</name>
+    <texture>shop\shopTexture</texture>
+    <backgroundTexture>
+      <texture>background</texture>
+      <position>0 0</position>
+      <layer>0.75</layer>
+    </backgroundTexture>
+    <leftScreenName></leftScreenName>
+    <rightScreenName></rightScreenName>
+    <gameObjects>
+
+      <!-- npc -->
+      <Item>
+        <sprite>
+          <texture>shop_npc</texture>
+          <position>450 290</position>
+          <layer>0.6</layer>
+        </sprite>
+      </Item>
+      
+      <!-- clothes stand in the past -->
+      <Item>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>500</boundWidth>
+          <text>Clothes stand</text>
+          <chat>clothes_shopkeeper</chat>
+          <mouth>400 250</mouth>
+        </onInteract>
+      </Item>
+     
+    </gameObjects>
+  </Asset>
+</XnaContent>

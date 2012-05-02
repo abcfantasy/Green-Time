@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="System.Collections.Generic.Dictionary[int,GreenTimeGameData.Components.Chat]">
+    <Item>
+      <Key>0</Key>
+      <Value>
+        <text>
+          <line>Hello girl, what is in the plastic bag?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <leadsTo>4</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>1</Key>
+      <Value>
+        <text>
+          <line>Good day, you still have the plastic bag I see?</line>
+        </text>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>50</value>
+          </state>
+        </showIf>
+        <leadsTo>2</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>2</Key>
+      <Value>
+        <text>
+          <line>Yes, sadly the shopkeeper insisted of giving me one.</line>
+        </text>
+        <leadsTo>3</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>3</Key>
+      <Value>
+        <text>
+          <line>I see, good day to you!</line>
+        </text>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>4</Key>
+      <Value>
+        <text>
+          <line>Some clothes I just bought from the stand over there.</line>
+        </text>
+        <leadsTo>5 6</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>5</Key>
+      <Value>
+        <text>
+          <line>Are those clothes made from organic material?</line>
+        </text>
+        <leadsTo>7</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>6</Key>
+      <Value>
+        <text>
+          <line>Why do you have a plastic bag?</line>
+        </text>
+        <leadsTo>8</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>7</Key>
+      <Value>
+        <text>
+          <line>No, do you know clothes are already called organic when only 5% is made of natural material? That's a fake way of taking care of the environment!</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>8</Key>
+      <Value>
+        <text>
+          <line>To carry the wares I bought, why else would I have one?</line>
+        </text>
+        <leadsTo>9</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>9</Key>
+      <Value>
+        <text>
+          <line>You can bring your own reusable bag, this will help the environment get better without using one time plastic bags.</line>
+        </text>
+        <leadsTo>10</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>10</Key>
+      <Value>
+        <text>
+          <line>Maybe that's true. I'll do that when I can.</line>
+        </text>
+        <leadsTo>11</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>11</Key>
+      <Value>
+        <text>
+          <line>Glad to help. Have a nice day.</line>
+        </text>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>50</value>
+          </state>
+        </affectedStates>
+      </Value>
+    </Item>
+    
+  </Asset>
+</XnaContent>

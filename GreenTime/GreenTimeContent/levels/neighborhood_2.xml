@@ -41,6 +41,12 @@
           <position>1133 289</position>
           <layer>0.55</layer>
         </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_ecologicalstand_solved</name>
+            <value>0</value>
+          </state>
+        </showIf>
         <onInteract>
           <boundX>880</boundX>
           <boundWidth>250</boundWidth>

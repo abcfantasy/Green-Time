@@ -45,7 +45,7 @@ namespace GreenTime.Screens
         /// <summary>
         /// Constructor
         /// </summary>
-        public ChatScreen(string chatFile, bool transition)
+        public ChatScreen(string chatFile, bool transition, int chatIndex = 0)
         {
             IsPopup = true;
 
@@ -58,11 +58,11 @@ namespace GreenTime.Screens
             conversation = LevelManager.Instance.StartChat(chatFile);
             playerMouth = LevelManager.Instance.Player.Mouth;
 
-            InitializeChat( GetChat( 0 ) );
+            InitializeChat( GetChat( chatIndex ) );
         }
 
-        public ChatScreen(string chatFile, bool transition, Vector2 npcMouth)
-            : this(chatFile, transition)
+        public ChatScreen(string chatFile, bool transition, Vector2 npcMouth, int chatIndex = 0)
+            : this(chatFile, transition, chatIndex)
         {
             this.npcMouth = npcMouth;
         }

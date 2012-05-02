@@ -101,7 +101,7 @@
       <Item>
         <sprite>
           <texture>waterbottle</texture>
-          <position>550 290</position>
+          <position>535 290</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
         </sprite>
