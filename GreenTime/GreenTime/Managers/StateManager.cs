@@ -251,8 +251,10 @@ namespace GreenTime.Managers
             // on day 1, make puzzle heater
             if (day == 1)
                 SetState(STATE_INDOOR + 2, 0);
+            else if (day == 2)
+                SetState(STATE_INDOOR + 1, 0);
             else
-                SetState( STATE_INDOOR + (new Random()).Next( 1, 6 ), 0 );
+                SetState(STATE_INDOOR + (new Random()).Next(1, 6), 0);
             SetState("news_taken", 0);
             //SetState("is_in_past", 0);
 
@@ -294,6 +296,8 @@ namespace GreenTime.Managers
                 tutorialNewsSeen = true;
                 return "computer\\tutorial";
             }
+            else if (StateManager.Instance.GetState("progress") >= 99)      // MUST HANDLE THIS SITUATION, WHEN GAME IS COMPLETE
+                return "computer\\tutorial";
             else
             {
                 int newsIndex = 0;
