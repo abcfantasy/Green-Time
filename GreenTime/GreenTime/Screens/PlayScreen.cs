@@ -561,7 +561,11 @@ namespace GreenTime.Screens
         private void CheckPlayerStatus()
         {
             int playerStatus;
-            if ((StateManager.Instance.GetState(StateManager.STATE_DAY) > 2 ) && LevelManager.Instance.CurrentLevel.name.Equals("neighborhood") && StateManager.Instance.GetState("just_went_out") == 100 && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 && StateManager.Instance.GetState("progress") != 100)
+            if ((!SettingsManager.TutorialsEnabled || (StateManager.Instance.GetState(StateManager.STATE_DAY) > 2 ))    // with enabled tutorials, player only changes status after 2nd day 
+                && LevelManager.Instance.CurrentLevel.name.Equals("neighborhood") 
+                && StateManager.Instance.GetState("just_went_out") == 100 
+                && StateManager.Instance.GetState(StateManager.STATE_LOAD) == 0 
+                && StateManager.Instance.GetState("progress") != 100)
             {
                 StateManager.Instance.SetState("just_went_out", 0);
                 if (StateManager.Instance.IndoorPuzzleSolved())
