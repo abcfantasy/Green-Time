@@ -121,6 +121,7 @@ namespace GreenTime.Managers
         {
             if (!levels.ContainsKey(level))
             {
+                StateManager.Instance.SetState("visited_" + level, 100);
                 levels[level] = content.Load<Level>(@"levels\" + level);
                 foreach (GameObject o in levels[level].gameObjects)
                     o.Load();

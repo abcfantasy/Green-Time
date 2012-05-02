@@ -456,6 +456,9 @@ namespace GreenTime.Screens
                                     StateManager.Instance.SetState("tutorial_computer", 100);   // do not show computer tutorial if already interacted with
                                     ScreenManager.AddScreen(new ComputerScreen());
                                     break;
+                                case "map":
+                                    ScreenManager.AddScreen(new MapScreen());
+                                    break;
                             }
                         }
 

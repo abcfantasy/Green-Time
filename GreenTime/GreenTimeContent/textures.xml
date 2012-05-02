@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="System.Collections.Generic.Dictionary[string,Microsoft.Xna.Framework.Rectangle]">
+    <!-- Map -->
+    <Item>
+      <Key>neighborhood_t</Key>
+      <Value>408 912 200 113</Value>
+    </Item>
+    <Item>
+      <Key>neighborhood_2_t</Key>
+      <Value>608 912 200 113</Value>
+    </Item>
+    <Item>
+      <Key>shop_t</Key>
+      <Value>808 912 200 113</Value>
+    </Item>
+    <Item>
+      <Key>forest_t</Key>
+      <Value>808 800 200 113</Value>
+    </Item>
+    <Item>
+      <Key>map_glow</Key>
+      <Value>803 676 210 123</Value>
+    </Item>
     
     <!-- Common stuff -->
     <Item>
