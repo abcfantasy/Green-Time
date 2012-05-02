@@ -27,7 +27,7 @@
           <boundX>160</boundX>
           <boundWidth>560</boundWidth>
           <text>Bed</text>
-          <thought>I'm not going back to sleep again.</thought>
+          <thought>That was a good night's sleep.</thought>
         </onInteract>
       </Item>
       <!-- Window light beams -->
@@ -140,6 +140,7 @@
           <boundX>460</boundX>
           <boundWidth>320</boundWidth>
           <text>Heater</text>
+          <thought>Maybe a little more heat won't hurt.</thought>
           <sound>
             <name>hitSwitch</name>
             <looping>false</looping>
@@ -179,6 +180,7 @@
           <boundX>460</boundX>
           <boundWidth>320</boundWidth>
           <text>Heater</text>
+          <thought>Why waste heat on a summer day?</thought>
           <sound>
             <name>hitSwitch</name>
             <looping>false</looping>

@@ -106,8 +106,8 @@ namespace GreenTimeGameData.Components
             {
                 thought_time += gameTime.ElapsedGameTime.Milliseconds;
                 if (thought_time >= 3000)
-                    thought_alpha = 1.0f - ( (thought_time - 3000f) / 1000f );
-                if (thought_time >= 4000)
+                    thought_alpha = 1.0f - ( (thought_time - 3000f) / 250f );
+                if (thought_time >= 3250)
                     Thought = null;
             }
         }
@@ -150,6 +150,8 @@ namespace GreenTimeGameData.Components
             current_sprite.position.X += amount;
             if (amount > 0)         faceRight();
             else if (amount < 0)    faceLeft();
+            if (thought != null && thought_time < 2500)
+                thought_time = Math.Min( 2500, thought_time + Math.Abs( amount ) * 100 );
         }
         public void moveTo(float position)  { current_sprite.position.X = position; }
         public void walk()                  { current_sprite.Play("walk"); }

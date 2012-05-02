@@ -41,6 +41,14 @@
       
       <!-- clothes stand in the past -->
       <Item>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>500</boundWidth>
+          <text>Clothes stand</text>
+          <thought>It's not much to choose from, but everything's cheap</thought>
+        </onInteract>
+      </Item>
+      <Item>
         <showIf>
           <state>
             <name>puzzle_bags_solved</name>

@@ -100,6 +100,7 @@ namespace GreenTime.Managers
             loaded = false;
 
             LoadAllLevels();
+            player.moveTo(startPosition);
         }
 
         /// <summary>
@@ -116,15 +117,6 @@ namespace GreenTime.Managers
             }
         }
 
-        /*
-        public void LoadLevel(string levelName)
-        {
-            if (!levels.ContainsKey(levelName) )
-            {
-                levels[levelName] = content.Load<Level>(@"levels\" + levelName);
-            }
-        }*/
-
         public void GoTo( string level )
         {
             if (!levels.ContainsKey(level))
@@ -135,6 +127,7 @@ namespace GreenTime.Managers
             }
 
             currentLevel = levels[level];
+            player.Thought = null;
         }
 
         public Dictionary<int,Chat> StartChat(string chat)

@@ -13,6 +13,15 @@
     <leftScreenName>bedroom</leftScreenName>
     <rightScreenName>neighborhood</rightScreenName>
     <gameObjects>
+      <!-- Fridge -->
+      <Item>
+        <onInteract>
+          <boundX>80</boundX>
+          <boundWidth>180</boundWidth>
+          <text>Fridge</text>
+          <thought>I'm not hungry right now</thought>
+        </onInteract>
+      </Item>
       <!-- Water drop on/off -->
       <!-- Turn on -->
       <Item>
@@ -64,6 +73,7 @@
           <boundX>320</boundX>
           <boundWidth>100</boundWidth>
           <text>Tap</text>
+          <thought>This seems to be leaking...</thought>
           <sound>
             <name>closingTap</name>
             <looping>false</looping>
@@ -116,6 +126,21 @@
           <boundWidth>150</boundWidth>
           <text>Empty Water Bottle</text>
           <pickUpName>bottle</pickUpName>
+        </onInteract>
+      </Item>
+      <!-- All Bins Thought -->
+      <Item>
+        <showIf>
+          <state>
+            <name>item_picked</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>530</boundX>
+          <boundWidth>380</boundWidth>
+          <text>Bins</text>
+          <thought>Three bins, to separate the trash.</thought>
         </onInteract>
       </Item>
       <!-- All Bins -->
