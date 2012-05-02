@@ -23,6 +23,39 @@
     </ambientSound>
     <gameObjects>
 
+      <!-- npc with reusable bag -->
+      <Item>
+        <sprite>
+          <texture>shop_npc_reusable_bag</texture>
+          <position>560 320</position>
+          <layer>0.6</layer>
+          <flipped>true</flipped>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+      </Item>
+      
+      <!-- clothes stand in the past -->
+      <Item>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>50</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>500</boundWidth>
+          <text>Clothes stand</text>
+          <transition>shop_past</transition>
+        </onInteract>
+      </Item>
+
+
       <!-- npc with plastic bag 1 -->
       <Item>
         <sprite>
@@ -67,38 +100,6 @@
           <chat>plastic_bag_customer</chat>
           <startChatIndex>1</startChatIndex>
           <mouth>670 300</mouth>
-        </onInteract>
-      </Item>
-
-      <!-- npc with reusable bag -->
-      <Item>
-        <sprite>
-          <texture>shop_npc_reusable_bag</texture>
-          <position>560 320</position>
-          <layer>0.6</layer>
-          <flipped>true</flipped>
-        </sprite>
-        <showIf>
-          <state>
-            <name>puzzle_bags_solved</name>
-            <value>100</value>
-          </state>
-        </showIf>
-      </Item>
-      
-      <!-- clothes stand in the past -->
-      <Item>
-        <showIf>
-          <state>
-            <name>puzzle_bags_solved</name>
-            <value>50</value>
-          </state>
-        </showIf>
-        <onInteract>
-          <boundX>0</boundX>
-          <boundWidth>500</boundWidth>
-          <text>Clothes stand</text>
-          <transition>shop_past</transition>
         </onInteract>
       </Item>
       
