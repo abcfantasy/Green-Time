@@ -151,6 +151,26 @@
           <transition>forest_past</transition>
         </onInteract>
       </Item>
+
+      <!-- acorn seeding area -->
+      <Item>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>600</boundWidth>
+          <text>Fertile soil</text>
+          <dropper>
+            <drops>
+              <Item>acorn</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>advance_day</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
+        </onInteract>
+      </Item>
     </gameObjects>    
   </Asset>
 </XnaContent>
