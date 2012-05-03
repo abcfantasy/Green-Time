@@ -35,7 +35,7 @@
           <boundX>20</boundX>
           <boundWidth>150</boundWidth>
           <text>Bike</text>
-          <thought>Nice bike, but I have no where to go right now.</thought>
+          <thought>It's a nice bike, but I have nowhere to go right now.</thought>
         </onInteract>
       </Item>
       

@@ -155,6 +155,15 @@ namespace GreenTimeGameData.Components
                 activeAnimations[fs.name] = fs.frames;            
         }
 
+        public void Init()
+        {
+            Point nextPoint = GetTextureRectangleXY(currentFrameSet, currentFrameIndex);
+            nextFrameBounds.X = nextPoint.X;
+            nextFrameBounds.Y = nextPoint.Y;
+
+            UpdateTextureRectangle();
+        }
+
         #endregion
 
         #region Update and Draw

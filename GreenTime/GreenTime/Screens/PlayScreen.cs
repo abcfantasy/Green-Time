@@ -198,6 +198,7 @@ namespace GreenTime.Screens
                                 foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
                                     if (StateManager.Instance.CheckDependencies(ap.dependencies))
                                         ((AnimatedSprite)io.sprite).ActiveAnimations[ap.name] = ap.frames;
+                                ((AnimatedSprite)io.sprite).Init();
                             }
                         }
                     }

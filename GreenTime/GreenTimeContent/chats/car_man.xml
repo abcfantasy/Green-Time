@@ -147,7 +147,7 @@
         <showIf>
           <state>
             <name>player_status</name>
-            <value>100</value>
+            <between>50 100</between>
           </state>
         </showIf>
         <affectedStates>

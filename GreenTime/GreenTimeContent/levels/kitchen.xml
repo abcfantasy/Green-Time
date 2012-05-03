@@ -254,10 +254,10 @@
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>lightbulb2</texture>
-          <position>684 0</position>
+          <position>753 -44</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
-          <frameSize>326 231</frameSize>
+          <frameSize>200 250</frameSize>
           <framesPerLine>2</framesPerLine>
           <framesPerSecond>1</framesPerSecond>
           <crossFade>true</crossFade>
