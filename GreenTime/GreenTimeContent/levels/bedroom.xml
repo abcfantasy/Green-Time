@@ -34,11 +34,12 @@
       <Item>
         <sprite Type="GreenTimeGameData.Components.Calendar">
           <texture>calendar</texture>
-          <position>464 177</position>
+          <position>464 110</position>
           <layer>0.7</layer>
           <shaded>false</shaded>
         </sprite>
       </Item>
+      
       <!-- Window light beams -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
