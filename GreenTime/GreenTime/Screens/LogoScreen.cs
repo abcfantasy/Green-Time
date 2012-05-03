@@ -77,7 +77,7 @@ namespace GreenTime.Screens
 
             SoundManager.UpdateFade(TransitionPosition);
 
-            if (IsActive)
+            if (!coveredByOtherScreen)
             {
                 elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
@@ -110,14 +110,14 @@ namespace GreenTime.Screens
                         leaves.RemoveAt(i);
                         i--;
                     }
-                    
+
                 }
 
                 if (leafInterval >= nextLeaf)
                 {
                     leafInterval = 0.0f;
                     nextLeaf = new Random().Next(1000, 2500);
-                    if ( leaves.Count < maxLeaves )
+                    if (leaves.Count < maxLeaves)
                         leaves.Add(new Leaf());
                 }
             }
