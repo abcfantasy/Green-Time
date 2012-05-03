@@ -125,7 +125,7 @@ namespace GreenTime.Screens
 
             CheckPlayerStatus();
 
-            LoadGameObjects();
+            //LoadGameObjects();
 
             LoadHUDObjects();
 
