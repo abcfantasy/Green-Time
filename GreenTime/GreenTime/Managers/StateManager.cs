@@ -33,6 +33,7 @@ namespace GreenTime.Managers
         // this represents the news texture on the computer, that changes every day
         public string NewsTextureName;
 
+        public bool tutorialNewsSeen = false;
         private bool tutorialNewsSeen = false;
         private List<State> indoor_states = new List<State>();
         #endregion

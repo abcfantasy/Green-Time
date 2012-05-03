@@ -470,6 +470,7 @@ namespace GreenTime.Screens
                             switch (interactingObject.interaction.callback)
                             {
                                 case "news":
+                                    StateManager.Instance.tutorialNewsSeen = true;
                                     StateManager.Instance.SetState("tutorial_computer", 100);   // do not show computer tutorial if already interacted with
                                     ScreenManager.AddScreen(new ComputerScreen());
                                     break;
