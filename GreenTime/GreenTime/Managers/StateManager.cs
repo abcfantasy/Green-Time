@@ -251,15 +251,14 @@ namespace GreenTime.Managers
             ++day;
             SetState( STATE_DAY, day );
 
-            // on day 1, make puzzle heater
-            if (day == 1)
-                SetState(STATE_INDOOR + 2, 0);
-            else if (day == 2)
-                SetState(STATE_INDOOR + 1, 0);
-            else
-                SetState(STATE_INDOOR + (new Random()).Next(1, 7), 0);
-            SetState("news_taken", 0);
-            //SetState("is_in_past", 0);
+            switch (day)
+            {
+                // on day 1, make puzzle heater
+                case 1: SetState(STATE_INDOOR + 2, 0); break;
+                // on day 1, make puzzle light bulb
+                case 2: SetState(STATE_INDOOR + 1, 0); break;
+                default: SetState(STATE_INDOOR + (new Random()).Next(1, 7), 0); break;
+            }
 
             // The picked objects reset daily
             List<State> toModify = new List<State>();
@@ -336,7 +335,7 @@ namespace GreenTime.Managers
         private StateManager() {
             SetState(STATE_PLAYERSTATUS, 100);
             SetState(STATE_DAY, 0);
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i < 7; i++)
                 indoor_states.Add(new State(STATE_INDOOR + i, 100));
             ModifyStates(indoor_states);
         }

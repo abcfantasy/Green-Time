@@ -536,8 +536,15 @@ namespace GreenTime.Screens
                 #region Advance Day
                 if (keyboardState.IsKeyDown(Keys.D))
                 {
-                    StateManager.Instance.AdvanceDay();
-                    LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    if (StateManager.Instance.IsInPast())
+                    {
+                        StateManager.Instance.SetState(StateManager.STATE_BACKTOPRESENT, 100);
+                    }
+                    else
+                    {
+                        StateManager.Instance.AdvanceDay();
+                        LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                    }
                 }
                 #endregion
 
