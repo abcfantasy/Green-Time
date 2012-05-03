@@ -12,8 +12,8 @@ namespace GreenTime.Screens
     public class ComputerScreen : GameScreen
     {
         #region Constants
-        private const int SCREEN_WIDTH = 836;
-        private const int SCREEN_HEIGHT = 685 - 135;
+        private const int SCREEN_WIDTH = 818 - 25;
+        private const int SCREEN_HEIGHT = 685 - 185;
         #endregion
 
         #region Fields
@@ -21,12 +21,7 @@ namespace GreenTime.Screens
         Texture2D screenBackground;
         Texture2D screenOutline;
         Texture2D screenPicture;
-        Rectangle screenRect = new Rectangle( 0, 0, 836, 685 );
-
-        // search options
-        List<SearchEntry> searchEntries = new List<SearchEntry>();
-        int selectedEntry = 0;
-        string searchTitle;
+        Rectangle screenRect = new Rectangle( 0, 0, 818, 685 );
 
         int finalScreenX;
         int finalScreenY;
@@ -47,12 +42,12 @@ namespace GreenTime.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.3);
 
             centerScreenX = (int)Math.Round((SettingsManager.GAME_WIDTH / 2.0f));
-            centerScreenY = (int)Math.Round((SettingsManager.GAME_HEIGHT / 2.0f));
+            centerScreenY = (int)Math.Round((SettingsManager.GAME_HEIGHT / 2.0f)) + 20;
             finalScreenX = (int)Math.Round((SettingsManager.GAME_WIDTH / 2.0f) - (SCREEN_WIDTH / 2.0f));
-            finalScreenY = (int)Math.Round((SettingsManager.GAME_HEIGHT / 2.0f) - (SCREEN_HEIGHT / 2.0f));
+            finalScreenY = (int)Math.Round((SettingsManager.GAME_HEIGHT / 2.0f) - (SCREEN_HEIGHT / 2.0f)) - 5;
 
             localCenterScreenX = (int)Math.Round(SCREEN_WIDTH / 2.0f);
-            localCenterScreenY = (int)Math.Round(SCREEN_HEIGHT / 2.0f);
+            localCenterScreenY = (int)Math.Round(SCREEN_HEIGHT / 2.0f) - 15;
             
         }
 
@@ -76,8 +71,6 @@ namespace GreenTime.Screens
             for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
                 bgColor[i] = Color.White;
             screenBackground.SetData(bgColor);
-
-            //AddSearchEntries();
         }
 
         /// <summary>
@@ -87,15 +80,6 @@ namespace GreenTime.Screens
         {
             if (content != null)
                 content.Unload();
-        }
-
-        /// <summary>
-        /// Add the available search entries
-        /// </summary>
-        private void AddSearchEntries()
-        {
-            //SearchEntry entryNews = new SearchEntry("News");
-            //searchEntries.Add(entryNews);
         }
         #endregion
 
@@ -108,54 +92,7 @@ namespace GreenTime.Screens
         {
             if (input.IsMenuSelect() || input.IsMenuCancel())
                 OnCancel();
-            /*
-            // Move to the previous menu entry?
-            if (input.IsMenuUp())
-            {
-                selectedEntry--;
-
-                if (selectedEntry < 0)
-                    selectedEntry = searchEntries.Count - 1;
-            }
-
-            // Move to the next menu entry?
-            if (input.IsMenuDown())
-            {
-                selectedEntry++;
-
-                if (selectedEntry >= searchEntries.Count)
-                    selectedEntry = 0;
-            }
-
-            // update title
-            searchTitle = searchEntries[selectedEntry].Text;
-
-            // Accept or cancel the menu? We pass in our ControllingPlayer, which may
-            // either be null (to accept input from any player) or a specific index.
-            // If we pass a null controlling player, the InputState helper returns to
-            // us which player actually provided the input. We pass that through to
-            // OnSelectEntry and OnCancel, so they can tell which player triggered them.
-
-            if (input.IsMenuSelect())
-            {
-                OnSelectEntry(selectedEntry);
-            }
-            else if (input.IsMenuCancel())
-            {
-                OnCancel();
-            }
-             */
         }
-
-
-        /// <summary>
-        /// Handler for when the user has chosen a menu entry.
-        /// </summary>
-        protected virtual void OnSelectEntry(int entryIndex)
-        {
-            //searchEntries[entryIndex].OnSelectEntry();
-        }
-
 
         /// <summary>
         /// Handler for when the user has cancelled the menu.
@@ -185,7 +122,7 @@ namespace GreenTime.Screens
 
             spriteBatch.Begin( SpriteSortMode.BackToFront, BlendState.AlphaBlend );
 
-            spriteBatch.Draw(screenOutline, new Vector2(centerScreenX, centerScreenY), screenRect, Color.White, 0.0f, new Vector2( screenOutline.Width / 2.0f, screenOutline.Height / 2.0f ), 1.0f, SpriteEffects.None, 0 );
+            spriteBatch.Draw(screenOutline, new Vector2(centerScreenX, centerScreenY), screenRect, Color.White, 0.0f, new Vector2(screenRect.Width / 2.0f, screenRect.Height / 2.0f), 1.0f, SpriteEffects.None, 0);
 
             // this beautiful piece of code handles the effect of turning on/off the screen
             // this beautiful piece of code was written in one go and executed perfectly! I should drink to this
@@ -215,52 +152,11 @@ namespace GreenTime.Screens
             // draw the normal stuff
             if (TransitionAlpha == 1.0)
             {
-                // make sure our entries are in the right place before we draw them
-                UpdateMenuEntryLocations();
-
-                // Draw each menu entry in turn.
-                /*
-                for (int i = 0; i < searchEntries.Count; i++)
-                {
-                    SearchEntry searchEntry = searchEntries[i];
-
-                    bool isSelected = IsActive && (i == selectedEntry);
-
-                    searchEntry.Draw(this, isSelected, gameTime);
-                }
-
-                // draw middle border
-                spriteBatch.Draw(screenBackground, new Vector2(finalScreenX + 250, finalScreenY), new Rectangle(0, 0, 2, screenBackground.Height), Color.Gray);
-                */
                 // draw title
-                spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 252.0f, finalScreenY + 48.0f), new Rectangle(0, 0, 691, 482), Color.White);
-                //spriteBatch.DrawString(this.ScreenManager.Font, searchTitle, new Vector2(finalScreenX + 270.0f, finalScreenY + 50.0f), Color.DarkGreen, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
-                 
+                spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 52.0f, finalScreenY), new Rectangle(0, 0, 691, 482), Color.White);
             }
 
             spriteBatch.End();
-        }
-
-        /// <summary>
-        /// Allows the screen the chance to position the menu entries. By default
-        /// all menu entries are lined up in a vertical list, centered on the screen.
-        /// </summary>
-        private void UpdateMenuEntryLocations()
-        {
-            // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(finalScreenX + 70.0f, finalScreenY + 75.0f);
-
-            // update each menu entry's location in turn
-            for (int i = 0; i < searchEntries.Count; i++)
-            {
-                SearchEntry searchEntry = searchEntries[i];
-
-                // set the entry's position
-                searchEntry.Position = position;
-
-                // move down for the next entry the size of this entry
-                position.Y += searchEntry.GetHeight(this);
-            }
         }
         #endregion
 
