@@ -69,6 +69,7 @@ namespace GreenTime.Managers
         /// <param name="content"></param>
         public static void LoadMenuSounds(ContentManager content)
         {
+
             SoundEffect.MasterVolume = 1.0f;
 
             // music
@@ -85,6 +86,7 @@ namespace GreenTime.Managers
 
         public static void LoadGameplaySounds(ContentManager content)
         {
+
             SoundEffect.MasterVolume = 1.0f;
 
             // music
@@ -217,7 +219,7 @@ namespace GreenTime.Managers
         /// <param name="transition"></param>
         public static void UpdateFade(float transition)
         {
-            MediaPlayer.Volume = MathHelper.Clamp( 1.0f - transition, 0.3f, 1.0f ); // volume between 0.3 to 1.0
+            MediaPlayer.Volume = MathHelper.Clamp( 0.5f - ( transition / 2.0f ), 0.3f, 0.5f ); // volume between 0.3 to 1.0
         }
 
         /// <summary>
