@@ -179,6 +179,9 @@ namespace GreenTime.Screens
                     if (pauseTime > 3000)
                     {
                         LoadingScreen.Load(ScreenManager, false,
+                            new TextOnBlackScreen("AVANTgarde - Credits", "Andrei Livadariu\nAndrew Borg Cardona\nNina Croitoru\nVirgil Tanase\n\nMentored by: Terry Guijt", new GameScreen[] { new BackgroundScreen(), new LogoScreen(true), new MainMenuScreen() }, false, 5000));
+                        /*
+                        LoadingScreen.Load(ScreenManager, false,
                             new TextOnBlackScreen("Programmers", "Andrei Livadariu\nAndrew Borg Cardona", 
                                 new GameScreen[] { new TextOnBlackScreen("Art", "Nina Croitoru", 
                                     new GameScreen[] { new TextOnBlackScreen("Sound & Animations", "Virgil Tanase", 
@@ -188,6 +191,8 @@ namespace GreenTime.Screens
                                     ) }
                                 ) }    
                             ));
+                         * */
+                         
                     }
                 }
                 #endregion

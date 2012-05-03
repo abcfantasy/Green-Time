@@ -596,7 +596,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 6);
+                    player.move(movement * 16);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
@@ -688,19 +688,21 @@ namespace GreenTime.Screens
             if (player.Position.X > SettingsManager.GAME_WIDTH)
             {
                 SoundManager.StopFootsteps();
+                // TEST
+                /*
+                StateManager.Instance.SetState("progress", 100);
+
+                LoadingScreen.Load(ScreenManager, true,
+                    new TextOnBlackScreen("Congratulations!", "You solved all puzzles and brought color back to the game world.",
+                        new GameScreen[] { new AutoTransitionFinalScreen() }, true, 4000));
+                return;
+                */
                 // is it final room?
                 if (LevelManager.Instance.CurrentLevel.rightScreenName == "final_room")
                 {
+                    
                     if (StateManager.Instance.GetState("progress") == 100)
                     {
-                        /*
-                        // transition to the right
-                        LevelManager.Instance.MoveRight();
-                        LoadingScreen.Load(ScreenManager, false, new FinalScreen());
-                         * */
-                        StateManager.Instance.NewGame();
-                        LevelManager.Instance.NewGame();
-
                         StateManager.Instance.SetState("progress", 100);
 
                         LoadingScreen.Load(ScreenManager, true,
@@ -711,8 +713,15 @@ namespace GreenTime.Screens
                     else if (StateManager.Instance.GetState("progress") >= 95)
                     {
                         StateManager.Instance.SetState("progress", 100);
+
+                        LoadingScreen.Load(ScreenManager, true,
+                            new TextOnBlackScreen("Congratulations!", "You solved all puzzles and brought color back to the game world.",
+                                new GameScreen[] { new AutoTransitionFinalScreen() }, true, 4000));
+                               /*
+                        StateManager.Instance.SetState("progress", 100);
                         StateManager.Instance.AdvanceDay();
                         LoadingScreen.Load(ScreenManager, false, new PlayScreen());
+                                */
 
                     }
                     else

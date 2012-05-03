@@ -94,6 +94,7 @@ namespace GreenTime.Managers
 
             // music
             music = content.Load<Song>(SONG_GAME);
+            alternateMusic = content.Load<Song>(SONG_INTRO);
 
             // sound effects
             globalSounds = new SoundEffect[gameplaySoundCount];

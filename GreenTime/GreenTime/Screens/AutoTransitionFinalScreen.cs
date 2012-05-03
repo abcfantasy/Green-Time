@@ -178,8 +178,8 @@ namespace GreenTime.Screens
                 {
                     LevelManager.Instance.MoveRight();
                     LevelManager.Instance.MoveRight();
-                    LoadingScreen.Load(ScreenManager, true, new TextOnBlackScreen("What about our world?", "We cannot travel back in time when it's too late.",
-                        new GameScreen[] { new AutoTransitionFinalScreen() }, false));
+                    LoadingScreen.Load(ScreenManager, false, new TextOnBlackScreen("But what about our world?", "We cannot travel back in time when it's too late.",
+                        new GameScreen[] { new AutoTransitionFinalScreen() }, false, 4500));
                 }
                 else
                 {
