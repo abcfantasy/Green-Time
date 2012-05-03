@@ -26,6 +26,8 @@ namespace GreenTime.Managers
         #endregion
 
         #region Fields
+        private DateTime initialDate;
+
         private Dictionary<string, int> states = new Dictionary<string,int>();
 
         // this represents the news texture on the computer, that changes every day
@@ -89,6 +91,7 @@ namespace GreenTime.Managers
         {
             states.Clear();
             tutorialNewsSeen = false;
+            initialDate = DateTime.Now;
             SetState(STATE_PLAYERSTATUS, 100);
             SetState(STATE_DAY, 0);
             ModifyStates(indoor_states);
@@ -319,6 +322,11 @@ namespace GreenTime.Managers
             int newsIndex = new Random().Next(1, 5);
             return "news\\news" + newsIndex.ToString();
              */
+        }
+
+        public DateTime GetCurrentGameDate()
+        {
+            return initialDate.AddDays(StateManager.Instance.GetState(StateManager.STATE_DAY) - 1);
         }
         #endregion
 
