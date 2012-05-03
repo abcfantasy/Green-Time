@@ -161,6 +161,7 @@ namespace GreenTime.Screens
         /// </summary>
         protected virtual void OnCancel()
         {
+            SoundManager.PlaySound(SoundManager.SOUND_COMPUTEROFF);
             ExitScreen();
         }
 
