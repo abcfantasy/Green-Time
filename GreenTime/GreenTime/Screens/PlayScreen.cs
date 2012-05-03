@@ -581,7 +581,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 16);
+                    player.move(movement * 6);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
