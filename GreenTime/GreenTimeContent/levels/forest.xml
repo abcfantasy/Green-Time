@@ -83,7 +83,7 @@
         <sprite>
           <texture>gate_front</texture>
           <position>280 135</position>
-          <layer>0.6</layer>
+          <layer>0.4</layer>
         </sprite>
       </Item>
       
