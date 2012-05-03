@@ -128,6 +128,27 @@
           <pickUpName>bottle</pickUpName>
         </onInteract>
       </Item>
+      <!-- Water Bottle -->
+      <Item>
+        <sprite>
+          <texture>apple</texture>
+          <position>570 290</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_6</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>440</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Apple</text>
+          <pickUpName>apple</pickUpName>
+        </onInteract>
+      </Item>
       <!-- All Bins Thought -->
       <Item>
         <showIf>
@@ -153,6 +174,7 @@
             <drops>
               <Item>cereal</Item>
               <Item>bottle</Item>
+              <Item>apple</Item>
             </drops>
             <effects>
               <state>
@@ -161,6 +183,10 @@
               </state>
               <state>
                 <name>indoor_puzzle_5</name>
+                <value>50</value>
+              </state>
+              <state>
+                <name>indoor_puzzle_6</name>
                 <value>50</value>
               </state>
             </effects>
@@ -205,6 +231,25 @@
           </dropper>
         </onInteract>
       </Item>
+      <!-- Food Bin (while apple picked) -->
+      <Item>
+        <onInteract>
+          <boundX>780</boundX>
+          <boundWidth>130</boundWidth>
+          <text>Waste Bin</text>
+          <dropper>
+            <drops>
+              <Item>apple</Item>
+            </drops>
+            <effects>
+              <state>
+                <name>indoor_puzzle_6</name>
+                <value>100</value>
+              </state>
+            </effects>
+          </dropper>
+        </onInteract>
+      </Item>
       <!-- Lightbulb -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -224,7 +269,7 @@
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle_6</name>
+            <name>indoor_puzzle_7</name>
             <value>0</value>
           </state>
         </showIf>
@@ -234,7 +279,7 @@
       <Item>
         <showIf>
           <state>
-            <name>indoor_puzzle_6</name>
+            <name>indoor_puzzle_7</name>
             <value>100</value>
           </state>
         </showIf>
@@ -248,7 +293,7 @@
           </sound>
           <affectedStates>
             <state>
-              <name>indoor_puzzle_6</name>
+              <name>indoor_puzzle_7</name>
               <value>0</value>
             </state>
           </affectedStates>
@@ -264,7 +309,7 @@
         </sprite>
         <showIf>
           <state>
-            <name>indoor_puzzle_6</name>
+            <name>indoor_puzzle_7</name>
             <value>0</value>
           </state>
         </showIf>
@@ -278,7 +323,7 @@
           </sound>
           <affectedStates>
             <state>
-              <name>indoor_puzzle_6</name>
+              <name>indoor_puzzle_7</name>
               <value>100</value>
             </state>
           </affectedStates>
