@@ -47,6 +47,8 @@ namespace GreenTime.Screens
         private List<GameObject> activeObjects = new List<GameObject>();
         private GameObject interactingObject;
 
+        private Calendar calendar = null;
+
         private Player player;
         private Sprite pickedObject;
 
@@ -178,15 +180,24 @@ namespace GreenTime.Screens
                             ResourceManager.Instance.LoadSound(io.interaction.sound.name);
                     }
                     if (io.sprite != null) {
-                        io.sprite.Load();
-                        visibleObjects.Add(io.sprite);
+                        if (io.sprite.GetType() == typeof(Calendar))
+                        {
+                            calendar = (Calendar)io.sprite;
+                            calendar.Initialize(StateManager.Instance.GetCurrentGameDate(), ScreenManager.Font);
+                        }
+                        else
+                        {
+                            io.sprite.Load();
+                            visibleObjects.Add(io.sprite);
 
-                        if (io.sprite.GetType() == typeof(AnimatedSprite)) {
-                            animatedObjects.Add((AnimatedSprite)io.sprite);
-                            ((AnimatedSprite)io.sprite).ActiveAnimations.Clear();
-                            foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
-                                if (StateManager.Instance.CheckDependencies(ap.dependencies))
-                                    ((AnimatedSprite)io.sprite).ActiveAnimations[ap.name] = ap.frames;
+                            if (io.sprite.GetType() == typeof(AnimatedSprite))
+                            {
+                                animatedObjects.Add((AnimatedSprite)io.sprite);
+                                ((AnimatedSprite)io.sprite).ActiveAnimations.Clear();
+                                foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
+                                    if (StateManager.Instance.CheckDependencies(ap.dependencies))
+                                        ((AnimatedSprite)io.sprite).ActiveAnimations[ap.name] = ap.frames;
+                            }
                         }
                     }
                 }
@@ -355,12 +366,18 @@ namespace GreenTime.Screens
 
             spriteBatch.End();
 
+            spriteBatch.Begin();
+            // any additional drawing
+            if (calendar != null)
+                calendar.Draw(ResourceManager.Instance.LevelTexture, spriteBatch, ResourceManager.Instance[calendar.textureName], Color.White);
+
             if (player.Thought != null)
             {
-                spriteBatch.Begin();
+                
                 ChatScreen.DrawText(spriteBatch, player.Mouth, 300.0f, player.Thought, player.ThoughtAlpha);
-                spriteBatch.End();
-            }
+
+            } 
+            spriteBatch.End();
 
             // Handle the different transition types
             float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);

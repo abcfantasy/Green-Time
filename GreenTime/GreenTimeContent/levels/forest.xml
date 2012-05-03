@@ -158,6 +158,7 @@
           <boundX>0</boundX>
           <boundWidth>600</boundWidth>
           <text>Fertile soil</text>
+          <transition>forest_past</transition>
           <dropper>
             <drops>
               <Item>acorn</Item>

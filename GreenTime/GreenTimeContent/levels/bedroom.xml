@@ -30,6 +30,16 @@
           <thought>That was a good night's sleep.</thought>
         </onInteract>
       </Item>
+      <!-- Calendar -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.Calendar">
+          <texture>calendar</texture>
+          <position>464 110</position>
+          <layer>0.7</layer>
+          <shaded>false</shaded>
+        </sprite>
+      </Item>
+      
       <!-- Window light beams -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -153,6 +163,7 @@
           </affectedStates>
         </onInteract>
       </Item>
+      
       <!-- Turn off -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -193,6 +204,7 @@
           </affectedStates>
         </onInteract>
       </Item>
+      
       <!-- Computer -->
       <Item>
         <onInteract>
