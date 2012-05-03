@@ -34,7 +34,6 @@ namespace GreenTime.Managers
         public string NewsTextureName;
 
         public bool tutorialNewsSeen = false;
-        private bool tutorialNewsSeen = false;
         private List<State> indoor_states = new List<State>();
         #endregion
 
@@ -297,10 +296,9 @@ namespace GreenTime.Managers
         {
             if (!tutorialNewsSeen)
             {
-                tutorialNewsSeen = true;
                 return "computer\\tutorial";
             }
-            else if (StateManager.Instance.GetState("progress") >= 99)      // MUST HANDLE THIS SITUATION, WHEN GAME IS COMPLETE
+            else if (StateManager.Instance.GetState("progress") >= 95)      // MUST HANDLE THIS SITUATION, WHEN GAME IS COMPLETE
                 return "computer\\tutorial";
             else
             {
