@@ -37,8 +37,14 @@
             <value>100</value>
           </state>
         </showIf>
+        <onInteract>
+          <boundX>400</boundX>
+          <boundWidth>200</boundWidth>
+          <text>Clothes customer</text>
+          <thought>He has a reusable bag now.</thought>
+        </onInteract>
       </Item>
-      
+
       <!-- clothes stand in the past -->
       <Item>
         <onInteract>
@@ -60,6 +66,21 @@
           <boundWidth>500</boundWidth>
           <text>Clothes stand</text>
           <transition>shop_past</transition>
+          <thought>It's not much to choose from, but everything's cheap</thought>
+        </onInteract>
+      </Item>
+      <Item>
+        <showIf>
+          <state>
+            <name>puzzle_bags_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>0</boundX>
+          <boundWidth>500</boundWidth>
+          <text>Clothes stand</text>
+          <thought>The shopkeeper is handing out paper bags now</thought>
         </onInteract>
       </Item>
 
