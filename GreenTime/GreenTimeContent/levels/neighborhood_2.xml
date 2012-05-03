@@ -66,8 +66,8 @@
           </state>
         </showIf>
         <onInteract>
-          <boundX>200</boundX>
-          <boundWidth>240</boundWidth>
+          <boundX>180</boundX>
+          <boundWidth>250</boundWidth>
           <text>Neighbor</text>
           <chat>garage_sale_man</chat>
           <startChatIndex>20</startChatIndex>

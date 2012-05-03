@@ -35,7 +35,7 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>You shouldn't leave garbage here.</line>
+          <line>Why do you leave your garbage here?</line>
         </text>
         <leadsTo>5 6</leadsTo>
       </Value>
@@ -167,8 +167,8 @@
       <Key>13</Key>
       <Value>
         <text>
-          <line>Leaving garbage right on the ground is hurting the grass and the tree.</line>
-          <line>If you keep doing this, soon you won't have much of a lawn anymore.</line>
+          <line>Leaving garbage right on the ground can have negative effects.</line>
+          <line>The grass and the tree aren't very healthy because of this.</line>
         </text>
         <leadsTo>14</leadsTo>
       </Value>
@@ -188,7 +188,7 @@
       <Key>15</Key>
       <Value>
         <text>
-          <line>Exactly. From now on, please don't leave the trash here.</line>
+          <line>Indeed. Please don't leave the trash here anymore.</line>
         </text>
         <leadsTo>16</leadsTo>
       </Value>

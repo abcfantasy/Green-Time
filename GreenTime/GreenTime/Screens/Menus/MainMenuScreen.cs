@@ -18,7 +18,7 @@ namespace GreenTime.Screens
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Start a New Game", "Press ENTER to start a new game of GreenTime.");
             //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options", "Take a look at options such as audio and controls.");
+            MenuEntry optionsMenuEntry = new MenuEntry("Options", "Take a look at options such as audio, controls and full screen.");
             MenuEntry exitMenuEntry = new MenuEntry("Exit", "Quit the game.");
 
             // Hook up menu event handlers.
