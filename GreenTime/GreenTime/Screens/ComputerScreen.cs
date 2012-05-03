@@ -12,8 +12,8 @@ namespace GreenTime.Screens
     public class ComputerScreen : GameScreen
     {
         #region Constants
-        private const int SCREEN_WIDTH = 994;
-        private const int SCREEN_HEIGHT = 600;
+        private const int SCREEN_WIDTH = 836;
+        private const int SCREEN_HEIGHT = 685 - 135;
         #endregion
 
         #region Fields
@@ -21,6 +21,7 @@ namespace GreenTime.Screens
         Texture2D screenBackground;
         Texture2D screenOutline;
         Texture2D screenPicture;
+        Rectangle screenRect = new Rectangle( 0, 0, 836, 685 );
 
         // search options
         List<SearchEntry> searchEntries = new List<SearchEntry>();
@@ -67,7 +68,7 @@ namespace GreenTime.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            screenOutline = content.Load<Texture2D>("monitor-screen");
+            screenOutline = content.Load<Texture2D>("computer\\screen");
             screenPicture = content.Load<Texture2D>(StateManager.Instance.NewsTextureName);
 
             screenBackground = new Texture2D(SettingsManager.GraphicsDevice.GraphicsDevice, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -76,7 +77,7 @@ namespace GreenTime.Screens
                 bgColor[i] = Color.White;
             screenBackground.SetData(bgColor);
 
-            AddSearchEntries();
+            //AddSearchEntries();
         }
 
         /// <summary>
@@ -93,8 +94,8 @@ namespace GreenTime.Screens
         /// </summary>
         private void AddSearchEntries()
         {
-            SearchEntry entryNews = new SearchEntry("News");
-            searchEntries.Add(entryNews);
+            //SearchEntry entryNews = new SearchEntry("News");
+            //searchEntries.Add(entryNews);
         }
         #endregion
 
@@ -152,7 +153,7 @@ namespace GreenTime.Screens
         /// </summary>
         protected virtual void OnSelectEntry(int entryIndex)
         {
-            searchEntries[entryIndex].OnSelectEntry();
+            //searchEntries[entryIndex].OnSelectEntry();
         }
 
 
@@ -184,7 +185,7 @@ namespace GreenTime.Screens
 
             spriteBatch.Begin( SpriteSortMode.BackToFront, BlendState.AlphaBlend );
 
-            spriteBatch.Draw(screenOutline, new Vector2(centerScreenX, centerScreenY), null, Color.White, 0.0f, new Vector2( screenOutline.Width / 2.0f, screenOutline.Height / 2.0f ), 1.0f, SpriteEffects.None, 0 );
+            spriteBatch.Draw(screenOutline, new Vector2(centerScreenX, centerScreenY), screenRect, Color.White, 0.0f, new Vector2( screenOutline.Width / 2.0f, screenOutline.Height / 2.0f ), 1.0f, SpriteEffects.None, 0 );
 
             // this beautiful piece of code handles the effect of turning on/off the screen
             // this beautiful piece of code was written in one go and executed perfectly! I should drink to this
@@ -218,6 +219,7 @@ namespace GreenTime.Screens
                 UpdateMenuEntryLocations();
 
                 // Draw each menu entry in turn.
+                /*
                 for (int i = 0; i < searchEntries.Count; i++)
                 {
                     SearchEntry searchEntry = searchEntries[i];
@@ -229,10 +231,11 @@ namespace GreenTime.Screens
 
                 // draw middle border
                 spriteBatch.Draw(screenBackground, new Vector2(finalScreenX + 250, finalScreenY), new Rectangle(0, 0, 2, screenBackground.Height), Color.Gray);
-
+                */
                 // draw title
                 spriteBatch.Draw(screenPicture, new Vector2(finalScreenX + 252.0f, finalScreenY + 48.0f), new Rectangle(0, 0, 691, 482), Color.White);
                 //spriteBatch.DrawString(this.ScreenManager.Font, searchTitle, new Vector2(finalScreenX + 270.0f, finalScreenY + 50.0f), Color.DarkGreen, 0.0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+                 
             }
 
             spriteBatch.End();
