@@ -21,8 +21,8 @@
           <layer>0.55</layer>
         </sprite>
         <onInteract>
-          <boundX>280</boundX>
-          <boundWidth>140</boundWidth>
+          <boundX>180</boundX>
+          <boundWidth>250</boundWidth>
           <text>Neighbor</text>
           <chat>garage_sale_man</chat>
           <mouth>421 314</mouth>
