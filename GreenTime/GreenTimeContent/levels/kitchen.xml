@@ -205,6 +205,85 @@
           </dropper>
         </onInteract>
       </Item>
+      <!-- Lightbulb -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>lightbulb2</texture>
+          <position>684 0</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+          <frameSize>326 231</frameSize>
+          <framesPerLine>2</framesPerLine>
+          <framesPerSecond>1</framesPerSecond>
+          <crossFade>true</crossFade>
+          <animations>
+            <frameSet>
+              <frames>0 1</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_6</name>
+            <value>0</value>
+          </state>
+        </showIf>
+      </Item>
+      <!-- Light switch on/off -->
+      <!-- Turn on-->
+      <Item>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_6</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>950</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Light</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle_6</name>
+              <value>0</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
+      <!-- Turn off -->
+      <Item>
+        <sprite>
+          <texture>lightswitch2</texture>
+          <position>1072 268</position>
+          <layer>0.6</layer>
+          <shaded>false</shaded>
+        </sprite>
+        <showIf>
+          <state>
+            <name>indoor_puzzle_6</name>
+            <value>0</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>950</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Light</text>
+          <sound>
+            <name>hitSwitch</name>
+            <looping>false</looping>
+          </sound>
+          <affectedStates>
+            <state>
+              <name>indoor_puzzle_6</name>
+              <value>100</value>
+            </state>
+          </affectedStates>
+        </onInteract>
+      </Item>
     </gameObjects>
   </Asset>
 </XnaContent>
