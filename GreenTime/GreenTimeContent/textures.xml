@@ -213,6 +213,16 @@
       <Key>waterbottle</Key>
       <Value>1280 62 50 71</Value>
     </Item>
+
+    <Item>
+      <Key>lightbulb2</Key>
+      <Value>1336 0 326 231</Value>
+    </Item>
+
+    <Item>
+      <Key>lightswitch2</Key>
+      <Value>1281 244 23 47</Value>
+    </Item>
     
     <!-- neighborhood -->
     <Item>

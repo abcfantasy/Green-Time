@@ -254,7 +254,7 @@ namespace GreenTime.Managers
             else if (day == 2)
                 SetState(STATE_INDOOR + 1, 0);
             else
-                SetState(STATE_INDOOR + (new Random()).Next(1, 6), 0);
+                SetState(STATE_INDOOR + (new Random()).Next(1, 7), 0);
             SetState("news_taken", 0);
             //SetState("is_in_past", 0);
 
