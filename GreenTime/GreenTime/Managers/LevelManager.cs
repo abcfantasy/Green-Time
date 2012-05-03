@@ -203,7 +203,6 @@ namespace GreenTime.Managers
             StateManager.Instance.AdvanceDay();
 
             SoundManager.PlaySound(SoundManager.SOUND_TIMETRAVEL);
-            startPosition = player.Position.X;
         }
 
         #endregion
