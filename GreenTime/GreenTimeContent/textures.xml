@@ -321,6 +321,11 @@
     </Item>
 
     <Item>
+      <Key>car_round</Key>
+      <Value>1140 720 570 258</Value>
+    </Item>
+    
+    <Item>
       <Key>smoke</Key>
       <Value>1280 0 360 151</Value>
     </Item>
@@ -343,7 +348,7 @@
     <!-- forest -->
     <Item>
       <Key>burned_trees</Key>
-      <Value>1280 981 566 363</Value>
+      <Value>1286 983 580 428</Value>
     </Item>
 
     <Item>
@@ -353,14 +358,29 @@
 
     <Item>
       <Key>healthy_trees</Key>
-      <Value>1280 508 622 473</Value>
+      <Value>1286 2 606 500</Value>
     </Item>
 
     <Item>
       <Key>grown_trees</Key>
-      <Value>1280 0 689 508</Value>
+      <Value>1286 508 665 475</Value>
     </Item>
 
+    <Item>
+        <Key>fertile_soil</Key>
+        <Value>20 1273 443 138</Value>
+    </Item>
+
+    <Item>
+      <Key>gate_back</Key>
+      <Value>500 1273 222 560</Value>
+    </Item>
+
+    <Item>
+      <Key>gate_front</Key>
+      <Value>733 1273 291 584</Value>
+    </Item>
+    
     <Item>
       <Key>cigarette</Key>
       <Value>1969 43 39 23</Value>
@@ -373,7 +393,18 @@
 
     <Item>
       <Key>forest_npc</Key>
-      <Value>1902 508 109 309</Value>
+      <Value>1902 138 109 309</Value>
+    </Item>
+    
+    <!-- final room -->
+    <Item>
+      <Key>final_room_text1</Key>
+      <Value>0 721 1280 107</Value>
+    </Item>
+
+    <Item>
+      <Key>final_room_text2</Key>
+      <Value>0 829 1076 72</Value>
     </Item>
   </Asset>
 </XnaContent>

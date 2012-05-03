@@ -16,8 +16,35 @@
       <Item>
         <sprite>
           <texture>healthy_trees</texture>
-          <position>658 73</position>
-          <layer>0.68</layer>
+          <position>674 58</position>
+          <layer>0.7</layer>
+        </sprite>
+      </Item>
+
+      <!-- fertile soil -->
+      <Item>
+        <sprite>
+          <texture>fertile_soil</texture>
+          <position>222 407</position>
+          <layer>0.65</layer>
+        </sprite>
+      </Item>
+
+      <!-- gate back -->
+      <Item>
+        <sprite>
+          <texture>gate_back</texture>
+          <position>165 148</position>
+          <layer>0.61</layer>
+        </sprite>
+      </Item>
+
+      <!-- gate front -->
+      <Item>
+        <sprite>
+          <texture>gate_front</texture>
+          <position>280 135</position>
+          <layer>0.4</layer>
         </sprite>
       </Item>
 

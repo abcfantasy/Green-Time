@@ -119,7 +119,7 @@
           <layer>0.6</layer>
           <flippable>false</flippable>
           <frameSize>570 258</frameSize>
-          <framesPerLine>2</framesPerLine>
+          <framesPerLine>3</framesPerLine>
           <framesPerSecond>15</framesPerSecond>
           <animations>
             <frameSet>
@@ -144,19 +144,11 @@
 
       <!-- Car after puzzle  -->
       <Item>
-        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>car</texture>
+        <sprite>
+          <texture>car_round</texture>
           <position>680 354</position>
           <layer>0.6</layer>
           <flippable>false</flippable>
-          <frameSize>570 258</frameSize>
-          <framesPerLine>2</framesPerLine>
-          <framesPerSecond>15</framesPerSecond>
-          <animations>
-            <frameSet>
-              <frames>0</frames>
-            </frameSet>
-          </animations>
         </sprite>
         <showIf>
           <state>

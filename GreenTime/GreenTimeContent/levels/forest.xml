@@ -26,7 +26,7 @@
       <Item>
         <sprite>
           <texture>burned_trees</texture>
-          <position>714 176</position>
+          <position>700 130</position>
           <layer>0.7</layer>
         </sprite>
         <showIf>
@@ -41,7 +41,7 @@
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
           <texture>fire</texture>
-          <position>655 70</position>
+          <position>715 85</position>
           <layer>0.64</layer>
           <frameSize>500 263</frameSize>
           <framesPerLine>2</framesPerLine>
@@ -60,11 +60,38 @@
         </showIf>
       </Item>
 
+      <!-- fertile soil -->
+      <Item>
+        <sprite>
+          <texture>fertile_soil</texture>
+          <position>222 407</position>
+          <layer>0.65</layer>
+        </sprite>
+      </Item>
+      
+      <!-- gate back -->
+      <Item>
+        <sprite>
+          <texture>gate_back</texture>
+          <position>165 148</position>
+          <layer>0.61</layer>
+        </sprite>
+      </Item>
+
+      <!-- gate front -->
+      <Item>
+        <sprite>
+          <texture>gate_front</texture>
+          <position>280 135</position>
+          <layer>0.4</layer>
+        </sprite>
+      </Item>
+      
       <!-- healthy tree 1 -->
       <Item>
         <sprite>
           <texture>healthy_trees</texture>
-          <position>658 73</position>
+          <position>674 58</position>
           <layer>0.7</layer>
         </sprite>
         <showIf>
@@ -79,8 +106,8 @@
       <Item>
         <sprite>
           <texture>grown_trees</texture>
-          <position>0 48</position>
-          <layer>0.6</layer>
+          <position>110 35</position>
+          <layer>0.65</layer>
         </sprite>
         <showIf>
           <state>
@@ -116,7 +143,7 @@
       <Item>
         <sprite>
           <texture>acorn</texture>
-          <position>1020 553</position>
+          <position>1020 543</position>
           <layer>0.6</layer>
         </sprite>
         <showIf>

@@ -20,6 +20,10 @@ namespace GreenTime.Managers
         public static readonly int SOUND_DROP = 5;
         public static readonly int SOUND_PICK = 6;
         public static readonly int SOUND_FOOTSTEPS = 7;
+        public static readonly int SOUND_POWERUP = 8;
+        public static readonly int SOUND_POWERDOWN = 9;
+        public static readonly int SOUND_SOLVED = 10;
+        public static readonly int SOUND_COMPUTEROFF = 11;
 
         // content file names
         private static readonly string MENU_UP_FILENAME = @"audio\scrollUp";
@@ -30,6 +34,10 @@ namespace GreenTime.Managers
         private static readonly string DROP_FILENAME = @"audio\throwingGarbage";
         private static readonly string PICK_FILENAME = @"audio\pickup";
         private static readonly string STEPS_FILENAME = @"audio\footsteps";
+        private static readonly string POWERUP_FILENAME = @"audio\PowerUp";
+        private static readonly string POWERDOWN_FILENAME = @"audio\PowerDown";
+        private static readonly string SOLVED_FILENAME = @"audio\PuzzleSuccess";
+        private static readonly string COMPUTEROFF_FILENAME = @"audio\ComputerOff";
 
         private static readonly string SONG_GAME = @"audio\greentime";
         public static readonly string SONG_INTRO = @"audio\IntroSong";
@@ -41,7 +49,7 @@ namespace GreenTime.Managers
 
         // game sound effects
         private static int menuSoundCount = 4;
-        private static int gameplaySoundCount = 8;
+        private static int gameplaySoundCount = 12;
 
         private static SoundEffect[] globalSounds;
         private static Dictionary<string, SoundEffect> levelSounds = new Dictionary<string,SoundEffect>();
@@ -56,12 +64,15 @@ namespace GreenTime.Managers
         // footsteps
         private static SoundEffectInstance footsteps;
 
+        private static string songLoaded = null;
+
         /// <summary>
         /// Loads all music files
         /// </summary>
         /// <param name="content"></param>
         public static void LoadMenuSounds(ContentManager content)
         {
+
             SoundEffect.MasterVolume = 1.0f;
 
             // music
@@ -78,6 +89,7 @@ namespace GreenTime.Managers
 
         public static void LoadGameplaySounds(ContentManager content)
         {
+
             SoundEffect.MasterVolume = 1.0f;
 
             // music
@@ -92,6 +104,10 @@ namespace GreenTime.Managers
             globalSounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
             globalSounds[SOUND_DROP] = content.Load<SoundEffect>(DROP_FILENAME);
             globalSounds[SOUND_PICK] = content.Load<SoundEffect>(PICK_FILENAME);
+            globalSounds[SOUND_POWERUP] = content.Load<SoundEffect>(POWERUP_FILENAME);
+            globalSounds[SOUND_POWERDOWN] = content.Load<SoundEffect>(POWERDOWN_FILENAME);
+            globalSounds[SOUND_SOLVED] = content.Load<SoundEffect>(SOLVED_FILENAME);
+            globalSounds[SOUND_COMPUTEROFF] = content.Load<SoundEffect>(COMPUTEROFF_FILENAME);
 
             // foot steps
             globalSounds[SOUND_FOOTSTEPS] = content.Load<SoundEffect>(STEPS_FILENAME);
@@ -102,7 +118,11 @@ namespace GreenTime.Managers
 
         public static void LoadSong(ContentManager content, string songName)
         {
-            music = content.Load<Song>(songName);
+            if (songLoaded != songName)
+            {
+                songLoaded = songName;
+                music = content.Load<Song>(songName);
+            }
         }
 
         /// <summary>
@@ -147,6 +167,7 @@ namespace GreenTime.Managers
         public static void UnloadGlobal()
         {
             gameMusicPlaying = false;
+            songLoaded = null;
             globalSounds = null;
         }
 
@@ -202,7 +223,7 @@ namespace GreenTime.Managers
         /// <param name="transition"></param>
         public static void UpdateFade(float transition)
         {
-            MediaPlayer.Volume = MathHelper.Clamp( 1.0f - transition, 0.3f, 1.0f ); // volume between 0.3 to 1.0
+            MediaPlayer.Volume = MathHelper.Clamp( 0.5f - ( transition / 2.0f ), 0.3f, 0.5f ); // volume between 0.3 to 1.0
         }
 
         /// <summary>
