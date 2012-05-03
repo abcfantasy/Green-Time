@@ -120,6 +120,7 @@
       <Key>popup_leaf</Key>
       <Value>0 954 83 56</Value>
     </Item>
+    
     <!-- pickable stuff -->
     <Item>
       <Key>pick_cerealbox</Key>
@@ -133,12 +134,12 @@
 
     <Item>
       <Key>pick_cigarette</Key>
-      <Value>186 202 39 23</Value>
+      <Value>136 221 39 23</Value>
     </Item>
 
     <Item>
       <Key>pick_acorn</Key>
-      <Value>186 159 57 43</Value>
+      <Value>136 221 39 23</Value>
     </Item>
 
     <Item>
@@ -154,6 +155,11 @@
     <Item>
       <Key>pick_garbage3</Key>
       <Value>0 117 86 117</Value>
+    </Item>
+
+    <Item>
+      <Key>pick_apple</Key>
+      <Value>191 192 50 65</Value>
     </Item>
     
     <!-- intro stuff -->
@@ -226,6 +232,11 @@
     <Item>
       <Key>waterbottle</Key>
       <Value>1280 62 50 71</Value>
+    </Item>
+
+    <Item>
+      <Key>apple</Key>
+      <Value>1280 288 51 68</Value>
     </Item>
 
     <Item>
