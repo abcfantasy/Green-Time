@@ -55,7 +55,7 @@
       <!-- garage sale npc after puzzle -->
       <Item>
         <sprite>
-          <texture>neighbor2_npc</texture>
+          <texture>neighbor2_npc_round</texture>
           <position>303 309</position>
           <layer>0.55</layer>
         </sprite>

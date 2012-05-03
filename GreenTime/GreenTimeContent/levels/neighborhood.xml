@@ -299,7 +299,7 @@
       <!-- neighbor after puzzle -->
       <Item>
         <sprite>
-          <texture>neighbor_npc</texture>
+          <texture>neighbor_npc_round</texture>
           <position>820 300</position>
           <layer>0.6</layer>
           <flipped>true</flipped>
