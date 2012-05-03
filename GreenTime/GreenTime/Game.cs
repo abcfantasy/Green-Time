@@ -49,7 +49,7 @@ namespace GreenTime
             Components.Add(screenManager);
 
             // frame rate counter for testing
-            Components.Add(new FrameRateCounter(this));
+            //Components.Add(new FrameRateCounter(this));
 
             // initialize resource manager
             ResourceManager.Instance.InitializeContent(this);
