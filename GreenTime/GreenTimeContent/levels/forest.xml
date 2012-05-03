@@ -170,6 +170,10 @@
               </state>
             </effects>
           </dropper>
+          <sound>
+            <name>plantAcorn</name>
+            <looping>false</looping>
+          </sound>
         </onInteract>
       </Item>
     </gameObjects>    

@@ -510,7 +510,10 @@ namespace GreenTime.Screens
 
                         // Drop the picked up item into this object
                         if (pickedObject != null && interactingObject.interaction.dropper != null) {
-                            SoundManager.PlaySound(SoundManager.SOUND_DROP);
+                            if (interactingObject.interaction.sound == null)
+                                SoundManager.PlaySound(SoundManager.SOUND_DROP);
+                            else
+                                SoundManager.PlaySound(interactingObject.interaction.sound.name, interactingObject.interaction.sound.looping);
                             DropObject(interactingObject);
                             LoadGameObjects();
                         }
