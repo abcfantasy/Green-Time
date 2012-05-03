@@ -292,20 +292,14 @@ namespace GreenTime.Screens
 
             foreach (string word in words)
             {
-                if (word == words[0])
-                {
-                    line = word;
-                    continue;
-                }
-
-                if (font.MeasureString(line + " " + word).X > width)
+                if (font.MeasureString(line + word).X > width)
                 {
                     lines.Add(line);
-                    line = word;
+                    line = word + " ";
                 }
                 else
                 {
-                    line += " " + word;
+                    line += word + " ";
                 }
             }
 

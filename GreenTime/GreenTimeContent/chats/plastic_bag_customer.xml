@@ -5,7 +5,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Hello girl, what is in the plastic bag?</line>
+          <line>Hello! What do you have there in your bag?</line>
         </text>
         <showIf>
           <state>
@@ -21,7 +21,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>Good day, you still have the plastic bag I see?</line>
+          <line>Hi! I see you still have a plastic bag.</line>
         </text>
         <showIf>
           <state>
@@ -37,7 +37,7 @@
       <Key>2</Key>
       <Value>
         <text>
-          <line>Yes, sadly the shopkeeper insisted of giving me one.</line>
+          <line>Yes, the shopkeeper insisted on giving me one again.</line>
         </text>
         <leadsTo>3</leadsTo>
       </Value>
@@ -47,7 +47,7 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>I see, good day to you!</line>
+          <line>I see... Well, have a nice day!</line>
         </text>
       </Value>
     </Item>
@@ -56,7 +56,7 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>Some clothes I just bought from the stand over there.</line>
+          <line>Just the clothes I bought from the stand over there.</line>
         </text>
         <leadsTo>5 6</leadsTo>
       </Value>
@@ -76,7 +76,7 @@
       <Key>6</Key>
       <Value>
         <text>
-          <line>Why do you have a plastic bag?</line>
+          <line>Are you sure you really want to use a plastic bag?</line>
         </text>
         <leadsTo>8</leadsTo>
       </Value>
@@ -86,7 +86,8 @@
       <Key>7</Key>
       <Value>
         <text>
-          <line>No, do you know clothes are already called organic when only 5% is made of natural material? That's a fake way of taking care of the environment!</line>
+          <line>These days, clothes are called organic when only 5% of their fabric is natural.</line>
+          <line>I guess you can never really know what they're made of.</line>
         </text>
         <affectedStates>
           <state>
@@ -101,7 +102,7 @@
       <Key>8</Key>
       <Value>
         <text>
-          <line>To carry the wares I bought, why else would I have one?</line>
+          <line>Why not? It's cheap.</line>
         </text>
         <leadsTo>9</leadsTo>
       </Value>
@@ -111,7 +112,7 @@
       <Key>9</Key>
       <Value>
         <text>
-          <line>You can bring your own reusable bag, this will help the environment get better without using one time plastic bags.</line>
+          <line>You can bring your own reusable bag, instead of getting single use plastic bags.</line>
         </text>
         <leadsTo>10</leadsTo>
       </Value>
@@ -121,17 +122,7 @@
       <Key>10</Key>
       <Value>
         <text>
-          <line>Maybe that's true. I'll do that when I can.</line>
-        </text>
-        <leadsTo>11</leadsTo>
-      </Value>
-    </Item>
-
-    <Item>
-      <Key>11</Key>
-      <Value>
-        <text>
-          <line>Glad to help. Have a nice day.</line>
+          <line>Maybe you're right. I'll do that when I can.</line>
         </text>
         <affectedStates>
           <state>

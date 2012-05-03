@@ -108,6 +108,7 @@
           <boundWidth>720</boundWidth>
           <text>Cigarette</text>
           <transition>forest_past</transition>
+          <thought>It's no use to pick it up now. The harm has been done...</thought>
         </onInteract>
       </Item>
 

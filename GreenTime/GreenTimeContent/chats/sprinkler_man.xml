@@ -6,7 +6,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Hello neighbor, your plants do not look so good, what happened?</line>
+          <line>Hello, neighbor! Your flowers don't look so well, what happened?</line>
         </text>
         <showIf>
           <state>
@@ -22,7 +22,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>Honestly, I don't know! I give them water every day.</line>
+          <line>I just can't figure it out. I'm constantly watering them.</line>
         </text>
         <leadsTo>2 3 4</leadsTo>
       </Value>
@@ -32,7 +32,7 @@
       <Key>2</Key>
       <Value>
         <text>
-          <line>I see, strange indeed.</line>
+          <line>You seem to be doing all you can.</line>
         </text>
         <leadsTo>5</leadsTo>
       </Value>
@@ -42,9 +42,9 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>Don't you think that might be the problem?</line>
+          <line>It's really hot these days, so they probably need a lot of water.</line>
         </text>
-        <leadsTo>7</leadsTo>
+        <leadsTo>8</leadsTo>
       </Value>
     </Item>
 
@@ -52,9 +52,9 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>The sun is hot these days, the plants really need lots of water.</line>
+          <line>Maybe that is the actual problem?</line>
         </text>
-        <leadsTo>8</leadsTo>
+        <leadsTo>7</leadsTo>
       </Value>
     </Item>
 
@@ -62,17 +62,7 @@
       <Key>5</Key>
       <Value>
         <text>
-          <line>So I keep the sprinkler on and go to work now. Have a nice day.</line>
-        </text>
-        <leadsTo>6</leadsTo>
-      </Value>
-    </Item>
-
-    <Item>
-      <Key>6</Key>
-      <Value>
-        <text>
-          <line>Nice day to you neighbor.</line>
+          <line>Oh, I hope so. I have to go to work now. Have a nice day!</line>
         </text>
         <affectedStates>
           <state>
@@ -82,12 +72,12 @@
         </affectedStates>
       </Value>
     </Item>
-    
+
     <Item>
       <Key>7</Key>
       <Value>
         <text>
-          <line>How so?</line>
+          <line>What do you mean?</line>
         </text>
         <leadsTo>10 11 12</leadsTo>
       </Value>
@@ -97,17 +87,8 @@
       <Key>8</Key>
       <Value>
         <text>
-          <line>That's why I put the sprinkler on while I am at work. It only does not seem to help, strange huh.</line>
-        </text>
-        <leadsTo>9</leadsTo>
-      </Value>
-    </Item>
-
-    <Item>
-      <Key>9</Key>
-      <Value>
-        <text>
-          <line>Strange indeed. Have a nice day neighbor.</line>
+          <line>That's why I leave the sprinkler on while I'm at work.</line>
+          <line>Maybe things will get better. Have a nice day!</line>
         </text>
         <affectedStates>
           <state>
@@ -132,7 +113,7 @@
       <Key>11</Key>
       <Value>
         <text>
-          <line>The sprinkler might be defected.</line>
+          <line>The sprinkler might be defective.</line>
         </text>
         <leadsTo>14</leadsTo>
       </Value>
@@ -142,7 +123,7 @@
       <Key>12</Key>
       <Value>
         <text>
-          <line>The flowers need rain, not water from the crane, this might be the problem.</line>
+          <line>The flowers need rain, not tap water.</line>
         </text>
         <leadsTo>15</leadsTo>
       </Value>
@@ -152,7 +133,7 @@
       <Key>13</Key>
       <Value>
         <text>
-          <line>You might be right, I will put the sprinkler on for half an hour when I am back from work instead of the whole day. Thank you for the advice!</line>
+          <line>You might be right. I'll try turning the sprinkler on for a bit when I come home from work.</line>
         </text>
         <leadsTo>16</leadsTo>
       </Value>
@@ -162,9 +143,14 @@
       <Key>14</Key>
       <Value>
         <text>
-          <line>I just bought it recently, I highly doubt it can be it.</line>
+          <line>It's quite new, so I don't think it would break down so fast.</line>
         </text>
-        <leadsTo>17</leadsTo>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
       </Value>
     </Item>
 
@@ -172,9 +158,14 @@
       <Key>15</Key>
       <Value>
         <text>
-          <line>Hmmmm, no that can't be it, the guidelines show that crane water is perfect for flowers when there is no rain.</line>
+          <line>That can't be it. It hardly rains here so they really need this water.</line>
         </text>
-        <leadsTo>18</leadsTo>
+        <affectedStates>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
       </Value>
     </Item>
 
@@ -182,48 +173,9 @@
       <Key>16</Key>
       <Value>
         <text>
-          <line>Glad to help. Half an hour is also better for the environment because you are wasting a lot of water in 8 hours!</line>
+          <line>That should solve it. Also, you won't be using so much water either.</line>
         </text>
-        <affectedStates>
-          <state>
-            <name>advance_day</name>
-            <value>100</value>
-          </state>
-          <state>
-            <name>puzzle_sprinklers_solved</name>
-            <value>100</value>
-          </state>
-        </affectedStates>
-      </Value>
-    </Item>
-
-    <Item>
-      <Key>17</Key>
-      <Value>
-        <text>
-          <line>Indeed, that would be strange, I don't have the solution then.</line>
-        </text>
-        <affectedStates>
-          <state>
-            <name>advance_day</name>
-            <value>100</value>
-          </state>
-        </affectedStates>
-      </Value>
-    </Item>
-
-    <Item>
-      <Key>18</Key>
-      <Value>
-        <text>
-          <line>Then rain is not the solution. Sorry I can't help you further</line>
-        </text>
-        <affectedStates>
-          <state>
-            <name>advance_day</name>
-            <value>100</value>
-          </state>
-        </affectedStates>
+        <leadsTo>19</leadsTo>
       </Value>
     </Item>
 
@@ -231,23 +183,36 @@
       <Key>19</Key>
       <Value>
         <text>
-          <line>Good day, neighbor!</line>
+          <line>You have a point there. I'll see how it turns out. Thank you!</line>
         </text>
-        <showIf>
+        <affectedStates>
           <state>
             <name>puzzle_sprinklers_solved</name>
             <value>100</value>
           </state>
-        </showIf>
-        <leadsTo>20</leadsTo>
+          <state>
+            <name>advance_day</name>
+            <value>100</value>
+          </state>
+        </affectedStates>
       </Value>
     </Item>
-    
+
     <Item>
       <Key>20</Key>
       <Value>
         <text>
-          <line>Thank you neighbor, my flowers bloom nicely now!</line>
+          <line>Hello there! How's it going?</line>
+        </text>
+        <leadsTo>21</leadsTo>
+      </Value>
+    </Item>
+    
+    <Item>
+      <Key>21</Key>
+      <Value>
+        <text>
+          <line>My flowers are doing great now. Thanks for the advice!</line>
         </text>
       </Value>
     </Item>

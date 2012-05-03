@@ -162,6 +162,7 @@
           <boundWidth>227</boundWidth>
           <text>Garbage</text>
           <transition>neighborhood_past</transition>
+          <thought>It's sad to see this happen</thought>
           <pickUpName>garbage1</pickUpName>
         </onInteract>
       </Item>
@@ -183,6 +184,7 @@
           <boundWidth>220</boundWidth>
           <text>Garbage</text>
           <transition>neighborhood_past</transition>
+          <thought>This is pretty heavy</thought>
           <pickUpName>garbage2</pickUpName>
         </onInteract>
       </Item>
@@ -204,6 +206,7 @@
           <boundWidth>196</boundWidth>
           <text>Garbage</text>
           <transition>neighborhood_past</transition>
+          <thought>Who's leaving these here?</thought>
           <pickUpName>garbage3</pickUpName>
         </onInteract>
       </Item>
@@ -263,7 +266,7 @@
           </state>
         </showIf>
         <onInteract>
-          <boundX>830</boundX>
+          <boundX>870</boundX>
           <boundWidth>280</boundWidth>
           <text>Sprinklers</text>
           <thought>Looks like that sprinkler has been on for quite a while.</thought>
@@ -285,8 +288,8 @@
           </state>
         </showIf>
         <onInteract>
-          <boundX>620</boundX>
-          <boundWidth>110</boundWidth>
+          <boundX>680</boundX>
+          <boundWidth>210</boundWidth>
           <text>Neighbor</text>
           <chat>sprinkler_man</chat>
           <mouth>880 280</mouth>
@@ -308,11 +311,11 @@
           </state>
         </showIf>
         <onInteract>
-          <boundX>620</boundX>
-          <boundWidth>110</boundWidth>
+          <boundX>680</boundX>
+          <boundWidth>210</boundWidth>
           <text>Neighbor</text>
           <chat>sprinkler_man</chat>
-          <startChatIndex>19</startChatIndex>
+          <startChatIndex>20</startChatIndex>
           <mouth>880 280</mouth>
         </onInteract>
       </Item>
