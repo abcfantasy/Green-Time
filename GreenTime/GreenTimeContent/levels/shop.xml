@@ -119,7 +119,7 @@
           <layer>0.6</layer>
           <flippable>false</flippable>
           <frameSize>570 258</frameSize>
-          <framesPerLine>2</framesPerLine>
+          <framesPerLine>3</framesPerLine>
           <framesPerSecond>15</framesPerSecond>
           <animations>
             <frameSet>
@@ -128,15 +128,6 @@
                 <state>
                   <name>puzzle_car_solved</name>
                   <value>0</value>
-                </state>
-              </playIf>
-            </frameSet>
-            <frameSet>
-              <frames>0</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>100</value>
                 </state>
               </playIf>
             </frameSet>
@@ -159,34 +150,11 @@
 
       <!-- Car after puzzle  -->
       <Item>
-        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>car</texture>
+        <sprite>
+          <texture>car_round</texture>
           <position>680 354</position>
           <layer>0.6</layer>
           <flippable>false</flippable>
-          <frameSize>570 258</frameSize>
-          <framesPerLine>2</framesPerLine>
-          <framesPerSecond>15</framesPerSecond>
-          <animations>
-            <frameSet>
-              <frames>0 1</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>0</value>
-                </state>
-              </playIf>
-            </frameSet>
-            <frameSet>
-              <frames>0</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>100</value>
-                </state>
-              </playIf>
-            </frameSet>
-          </animations>
         </sprite>
         <showIf>
           <state>

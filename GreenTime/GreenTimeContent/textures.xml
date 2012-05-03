@@ -321,6 +321,11 @@
     </Item>
 
     <Item>
+      <Key>car_round</Key>
+      <Value>1140 720 570 258</Value>
+    </Item>
+    
+    <Item>
       <Key>smoke</Key>
       <Value>1280 0 360 151</Value>
     </Item>
