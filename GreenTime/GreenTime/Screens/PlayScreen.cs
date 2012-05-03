@@ -54,6 +54,9 @@ namespace GreenTime.Screens
 
         private TransitionType transition = TransitionType.Room;
 
+        private bool playRegressSound = false;
+        private bool playImproveSound = false;
+
         // HUD states
         private Rectangle hud_states;
         //private Texture2D hud_states;
@@ -307,6 +310,18 @@ namespace GreenTime.Screens
                     else
                         pickedObject.position = player.Sprite.position + playerHand[player.Sprite.CurrentFrame];
 
+                }
+
+                // play sounds if any
+                if (playImproveSound && TransitionPosition == 0.0f)
+                {
+                    SoundManager.PlaySound(SoundManager.SOUND_POWERUP);
+                    playImproveSound = false;
+                }
+                else if (playRegressSound && TransitionPosition == 0.0f)
+                {
+                    SoundManager.PlaySound(SoundManager.SOUND_POWERUP);
+                    playRegressSound = false;
                 }
 
                 CheckPlayerStatus();
@@ -607,16 +622,20 @@ namespace GreenTime.Screens
                 && StateManager.Instance.GetState("progress") != 100)
             {
                 StateManager.Instance.SetState("just_went_out", 0);
-                if (StateManager.Instance.IndoorPuzzleSolved())
+                if (StateManager.Instance.IndoorPuzzleSolved() && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) < 100 )
                 {
+                    playImproveSound = true;
+
                     playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
                     if (playerStatus == 50)     player.turnGreen();
                     else if (playerStatus == 0) player.transformShape();
 
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Min(playerStatus + 50, 100));
                 }
-                else
+                else if ( StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 )
                 {
+                    playRegressSound = true;
+
                     playerStatus = StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS);
                     if (playerStatus == 100)        player.turnGrey();
                     else if (playerStatus == 50)    player.transformShape();

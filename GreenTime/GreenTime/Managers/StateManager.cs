@@ -134,6 +134,7 @@ namespace GreenTime.Managers
             // if puzzle solved
             if (stateName.StartsWith("puzzle") && value == 100)
             {
+                SoundManager.PlaySound(SoundManager.SOUND_SOLVED);
                 SetState("progress", GetState("progress") + 99 / TOTAL_PUZZLES);
             }
 

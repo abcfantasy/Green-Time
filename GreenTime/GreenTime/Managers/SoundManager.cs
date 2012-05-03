@@ -20,6 +20,9 @@ namespace GreenTime.Managers
         public static readonly int SOUND_DROP = 5;
         public static readonly int SOUND_PICK = 6;
         public static readonly int SOUND_FOOTSTEPS = 7;
+        public static readonly int SOUND_POWERUP = 8;
+        public static readonly int SOUND_POWERDOWN = 9;
+        public static readonly int SOUND_SOLVED = 10;
 
         // content file names
         private static readonly string MENU_UP_FILENAME = @"audio\scrollUp";
@@ -30,7 +33,9 @@ namespace GreenTime.Managers
         private static readonly string DROP_FILENAME = @"audio\throwingGarbage";
         private static readonly string PICK_FILENAME = @"audio\pickup";
         private static readonly string STEPS_FILENAME = @"audio\footsteps";
-
+        private static readonly string POWERUP_FILENAME = @"audio\PowerUp";
+        private static readonly string POWERDOWN_FILENAME = @"audio\PowerDown";
+        private static readonly string SOLVED_FILENAME = @"audio\PuzzleSuccess";
         private static readonly string SONG_GAME = @"audio\greentime";
         public static readonly string SONG_INTRO = @"audio\IntroSong";
         public static readonly string SONG_MENU = @"audio\MenuSong";
@@ -41,7 +46,7 @@ namespace GreenTime.Managers
 
         // game sound effects
         private static int menuSoundCount = 4;
-        private static int gameplaySoundCount = 8;
+        private static int gameplaySoundCount = 11;
 
         private static SoundEffect[] globalSounds;
         private static Dictionary<string, SoundEffect> levelSounds = new Dictionary<string,SoundEffect>();
@@ -94,6 +99,9 @@ namespace GreenTime.Managers
             globalSounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
             globalSounds[SOUND_DROP] = content.Load<SoundEffect>(DROP_FILENAME);
             globalSounds[SOUND_PICK] = content.Load<SoundEffect>(PICK_FILENAME);
+            globalSounds[SOUND_POWERUP] = content.Load<SoundEffect>(POWERUP_FILENAME);
+            globalSounds[SOUND_POWERDOWN] = content.Load<SoundEffect>(POWERDOWN_FILENAME);
+            globalSounds[SOUND_SOLVED] = content.Load<SoundEffect>(SOLVED_FILENAME);
 
             // foot steps
             globalSounds[SOUND_FOOTSTEPS] = content.Load<SoundEffect>(STEPS_FILENAME);

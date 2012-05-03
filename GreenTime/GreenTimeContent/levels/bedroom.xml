@@ -213,6 +213,10 @@
           <text>Computer</text>
           <solid>false</solid>
           <callback>news</callback>
+          <sound>
+            <name>ComputerOn</name>
+            <looping>false</looping>
+          </sound>
         </onInteract>
       </Item>
     </gameObjects>
