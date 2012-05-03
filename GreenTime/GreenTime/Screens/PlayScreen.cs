@@ -283,7 +283,7 @@ namespace GreenTime.Screens
                 else if (StateManager.Instance.GetState("tutorial_timetravel") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && LevelManager.Instance.CurrentLevel.name == "neighborhood")
                 {
                     StateManager.Instance.SetState("tutorial_timetravel", 100);
-                    ShowTutorial("Oh no! It seems the garbage bags are there again.\nSomeone must be leaving them every morning. Go over to\nthem and press Z to travel to the past and find out who.");
+                    ShowTutorial("Oh no! It seems the garbage bags are there again.\nSomeone must be leaving them every morning. Go to\nthem and press Z to travel to the past and find out who.");
                 }
                 else if (StateManager.Instance.GetState("tutorial_chat") < 100 && StateManager.Instance.IsInPast() && LevelManager.Instance.CurrentLevel.name == "neighborhood_past")
                 {
