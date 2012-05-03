@@ -124,12 +124,6 @@
           <animations>
             <frameSet>
               <frames>0 1</frames>
-              <playIf>
-                <state>
-                  <name>puzzle_car_solved</name>
-                  <value>0</value>
-                </state>
-              </playIf>
             </frameSet>
           </animations>
         </sprite>
@@ -166,9 +160,7 @@
           <boundX>720</boundX>
           <boundWidth>368</boundWidth>
           <text>Stranger in car</text>
-          <chat>car_man</chat>
-          <startChatIndex>20</startChatIndex>
-          <mouth>920 354</mouth>
+          <thought>He seems to be enjoying the fresh air.</thought>
         </onInteract>
       </Item>
       

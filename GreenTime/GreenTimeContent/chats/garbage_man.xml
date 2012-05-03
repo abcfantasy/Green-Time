@@ -5,7 +5,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Good day sir, how are you?</line>
+          <line>Hi there! How are you?</line>
         </text>
         <leadsTo>1</leadsTo>
       </Value>
@@ -15,7 +15,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>I am doing fine, just putting away my thrash.</line>
+          <line>Fine, thanks. Just taking out the thrash.</line>
         </text>
         <leadsTo>2 3</leadsTo>
       </Value>
@@ -25,7 +25,7 @@
       <Key>2</Key>
       <Value>
         <text>
-          <line>Good for you, everyone needs to do that.</line>
+          <line>Sure. We all have chores to do.</line>
         </text>
         <leadsTo>4</leadsTo>
       </Value>
@@ -45,7 +45,7 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>Thank you. Have a nice day!</line>
+          <line>Well, I'll just carry on with mine. Goodbye!</line>
         </text>
         <affectedStates>
           <state>
@@ -60,12 +60,12 @@
       <Key>5</Key>
       <Value>
         <text>
-          <line>What do you care about what I think? Let me be.</line>
+          <line>What's it to you? Leave me alone.</line>
         </text>
         <showIf>
           <state>
             <name>player_status</name>
-            <between>0 50</between>
+            <value>0</value>
           </state>
         </showIf>
         <affectedStates>
@@ -81,7 +81,7 @@
       <Key>6</Key>
       <Value>
         <text>
-          <line>Where else should I put it?</line>
+          <line>Why not? The garbage truck will pick everything up eventually.</line>
         </text>
         <showIf>
           <state>
@@ -92,24 +92,24 @@
         <leadsTo>7 8 9</leadsTo>
       </Value>
     </Item>
-
+    
     <Item>
       <Key>7</Key>
       <Value>
         <text>
-          <line>In the garbage bin, over there.</line>
+          <line>Well, that shouldn't take very long.</line>
         </text>
-        <leadsTo>10</leadsTo>
+        <leadsTo>11</leadsTo>
       </Value>
     </Item>
-
+    
     <Item>
       <Key>8</Key>
       <Value>
         <text>
-          <line>Under the tree is indeed a good place.</line>
+          <line>There's a trashcan right across the street...</line>
         </text>
-        <leadsTo>11</leadsTo>
+        <leadsTo>10</leadsTo>
       </Value>
     </Item>
 
@@ -117,7 +117,7 @@
       <Key>9</Key>
       <Value>
         <text>
-          <line>Maybe you should dig a hole in the ground so we don't see it.</line>
+          <line>You could keep them in the house until then.</line>
         </text>
         <leadsTo>12</leadsTo>
       </Value>
@@ -127,7 +127,7 @@
       <Key>10</Key>
       <Value>
         <text>
-          <line>Well, it's a bit more effort but I guess you're right.</line>
+          <line>So what? I don't see the difference.</line>
         </text>
         <leadsTo>13</leadsTo>
       </Value>
@@ -137,7 +137,7 @@
       <Key>11</Key>
       <Value>
         <text>
-          <line>Thank you for pointing out my current spot. I will keep using it in the future.</line>
+          <line>Great minds think alike, it seems. See you around!</line>
         </text>
         <affectedStates>
           <state>
@@ -152,7 +152,7 @@
       <Key>12</Key>
       <Value>
         <text>
-          <line>No, I found that to be too much work.</line>
+          <line>You must be joking.</line>
         </text>
         <affectedStates>
           <state>
@@ -167,7 +167,8 @@
       <Key>13</Key>
       <Value>
         <text>
-          <line>Great. Have a nice day and a bright future sir!</line>
+          <line>Leaving garbage right on the ground is hurting the grass and the tree.</line>
+          <line>If you keep doing this, soon you won't have much of a lawn anymore.</line>
         </text>
         <leadsTo>14</leadsTo>
       </Value>
@@ -177,7 +178,27 @@
       <Key>14</Key>
       <Value>
         <text>
-          <line>You too.</line>
+          <line>Well, I suppose you're right. Better safe than sorry.</line>
+        </text>
+        <leadsTo>15</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>15</Key>
+      <Value>
+        <text>
+          <line>Exactly. From now on, please don't leave the trash here.</line>
+        </text>
+        <leadsTo>16</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>16</Key>
+      <Value>
+        <text>
+          <line>Ok, I won't. Thanks for the advice.</line>
         </text>
         <affectedStates>
           <state>

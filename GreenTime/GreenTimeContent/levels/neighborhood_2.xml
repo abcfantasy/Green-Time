@@ -51,6 +51,29 @@
           <thought>Looks yummy.</thought>
         </onInteract>
       </Item>
+
+      <!-- garage sale npc after puzzle -->
+      <Item>
+        <sprite>
+          <texture>neighbor2_npc</texture>
+          <position>303 309</position>
+          <layer>0.55</layer>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_garagesale_solved</name>
+            <value>100</value>
+          </state>
+        </showIf>
+        <onInteract>
+          <boundX>200</boundX>
+          <boundWidth>240</boundWidth>
+          <text>Neighbor</text>
+          <chat>garage_sale_man</chat>
+          <startChatIndex>20</startChatIndex>
+          <mouth>421 314</mouth>
+        </onInteract>
+      </Item>
       
       <!-- ecological customer npc -->
       <Item>

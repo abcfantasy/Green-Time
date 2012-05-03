@@ -128,8 +128,6 @@ namespace GreenTime.Screens
 
             CheckPlayerStatus();
 
-            //LoadGameObjects();
-
             LoadHUDObjects();
 
             ScreenManager.Game.ResetElapsedTime();
@@ -280,17 +278,17 @@ namespace GreenTime.Screens
                 if (StateManager.Instance.GetState("tutorial_movement") < 100 && TransitionAlpha == 1.0f)
                 {
                     StateManager.Instance.SetState("tutorial_movement", 100);
-                    ShowTutorial("Use the left and right arrow keys to walk around.");
+                    ShowTutorial("You can use the left and right arrow keys to walk around.");
                 }
                 else if ( StateManager.Instance.GetState("tutorial_timetravel") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && LevelManager.Instance.CurrentLevel.name == "neighborhood")
                 {
                     StateManager.Instance.SetState("tutorial_timetravel", 100);
-                    ShowTutorial("Oh no! It seems the garbages are there again.\nSomeone must be leaving them every morning. Go over the\ngarbages and press Z to time-travel in the past and find out.");
+                    ShowTutorial("Oh no! It seems the garbage bags are there again.\nSomeone must be leaving them every morning. Go over to\nthem and press Z to travel to the past and find out who.");
                 }
                 else if (StateManager.Instance.GetState("tutorial_chat") < 100 && StateManager.Instance.IsInPast() && LevelManager.Instance.CurrentLevel.name == "neighborhood_past")
                 {
                     StateManager.Instance.SetState("tutorial_chat", 100);
-                    ShowTutorial("You can talk to people by pressing SPACE. During the conversation,\nyou may have to choose an answer. You can change your answer with the up\nand down arrow keys. Try and convince him not to repeat his actions.");
+                    ShowTutorial("You can talk to people by pressing SPACE. During the conversation,\nyou will have to choose your answers. You can change your answer with the up\nand down arrow keys. Try to convince him to stop leaving trash there.");
                 }
                 if (StateManager.Instance.GetState("tutorial_solved") < 100 && StateManager.Instance.GetState("puzzle_garbage_solved") == 100 && LevelManager.Instance.CurrentLevel.name == "bedroom")
                 {
@@ -778,20 +776,20 @@ namespace GreenTime.Screens
                                 if (StateManager.Instance.GetState("tutorial_interaction") < 100)
                                 {
                                     StateManager.Instance.SetState("tutorial_interaction", 100);
-                                    ShowTutorial("Press SPACE to interact with objects,\nsuch as turning off the heater.");
+                                    ShowTutorial("Press SPACE to interact with objects. \nTry turning off the heater.");
                                 }
                             }
                             // interact with computer
                             if (interactingObject.interaction.callback == "news" && StateManager.Instance.GetState(StateManager.STATE_DAY) == 2 && StateManager.Instance.GetState("tutorial_computer_interact") < 100)
                             {
                                 StateManager.Instance.SetState("tutorial_computer_interact", 100);
-                                ShowTutorial("You can interact with your computer to look at some news.\nThere might also be some tips within them.");
+                                ShowTutorial("You can use your computer to look at some news.\nYou might find hints there if you get stuck.");
                             }
                             // pick up garbage bags
                             if (interactingObject.interaction.pickUpName != null && interactingObject.interaction.pickUpName.StartsWith("garbage") && StateManager.Instance.GetState("tutorial_pickup") < 100)
                             {
                                 StateManager.Instance.SetState("tutorial_pickup", 100);
-                                ShowTutorial("You can also pickup objects and drop them into particular\nplaces using SPACE. Try picking up each garbage bag and\ndropping them in the bin.");
+                                ShowTutorial("Some objects can be picked up and dropped\nby pressing SPACE. Try picking up the garbage bags\nand dropping them in the trashcan.");
                             }
                         }
                         #endregion

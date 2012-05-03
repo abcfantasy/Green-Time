@@ -6,7 +6,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Hello there, I see you have a lot of stuff in your garage.</line>
+          <line>Hi there! I see you have a lot of stuff in your garage.</line>
         </text>
         <showIf>
           <state>
@@ -22,7 +22,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>That's true. I don't know what to do with it anymore so it stays in my garage until the garbage man can pick up.</line>
+          <line>Some useless old junk! I'll take them outside one of these days for the garbage collector to pick them up.</line>
         </text>
         <leadsTo>2 3 4</leadsTo>
       </Value>
@@ -32,7 +32,7 @@
       <Key>2</Key>
       <Value>
         <text>
-          <line>That is indeed a good idea.</line>
+          <line>That sounds like a good idea.</line>
         </text>
         <leadsTo>5</leadsTo>
       </Value>
@@ -42,7 +42,7 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>Is it really that broken?</line>
+          <line>Are all those things that broken?</line>
         </text>
         <leadsTo>6</leadsTo>
       </Value>
@@ -52,7 +52,7 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>What about recycling?</line>
+          <line>Maybe you can find another use for them?</line>
         </text>
         <leadsTo>7</leadsTo>
       </Value>
@@ -62,7 +62,7 @@
       <Key>5</Key>
       <Value>
         <text>
-          <line>Thank you, although they told me it might take a while. I'll just dump it somewhere eventually.</line>
+          <line>Thanks. It might be a while until they pick it up, but at least I'll get rid of it.</line>
         </text>
         <affectedStates>
           <state>
@@ -77,7 +77,7 @@
       <Key>6</Key>
       <Value>
         <text>
-          <line>No, they are actually quite in a good state. I just do not need them anymore.</line>
+          <line>No, some of them are in good shape. I just don't need them anymore.</line>
         </text>
         <leadsTo>8</leadsTo>
       </Value>
@@ -87,7 +87,7 @@
       <Key>7</Key>
       <Value>
         <text>
-          <line>Recycling? Never heard of it, sounds stupid.</line>
+          <line>Nah, I don't think so. I don't want them either.</line>
         </text>
         <affectedStates>
           <state>
@@ -102,7 +102,7 @@
       <Key>8</Key>
       <Value>
         <text>
-          <line>So why not a garage sale, and collect some money?</line>
+          <line>Maybe you should have a garage sale? At least someone else might use them.</line>
         </text>
         <leadsTo>9</leadsTo>
       </Value>
@@ -112,7 +112,7 @@
       <Key>9</Key>
       <Value>
         <text>
-          <line>That actually sounds like a good idea. I'll give it a try.</line>
+          <line>And I might make some money too. I like that idea!</line>
         </text>
         <leadsTo>10</leadsTo>
       </Value>
@@ -122,7 +122,7 @@
       <Key>10</Key>
       <Value>
         <text>
-          <line>It is always good to recycle products especially if they are still in good shape. Maybe I'll buy something too.</line>
+          <line>You should also try to recycle whatever is left over. It's much better than throwing things away.</line>
         </text>
         <affectedStates>
           <state>
@@ -136,6 +136,24 @@
         </affectedStates>
       </Value>
     </Item>
-    
+
+    <Item>
+      <Key>20</Key>
+      <Value>
+        <text>
+          <line>Hello! I see you've emptied your garage!</line>
+        </text>
+        <leadsTo>21</leadsTo>
+      </Value>
+    </Item>
+
+    <Item>
+      <Key>21</Key>
+      <Value>
+        <text>
+          <line>Indeed I have. And I have you to thank for it!</line>
+        </text>
+      </Value>
+    </Item>
   </Asset>
 </XnaContent>

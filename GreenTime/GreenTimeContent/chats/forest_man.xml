@@ -5,7 +5,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Hello miss, did you just drop something on the ground?</line>
+          <line>Excuse me, did you just drop something on the ground?</line>
         </text>
         <leadsTo>1</leadsTo>
       </Value>
@@ -15,7 +15,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>No, I did not.</line>
+          <line>No, I didn't.</line>
         </text>
         <leadsTo>2 3 4</leadsTo>
       </Value>
@@ -35,7 +35,7 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>But I saw you dropping a burning cigarette there on the ground.</line>
+          <line>Is that cigarette over there yours?</line>
         </text>
         <leadsTo>6</leadsTo>
       </Value>
@@ -45,7 +45,7 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>Hmmm, I must have seen some ghost then.</line>
+          <line>It's your fault that this fire started!</line>
         </text>
         <leadsTo>7</leadsTo>
       </Value>
@@ -70,9 +70,9 @@
       <Key>6</Key>
       <Value>
         <text>
-          <line>Yes, I guess I did...</line>
+          <line>Yes, I guess it is...</line>
         </text>
-        <leadsTo>8 9</leadsTo>
+        <leadsTo>9 8</leadsTo>
       </Value>
     </Item>
 
@@ -80,7 +80,7 @@
       <Key>7</Key>
       <Value>
         <text>
-          <line>You are a strange one.</line>
+          <line>What fire? Please stop bothering me.</line>
         </text>
         <affectedStates>
           <state>
@@ -95,7 +95,7 @@
       <Key>8</Key>
       <Value>
         <text>
-          <line>Fire is dangerous in the woods, you really should not do that.</line>
+          <line>Even a small cigarette can light a fire!</line>
         </text>
         <leadsTo>10</leadsTo>
       </Value>
@@ -105,7 +105,7 @@
       <Key>9</Key>
       <Value>
         <text>
-          <line>Interesting, we might start a fire!</line>
+          <line>You'll get a fine for littering.</line>
         </text>
         <leadsTo>11</leadsTo>
       </Value>
@@ -115,7 +115,7 @@
       <Key>10</Key>
       <Value>
         <text>
-          <line>You are right, I will put it out and throw it away.</line>
+          <line>You're right... I'll put it out and throw it away.</line>
         </text>
         <affectedStates>
           <state>
@@ -134,7 +134,7 @@
       <Key>11</Key>
       <Value>
         <text>
-          <line>Yes, interesting thought. I like good fire.</line>
+          <line>Well, I don't see any guard around, so I'm safe. Goodbye!</line>
         </text>
         <affectedStates>
           <state>

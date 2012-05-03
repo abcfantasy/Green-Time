@@ -6,7 +6,7 @@
       <Key>0</Key>
       <Value>
         <text>
-          <line>Good day to you all.</line>
+          <line>Hi there! How do you like the food?</line>
         </text>
         <showIf>
           <state>
@@ -22,7 +22,7 @@
       <Key>1</Key>
       <Value>
         <text>
-          <line>Hmph, do you see how expensive this food is? Outrageous.</line>
+          <line>It looks great, but it's too expensive. Outrageous!</line>
         </text>
         <leadsTo>2 3 4</leadsTo>
       </Value>
@@ -32,7 +32,7 @@
       <Key>2</Key>
       <Value>
         <text>
-          <line>You're right, really high prices.</line>
+          <line>You're right, the prices are quite high.</line>
         </text>
         <leadsTo>5</leadsTo>
       </Value>
@@ -42,7 +42,7 @@
       <Key>3</Key>
       <Value>
         <text>
-          <line>But look at the food, it is special.</line>
+          <line>Still, it is very high quality.</line>
         </text>
         <leadsTo>6</leadsTo>
       </Value>
@@ -52,7 +52,7 @@
       <Key>4</Key>
       <Value>
         <text>
-          <line>I agree, but don't you think that it is a bit rude to say it in front of the shop?</line>
+          <line>How can you say that right in front of the shopkeeper?</line>
         </text>
         <leadsTo>7</leadsTo>
       </Value>
@@ -62,7 +62,7 @@
       <Key>5</Key>
       <Value>
         <text>
-          <line>I'll buy my eggs elsewhere.</line>
+          <line>I'll get my groceries from somewhere else.</line>
         </text>
         <affectedStates>
           <state>
@@ -77,7 +77,7 @@
       <Key>6</Key>
       <Value>
         <text>
-          <line>Special?</line>
+          <line>High quality?</line>
         </text>
         <leadsTo>8</leadsTo>
       </Value>
@@ -87,7 +87,7 @@
       <Key>7</Key>
       <Value>
         <text>
-          <line>Rude of me, true. I won't do that again.</line>
+          <line>It may be rude, but it's true!</line>
         </text>
         <affectedStates>
           <state>
@@ -102,7 +102,7 @@
       <Key>8</Key>
       <Value>
         <text>
-          <line>It is ecological food, meaning that the food is made with respect towards nature and animals. That explains the slightly raised price.</line>
+          <line>This is organic food. It doesn't contain any chemicals or pesticides, and it's harvested with respect for nature and animals.</line>
         </text>
         <leadsTo>9</leadsTo>
       </Value>
@@ -112,7 +112,7 @@
       <Key>9</Key>
       <Value>
         <text>
-          <line>Still I wouldn't buy it.</line>
+          <line>I still wouldn't buy it.</line>
         </text>
         <leadsTo>10 11 12</leadsTo>
       </Value>
@@ -122,7 +122,7 @@
       <Key>10</Key>
       <Value>
         <text>
-          <line>So you prefer chickens getting slaughtered after three weeks?</line>
+          <line>Do you know how badly the animals in large farms are treated?</line>
         </text>
         <leadsTo>13</leadsTo>
       </Value>
@@ -132,7 +132,7 @@
       <Key>11</Key>
       <Value>
         <text>
-          <line>So you prefer toxic substances on your cheese?</line>
+          <line>Have you heard how much genetically modified food is on the market today?</line>
         </text>
         <leadsTo>13</leadsTo>
       </Value>
@@ -142,7 +142,7 @@
       <Key>12</Key>
       <Value>
         <text>
-          <line>So you prefer cows being milked three times a day?</line>
+          <line>Did you know that even babies' milk contains growth hormones?</line>
         </text>
         <leadsTo>13</leadsTo>
       </Value>
@@ -152,9 +152,9 @@
       <Key>13</Key>
       <Value>
         <text>
-          <line>Is that really so? I did not consider it. It makes me think.</line>
+          <line>Is that true? I didn't know that. Maybe you are right...</line>
         </text>
-        <leadsTo>14 15 16</leadsTo>
+        <leadsTo>15 14 16</leadsTo>
       </Value>
     </Item>
 
@@ -162,7 +162,7 @@
       <Key>14</Key>
       <Value>
         <text>
-          <line>I will sponsor half of it, so that you can also taste the better taste of this food.</line>
+          <line>How about I pay half the price for you? Maybe you'll change your mind after you eat some.</line>
         </text>
         <leadsTo>17</leadsTo>
       </Value>
@@ -172,9 +172,9 @@
       <Key>15</Key>
       <Value>
         <text>
-          <line>The food is healthier and tastes better, so it is worth the extra money, trust me.</line>
+          <line>The food is healthier and it tastes better, so it's worth the extra money, trust me.</line>
         </text>
-        <leadsTo>18</leadsTo>
+        <leadsTo>19</leadsTo>
       </Value>
     </Item>
 
@@ -182,9 +182,9 @@
       <Key>16</Key>
       <Value>
         <text>
-          <line>Although a bit more expensive, think about our nature and the animals.</line>
+          <line>Even though it's more expensive, think about nature!</line>
         </text>
-        <leadsTo>19</leadsTo>
+        <leadsTo>18</leadsTo>
       </Value>
     </Item>
 
@@ -192,7 +192,7 @@
       <Key>17</Key>
       <Value>
         <text>
-          <line>No thank you, I will buy it myself to taste it.</line>
+          <line>Well, if you're willing to do that for me, I'll try it.</line>
         </text>
         <leadsTo>20</leadsTo>
       </Value>
@@ -202,7 +202,7 @@
       <Key>18</Key>
       <Value>
         <text>
-          <line>Maybe, but I'm not totally convinced. We should take care of our nature, but I wouldn't like to spend more for this.</line>
+          <line>Maybe, but I'm still not convinced. We should care for nature, but there are less expensive ways to do that.</line>
         </text>
         <affectedStates>
           <state>
@@ -217,7 +217,7 @@
       <Key>19</Key>
       <Value>
         <text>
-          <line>I understand your point, still I'm not that kind of person, and prefer buying cheaper food.</line>
+          <line>I see your point, but I'm still happier with the cheaper food.</line>
         </text>
         <affectedStates>
           <state>
@@ -232,7 +232,7 @@
       <Key>20</Key>
       <Value>
         <text>
-          <line>As you wish. Enjoy your meal.</line>
+          <line>Thank you! I am sure you will enjoy it.</line>
         </text>
         <affectedStates>
           <state>
