@@ -325,7 +325,10 @@ namespace GreenTime.Managers
 
         public DateTime GetCurrentGameDate()
         {
-            return initialDate.AddDays(StateManager.Instance.GetState(StateManager.STATE_DAY) - 1);
+            if (GetState("progress") == 100)
+                return initialDate;
+            else
+                return initialDate.AddDays(StateManager.Instance.GetState(StateManager.STATE_DAY) - 1);
         }
         #endregion
 

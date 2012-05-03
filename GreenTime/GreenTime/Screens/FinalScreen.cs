@@ -179,7 +179,7 @@ namespace GreenTime.Screens
                     if (pauseTime > 3000)
                     {
                         LoadingScreen.Load(ScreenManager, false,
-                            new TextOnBlackScreen("AVANTgarde - Credits", "Andrei Livadariu\nAndrew Borg Cardona\nNina Croitoru\nVirgil Tanase\n\nMentored by: Terry Guijt", new GameScreen[] { new BackgroundScreen(), new LogoScreen(true), new MainMenuScreen() }, false, 5000));
+                            new TextOnBlackScreen("AVANTgarde - Credits", "Andrei Livadariu\nAndrew Borg Cardona\nNina Croitoru\nVirgil Tanase\n\nMentored by: Terry Guijt", new GameScreen[] { new TextOnBlackScreen( "Thank you for playing.", "", new GameScreen[] { new BackgroundScreen(), new LogoScreen(true), new MainMenuScreen() } ) }, false, 5000, 150));
                         /*
                         LoadingScreen.Load(ScreenManager, false,
                             new TextOnBlackScreen("Programmers", "Andrei Livadariu\nAndrew Borg Cardona", 

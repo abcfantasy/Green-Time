@@ -21,9 +21,10 @@ namespace GreenTime.Screens
 
         private bool playMusic;
         private int maxTime = 3000;
+        private int titleOffset = 0;
+        private bool handleInput = true;
 
-
-        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false, int maxTime = 3000)
+        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false, int maxTime = 3000, int titleOffset = 0, bool handleInput = true)
         {
             _title = title;
             _text = text;
@@ -31,7 +32,8 @@ namespace GreenTime.Screens
 
             playMusic = playAlternateMusic;
             this.maxTime = maxTime;
-
+            this.titleOffset = titleOffset;
+            this.handleInput = handleInput;
             TransitionOnTime = TimeSpan.FromSeconds(3);
             TransitionOffTime = TimeSpan.FromSeconds(3);
         }
@@ -44,7 +46,7 @@ namespace GreenTime.Screens
 
         public override void HandleInput(InputManager input)
         {
-            if (input.IsMenuCancel() || input.IsMenuSelect() )
+            if (handleInput && (input.IsMenuCancel() || input.IsMenuSelect() ) )
             {
                 this.TransitionOffTime = TimeSpan.FromSeconds(0.0);
                 elapsed = maxTime;
@@ -90,7 +92,7 @@ namespace GreenTime.Screens
             Vector2 titleSize = ScreenManager.Font.MeasureString(_title);
             Vector2 textSize = ScreenManager.Font.MeasureString( _text );
 
-            spriteBatch.DrawString(ScreenManager.Font, _title, new Vector2((SettingsManager.GAME_WIDTH / 2), (SettingsManager.GAME_HEIGHT / 2) - (titleSize.Y * 2)), Color.White * titleAlpha, 0.0f, new Vector2( titleSize.X / 2, titleSize.Y / 2 ), 1.3f, SpriteEffects.None, 1.0f);
+            spriteBatch.DrawString(ScreenManager.Font, _title, new Vector2((SettingsManager.GAME_WIDTH / 2), (SettingsManager.GAME_HEIGHT / 2) - (titleSize.Y * 2) - titleOffset), Color.White * titleAlpha, 0.0f, new Vector2( titleSize.X / 2, titleSize.Y / 2 ), 1.3f, SpriteEffects.None, 1.0f);
             spriteBatch.DrawString(ScreenManager.Font, _text, new Vector2((SettingsManager.GAME_WIDTH / 2) - (textSize.X / 2), (SettingsManager.GAME_HEIGHT / 2) - (textSize.Y / 2)), Color.White * textAlpha );
 
             spriteBatch.End();
