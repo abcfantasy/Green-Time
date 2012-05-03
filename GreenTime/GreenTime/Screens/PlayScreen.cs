@@ -632,7 +632,7 @@ namespace GreenTime.Screens
 
                     StateManager.Instance.SetState(StateManager.STATE_PLAYERSTATUS, Math.Min(playerStatus + 50, 100));
                 }
-                else if ( StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 )
+                else if ( !StateManager.Instance.IndoorPuzzleSolved() && StateManager.Instance.GetState(StateManager.STATE_PLAYERSTATUS) > 0 )
                 {
                     playRegressSound = true;
 
