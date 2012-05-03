@@ -140,8 +140,12 @@ namespace GreenTime.Screens
 
             spriteBatch.Begin();
 
+            // border
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Rectangle(backgroundRectangle.X - 1, backgroundRectangle.Y - 1, backgroundRectangle.Width + 2, backgroundRectangle.Height + 2), ResourceManager.Instance["blank"], color);
             // Draw the background rectangle.
             spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, backgroundRectangle, ResourceManager.Instance["gradient"], color);
+            // draw leaf
+            spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Vector2( backgroundRectangle.X + backgroundRectangle.Width - 68, backgroundRectangle.Y + backgroundRectangle.Height - 37 ), ResourceManager.Instance["popup_leaf"], color);
 
             // Draw the message box text.
             spriteBatch.DrawString(font, message, textPosition, color);

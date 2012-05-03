@@ -18,6 +18,11 @@
       <Value>9 1021 2 2</Value>
     </Item>
 
+    <Item>
+      <Key>border_pixel</Key>
+      <Value>14 1022 1 1</Value>
+    </Item>
+
     <!-- Menu stuff -->
     <Item>
       <Key>menu_black_pixel</Key>
@@ -89,7 +94,11 @@
       <Key>timetravel_clock</Key>
       <Value>650 652 128 128</Value>
     </Item>
-    
+
+    <Item>
+      <Key>popup_leaf</Key>
+      <Value>407 912 83 56</Value>
+    </Item>
     <!-- pickable stuff -->
     <Item>
       <Key>pick_cerealbox</Key>
