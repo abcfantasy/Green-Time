@@ -25,24 +25,25 @@ namespace GreenTime.Screens
         float playerAlpha = 0.0f;
 
         string[] lines = new string[] {
-            "The world has become colorless from pollution",
-            "Pollution caused by people",
-            "Unfortunately it was too late",
-            "The world will forever be polluted",
+            "The world has become grey and bland",
+            "Because people are polluting nature",
+            "Soon it will be too late",
+            "There will be no turning back",
             "",
-            "Unless someone can turn back time",
+            "Unless someone can undo the mistakes of the past",
             "Someone who can motivate people to change",
-            "So that the world keeps shining",
+            "So that the world will change with them",
             "",
-            "This person wakes up after a strange dream",
-            "He dreamt he could turn back time and effect the future",
-            "He dreamt he could bring color back to his world",
+            "You wake up after a strange dream",
+            "You dreamt you could turn back time and make a better future",
+            "You dreamt you could bring color back to this world",
             "",
-            "He wonders if this was really a dream",
-            "He starts the day wondering",
+            "Was this really a dream?",
+            "As a new day starts,",
+            "It's time to find out and start exploring.",
             "",
-            "This person is you!",
-            "Time to find out the truth and start exploring."
+            "Change yourself!",
+            "Change the world!",
         };
 
         public IntroScreen()
