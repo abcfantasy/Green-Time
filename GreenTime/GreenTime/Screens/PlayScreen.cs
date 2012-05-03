@@ -280,7 +280,7 @@ namespace GreenTime.Screens
                     StateManager.Instance.SetState("tutorial_movement", 100);
                     ShowTutorial("You can use the left and right arrow keys to walk around.");
                 }
-                else if ( StateManager.Instance.GetState("tutorial_timetravel") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && LevelManager.Instance.CurrentLevel.name == "neighborhood")
+                else if (StateManager.Instance.GetState("tutorial_timetravel") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && LevelManager.Instance.CurrentLevel.name == "neighborhood")
                 {
                     StateManager.Instance.SetState("tutorial_timetravel", 100);
                     ShowTutorial("Oh no! It seems the garbage bags are there again.\nSomeone must be leaving them every morning. Go over to\nthem and press Z to travel to the past and find out who.");
@@ -336,6 +336,8 @@ namespace GreenTime.Screens
                 // update animations
                 UpdateAnimations(gameTime);
             }
+            else
+                SoundManager.StopFootsteps();
         }
 
         public override void Draw(GameTime gameTime)
@@ -784,6 +786,11 @@ namespace GreenTime.Screens
                             {
                                 StateManager.Instance.SetState("tutorial_computer_interact", 100);
                                 ShowTutorial("You can use your computer to look at some news.\nYou might find hints there if you get stuck.");
+                            }
+                            if ( interactingObject.interaction.callback == "map" && StateManager.Instance.GetState("tutorial_bike") < 100 && StateManager.Instance.GetState(StateManager.STATE_DAY) >= 2 && StateManager.Instance.GetState("visited_neighborhood_2") == 100 )
+                            {
+                                StateManager.Instance.SetState("tutorial_bike", 100);
+                                ShowTutorial("You can use your bike to quickly navigate\nto other locations you've been to. Press SPACE to open\nup the map, and choose with the left and right arrow keys.");
                             }
                             // pick up garbage bags
                             if (interactingObject.interaction.pickUpName != null && interactingObject.interaction.pickUpName.StartsWith("garbage") && StateManager.Instance.GetState("tutorial_pickup") < 100)

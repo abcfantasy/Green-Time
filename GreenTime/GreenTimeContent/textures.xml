@@ -139,7 +139,7 @@
 
     <Item>
       <Key>pick_acorn</Key>
-      <Value>136 221 39 23</Value>
+      <Value>186 158 57 43</Value>
     </Item>
 
     <Item>
@@ -250,6 +250,11 @@
     </Item>
     
     <!-- neighborhood -->
+    <Item>
+      <Key>bike</Key>
+      <Value>1168 1040 316 258</Value>
+    </Item>
+    
     <Item>
       <Key>mole</Key>
       <Value>0 1298 1029 108</Value>
@@ -405,6 +410,11 @@
     <Item>
       <Key>forest_npc</Key>
       <Value>1902 138 109 309</Value>
+    </Item>
+
+    <Item>
+      <Key>squirrel</Key>
+      <Value>1309 1539 310 53</Value>
     </Item>
     
     <!-- final room -->

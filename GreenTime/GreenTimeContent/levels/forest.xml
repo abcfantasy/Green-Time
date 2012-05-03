@@ -112,7 +112,7 @@
       <Item>
         <sprite>
           <texture>cigarette</texture>
-          <position>690 560</position>
+          <position>720 530</position>
           <layer>0.6</layer>
         </sprite>
         <showIf>
@@ -134,7 +134,7 @@
       <Item>
         <sprite>
           <texture>acorn</texture>
-          <position>1020 543</position>
+          <position>1020 537</position>
           <layer>0.6</layer>
         </sprite>
         <showIf>
@@ -171,29 +171,34 @@
         </onInteract>
       </Item>
 
-      <!-- acorn seeding area -->
+      <!-- squirrel -->
       <Item>
-        <onInteract>
-          <boundX>0</boundX>
-          <boundWidth>600</boundWidth>
-          <text>Fertile soil</text>
-          <transition>forest_past</transition>
-          <dropper>
-            <drops>
-              <Item>acorn</Item>
-            </drops>
-            <effects>
-              <state>
-                <name>advance_day</name>
-                <value>100</value>
-              </state>
-            </effects>
-          </dropper>
-          <sound>
-            <name>plantAcorn</name>
-            <looping>false</looping>
-          </sound>
-        </onInteract>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>squirrel</texture>
+          <position>968 537</position>
+          <layer>0.51</layer>
+          <scale>1.2</scale>
+          <frameSize>62 53</frameSize>
+          <framesPerLine>5</framesPerLine>
+          <framesPerSecond>15</framesPerSecond>
+          <loop>true</loop>
+          <velocityPerSecond>170 0</velocityPerSecond>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 4</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <showIf>
+          <state>
+            <name>puzzle_cig_solved</name>
+            <value>100</value>
+          </state>
+          <state>
+            <name>progress</name>
+            <between>0 99</between>
+          </state>
+        </showIf>
       </Item>
     </gameObjects>    
   </Asset>

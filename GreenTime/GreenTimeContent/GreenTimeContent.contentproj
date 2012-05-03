@@ -436,14 +436,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="levels\neighborhood_2_past.xml">
-      <SubType>Designer</SubType>
-      <Name>neighborhood_2_past</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="chats\ecological_customer.xml">
       <Name>ecological_customer</Name>
       <Importer>XmlImporter</Importer>

@@ -22,41 +22,39 @@
       </playIf>
     </ambientSound>
     <gameObjects>
+      
       <!-- map -->
       <Item>
-        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>mole</texture>
-          <position>20 402</position>
-          <layer>0.51</layer>
-          <scale>0.75</scale>
-          <flipped>true</flipped>
-          <frameSize>147 108</frameSize>
-          <framesPerLine>7</framesPerLine>
-          <framesPerSecond>5</framesPerSecond>
-          <loop>false</loop>
-          <animations>
-            <frameSet>
-              <frames>0 1 2 3 4 4 4 5 5 6 1 0 0 0 0 0</frames>
-            </frameSet>
-          </animations>
-        </sprite>
-        <!--<showIf>
+        <showIf>
           <state>
-            <name>progress</name>
-            <between>22 100</between>
+            <name>visited_neighborhood_2</name>
+            <value>0</value>
           </state>
+        </showIf>
+        <onInteract>
+          <boundX>20</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Bike</text>
+          <thought>Nice bike, but I have no where to go right now.</thought>
+        </onInteract>
+      </Item>
+      
+      <!-- usable map -->
+      <Item>
+        <showIf>
           <state>
             <name>visited_neighborhood_2</name>
             <value>100</value>
           </state>
-        </showIf>-->
+        </showIf>
         <onInteract>
           <boundX>20</boundX>
           <boundWidth>150</boundWidth>
-          <text>Mole</text>
+          <text>Bike</text>
           <callback>map</callback>
         </onInteract>
       </Item>
+      
       <!-- mole -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -79,6 +77,10 @@
           <state>
             <name>puzzle_garbage_solved</name>
             <value>100</value>
+          </state>
+          <state>
+            <name>progress</name>
+            <between>0 99</between>
           </state>
         </showIf>
         <onInteract>
@@ -111,17 +113,22 @@
             <name>puzzle_garbage_solved</name>
             <value>100</value>
           </state>
+          <state>
+            <name>progress</name>
+            <between>0 99</between>
+          </state>
         </showIf>
       </Item>
       
-      <!-- Front grass -->
+      <!-- Front bike  -->
       <Item>
         <sprite>
-          <texture>grass</texture>
-          <position>0 529</position>
+          <texture>bike</texture>
+          <position>0 462</position>
           <layer>0.4</layer>
         </sprite>
       </Item>
+      
       <!-- Dead tree -->
       <Item>
         <sprite>

@@ -60,6 +60,9 @@ namespace GreenTimeGameData.Components
         // The percentage of fading between frames
         private float fadePercentage = 0.0f;
 
+        // the starting position of the sprite
+        private Vector2 startingPosition;
+
         // The list of active animations; they are the ones that satisfy the dependencies
         private Dictionary<string, int[]> activeAnimations = new Dictionary<string, int[]>();
 
@@ -99,6 +102,8 @@ namespace GreenTimeGameData.Components
             this.currentFrameBounds.Y = 0;
             this.nextFrameBounds.X = 0;
             this.nextFrameBounds.Y = 0;
+
+            this.startingPosition = position;
         }
         #endregion
 

@@ -14,13 +14,12 @@
     <rightScreenName></rightScreenName>
     <gameObjects>
 
-      <!-- Front grass -->
+      <!-- Front bike  -->
       <Item>
         <sprite>
-          <texture>grass</texture>
-          <position>0 529</position>
+          <texture>bike</texture>
+          <position>0 462</position>
           <layer>0.4</layer>
-          <shaded>false</shaded>
         </sprite>
       </Item>
 
