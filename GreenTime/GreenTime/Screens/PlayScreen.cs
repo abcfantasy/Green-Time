@@ -581,7 +581,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 6);
+                    player.move(movement * 16);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
@@ -674,9 +674,19 @@ namespace GreenTime.Screens
                 {
                     if (StateManager.Instance.GetState("progress") == 100)
                     {
+                        /*
                         // transition to the right
                         LevelManager.Instance.MoveRight();
                         LoadingScreen.Load(ScreenManager, false, new FinalScreen());
+                         * */
+                        StateManager.Instance.NewGame();
+                        LevelManager.Instance.NewGame();
+
+                        StateManager.Instance.SetState("progress", 100);
+
+                        LoadingScreen.Load(ScreenManager, true,
+                            new TextOnBlackScreen("Congratulations!", "You solved all puzzles and brought color back to the game world.",
+                                new GameScreen[] { new AutoTransitionFinalScreen() }, true));
                     }
                     // let player go through whole 
                     else if (StateManager.Instance.GetState("progress") >= 95)

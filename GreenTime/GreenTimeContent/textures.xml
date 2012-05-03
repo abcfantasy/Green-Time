@@ -395,6 +395,16 @@
       <Key>forest_npc</Key>
       <Value>1902 138 109 309</Value>
     </Item>
+    
+    <!-- final room -->
+    <Item>
+      <Key>final_room_text1</Key>
+      <Value>0 721 1280 107</Value>
+    </Item>
+
+    <Item>
+      <Key>final_room_text2</Key>
+      <Value>0 829 1076 72</Value>
     </Item>
   </Asset>
 </XnaContent>

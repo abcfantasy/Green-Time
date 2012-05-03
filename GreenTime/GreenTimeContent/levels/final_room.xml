@@ -3,8 +3,9 @@
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.Level">
     <name>final_room</name>
+    <texture>final_room\finalTexture</texture>
     <backgroundTexture>
-      <texture>final_room\bg</texture>
+      <texture>background</texture>
       <position>0 0</position>
       <layer>0.75</layer>
       <shaded>false</shaded>
@@ -12,10 +13,11 @@
     <leftScreenName></leftScreenName>
     <rightScreenName></rightScreenName>
     <gameObjects>
+      
       <!-- grey square -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\player_square</texture>
+          <texture>character_square</texture>
           <position>316 130</position>
           <layer>0.6</layer>
           <scale>1.4</scale>
@@ -32,7 +34,7 @@
       <!-- grey round -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\player</texture>
+          <texture>character_round</texture>
           <position>585 130</position>
           <layer>0.6</layer>
           <scale>1.4</scale>
@@ -49,7 +51,7 @@
       <!-- green round -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
-          <texture>animations\player</texture>
+          <texture>character_round</texture>
           <position>853 130</position>
           <layer>0.6</layer>
           <shaded>false</shaded>
@@ -67,7 +69,7 @@
       <!-- choose who you want to be text -->
       <Item>
         <sprite>
-          <texture>final_room\text1</texture>
+          <texture>final_room_text1</texture>
           <position>0 0</position>
           <layer>0.4</layer>
           <shaded>false</shaded>
@@ -76,7 +78,7 @@
       <!-- and act now text -->
       <Item>
         <sprite>
-          <texture>final_room\text2</texture>
+          <texture>final_room_text2</texture>
           <position>50 628</position>
           <layer>0.4</layer>
           <shaded>false</shaded>

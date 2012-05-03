@@ -56,6 +56,8 @@ namespace GreenTime.Managers
         // footsteps
         private static SoundEffectInstance footsteps;
 
+        private static string songLoaded = null;
+
         /// <summary>
         /// Loads all music files
         /// </summary>
@@ -102,7 +104,11 @@ namespace GreenTime.Managers
 
         public static void LoadSong(ContentManager content, string songName)
         {
-            music = content.Load<Song>(songName);
+            if (songLoaded != songName)
+            {
+                songLoaded = songName;
+                music = content.Load<Song>(songName);
+            }
         }
 
         /// <summary>
@@ -147,6 +153,7 @@ namespace GreenTime.Managers
         public static void UnloadGlobal()
         {
             gameMusicPlaying = false;
+            songLoaded = null;
             globalSounds = null;
         }
 
