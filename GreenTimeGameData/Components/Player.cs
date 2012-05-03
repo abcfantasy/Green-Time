@@ -23,6 +23,8 @@ namespace GreenTimeGameData.Components
         private AnimatedSprite current_sprite;
         private AnimatedSprite opposite_sprite;
 
+        private bool isRound = true;
+
         // The player's current thought
         private string thought;
         private float thought_time;
@@ -59,8 +61,10 @@ namespace GreenTimeGameData.Components
             current_sprite = content.Load<AnimatedSprite>("player");
 
             // We need a shallow copy instance to handle the square player texture
-            opposite_sprite = (AnimatedSprite)current_sprite.Clone();            
-            opposite_sprite.textureName = "character_square";
+            //opposite_sprite = (AnimatedSprite)current_sprite.Clone();
+            //opposite_sprite.textureName = "player_square";
+            //opposite_sprite.framesPerLine = 8;
+            opposite_sprite = content.Load<AnimatedSprite>("player_square");
             
             // Loading the content
             current_sprite.Load();
@@ -68,6 +72,7 @@ namespace GreenTimeGameData.Components
 
             // Because we made only a shallow copy, this method will affect the square player too
             current_sprite.AddAllAnimations();
+            opposite_sprite.AddAllAnimations();
         }
         #endregion
 
@@ -113,20 +118,22 @@ namespace GreenTimeGameData.Components
         }
 
         // Draws the currently active sprite
-        public void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle textureRect)
+        public void Draw(Texture2D texture, SpriteBatch spriteBatch, Rectangle roundTextureRect, Rectangle squareTextureRect)
         {
-            current_sprite.Draw(texture, spriteBatch, textureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)(shapeState * 255.0f)));
+            current_sprite.Draw(texture, spriteBatch, isRound ? roundTextureRect : squareTextureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)(shapeState * 255.0f)));
 
             // We only draw the second sprite if we're transitioning between the two
             if (shapeTransition != 0)
-                opposite_sprite.Draw(texture, spriteBatch, textureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)((1 - shapeState) * 255.0f)));
+                opposite_sprite.Draw(texture, spriteBatch, isRound ? squareTextureRect : roundTextureRect, new Color((byte)(colorState * 64.0f), 255, 255, (byte)((1 - shapeState) * 255.0f)));
         }
         #endregion
 
         #region Public Methods
         // Swaps between the round and square sprite
         public void swap()
-        {           
+        {
+            isRound = !isRound;
+
             AnimatedSprite aux  = current_sprite;
             current_sprite      = opposite_sprite;
             opposite_sprite     = aux;

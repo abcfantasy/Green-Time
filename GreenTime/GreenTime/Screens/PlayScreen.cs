@@ -343,7 +343,7 @@ namespace GreenTime.Screens
             spriteBatch.Draw(ResourceManager.Instance.GlobalTexture, new Vector2(15, 15), hud_timetravel, new Color(64, 255, 255, 255));
 
             // player
-            player.Draw(ResourceManager.Instance.GlobalTexture, spriteBatch, ResourceManager.Instance[player.Sprite.textureName]);
+            player.Draw(ResourceManager.Instance.GlobalTexture, spriteBatch, ResourceManager.Instance["character_round"], ResourceManager.Instance["character_square"]);
 
             // game objects
             foreach (Sprite s in visibleObjects)

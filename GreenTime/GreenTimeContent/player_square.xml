@@ -2,12 +2,12 @@
 <XnaContent>
   <!-- TODO: replace this Asset with your own XML asset data. -->
   <Asset Type="GreenTimeGameData.Components.AnimatedSprite">
-    <texture>character_round</texture>
+    <texture>character_square</texture>
     <position>0 250</position>
     <layer>0.5</layer>
     <scale>1.2</scale>
     <frameSize>110 326</frameSize>
-    <framesPerLine>9</framesPerLine>
+    <framesPerLine>8</framesPerLine>
     <framesPerSecond>15</framesPerSecond>
     <animations>
       <frameSet>
