@@ -20,14 +20,17 @@ namespace GreenTime.Screens
         private bool fadeIn = true;
 
         private bool playMusic;
+        private int maxTime = 3000;
 
-        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false)
+
+        public TextOnBlackScreen(string title, string text, GameScreen[] nextScreens, bool playAlternateMusic = false, int maxTime = 3000)
         {
             _title = title;
             _text = text;
             _nextScreens = nextScreens;
 
             playMusic = playAlternateMusic;
+            this.maxTime = maxTime;
 
             TransitionOnTime = TimeSpan.FromSeconds(3);
             TransitionOffTime = TimeSpan.FromSeconds(3);
@@ -44,7 +47,7 @@ namespace GreenTime.Screens
             if (input.IsMenuCancel() || input.IsMenuSelect() )
             {
                 this.TransitionOffTime = TimeSpan.FromSeconds(0.0);
-                elapsed = 3000;
+                elapsed = maxTime;
             }
         }
 
@@ -65,10 +68,10 @@ namespace GreenTime.Screens
                 titleAlpha = MathHelper.Clamp((TransitionAlpha - 0.5f) * 2.0f, 0.0f, 1.0f);
             }
 
-            if (fadeIn && elapsed > 3000)
+            if (fadeIn && elapsed > maxTime)
                 fadeIn = false;
 
-            if (elapsed > 3000)
+            if (elapsed > maxTime)
             {
                 LoadingScreen.Load(ScreenManager, false, _nextScreens);
             }
