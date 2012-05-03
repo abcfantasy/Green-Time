@@ -150,7 +150,6 @@
           <boundX>460</boundX>
           <boundWidth>320</boundWidth>
           <text>Heater</text>
-          <thought>Maybe a little more heat won't hurt.</thought>
           <sound>
             <name>hitSwitch</name>
             <looping>false</looping>
@@ -191,7 +190,6 @@
           <boundX>460</boundX>
           <boundWidth>320</boundWidth>
           <text>Heater</text>
-          <thought>Why waste heat on a summer day?</thought>
           <sound>
             <name>hitSwitch</name>
             <looping>false</looping>

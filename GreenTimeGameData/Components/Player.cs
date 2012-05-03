@@ -73,6 +73,9 @@ namespace GreenTimeGameData.Components
             // Because we made only a shallow copy, this method will affect the square player too
             current_sprite.AddAllAnimations();
             opposite_sprite.AddAllAnimations();
+
+            current_sprite.Init();
+            opposite_sprite.Init();
         }
         #endregion
 

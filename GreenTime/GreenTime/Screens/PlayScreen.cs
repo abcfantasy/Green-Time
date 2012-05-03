@@ -198,6 +198,7 @@ namespace GreenTime.Screens
                                 foreach (FrameSet ap in ((AnimatedSprite)io.sprite).animations)
                                     if (StateManager.Instance.CheckDependencies(ap.dependencies))
                                         ((AnimatedSprite)io.sprite).ActiveAnimations[ap.name] = ap.frames;
+                                ((AnimatedSprite)io.sprite).Init();
                             }
                         }
                     }
@@ -596,7 +597,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 16);
+                    player.move(movement * 6);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
