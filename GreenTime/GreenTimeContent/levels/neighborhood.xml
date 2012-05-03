@@ -22,6 +22,41 @@
       </playIf>
     </ambientSound>
     <gameObjects>
+      <!-- map -->
+      <Item>
+        <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
+          <texture>mole</texture>
+          <position>20 402</position>
+          <layer>0.51</layer>
+          <scale>0.75</scale>
+          <flipped>true</flipped>
+          <frameSize>147 108</frameSize>
+          <framesPerLine>7</framesPerLine>
+          <framesPerSecond>5</framesPerSecond>
+          <loop>false</loop>
+          <animations>
+            <frameSet>
+              <frames>0 1 2 3 4 4 4 5 5 6 1 0 0 0 0 0</frames>
+            </frameSet>
+          </animations>
+        </sprite>
+        <!--<showIf>
+          <state>
+            <name>progress</name>
+            <between>22 100</between>
+          </state>
+          <state>
+            <name>visited_neighborhood_2</name>
+            <value>100</value>
+          </state>
+        </showIf>-->
+        <onInteract>
+          <boundX>20</boundX>
+          <boundWidth>150</boundWidth>
+          <text>Mole</text>
+          <callback>map</callback>
+        </onInteract>
+      </Item>
       <!-- mole -->
       <Item>
         <sprite Type="GreenTimeGameData.Components.AnimatedSprite">
@@ -46,6 +81,12 @@
             <value>100</value>
           </state>
         </showIf>
+        <onInteract>
+          <boundX>505</boundX>
+          <boundWidth>50</boundWidth>
+          <text>Mole</text>
+          <thought>Funny little critter</thought>
+        </onInteract>
       </Item>
       
       <!-- birds -->
@@ -225,7 +266,7 @@
           <boundX>830</boundX>
           <boundWidth>280</boundWidth>
           <text>Sprinklers</text>
-          <transition>neighbourhood_past_sprinkler</transition>
+          <thought>Looks like that sprinkler has been on for quite a while.</thought>
         </onInteract>
       </Item>
 
@@ -245,7 +286,7 @@
         </showIf>
         <onInteract>
           <boundX>620</boundX>
-          <boundWidth>410</boundWidth>
+          <boundWidth>110</boundWidth>
           <text>Neighbor</text>
           <chat>sprinkler_man</chat>
           <mouth>880 280</mouth>
@@ -268,7 +309,7 @@
         </showIf>
         <onInteract>
           <boundX>620</boundX>
-          <boundWidth>410</boundWidth>
+          <boundWidth>110</boundWidth>
           <text>Neighbor</text>
           <chat>sprinkler_man</chat>
           <startChatIndex>19</startChatIndex>
@@ -303,6 +344,12 @@
             <value>100</value>
           </state>
         </showIf>
+        <onInteract>
+          <boundX>935</boundX>
+          <boundWidth>280</boundWidth>
+          <text>Flowers</text>
+          <thought>They're flourishing.</thought>
+        </onInteract>
       </Item>
     </gameObjects>
   </Asset>

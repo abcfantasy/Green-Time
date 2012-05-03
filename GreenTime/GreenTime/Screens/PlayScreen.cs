@@ -473,6 +473,9 @@ namespace GreenTime.Screens
                                     StateManager.Instance.SetState("tutorial_computer", 100);   // do not show computer tutorial if already interacted with
                                     ScreenManager.AddScreen(new ComputerScreen());
                                     break;
+                                case "map":
+                                    ScreenManager.AddScreen(new MapScreen());
+                                    break;
                             }
                         }
 
@@ -483,6 +486,7 @@ namespace GreenTime.Screens
                             if ( interactingObject.sprite != null)
                                 interactingObject.sprite.flipped = interactingObject.sprite.flippable && (interactingObject.sprite.position.X < player.Position.X);
 
+                            player.Thought = null;
                             ScreenManager.AddScreen(new ChatScreen(interactingObject.interaction.chat, true, interactingObject.interaction.mouth, interactingObject.interaction.startChatIndex));
                         }
 

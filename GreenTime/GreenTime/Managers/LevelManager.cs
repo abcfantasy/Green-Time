@@ -100,6 +100,7 @@ namespace GreenTime.Managers
             loaded = false;
 
             LoadAllLevels();
+            player.moveTo(startPosition);
         }
 
         /// <summary>
@@ -116,25 +117,18 @@ namespace GreenTime.Managers
             }
         }
 
-        /*
-        public void LoadLevel(string levelName)
-        {
-            if (!levels.ContainsKey(levelName) )
-            {
-                levels[levelName] = content.Load<Level>(@"levels\" + levelName);
-            }
-        }*/
-
         public void GoTo( string level )
         {
             if (!levels.ContainsKey(level))
             {
+                StateManager.Instance.SetState("visited_" + level, 100);
                 levels[level] = content.Load<Level>(@"levels\" + level);
                 foreach (GameObject o in levels[level].gameObjects)
                     o.Load();
             }
 
             currentLevel = levels[level];
+            player.Thought = null;
         }
 
         public Dictionary<int,Chat> StartChat(string chat)

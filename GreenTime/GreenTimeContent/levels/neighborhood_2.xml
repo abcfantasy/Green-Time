@@ -12,7 +12,15 @@
     <leftScreenName>neighborhood</leftScreenName>
     <rightScreenName>shop</rightScreenName>
     <gameObjects>
-
+      <!-- House thought -->
+      <Item>
+        <onInteract>
+          <boundX>30</boundX>
+          <boundWidth>300</boundWidth>
+          <text>House</text>
+          <thought>A nice and well kept house.</thought>
+        </onInteract>
+      </Item>
       <!-- dumped stuff -->
       <Item>
         <sprite>
@@ -31,9 +39,19 @@
           <boundWidth>420</boundWidth>
           <text>Dumped stuff</text>
           <transition>neighborhood_2_past</transition>
+          <thought>A lamp, toys, books... Everything but the kitchen sink. Someone's throwing them away.</thought>
         </onInteract>
       </Item>
 
+      <Item>
+        <onInteract>
+          <boundX>929</boundX>
+          <boundWidth>299</boundWidth>
+          <text>Ecological food</text>
+          <thought>Looks yummy.</thought>
+        </onInteract>
+      </Item>
+      
       <!-- ecological customer npc -->
       <Item>
         <sprite>
