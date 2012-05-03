@@ -493,6 +493,7 @@ namespace GreenTime.Screens
                         // Pick up the object
                         if (pickedObject == null && !String.IsNullOrEmpty(interactingObject.interaction.pickUpName))
                         {
+                            SoundManager.PlaySound(SoundManager.SOUND_PICK);
                             PickupObject(interactingObject);
                         }
 
@@ -548,6 +549,11 @@ namespace GreenTime.Screens
                 if (keyboardState.IsKeyDown(Keys.Left))     --movement;
                 if (keyboardState.IsKeyDown(Keys.Right))    ++movement;
 
+                if (movement == 0.0f)
+                    SoundManager.StopFootsteps();
+                else
+                    SoundManager.PlayFootsteps();
+
                 // Checking gamepad controls only if we have one
                 if (input.GamePadWasConnected) {
                     movement += gamePadState.ThumbSticks.Left.X;
@@ -564,7 +570,7 @@ namespace GreenTime.Screens
                
                 // Update movement if we have any
                 if (movement != 0.0f) {
-                    player.move(movement * 5);
+                    player.move(movement * 6);
                     player.walk();
                 }
                 else /* if ( !keyboardState.IsKeyDown(Keys.Space) )  // more shufflin' */
@@ -651,6 +657,7 @@ namespace GreenTime.Screens
             // if player moves outside the right boundary
             if (player.Position.X > SettingsManager.GAME_WIDTH)
             {
+                SoundManager.StopFootsteps();
                 // is it final room?
                 if (LevelManager.Instance.CurrentLevel.rightScreenName == "final_room")
                 {
@@ -690,6 +697,7 @@ namespace GreenTime.Screens
             // if player moves outside left boundary
             else if (player.Position.X < -SettingsManager.PLAYER_WIDTH)
             {
+                SoundManager.StopFootsteps();
                 // transition to the left
                 LevelManager.Instance.MoveLeft();
                 LoadingScreen.Load(ScreenManager, false, new PlayScreen());

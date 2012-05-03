@@ -18,6 +18,8 @@ namespace GreenTime.Managers
         public static readonly int SOUND_MENU_CANCEL = 3;
         public static readonly int SOUND_TIMETRAVEL = 4;
         public static readonly int SOUND_DROP = 5;
+        public static readonly int SOUND_PICK = 6;
+        public static readonly int SOUND_FOOTSTEPS = 7;
 
         // content file names
         private static readonly string MENU_UP_FILENAME = @"audio\scrollUp";
@@ -26,6 +28,8 @@ namespace GreenTime.Managers
         private static readonly string MENU_CANCEL_FILENAME = @"audio\CancelSound";
         private static readonly string TRAVEL_SOUND_FILENAME = @"audio\timeTravel";
         private static readonly string DROP_FILENAME = @"audio\throwingGarbage";
+        private static readonly string PICK_FILENAME = @"audio\pickup";
+        private static readonly string STEPS_FILENAME = @"audio\footsteps";
 
         private static readonly string SONG_GAME = @"audio\greentime";
         public static readonly string SONG_INTRO = @"audio\IntroSong";
@@ -37,7 +41,7 @@ namespace GreenTime.Managers
 
         // game sound effects
         private static int menuSoundCount = 4;
-        private static int gameplaySoundCount = 6;
+        private static int gameplaySoundCount = 8;
 
         private static SoundEffect[] globalSounds;
         private static Dictionary<string, SoundEffect> levelSounds = new Dictionary<string,SoundEffect>();
@@ -48,6 +52,9 @@ namespace GreenTime.Managers
 
         // ambients sound position to change volume levels
         private static int ambientSoundPosition;
+
+        // footsteps
+        private static SoundEffectInstance footsteps;
 
         /// <summary>
         /// Loads all music files
@@ -84,6 +91,13 @@ namespace GreenTime.Managers
             globalSounds[SOUND_MENU_CANCEL] = content.Load<SoundEffect>(MENU_CANCEL_FILENAME);
             globalSounds[SOUND_TIMETRAVEL] = content.Load<SoundEffect>(TRAVEL_SOUND_FILENAME);
             globalSounds[SOUND_DROP] = content.Load<SoundEffect>(DROP_FILENAME);
+            globalSounds[SOUND_PICK] = content.Load<SoundEffect>(PICK_FILENAME);
+
+            // foot steps
+            globalSounds[SOUND_FOOTSTEPS] = content.Load<SoundEffect>(STEPS_FILENAME);
+            footsteps = globalSounds[SOUND_FOOTSTEPS].CreateInstance();
+            footsteps.Volume = 0.7f;
+            footsteps.IsLooped = true;
         }
 
         public static void LoadSong(ContentManager content, string songName)
@@ -134,6 +148,17 @@ namespace GreenTime.Managers
         {
             gameMusicPlaying = false;
             globalSounds = null;
+        }
+
+        public static void PlayFootsteps()
+        {
+            if ( footsteps.State != SoundState.Playing )
+                footsteps.Play();
+        }
+
+        public static void StopFootsteps()
+        {
+            footsteps.Stop(true);
         }
 
         /// <summary>

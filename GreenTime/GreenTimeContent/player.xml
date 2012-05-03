@@ -8,7 +8,7 @@
     <scale>1.2</scale>
     <frameSize>110 326</frameSize>
     <framesPerLine>9</framesPerLine>
-    <framesPerSecond>15</framesPerSecond>
+    <framesPerSecond>17</framesPerSecond>
     <animations>
       <frameSet>
         <frames>3</frames>
