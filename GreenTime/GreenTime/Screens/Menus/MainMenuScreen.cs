@@ -19,21 +19,21 @@ namespace GreenTime.Screens
             MenuEntry playGameMenuEntry = new MenuEntry("Start a New Game", "Press ENTER to start a new game of GreenTime.");
             //MenuEntry loadGameMenuEntry = new MenuEntry("Load Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options", "Take a look at options such as audio, controls and full screen.");
-            MenuEntry cheatMenuEntry = new MenuEntry("SPOILERS - See the ending", "This is a 'cheat' to see the ending of the game for Imagine Cup judges.");
+            //MenuEntry cheatMenuEntry = new MenuEntry("SPOILERS - See the ending", "This is a 'cheat' to see the ending of the game for Imagine Cup judges.");
             MenuEntry exitMenuEntry = new MenuEntry("Exit", "Quit the game.");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
             //loadGameMenuEntry.Selected += LoadGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
-            cheatMenuEntry.Selected += CheatMenuEntrySelected;
+            //cheatMenuEntry.Selected += CheatMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
             //MenuEntries.Add(loadGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
-            MenuEntries.Add(cheatMenuEntry);
+            //MenuEntries.Add(cheatMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
 
