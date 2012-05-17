@@ -13,7 +13,7 @@
     <Item>
       <Key>1</Key>
       <Value>
-        <text><line>Man: I am doing fine, just putting away my thrash.</line></text>
+        <text><line>Man: I am doing fine, just putting away my trash.</line></text>
         <leadsTo>2 3</leadsTo>
       </Value>
     </Item>
