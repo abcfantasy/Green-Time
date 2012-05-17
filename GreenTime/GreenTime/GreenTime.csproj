@@ -19,7 +19,7 @@
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Andrew Borg Cardona\Desktop\GreenTime Setup 4\</PublishUrl>
+    <PublishUrl>C:\Users\Andrew Borg Cardona\Desktop\GreenTime Setup Final NoCheat\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Green Time</ProductName>
     <PublisherName>AVANTgarde</PublisherName>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
