@@ -179,19 +179,10 @@ namespace GreenTime.Screens
                     if (pauseTime > 3000)
                     {
                         LoadingScreen.Load(ScreenManager, false,
-                            new TextOnBlackScreen("AVANTgarde - Credits", "Andrei Livadariu\nAndrew Borg Cardona\nNina Croitoru\nVirgil Tanase\n\nMentored by: Terry Guijt", new GameScreen[] { new TextOnBlackScreen( "Thank you for playing.", "", new GameScreen[] { new BackgroundScreen(), new LogoScreen(true), new MainMenuScreen() } ) }, false, 5000, 150));
-                        /*
-                        LoadingScreen.Load(ScreenManager, false,
-                            new TextOnBlackScreen("Programmers", "Andrei Livadariu\nAndrew Borg Cardona", 
-                                new GameScreen[] { new TextOnBlackScreen("Art", "Nina Croitoru", 
-                                    new GameScreen[] { new TextOnBlackScreen("Sound & Animations", "Virgil Tanase", 
-                                        new GameScreen[] { new TextOnBlackScreen("Mentor", "Terry Guijt",
-                                            new GameScreen[] { new MainMenuScreen() } 
-                                        ) }
-                                    ) }
-                                ) }    
-                            ));
-                         * */
+                            new TextOnBlackScreen("AVANTgarde - Credits", "Andrei Livadariu\nAndrew Borg Cardona\nNina Croitoru\nVirgil Tanase\n\nMentored by: Terry Guijt",
+                                new GameScreen[] { new TextOnBlackScreen( "Other credits", "freesound.org\nopenclipart.org\nheathersanimations.com", 
+                                    new GameScreen[] { new TextOnBlackScreen( "Thank you for playing", "", 
+                                        new GameScreen[] { new BackgroundScreen(), new LogoScreen(true), new MainMenuScreen() }, false ) }, false, 4000, 150 ) }, false, 5000, 150));
                          
                     }
                 }
