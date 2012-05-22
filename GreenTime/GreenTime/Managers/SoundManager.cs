@@ -180,7 +180,8 @@ namespace GreenTime.Managers
 
         public static void StopFootsteps()
         {
-            footsteps.Stop(true);
+            if ( footsteps != null && footsteps.State == SoundState.Playing )
+                footsteps.Stop(true);
         }
 
         /// <summary>

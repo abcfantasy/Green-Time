@@ -261,9 +261,6 @@ namespace GreenTime.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
-            SoundManager.Update(player.Position.X);
-            SoundManager.UpdateFade(TransitionPosition);
-
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
@@ -273,6 +270,9 @@ namespace GreenTime.Screens
             if (IsActive)
             {
                 player.Update(gameTime);
+
+                SoundManager.Update(player.Position.X);
+                SoundManager.UpdateFade(TransitionPosition);
 
                 #region tutorials
                 // press SPACE to interact
