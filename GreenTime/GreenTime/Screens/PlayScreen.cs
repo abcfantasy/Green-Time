@@ -540,8 +540,8 @@ namespace GreenTime.Screens
                     #region Time Warp Button
                     else if (input.IsReverseTime() && StateManager.Instance.CanTimeTravel())
                     {
-                        // transition into past
-                        if (!String.IsNullOrEmpty(interactingObject.interaction.transition))
+                        // transition into past; an extra condition is added below to check if the interacting object can be picked up, then it is not picked up currently (prevents going to the past with garbage bag picked up)
+                        if (!String.IsNullOrEmpty(interactingObject.interaction.transition) && !( !String.IsNullOrEmpty(interactingObject.interaction.pickUpName) && StateManager.Instance.GetState("item_picked") == 100 ) )
                         {
                             LevelManager.Instance.MovePast(interactingObject.interaction.transition);
                             LoadingScreen.Load(ScreenManager, false, new PlayScreen(TransitionType.FromPresent));
